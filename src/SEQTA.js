@@ -1,7 +1,3 @@
-// var style = document.createElement("style");
-// style.textContent = "html, body {background: #1a1a1a !important}";
-// document.head.insertBefore(style, document.head.firstChild);
-
 let TimetableReady = false;
 
 var stringToHTML = function (str) {
@@ -16,7 +12,6 @@ function loading() {
   );
   var html = document.getElementsByTagName("html")[0];
   html.append(loadinghtml.firstChild);
-  // body.append(loadinghtml.firstChild);
 }
 
 function delay(ms) {
@@ -66,7 +61,6 @@ window.addEventListener("load", function () {
   fileref.setAttribute("type", "text/css");
   fileref.setAttribute("href", cssFile);
 
-  // document.head.insertBefore(fileref, head.firstChild);
   document.head.appendChild(fileref);
 
   var jsFile = chrome.runtime.getURL("inject/injected.js");
@@ -74,9 +68,7 @@ window.addEventListener("load", function () {
   var script = document.createElement("script");
   script.setAttribute("type", "text/javascript");
   script.setAttribute("src", jsFile);
-  // document.getElementsByTagName("html")[0].appendChild(script);
   this.document.head.appendChild(script);
-  // document.getElementsByTagName("head")[0].appendChild(script);
 
   function CreateBackground() {
     var bklocation = document.getElementById("container");
@@ -107,12 +99,6 @@ window.addEventListener("load", function () {
           await delay(10);
           await CheckForMenuItems();
         } else {
-          // var htmldocs = document.getElementsByTagName("body");
-          // console.log(htmldocs);
-
-          // for (i = 0; i < htmldocs.length; i++) {
-          //   htmldocs[i].style.color = "white";
-          // }
           var iframes = document.getElementsByTagName("iframe");
 
           if (iframes.length > 0) {
@@ -126,19 +112,6 @@ window.addEventListener("load", function () {
 
               iframes[i].contentDocument.documentElement.lastChild.style.color =
                 "#dadada";
-
-              // iframes[i].firstChild.style.color = "white";
-              // await delay(1);
-              // console.log(
-              //   iframes[i].contentDocument.documentElement.lastChild
-              //     .classList[0]
-              // );
-
-              // console.log(iframes[i].offsetParent.childElementCount);
-
-              // .childNodes[1].style.color = "white";
-              // iframes[i].addEventListener("loadeddata", test(iframes[i]));
-              // iframes[i].onload = "test()";
             }
           }
 
