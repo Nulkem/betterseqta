@@ -219,7 +219,6 @@ function SendPageData(name) {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           var serverResponse = JSON.parse(xhr.response);
-          // console.log(serverResponse.payload.items.length);
           if (serverResponse.payload.items.length == 0) {
             lesson1colour = "#FFFFFF";
             var lesson1 = {};
@@ -482,8 +481,6 @@ function SendPageData(name) {
               }
 
               NoticeContainer.append(NewNotice);
-
-              // console.log(NoticesPayload.payload[i]);
             }
           }
         }
@@ -498,7 +495,6 @@ MainFound = false;
 let SettingsFound = false;
 async function SetLandingPage() {
   var element = document.querySelector("[data-key=" + "settings" + "]");
-  console.log(element);
   if (element != null) {
     deleteMenuItem("welcome");
     deleteMenuItem("portals");

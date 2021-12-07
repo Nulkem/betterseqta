@@ -49,7 +49,8 @@ function waitForElm(selector) {
 loading();
 
 window.addEventListener("load", function () {
-  window.location.replace("https://learn.cbc.sa.edu.au/#?page=/home");
+  var weblink = window.location.href.split("/")[2];
+  window.location.replace("https://" + weblink + "/#?page=/home");
   waitForElm(".day").then((elm) => {
     finishLoad();
   });
@@ -64,7 +65,6 @@ window.addEventListener("load", function () {
   document.head.appendChild(fileref);
 
   var jsFile = chrome.runtime.getURL("inject/injected.js");
-  console.log(jsFile);
   var script = document.createElement("script");
   script.setAttribute("type", "text/javascript");
   script.setAttribute("src", jsFile);
