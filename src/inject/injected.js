@@ -207,11 +207,11 @@ function SendPageData(name) {
       var NoticesStr = `<div class="notices-container"><h2>Notices:</h2><div class="notice-container" id="notice-container"></div></div>`;
       var Notices = stringToHTML(NoticesStr);
       document.getElementById("home-container").append(Notices.firstChild);
-
+      var weblink = window.location.href.split("/")[2];
       var xhr = new XMLHttpRequest();
       xhr.open(
         "POST",
-        "https://learn.cbc.sa.edu.au/seqta/student/load/timetable?",
+        "https://" + weblink + "/seqta/student/load/timetable?",
         true
       );
       xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
@@ -433,7 +433,7 @@ function SendPageData(name) {
       var xhr2 = new XMLHttpRequest();
       xhr2.open(
         "POST",
-        "https://learn.cbc.sa.edu.au/seqta/student/load/notices?",
+        "https://" + weblink + "/seqta/student/load/notices?",
         true
       );
       xhr2.setRequestHeader("Content-Type", "application/json; charset=utf-8");
