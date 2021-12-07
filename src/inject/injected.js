@@ -164,7 +164,7 @@ function SendPageData(name) {
         date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 
       // Replaces actual date with a selected date. Used for testing.
-      // TodayFormatted = "2021-12-01";
+      TodayFormatted = "2021-12-01";
 
       // Creates the container div for the timetable portion of the home page
       var TimetableStr = `<div class="timetable-container"><h2>Today's Lessons:</h2><div class="day-container" id="day-container"></div></div>`;
@@ -498,6 +498,9 @@ function SendPageData(name) {
               NewNotice.append(staff.firstChild);
               // Converts the string into HTML
               var content = stringToHTML(NoticesPayload.payload[i].contents);
+              for (let i = 0; i < content.childNodes.length; i++) {
+                NewNotice.append(content.childNodes[i]);
+              }
               // Gets the colour for the top section of each notice
               var colour = NoticesPayload.payload[i].colour;
               var colourbar = document.createElement("div");

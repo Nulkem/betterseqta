@@ -15,6 +15,10 @@
   --better-alert-highlight: #c61851;
   --theme-fg-parts: white;
 }
+#main {
+  color: white;
+}
+
 #menu,
 .sub,
 .nav {

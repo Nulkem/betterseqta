@@ -109,6 +109,15 @@ window.addEventListener("load", function () {
             ) {
               await delay(50);
             }
+            // Injecting CSS File to the webpage to overwrite SEQTA's default CSS
+            var iframeFile = chrome.runtime.getURL("inject/iframe.css");
+            var iframeCSS = document.createElement("link");
+            iframeCSS.setAttribute("rel", "stylesheet");
+            iframeCSS.setAttribute("type", "text/css");
+            iframeCSS.setAttribute("href", cssFile);
+            iframes[i].contentDocument.documentElement.firstChild.appendChild(
+              iframeCSS
+            );
             iframes[i].contentDocument.documentElement.lastChild.style.color =
               "#dadada";
           }
