@@ -22,8 +22,7 @@
     "content_scripts": [
         {
             "matches": [
-                "*://learn.cbc.sa.edu.au/*",
-                "*://learn.gleeson.catholic.edu.au/*"
+                "*://learn.cbc.sa.edu.au/*"
             ],
             "js": [
                 "SEQTA.js"
