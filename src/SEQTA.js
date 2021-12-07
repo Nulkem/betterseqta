@@ -109,15 +109,6 @@ window.addEventListener("load", function () {
             ) {
               await delay(50);
             }
-            // Injecting CSS File to the webpage to overwrite SEQTA's default CSS
-            var iframeFile = chrome.runtime.getURL("inject/iframe.css");
-            var iframeCSS = document.createElement("link");
-            iframeCSS.setAttribute("rel", "stylesheet");
-            iframeCSS.setAttribute("type", "text/css");
-            iframeCSS.setAttribute("href", cssFile);
-            iframes[i].contentDocument.documentElement.firstChild.appendChild(
-              iframeCSS
-            );
             iframes[i].contentDocument.documentElement.lastChild.style.color =
               "#dadada";
           }
@@ -138,6 +129,16 @@ window.addEventListener("load", function () {
           var menu = document.getElementById("menu");
           var List = menu.firstChild;
           List.insertBefore(NewButton.firstChild, List.firstChild);
+          // Creates settings and dashboard buttons next to alerts
+          var SettingsButton = stringToHTML(
+            `<div class="addedButton" style="right: 70px;" onclick="ChangeCurrentPage('settings');"><svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M23.182,6.923c-.29,0-3.662,2.122-4.142,2.4l-2.8-1.555V4.511l4.257-2.456a.518.518,0,0,0,.233-.408.479.479,0,0,0-.233-.407,6.511,6.511,0,1,0-3.327,12.107,6.582,6.582,0,0,0,6.148-4.374,5.228,5.228,0,0,0,.333-1.542A.461.461,0,0,0,23.182,6.923Z"></path><path d="M9.73,10.418,7.376,12.883c-.01.01-.021.016-.03.025L1.158,19.1a2.682,2.682,0,1,0,3.793,3.793l4.583-4.582,0,0,4.1-4.005-.037-.037A9.094,9.094,0,0,1,9.73,10.418ZM3.053,21.888A.894.894,0,1,1,3.946,21,.893.893,0,0,1,3.053,21.888Z"></path></g></g></svg></div>`
+          );
+          var DashboardButton = stringToHTML(
+            `<div class="addedButton" style="right: 120px;" onclick="ChangeCurrentPage('dashboard');"><svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M15.81,6.446a.749.749,0,0,0-1,.367L12.64,11.527A3.261,3.261,0,0,0,12,11.463a3.214,3.214,0,1,0,2,.7l2.178-4.72A.751.751,0,0,0,15.81,6.446ZM12,16.371a1.7,1.7,0,1,1,1.7-1.7A1.7,1.7,0,0,1,12,16.371Z"></path><path d="M23.965,13.71A12.04,12.04,0,0,0,12.831,2.7c-.278-.018-.554-.028-.828-.028A12,12,0,0,0,1.376,20.245a.817.817,0,0,0,.725.427h19.8a.815.815,0,0,0,.725-.427A11.964,11.964,0,0,0,23.965,13.71Zm-2.476,5.462H2.516a10.368,10.368,0,0,1-1.013-4.5A10.512,10.512,0,0,1,12,4.172c.241,0,.486.009.728.025a10.5,10.5,0,0,1,8.758,14.975Z"></path><path d="M19.625,14.328a1.364,1.364,0,1,0,1.364,1.364A1.364,1.364,0,0,0,19.625,14.328Z"></path><circle cx="4.381" cy="15.692" r="1.364"></circle><path d="M6.146,8.369A1.364,1.364,0,1,0,7.51,9.733,1.364,1.364,0,0,0,6.146,8.369Z"></path><path d="M19.224,9.733A1.364,1.364,0,1,0,17.86,11.1,1.364,1.364,0,0,0,19.224,9.733Z"></path><path d="M12,8.369a1.364,1.364,0,1,0-1.364-1.364A1.364,1.364,0,0,0,12,8.369Z"></path></g></g></svg></div>`
+          );
+          var ContentDiv = document.getElementById("content");
+          ContentDiv.append(SettingsButton.firstChild);
+          ContentDiv.append(DashboardButton.firstChild);
         }
       }
     },

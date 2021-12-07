@@ -26,6 +26,11 @@ async function deleteMenuItem(name) {
   }
 }
 
+function ChangeCurrentPage(newpage) {
+  var weblink = window.location.href.split("/")[2];
+  window.location.replace("https://" + weblink + "/#?page=/" + newpage);
+}
+
 function CheckCurrentLesson(lesson, num) {
   var startTime = lesson.from;
   var endTime = lesson.until;

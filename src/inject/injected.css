@@ -18,7 +18,41 @@
 #main {
   color: white;
 }
-
+.addedButton {
+  position: absolute;
+  right: 70px;
+  width: 35px;
+  height: 35px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 14px;
+  cursor: pointer;
+  color: var(--better-sub);
+}
+#main > .dashboard {
+  background: unset;
+}
+#main > .dashboard > .dashlet {
+  background: var(--better-sub);
+}
+.dashlet-notes > ul {
+  background: var(--better-main);
+}
+.dashlet-notes > ul > li {
+  color: white;
+}
+ul.magicDelete > li:hover {
+  background: var(--better-sub);
+}
+.dashlet-notes > .editor {
+  background: unset;
+}
+ul.magicDelete > li.deleting {
+  background: unset;
+}
+.addedButton svg {
+  margin: 6px;
+}
 #menu,
 .sub,
 .nav {
