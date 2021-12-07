@@ -17,7 +17,9 @@
     "permissions": [
         "activeTab",
         "tabs",
-        "notifications"
+        "notifications",
+        "storage",
+        "tabs"
     ],
     "content_scripts": [
         {
@@ -28,7 +30,7 @@
                 "SEQTA.js"
             ],
             "css": [
-                "inject/injected.css"
+                "inject/documentload.css"
             ],
             "run_at": "document_start"
         }
