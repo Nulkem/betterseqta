@@ -1,0 +1,42 @@
+{
+    "manifest_version": 2,
+    "name": "BetterSEQTA",
+    "version": "1.11",
+    "description": "Spices up SEQTA.",
+    "icons": {
+        "48": "icons/logo-learn-light.png"
+    },
+    "browser_action": {
+        "browser_style": true,
+        "default_popup": "popup/info.html",
+        "default_icon": {
+            "16": "icons/page-32.png",
+            "32": "icons/page-32.png"
+        }
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "notifications"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://learn.cbc.sa.edu.au/*"
+            ],
+            "js": [
+                "SEQTA.js"
+            ],
+            "css": [
+                "inject/injected.css"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "web_accessible_resources": [
+        "icons/*",
+        "images/*",
+        "inject/*",
+        "popup/*"
+    ]
+}
