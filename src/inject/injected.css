@@ -337,10 +337,9 @@ html {
 
 .day {
   box-shadow: inset 0px 0px 10px 0.1px var(--better-sub);
-  width: 20%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px 0px 0px 10px;
   box-shadow: inset 0px 3px 0 var(--item-colour, transparent);
   text-shadow: 0px 0px 15px rgb(22, 22, 22);
   transition: 200ms;
@@ -351,24 +350,34 @@ html {
   transition: 200ms;
 }
 .day h2 {
-  margin: 5px 10px;
+  margin: 0;
+  padding: 8px;
   font-size: 18px !important;
   font-weight: 500;
   min-height: 46px;
+  height: 40%;
 }
 .day h3 {
-  margin: 0px 10px;
+  padding: 0px 5px;
+  padding-left: 8px;
+  margin: 0;
   font-size: 13px !important;
-  font-weight: 300;
+  font-weight: 200;
+  color: #bdbdbd;
 }
 .day h4 {
-  margin: 5px 10px;
-  margin-top: 15px;
+  position: absolute;
+  bottom: 15px;
+  margin: 0;
+  padding: 2px;
+  padding-left: 8px;
   font-size: 16px !important;
   font-weight: 500;
 }
 .day h5 {
-  margin: 5px;
+  margin: 0;
+  padding: 5px;
+  padding-left: 8px;
   position: absolute;
   bottom: 0;
   right: 0;

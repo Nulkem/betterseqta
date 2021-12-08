@@ -181,11 +181,7 @@ var IsSEQTAPage = false;
 document.addEventListener(
   "load",
   function () {
-    if (
-      document.childNodes[1].textContent ==
-        "\n  ~ Copyright (c) SEQTA Software (a division of Saron Education Ltd.) 2014.\n  " &&
-      !IsSEQTAPage
-    ) {
+    if (document.childNodes[1].textContent.includes("SEQTA") && !IsSEQTAPage) {
       IsSEQTAPage = true;
       console.log("seqta page");
       var gettingStoredSettings = browser.storage.local.get();
