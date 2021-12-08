@@ -15,10 +15,10 @@ function FindSEQTATab() {
 Store the currently selected settings using chrome.storage.local.
 */
 function storeSettings() {
-  browser.storage.local.set({
-    onoff: onoffselection.checked,
+  chrome.storage.local.set({ onoff: onoffselection.checked }, function () {
+    console.log("set the value");
+    FindSEQTATab();
   });
-  FindSEQTATab();
 }
 /*
 Update the options UI with the settings values retrieved from storage,
@@ -38,8 +38,11 @@ function onError(e) {
 /*
 On opening the options page, fetch stored settings and update the UI with them.
 */
-const gettingStoredSettings = browser.storage.local.get();
-gettingStoredSettings.then(updateUI, onError);
+chrome.storage.local.get(["onoff"], function (result) {
+  updateUI(result);
+});
+// const gettingStoredSettings = browser.storage.local.get();
+// gettingStoredSettings.then(updateUI, onError);
 
 /*
 On blur, save the currently selected settings.

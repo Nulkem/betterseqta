@@ -27,9 +27,7 @@ async function finishLoad() {
 }
 
 function SetDefaultValues() {
-  browser.storage.local.set({
-    onoff: true,
-  });
+  chrome.storage.local.set({ onoff: true });
 }
 
 function waitForElm(selector) {
@@ -67,8 +65,9 @@ function RunFunctionOnTrue(storedSetting) {
   if (storedSetting.onoff == undefined) {
     // Set the value to true, and rerun the function
     SetDefaultValues();
-    var gettingStoredSettings = browser.storage.local.get();
-    gettingStoredSettings.then(RunFunctionOnTrue, SetDefaultValues);
+    chrome.storage.local.get(null, function (items) {
+      RunFunctionOnTrue(items);
+    });
   }
   // If the option is 'on', open BetterSEQTA
   if (storedSetting.onoff) {
@@ -184,8 +183,9 @@ document.addEventListener(
     if (document.childNodes[1].textContent.includes("SEQTA") && !IsSEQTAPage) {
       IsSEQTAPage = true;
       console.log("seqta page");
-      var gettingStoredSettings = browser.storage.local.get();
-      gettingStoredSettings.then(RunFunctionOnTrue, SetDefaultValues);
+      chrome.storage.local.get(null, function (items) {
+        RunFunctionOnTrue(items);
+      });
     }
   },
   true

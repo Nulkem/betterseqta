@@ -107,7 +107,9 @@ function CheckCurrentLesson(lesson, num) {
   } else {
     // Removes the activelesson class to ensure only the active lesson have the class
     var elementA = document.getElementById("lesson" + num);
-    elementA.classList.remove("activelesson");
+    if (elementA != null) {
+      elementA.classList.remove("activelesson");
+    }
   }
 }
 
