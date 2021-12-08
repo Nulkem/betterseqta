@@ -18,8 +18,7 @@
         "activeTab",
         "tabs",
         "notifications",
-        "storage",
-        "tabs"
+        "storage"
     ],
     "content_scripts": [
         {
