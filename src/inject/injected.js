@@ -253,7 +253,7 @@ function SendPageData(name) {
           if (serverResponse.payload.items.length > 0) {
             lessonArray = [];
             console.log(serverResponse.payload.items.length);
-            for (let i = 0; i < serverResponse.payload.items.length; i++) {
+            for (let i = 1; i < serverResponse.payload.items.length; i++) {
               lessonArray.push(serverResponse.payload.items[i]);
             }
             // If items in the response, set each corresponding value into divs
