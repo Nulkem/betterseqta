@@ -1,14 +1,15 @@
 const onoffselection = document.querySelector("#onoff");
 
-async function FindSEQTATab() {
-  let tabs = await browser.tabs.query({});
-  for (let tab of tabs) {
-    if (tab.url.includes("https://learn") && tab.url.includes(".edu.au/")) {
-      if (tab.title.includes("SEQTA Learn")) {
-        chrome.tabs.reload(tab.id);
+function FindSEQTATab() {
+  chrome.tabs.query({}, function (tabs) {
+    for (let tab of tabs) {
+      if (tab.url.includes("https://learn") && tab.url.includes(".edu.au/")) {
+        if (tab.title.includes("SEQTA Learn")) {
+          chrome.tabs.reload(tab.id);
+        }
       }
     }
-  }
+  });
 }
 /*
 Store the currently selected settings using chrome.storage.local.
