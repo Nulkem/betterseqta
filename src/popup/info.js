@@ -1,5 +1,15 @@
 const onoffselection = document.querySelector("#onoff");
 
+async function FindSEQTATab() {
+  let tabs = await browser.tabs.query({});
+  for (let tab of tabs) {
+    if (tab.url.includes("https://learn") && tab.url.includes(".edu.au/")) {
+      if (tab.title.includes("SEQTA Learn")) {
+        chrome.tabs.reload(tab.id);
+      }
+    }
+  }
+}
 /*
 Store the currently selected settings using chrome.storage.local.
 */
@@ -7,7 +17,7 @@ function storeSettings() {
   browser.storage.local.set({
     onoff: onoffselection.checked,
   });
-  browser.tabs.reload();
+  FindSEQTATab();
 }
 /*
 Update the options UI with the settings values retrieved from storage,

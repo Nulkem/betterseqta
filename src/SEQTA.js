@@ -177,5 +177,20 @@ function RunFunctionOnTrue(storedSetting) {
   }
 }
 
-var gettingStoredSettings = browser.storage.local.get();
-gettingStoredSettings.then(RunFunctionOnTrue, SetDefaultValues);
+var IsSEQTAPage = false;
+document.addEventListener(
+  "load",
+  function () {
+    if (
+      document.childNodes[1].textContent ==
+        "\n  ~ Copyright (c) SEQTA Software (a division of Saron Education Ltd.) 2014.\n  " &&
+      !IsSEQTAPage
+    ) {
+      IsSEQTAPage = true;
+      console.log("seqta page");
+      var gettingStoredSettings = browser.storage.local.get();
+      gettingStoredSettings.then(RunFunctionOnTrue, SetDefaultValues);
+    }
+  },
+  true
+);

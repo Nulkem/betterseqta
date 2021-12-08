@@ -24,7 +24,8 @@
     "content_scripts": [
         {
             "matches": [
-                "*://learn.cbc.sa.edu.au/*"
+                "*://*.catholic.edu.au/*",
+                "*://*.sa.edu.au/*"
             ],
             "js": [
                 "SEQTA.js"
