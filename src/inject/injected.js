@@ -242,11 +242,7 @@ function SendPageData(name) {
         "outlook-icon",
         "Outlook"
       );
-      createNewShortcut(
-        "http://office365.com/login",
-        "office365-icon",
-        "Office 365"
-      );
+      createNewShortcut("http://office.com", "office365-icon", "Office");
 
       createNewShortcut(
         "https://accounts.spotify.com/en/login",
