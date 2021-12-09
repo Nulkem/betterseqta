@@ -1,0 +1,12 @@
+blockquote.forward > .preamble {
+  color: white !important;
+}
+
+blockquote.forward > .preamble > .date > .value,
+blockquote.forward > .preamble > .sender > .value {
+  color: white !important;
+}
+blockquote.forward > .preamble > .date > .label,
+blockquote.forward > .preamble > .sender > .label {
+  color: white !important;
+}
