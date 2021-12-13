@@ -193,7 +193,7 @@ document.addEventListener(
     ) {
       document.head.insertAdjacentHTML(
         "beforeend",
-        `<style>html{background-color:white !important}</style>`
+        `<style>html{background-color:unset !important}</style>`
       );
       NonSEQTAPage = true;
     }
