@@ -175,7 +175,7 @@ function RunFunctionOnTrue(storedSetting) {
     });
   }
 }
-
+var NonSEQTAPage = false;
 var IsSEQTAPage = false;
 document.addEventListener(
   "load",
@@ -186,6 +186,16 @@ document.addEventListener(
       chrome.storage.local.get(null, function (items) {
         RunFunctionOnTrue(items);
       });
+    }
+    if (
+      !document.childNodes[1].textContent.includes("SEQTA") &&
+      !NonSEQTAPage
+    ) {
+      document.head.insertAdjacentHTML(
+        "beforeend",
+        `<style>html{background-color:white !important}</style>`
+      );
+      NonSEQTAPage = true;
     }
   },
   true
