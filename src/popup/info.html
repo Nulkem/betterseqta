@@ -7,20 +7,47 @@
   </head>
 
 <body>
+  
   <div class="logo-container"><img src="/popup/better-seqta.png"></div>
+  <div class="main-page" id="mainpage">
   <div class="selector-container">
-    <label class="switch">
-    <input type="checkbox" id="onoff">
-    <span class="slider"></span>
-  </label>
-  <div class="text">OFF / ON</div>
-  <!-- <label>Username: <input id="onoff" type="text"/></label> -->
-  
-  </div>
-  <div class="bottom-container">Created by Nulkem</div>
+    <div class="item-container offontoggle"><h1 class="item main">Toggle BetterSEQTA</h1><div class="checkbox-container"><input class="toggle offon" type="checkbox" id="onoff"></div></div>
 
-  
-  
+    <div class="item-container clickable" id="sidemenusection"><div class="text-container"><h1 class="item">Side Menu Items</h1><p class="item subitem">Choose which items to keep on the side menu.</p></div><div class="checkbox-container"><img src="/popup/page.png" alt="" width="20px" height="20px"></div></div>
+    <div class="item-container clickable" id="shortcutsection"><div class="text-container"><h1 class="item">Shortcut Items</h1><p class="item subitem">Choose which shortcuts to use on the Home Page.</p></div><div class="checkbox-container"><img src="/popup/page.png" alt="" width="20px" height="20px"></div></div>
+    <div class="item-container"><div class="text-container"><h1 class="item">Notification Collector</h1><p class="item subitem">Removes the ability to delete notifications to continue the grind.</p></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="notification"></div></div>
+  </div>
+</div>
+
+<div class="menu-page" id="menupage">
+  <div class="selector-container" style="margin-bottom: 0;">
+    <div class="item-container" style="border-bottom: none; height: 2em;"><h1 class="item menumain" style="width: 100%;">Select Hidden/Shown Menu Items</h1></div>
+    <div class="menu-item-selection">
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Welcome</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="welcome"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Portals</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="portals"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Dashboard</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="dashboard"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Forums</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="forums"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Settings</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="settings"></div></div>
+  </div>
+</div>
+  <div class="back-button" id="menuback"><img src="/popup/page.png" alt="" width="20px" height="20px">Back</div>
+</div>
+
+<div class="menu-page" id="shortcutpage">
+  <div class="selector-container" style="margin-bottom: 0;">
+    <div class="item-container" style="border-bottom: none; height: 2em;"><h1 class="item menumain" style="width: 100%;">Select Shortcuts for Home</h1></div>
+    <div class="menu-item-selection">
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Welcome</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="welcome"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Portals</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="portals"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Dashboard</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="dashboard"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Forums</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="forums"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="item">Settings</h1></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="settings"></div></div>
+  </div>
+</div>
+  <div class="back-button" id="shortcutback"><img src="/popup/page.png" alt="" width="20px" height="20px">Back</div>
+</div>
+
+  <div class="bottom-container">Created by Nulkem</div>
   <script src="info.js"></script>
 </body>
 

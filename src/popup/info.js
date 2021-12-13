@@ -1,4 +1,33 @@
 const onoffselection = document.querySelector("#onoff");
+const sidemenusection = document.querySelector("#sidemenusection");
+const shortcutsection = document.querySelector("#shortcutsection");
+const mainpage = document.querySelector("#mainpage");
+
+const menupage = document.querySelector("#menupage");
+const menuback = document.querySelector("#menuback");
+
+const shortcutpage = document.querySelector("#shortcutpage");
+const shortcutback = document.querySelector("#shortcutback");
+
+function openMenuPage() {
+  mainpage.style.left = "-350px";
+  menupage.style.right = "0px";
+}
+
+function backFromMenu() {
+  mainpage.style.left = "0px";
+  menupage.style.right = "-350px";
+}
+
+function openShortcutPage() {
+  mainpage.style.left = "-350px";
+  shortcutpage.style.right = "0px";
+}
+
+function backFromShortcut() {
+  mainpage.style.left = "0px";
+  shortcutpage.style.right = "-350px";
+}
 
 function FindSEQTATab() {
   chrome.tabs.query({}, function (tabs) {
@@ -41,10 +70,16 @@ On opening the options page, fetch stored settings and update the UI with them.
 chrome.storage.local.get(["onoff"], function (result) {
   updateUI(result);
 });
-// const gettingStoredSettings = browser.storage.local.get();
-// gettingStoredSettings.then(updateUI, onError);
 
 /*
 On blur, save the currently selected settings.
 */
+document.addEventListener("DOMContentLoaded", function () {
+  sidemenusection.addEventListener("click", openMenuPage);
+  menuback.addEventListener("click", backFromMenu);
+
+  shortcutsection.addEventListener("click", openShortcutPage);
+  shortcutback.addEventListener("click", backFromShortcut);
+});
+
 onoffselection.addEventListener("change", storeSettings);
