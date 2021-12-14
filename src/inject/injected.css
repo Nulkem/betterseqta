@@ -663,6 +663,13 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
 }
+.forumView > .messages > .thread,
+.forumView > .messages > .deletedPlaceholder,
+.forumView > .addMessage,
+.forumView .greeting,
+.forumView .assessment {
+  background: var(--better-main);
+}
 .yt-icon {
   background-image: url("/images/yt-icon.png");
 }
