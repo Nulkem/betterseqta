@@ -94,6 +94,21 @@ body {
   background-color: #0d0d0d;
   color: rgb(209, 209, 209);
   z-index: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 13px;
+}
+.bottom-container div {
+  margin-top: 4px;
+}
+.bottom-container img {
+  width: 25px;
+  height: 25px;
+  filter: invert(99%) sepia(0%) saturate(627%) hue-rotate(255deg)
+    brightness(122%) contrast(100%);
+  cursor: pointer;
 }
 .text-container {
   width: 70%;

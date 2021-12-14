@@ -13,6 +13,12 @@ var applybuttons = document.getElementsByClassName("apply-changes");
 var menubuttons = document.getElementsByClassName("menuitem");
 var shortcutbuttons = document.getElementsByClassName("shortcutitem");
 
+const github = document.getElementById("github");
+
+function openGithub() {
+  chrome.tabs.create({ url: "https://github.com/Nulkem/better-seqta" });
+}
+
 function openMenuPage() {
   mainpage.style.left = "-350px";
   menupage.style.right = "0px";
@@ -166,6 +172,8 @@ chrome.storage.local.get(null, function (result) {
 On blur, save the currently selected settings.
 */
 document.addEventListener("DOMContentLoaded", function () {
+  github.addEventListener("click", openGithub);
+
   sidemenusection.addEventListener("click", openMenuPage);
   menuback.addEventListener("click", backFromMenu);
 
