@@ -569,13 +569,13 @@ body {
 }
 
 body::-webkit-scrollbar-track {
-  background: var(#1b1b1b);
+  background: #1b1b1b;
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(#303030);
+  background-color: #303030;
   border-radius: 6px;
-  border: 3px solid var(#1b1b1b);
+  border: 3px solid #1b1b1b;
 }
 .programmeNavigator {
   width: 400px;
@@ -655,8 +655,9 @@ body {
   background: var(--better-main);
 }
 .shortcuticondiv {
-  height: 40px;
-  width: 40px;
+  height: 37px;
+  width: 39px;
+  border-radius: 50%;
   padding: 0;
   margin: auto 0px auto 10px;
   background-repeat: no-repeat;

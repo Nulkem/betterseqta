@@ -36,6 +36,19 @@ body {
   align-content: center;
   height: 2em !important;
 }
+.apply-changes {
+  margin-top: 4px;
+  margin-left: 5px;
+  padding: 8px;
+  background-color: #4cd964;
+  width: 30%;
+  font-size: 14px;
+  justify-self: right;
+  cursor: pointer;
+  height: fit-content;
+  text-align: center;
+  text-shadow: 0px 0px 15px rgb(22, 22, 22);
+}
 .logo-container {
   margin-top: 10px;
   width: 100%;
@@ -186,7 +199,6 @@ body {
   cursor: pointer;
 }
 .back-button {
-  margin-left: 20px;
   width: 30%;
   font-size: 20px;
   color: white;
