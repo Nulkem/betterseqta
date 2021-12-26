@@ -1,0 +1,232 @@
+html,
+body {
+  width: 350px;
+  margin: 0;
+  background-color: #131313;
+  overflow: hidden;
+}
+
+.selector-container {
+  font-family: "Roboto", Helvetica, sans-serif;
+  background-color: #131313;
+  color: white;
+  padding: 4px;
+  font-size: 1.5em;
+  text-align: center;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px auto;
+}
+.main-page {
+  position: relative;
+  left: 0px;
+  transition: 0.4s;
+}
+.menu-page {
+  position: absolute;
+  right: -350px;
+  top: 72px;
+  transition: 0.4s;
+  width: 100%;
+}
+.menu-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 2em !important;
+}
+.apply-changes {
+  margin-top: 4px;
+  margin-left: 5px;
+  padding: 8px;
+  background-color: #4cd964;
+  width: 40%;
+  font-size: 14px;
+  justify-self: right;
+  cursor: pointer;
+  height: fit-content;
+  text-align: center;
+  text-shadow: 0px 0px 15px rgb(22, 22, 22);
+}
+.logo-container {
+  margin-top: 10px;
+  width: 100%;
+  height: 6em;
+  text-align: center;
+}
+.checkbox-container {
+  width: 30%;
+  justify-content: end;
+  display: flex;
+}
+.logo-container img {
+  width: 70%;
+}
+.item {
+  font-size: 16px;
+  margin: 0;
+  margin-left: 5px;
+  font-weight: 500;
+}
+.main {
+  font-size: 20px;
+  margin-left: 5px;
+  width: 70%;
+  font-weight: 700;
+}
+.menumain {
+  width: 100%;
+  margin-left: 0;
+  font-weight: 700;
+  font-size: 20px;
+}
+.menu-item-selection {
+  max-height: 15em;
+  overflow-y: auto;
+}
+.subitem {
+  font-size: 12px;
+  font-weight: 300;
+}
+.bottom-container {
+  padding: 10px;
+  background-color: #0d0d0d;
+  color: rgb(209, 209, 209);
+  z-index: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 13px;
+}
+.bottom-container div {
+  margin-top: 4px;
+}
+.bottom-container img {
+  width: 25px;
+  height: 25px;
+  filter: invert(99%) sepia(0%) saturate(627%) hue-rotate(255deg)
+    brightness(122%) contrast(100%);
+  cursor: pointer;
+}
+.text-container {
+  width: 70%;
+}
+.item-container {
+  width: 96%;
+  margin: 5px auto;
+  height: 4em;
+  border-bottom: 1px solid rgb(90, 90, 90);
+  padding: 5px;
+  /* background-color: royalblue; */
+  display: flex;
+  flex-direction: row;
+  /* padding: 5px; */
+  text-align: left;
+  align-items: center;
+}
+.offontoggle {
+  border-bottom: none;
+  height: 3em;
+  flex-direction: row;
+  align-items: center;
+}
+/* .selection-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+} */
+.toggle {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 62px;
+  height: 26px;
+  display: inline-block;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: #707070;
+  transition: background-color ease 0.3s;
+}
+
+.toggle:before {
+  content: "on off";
+  display: block;
+  position: absolute;
+  z-index: 2;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  font: 10px/22px Helvetica;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-indent: -22px;
+  word-spacing: 32px;
+  color: #fff;
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+}
+
+.toggle:checked {
+  background-color: #4cd964;
+}
+
+.toggle:checked:before {
+  left: 38px;
+}
+.notification {
+  width: 50px;
+  height: 20px;
+}
+.notification::before {
+  width: 16px;
+  height: 16px;
+  font: 10px/16px Helvetica;
+  word-spacing: 26px;
+}
+.notification:checked:before {
+  left: 32px;
+}
+.next-page {
+  position: absolute;
+  top: 280px;
+  left: 270px;
+  color: white;
+  font-size: 15px;
+  font-family: sans-serif;
+}
+.item-container img {
+  opacity: 0.6;
+}
+.clickable {
+  cursor: pointer;
+}
+.back-button {
+  width: 30%;
+  font-size: 20px;
+  color: white;
+  display: flex;
+  align-content: center;
+  padding: 12px;
+  cursor: pointer;
+}
+.back-button img {
+  transform: scaleX(-1);
+  margin: 5px;
+  margin-left: 0;
+}
+.menushortcuts {
+  height: 2em;
+}

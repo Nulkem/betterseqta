@@ -1,0 +1,45 @@
+{
+    "manifest_version": 2,
+    "name": "BetterSEQTA",
+    "version": "1.2",
+    "description": "Spices up SEQTA.",
+    "icons": {
+        "48": "icons/logo-learn-light.png"
+    },
+    "browser_action": {
+        "browser_style": true,
+        "default_popup": "popup/info.html",
+        "default_icon": {
+            "16": "icons/page-32.png",
+            "32": "icons/page-32.png"
+        }
+    },
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "notifications",
+        "storage",
+        "https://api.github.com/repos/Nulkem/better-seqta/releases/latest"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.catholic.edu.au/*",
+                "*://*.sa.edu.au/*"
+            ],
+            "js": [
+                "SEQTA.js"
+            ],
+            "css": [
+                "inject/documentload.css"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "web_accessible_resources": [
+        "icons/*",
+        "images/*",
+        "inject/*",
+        "popup/*"
+    ]
+}
