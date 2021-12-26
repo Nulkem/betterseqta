@@ -732,3 +732,6 @@ body {
 .hidden {
   display: none;
 }
+.cke_toolbox {
+  background: var(--better-main);
+}

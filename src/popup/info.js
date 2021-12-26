@@ -68,10 +68,20 @@ function storeNotificationCollectorSetting() {
 }
 
 function StoreAllSettings() {
-  for (var i = 0; i < menubuttons.length; i++) {
-    var id = menubuttons[i].id;
-    chrome.storage.local.set({ [id]: menubuttons[i].checked });
+  chrome.storage.local.get(["menuitems"], function (result) {
+    console.log(result)
+    var menuItemsValues = Object.values(result)[0];
+    var menuItemsNames = Object.keys(result)[0];
+    console.log(menuItems)
+    for (var i = 0; i < menubuttons.length; i++) {
+      
+      
+
+      menuItems[i] = menubuttons[i].checked
+    chrome.storage.local.set({ menuitems: menuItems });
   }
+  })
+
   chrome.storage.local.get(["shortcuts"], function (result) {
     var shortcuts = Object.values(result)[0];
     console.log(shortcuts);
