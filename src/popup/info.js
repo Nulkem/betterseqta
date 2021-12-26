@@ -69,18 +69,16 @@ function storeNotificationCollectorSetting() {
 
 function StoreAllSettings() {
   chrome.storage.local.get(["menuitems"], function (result) {
-    console.log(result)
-    var menuItemsValues = Object.values(result)[0];
-    var menuItemsNames = Object.keys(result)[0];
-    console.log(menuItems)
+    var menuItems = result.menuitems;
+    console.log(result.menuitems);
     for (var i = 0; i < menubuttons.length; i++) {
-      
-      
+      var id = menubuttons[i].id;
 
-      menuItems[i] = menubuttons[i].checked
+      menuItems[id] = menubuttons[i].checked;
+      console.log(menuItems[id]);
+    }
     chrome.storage.local.set({ menuitems: menuItems });
-  }
-  })
+  });
 
   chrome.storage.local.get(["shortcuts"], function (result) {
     var shortcuts = Object.values(result)[0];
@@ -164,10 +162,14 @@ function updateUI(restoredSettings) {
   } else {
     onoffselection.checked = restoredSettings.onoff;
     notificationcollector.checked = restoredSettings.notificationcollector;
-    for (var i = 0; i < menubuttons.length; i++) {
-      var id = menubuttons[i].id;
-      menubuttons[i].checked = restoredSettings[id];
-    }
+    chrome.storage.local.get(["menuitems"], function (result) {
+      var menuItems = Object.values(result)[0];
+      for (var i = 0; i < menubuttons.length; i++) {
+        var id = menubuttons[i].id;
+        menubuttons[i].checked = menuItems[id];
+      }
+    });
+
     chrome.storage.local.get(["shortcuts"], function (result) {
       var shortcuts = Object.values(result)[0];
       console.log(shortcuts);
