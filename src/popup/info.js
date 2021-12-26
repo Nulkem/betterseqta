@@ -89,10 +89,13 @@ or the default settings if the stored settings are empty.
 */
 function updateUI(restoredSettings) {
   if (restoredSettings.onoff == null) {
+    var menuItems = {};
     for (var i = 0; i < menubuttons.length; i++) {
       var id = menubuttons[i].id;
-      chrome.storage.local.set({ [id]: false });
+      menuItems = Object.assign(menuItems, { [id]: false });
     }
+
+    chrome.storage.local.set({ menuitems: menuItems });
     var shortcutArray = [];
     shortcutArray.push({
       name: "YouTube",

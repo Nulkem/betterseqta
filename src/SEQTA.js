@@ -30,12 +30,17 @@ function SetDefaultValues() {
   chrome.storage.local.set({
     onoff: true,
     notificationcollector: false,
+  });
+
+  var menuItems = {
     welcome: false,
     portals: false,
     dashboard: false,
     forums: false,
     settings: false,
-  });
+  };
+  chrome.storage.local.set({ menuitems: menuItems });
+
   var shortcutArray = [];
   shortcutArray.push({
     name: "YouTube",
@@ -95,9 +100,12 @@ function waitForElm(selector) {
     }
 
     const observer = new MutationObserver((mutations) => {
+      console.log(document.querySelector(selector).parentNode.nodeName);
       if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector));
-        observer.disconnect();
+        if (document.querySelector(selector).previousElementSibling != null) {
+          resolve(document.querySelector(selector));
+          observer.disconnect();
+        }
       }
     });
 
@@ -111,14 +119,19 @@ var LoadingDone = false;
 
 // Function to display a notification if loading is taking too long
 async function CheckifStillLoading() {
-  await delay(10000);
+  await delay(6000);
   if (!LoadingDone) {
+    waitForElm(`[data-key="settings"]`).then((elm) => {
+      console.log(elm);
+      LoadInit();
+    });
     var reloadnotification = document.querySelector("#reloadnotification");
     reloadnotification.style.bottom = "10px";
   }
 }
 
 function RunFunctionOnTrue(storedSetting) {
+  console.log(storedSetting.onoff);
   // If value for off and on is not defined
   if (storedSetting.onoff == undefined) {
     // Set the value to true, and rerun the function
@@ -129,8 +142,18 @@ function RunFunctionOnTrue(storedSetting) {
   }
   // If the option is 'on', open BetterSEQTA
   if (storedSetting.onoff) {
+    // Injecting CSS File to the webpage to overwrite SEQTA's default CSS
+    var cssFile = chrome.runtime.getURL("inject/injected.css");
+    var fileref = document.createElement("link");
+    fileref.setAttribute("rel", "stylesheet");
+    fileref.setAttribute("type", "text/css");
+    fileref.setAttribute("href", cssFile);
+    document.head.appendChild(fileref);
+
     loading();
     CheckifStillLoading();
+    var weblink = window.location.href.split("/")[2];
+    window.location.replace("https://" + weblink + "/#?page=/home");
     window.addEventListener("load", function () {
       var weblink = window.location.href.split("/")[2];
       window.location.replace("https://" + weblink + "/#?page=/home");
@@ -139,15 +162,12 @@ function RunFunctionOnTrue(storedSetting) {
         finishLoad();
       });
 
-      MenuItemsDeleted = false;
+      waitForElm(`[data-key="settings"]`).then((elm) => {
+        console.log(elm);
+        LoadInit();
+      });
 
-      // Injecting CSS File to the webpage to overwrite SEQTA's default CSS
-      var cssFile = chrome.runtime.getURL("inject/injected.css");
-      var fileref = document.createElement("link");
-      fileref.setAttribute("rel", "stylesheet");
-      fileref.setAttribute("type", "text/css");
-      fileref.setAttribute("href", cssFile);
-      document.head.appendChild(fileref);
+      MenuItemsDeleted = false;
 
       function CreateBackground() {
         // Creating and inserting 3 divs containing the background applied to the pages
@@ -738,31 +758,51 @@ function SendPageData(name) {
   );
 }
 
-let SettingsFound = false;
-async function SetLandingPage() {
-  // Checks to see if settings menu button exists
-  var element = document.querySelector("[data-key=" + "settings" + "]");
-  if (element != null) {
-    // If element exists, delete the menu item
-    chrome.storage.local.get(null, function (result) {
-      if (result.onoff) {
-        var menuitems = document.getElementById("menu").firstChild.childNodes;
-        for (var i = 0; i < menuitems.length; i++) {
-          if (result[menuitems[i].getAttribute("data-key")] == false) {
-            console.log("deleted " + menuitems[i].getAttribute("data-key"));
-            deleteMenuItem(menuitems[i].getAttribute("data-key"));
-          }
+// async function waitForSettings() {
+//   await page.waitForFunction("document.querySelector([data-key=settings])");
+//   console.log("settings found");
+// }
+
+function LoadInit() {
+  chrome.storage.local.get(null, function (result) {
+    if (result.onoff) {
+      var menuitemsOnPage =
+        document.getElementById("menu").firstChild.childNodes;
+      console.log(menuitemsOnPage);
+      console.log(menuitemsOnPage.length);
+      console.log(result);
+      console.log(Object.keys(result.menuitems).length);
+      for (var i = 0; i < Object.keys(result.menuitems).length; i++) {
+        if (Object.values(result.menuitems)[i] == false) {
+          deleteMenuItem(Object.keys(result.menuitems)[i]);
         }
+        // if (result[menuitemsOnPage[i].getAttribute("data-key")] == false) {
+        //   console.log("deleted " + menuitemsOnPage[i].getAttribute("data-key"));
+
+        //   deleteMenuItem(menuitemsOnPage[i].getAttribute("data-key"));
+        // }
       }
-    });
-    SettingsFound = true;
-    SendPageData("home");
-  }
-  if (SettingsFound == false) {
-    // If the settings button was not found, wait 500ms and try again
-    await delay(500);
-    SetLandingPage();
-  }
+    }
+  });
+  SendPageData("home");
 }
-// Calls the Landing Page Function
-SetLandingPage();
+
+// let SettingsFound = false;
+// async function SetLandingPage() {
+//   waitForSettings();
+//   // Checks to see if settings menu button exists
+//   var element = document.querySelector("[data-key=" + "settings" + "]");
+//   if (element != null) {
+//     // If element exists, delete the menu item
+
+//     SettingsFound = true;
+//     SendPageData("home");
+//   }
+//   if (SettingsFound == false) {
+//     // If the settings button was not found, wait 500ms and try again
+//     await delay(500);
+//     SetLandingPage();
+//   }
+// }
+// // Calls the Landing Page Function
+// SetLandingPage();
