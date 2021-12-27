@@ -669,18 +669,6 @@ body {
 .forumView .assessment {
   background: var(--better-main);
 }
-.yt-icon {
-  background-image: url("/images/yt-icon.png");
-}
-.outlook-icon {
-  background-image: url("/images/outlook-icon.png");
-}
-.office365-icon {
-  background-image: url("/images/office365-icon.png");
-}
-.spotify-icon {
-  background-image: url("/images/spotify-icon.png");
-}
 .dailycal
   > .content
   > .wrapper
@@ -734,4 +722,7 @@ body {
 }
 .cke_toolbox {
   background: var(--better-main);
+}
+.modaliser {
+  display: none;
 }
