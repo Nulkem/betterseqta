@@ -41,12 +41,12 @@ This extension is not currently accessable on the Chrome Webstore or Firefox Add
 
 ## For Firefox Users:
 
-Firefox users can install the latest version of BetterSEQTA via the [betterseqta-firefox.xpi](https://github.com/Nulkem/better-seqta/releases/download/v1.12-beta/betterseqta-firefox.xpi) file.
+Firefox users can install the latest version of BetterSEQTA via the [betterseqta-firefox.xpi](https://github.com/Nulkem/better-seqta/releases/download/v1.2/betterseqta-firefox.xpi) file.
 
 
 ## For Chrome Users:
 
-Chrome users can install the latest version of BetterSEQTA via the [betterseqta-chrome.zip](https://github.com/Nulkem/better-seqta/releases/download/v1.12-beta/betterseqta-chrome.zip) file. Due to it not being a Chrome Webstore Extension, Chrome users will need to:
+Chrome users can install the latest version of BetterSEQTA via the [betterseqta-chrome.zip](https://github.com/Nulkem/better-seqta/releases/download/v1.2/betterseqta-chrome.zip) file. Due to it not being a Chrome Webstore Extension, Chrome users will need to:
 - Extract the zip file
 - Load the extension by opening chrome://extensions/
 - Enable the 'developer mode' in the top right
