@@ -78,6 +78,39 @@ function loading() {
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
+function CheckMenuItems() {
+  console.log("function started");
+  chrome.storage.local.get(null, function (result) {
+    console.log(document.querySelector("#menu"));
+    const observer = new MutationObserver(function (mutations_list) {
+      mutations_list.forEach(function (mutation) {
+        mutation.addedNodes.forEach(function (added_node) {
+          itemname = added_node.attributes["data-key"].value;
+          for (let i = 0; i < Object.keys(result.menuitems).length; i++) {
+            if (
+              itemname == Object.keys(result.menuitems)[i] &&
+              !Object.values(result.menuitems)[i]
+            ) {
+              deleteMenuItem(itemname);
+            }
+          }
+        });
+      });
+    });
+
+    observer.observe(document.querySelector("#menu").firstChild, {
+      subtree: false,
+      childList: true,
+    });
+  });
+}
+
+async function menuItemCheckonDelay() {
+  await delay(2000);
+  CheckMenuItems();
+}
+
 async function finishLoad() {
   var container = document.getElementById("container");
   container.style.bottom = "0px";
@@ -182,8 +215,8 @@ function waitForElm(selector) {
 
     const observer = new MutationObserver((mutations) => {
       if (document.querySelector(selector)) {
-          resolve(document.querySelector(selector));
-          observer.disconnect();
+        resolve(document.querySelector(selector));
+        observer.disconnect();
       }
     });
 
@@ -203,14 +236,12 @@ async function CheckForiFrames() {
   if (iframes.length > 0) {
     for (i = 0; i < iframes.length; i++) {
       while (
-        iframes[i].contentDocument.documentElement.lastChild
-          .classList[0] != "userHTML"
+        iframes[i].contentDocument.documentElement.lastChild.classList[0] !=
+        "userHTML"
       ) {
         await delay(50);
       }
-      iframes[
-        i
-      ].contentDocument.documentElement.lastChild.style.color =
+      iframes[i].contentDocument.documentElement.lastChild.style.color =
         "#dadada";
     }
   }
@@ -238,6 +269,10 @@ function RunFunctionOnTrue(storedSetting) {
 
     loading();
     window.addEventListener("load", function () {
+      console.log("waiting for window");
+      waitForElm("#menu").then((elm) => {
+        CheckMenuItems();
+      });
       waitForElm(".day-container").then((elm) => {
         LoadingDone = true;
         finishLoad();
@@ -289,9 +324,9 @@ document.addEventListener(
   true
 );
 
-function AddBetterSEQTAElements(){
+function AddBetterSEQTAElements() {
   var code = document.getElementsByClassName("code")[0];
-  console.log(code)
+  console.log(code);
   // Replaces students code with the version of BetterSEQTA
   if (code != null) {
     if (!code.innerHTML.includes("BetterSEQTA")) {
@@ -472,9 +507,11 @@ function SendPageData(name) {
   // Sends the html data for the home page
   setTimeout(
     function () {
-      console.log("started home function")
+      console.log("started home function");
       document.title = "Home ― SEQTA Learn";
       var element = document.querySelector("[data-key=" + name + "]");
+
+      menuItemCheckonDelay();
       // Apply the active class to indicate clicked on home button
       element.classList.add("active");
 
@@ -806,38 +843,17 @@ function SendPageData(name) {
   );
 }
 
-function EnabledDisabledToBool(input){
-  if (input == "enabled"){
-    return true
+function EnabledDisabledToBool(input) {
+  if (input == "enabled") {
+    return true;
   }
-  if (input == "disabled"){
-    return false
+  if (input == "disabled") {
+    return false;
   }
-}
-
-function CheckMenuItems(){
-  chrome.storage.local.get(null, function (result) {
-    const observer = new MutationObserver(function(mutations_list) {
-      mutations_list.forEach(function(mutation) {
-        mutation.addedNodes.forEach(function(added_node) {
-          itemname = added_node.attributes["data-key"].value
-          for (let i = 0; i < Object.keys(result.menuitems).length; i++) {
-            if (itemname == Object.keys(result.menuitems)[i] && !Object.values(result.menuitems)[i]){
-              deleteMenuItem(itemname)
-            }
-          }
-        });
-      });
-    });
-    
-    observer.observe(document.querySelector("#menu").firstChild, { subtree: false, childList: true });
-    
-  })
 }
 
 function LoadInit() {
-  CheckMenuItems();
-  console.log("started init")
+  console.log("started init");
   chrome.storage.local.get(null, function (result) {
     if (result.onoff) {
       SendPageData("home");
