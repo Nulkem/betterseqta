@@ -80,9 +80,7 @@ function delay(ms) {
 }
 
 function CheckMenuItems() {
-  console.log("function started");
   chrome.storage.local.get(null, function (result) {
-    console.log(document.querySelector("#menu"));
     const observer = new MutationObserver(function (mutations_list) {
       mutations_list.forEach(function (mutation) {
         mutation.addedNodes.forEach(function (added_node) {
@@ -248,7 +246,6 @@ async function CheckForiFrames() {
 }
 
 function RunFunctionOnTrue(storedSetting) {
-  console.log(storedSetting.onoff);
   // If value for off and on is not defined
   if (storedSetting.onoff == undefined) {
     // Set the value to true, and rerun the function
@@ -259,6 +256,7 @@ function RunFunctionOnTrue(storedSetting) {
   }
   // If the option is 'on', open BetterSEQTA
   if (storedSetting.onoff) {
+    console.log("[BetterSEQTA] Enabled");
     // Injecting CSS File to the webpage to overwrite SEQTA's default CSS
     var cssFile = chrome.runtime.getURL("inject/injected.css");
     var fileref = document.createElement("link");
@@ -269,7 +267,6 @@ function RunFunctionOnTrue(storedSetting) {
 
     loading();
     window.addEventListener("load", function () {
-      console.log("waiting for window");
       waitForElm("#menu").then((elm) => {
         CheckMenuItems();
       });
@@ -305,7 +302,7 @@ document.addEventListener(
   function () {
     if (document.childNodes[1].textContent.includes("SEQTA") && !IsSEQTAPage) {
       IsSEQTAPage = true;
-      console.log("seqta page");
+      console.log("[BetterSEQTA] Verified SEQTA Page");
       chrome.storage.local.get(null, function (items) {
         RunFunctionOnTrue(items);
       });
@@ -326,7 +323,6 @@ document.addEventListener(
 
 function AddBetterSEQTAElements() {
   var code = document.getElementsByClassName("code")[0];
-  console.log(code);
   // Replaces students code with the version of BetterSEQTA
   if (code != null) {
     if (!code.innerHTML.includes("BetterSEQTA")) {
@@ -390,11 +386,10 @@ async function deleteMenuItem(name) {
   // If the menu item exists; remove it
   if (element != null) {
     element.remove();
-    console.log("removed " + element);
+    console.log("[BetterSEQTA] Removed " + name + " menu item");
     // Delays 200ms and attempts to remove it again for slower loading
-    await delay(200);
+    await delay(1000);
     element.remove();
-    console.log("removed attmp2 " + element);
   }
 }
 
@@ -507,7 +502,7 @@ function SendPageData(name) {
   // Sends the html data for the home page
   setTimeout(
     function () {
-      console.log("started home function");
+      console.log("[BetterSEQTA] Started Loading Home Page");
       document.title = "Home ― SEQTA Learn";
       var element = document.querySelector("[data-key=" + name + "]");
 
@@ -647,12 +642,12 @@ function SendPageData(name) {
           lessonArray = [];
           // If items in response:
           if (serverResponse.payload.items.length > 0) {
-            console.log(serverResponse.payload.items.length);
+            // console.log(serverResponse.payload.items.length);
             for (let i = 1; i < serverResponse.payload.items.length; i++) {
               lessonArray.push(serverResponse.payload.items[i]);
             }
             // If items in the response, set each corresponding value into divs
-            console.log(lessonArray);
+            // console.log(lessonArray);
             for (let i = 0; i < lessonArray.length; i++) {
               lessonArray[i].colour = document.querySelector(
                 "[data-colour='timetable.subject.colour." +
@@ -809,10 +804,10 @@ function SendPageData(name) {
           code = code.split(" ")[1];
 
           if (code == LatestRelease.name) {
-            console.log("Up to date.");
+            console.log("[BetterSEQTA] Up to date.");
           } else {
             console.log(
-              "New version available. Release available here: https://github.com/Nulkem/better-seqta/releases/latest"
+              "[BetterSEQTA] New version available. Release available here: https://github.com/Nulkem/better-seqta/releases/latest"
             );
             var newversion = document.createElement("div");
             newversion.classList.add("newversion");
@@ -853,7 +848,7 @@ function EnabledDisabledToBool(input) {
 }
 
 function LoadInit() {
-  console.log("started init");
+  console.log("[BetterSEQTA] Started Init");
   chrome.storage.local.get(null, function (result) {
     if (result.onoff) {
       SendPageData("home");
