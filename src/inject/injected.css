@@ -726,3 +726,6 @@ body {
 .modaliser {
   display: none;
 }
+.MessageList__MessageList___3DxoC > ol > li.MessageList__unread___3imtO {
+  box-shadow: inset 3px 0 rgb(255, 255, 255);
+}
