@@ -79,8 +79,27 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function DeleteCurrentMenuItems(storagevalues) {
+  var menu = document.querySelector("#menu").firstChild;
+  for (let z = 0; z < menu.length; z++) {
+    itemname = menu.childNodes[z].attributes["data-key"].value;
+
+    for (let i = 0; i < Object.keys(storagevalues.menuitems).length; i++) {
+      if (
+        itemname == Object.keys(storagevalues.menuitems)[i] &&
+        !Object.values(storagevalues.menuitems)[i]
+      ) {
+        deleteMenuItem(itemname);
+        z -= 1;
+        break;
+      }
+    }
+  }
+}
+
 function CheckMenuItems() {
   chrome.storage.local.get(null, function (result) {
+    DeleteCurrentMenuItems(result);
     const observer = new MutationObserver(function (mutations_list) {
       mutations_list.forEach(function (mutation) {
         mutation.addedNodes.forEach(function (added_node) {
@@ -245,9 +264,37 @@ async function CheckForiFrames() {
   }
 }
 
+function tryLoad() {
+  waitForElm("#menu").then((elm) => {
+    CheckMenuItems();
+  });
+  waitForElm(".day-container").then((elm) => {
+    LoadingDone = true;
+    finishLoad();
+  });
+
+  waitForElm(".code").then((elm) => {
+    AddBetterSEQTAElements();
+    var weblink = window.location.href.split("/")[2];
+    window.location.replace("https://" + weblink + "/#?page=/home");
+    LoadInit();
+  });
+
+  MenuItemsDeleted = false;
+
+  // Waits for page to call on load, run scripts
+  document.addEventListener(
+    "load",
+    function () {
+      CheckForiFrames();
+    },
+    true
+  );
+}
+
 function RunFunctionOnTrue(storedSetting) {
   // If value for off and on is not defined
-  if (storedSetting.onoff == undefined) {
+  if (typeof storedSetting.onoff == "undefined") {
     // Set the value to true, and rerun the function
     SetDefaultValues();
     chrome.storage.local.get(null, function (items) {
@@ -266,32 +313,9 @@ function RunFunctionOnTrue(storedSetting) {
     document.head.appendChild(fileref);
 
     loading();
+    tryLoad();
     window.addEventListener("load", function () {
-      waitForElm("#menu").then((elm) => {
-        CheckMenuItems();
-      });
-      waitForElm(".day-container").then((elm) => {
-        LoadingDone = true;
-        finishLoad();
-      });
-
-      waitForElm(".code").then((elm) => {
-        AddBetterSEQTAElements();
-        var weblink = window.location.href.split("/")[2];
-        window.location.replace("https://" + weblink + "/#?page=/home");
-        LoadInit();
-      });
-
-      MenuItemsDeleted = false;
-
-      // Waits for page to call on load, run scripts
-      document.addEventListener(
-        "load",
-        function () {
-          CheckForiFrames();
-        },
-        true
-      );
+      tryLoad();
     });
   }
 }
@@ -356,6 +380,7 @@ function AddBetterSEQTAElements() {
       var AddedDashboard = document.getElementById("AddedDashboard");
       AddedSettings.addEventListener("click", function () {
         ChangeCurrentPage("settings");
+        browser.pageAction.openPopup();
       });
       AddedDashboard.addEventListener("click", function () {
         ChangeCurrentPage("dashboard");
