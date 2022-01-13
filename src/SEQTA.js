@@ -1,4 +1,17 @@
-let TimetableReady = false;
+// Copyright (C) 2022 Nulkem
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 var stringToHTML = function (str) {
   var parser = new DOMParser();
@@ -325,6 +338,7 @@ document.addEventListener(
   "load",
   function () {
     if (document.childNodes[1].textContent.includes("SEQTA") && !IsSEQTAPage) {
+      tryLoad();
       IsSEQTAPage = true;
       console.log("[BetterSEQTA] Verified SEQTA Page");
       chrome.storage.local.get(null, function (items) {
@@ -362,7 +376,7 @@ function AddBetterSEQTAElements() {
       // Creates the home container when the menu button is pressed
       var homebutton = document.getElementById("homebutton");
       homebutton.addEventListener("click", function () {
-        SendPageData("home");
+        SendHomePage();
       });
 
       // Creates settings and dashboard buttons next to alerts
@@ -517,306 +531,288 @@ function CheckCurrentLessonAll(lessons) {
   );
 }
 
-var stringToHTML = function (str) {
-  var parser = new DOMParser();
-  var doc = parser.parseFromString(str, "text/html");
-  return doc.body;
-};
-
-function SendPageData(name) {
+function SendHomePage() {
   // Sends the html data for the home page
-  setTimeout(
-    function () {
-      console.log("[BetterSEQTA] Started Loading Home Page");
-      document.title = "Home ― SEQTA Learn";
-      var element = document.querySelector("[data-key=" + name + "]");
+  console.log("[BetterSEQTA] Started Loading Home Page");
+  document.title = "Home ― SEQTA Learn";
+  var element = document.querySelector("[data-key=home]");
 
-      menuItemCheckonDelay();
-      // Apply the active class to indicate clicked on home button
-      element.classList.add("active");
+  menuItemCheckonDelay();
+  // Apply the active class to indicate clicked on home button
+  element.classList.add("active");
 
-      // Remove all current elements in the main div to add new elements
-      var main = document.getElementById("main");
-      main.innerHTML = "";
+  // Remove all current elements in the main div to add new elements
+  var main = document.getElementById("main");
+  main.innerHTML = "";
 
-      // Gets the current time string e.g. (Good Morning)
-      var timeString = GetTimeString();
+  // Gets the current time string e.g. (Good Morning)
+  var timeString = GetTimeString();
 
-      // Gets the student name from pre-existing element on page
-      var UsersName = document.getElementsByClassName("name")[0];
-      // Gets the students first name
-      var FirstName = UsersName.innerHTML.replace(/ .*/, "");
+  // Gets the student name from pre-existing element on page
+  var UsersName = document.getElementsByClassName("name")[0];
+  // Gets the students first name
+  var FirstName = UsersName.innerHTML.replace(/ .*/, "");
 
-      // Creates the root of the home page added to the main div
-      var htmlStr =
-        `<div class="home-root"><div class="home-container" id="home-container"><h1>` +
-        timeString +
-        FirstName +
-        `!</h1></div></div>`;
+  // Creates the root of the home page added to the main div
+  var htmlStr =
+    `<div class="home-root"><div class="home-container" id="home-container"><h1>` +
+    timeString +
+    FirstName +
+    `!</h1></div></div>`;
 
-      var html = stringToHTML(htmlStr);
-      // Appends the html file to main div
-      // Note : firstChild of html is done due to needing to grab the body from the stringToHTML function
-      main.append(html.firstChild);
+  var html = stringToHTML(htmlStr);
+  // Appends the html file to main div
+  // Note : firstChild of html is done due to needing to grab the body from the stringToHTML function
+  main.append(html.firstChild);
 
-      // Gets the current date
-      const date = new Date();
-      // Formats the current date used send a request for timetable and notices later
-      var TodayFormatted =
-        date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+  // Gets the current date
+  const date = new Date();
+  // Formats the current date used send a request for timetable and notices later
+  var TodayFormatted =
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 
-      // Replaces actual date with a selected date. Used for testing.
-      // TodayFormatted = "2020-08-31";
+  // Replaces actual date with a selected date. Used for testing.
+  // TodayFormatted = "2020-08-31";
 
-      // Creates the container div for the timetable portion of the home page
-      var TimetableStr = `<div class="timetable-container"><h2>Today's Lessons:</h2><div class="day-container" id="day-container"></div></div>`;
-      var Timetable = stringToHTML(TimetableStr);
-      // Appends the timetable container into the home container
-      document.getElementById("home-container").append(Timetable.firstChild);
+  // Creates the container div for the timetable portion of the home page
+  var TimetableStr = `<div class="timetable-container"><h2>Today's Lessons:</h2><div class="day-container" id="day-container"></div></div>`;
+  var Timetable = stringToHTML(TimetableStr);
+  // Appends the timetable container into the home container
+  document.getElementById("home-container").append(Timetable.firstChild);
 
-      // Creates the shortcut container into the home container
-      var ShortcutStr = `<div class="shortcut-container"><h2>Shortcuts:</h2><div class="shortcuts" id="shortcuts"></div></div>`;
-      var Shortcut = stringToHTML(ShortcutStr);
-      // Appends the shortcut container into the home container
-      document.getElementById("home-container").append(Shortcut.firstChild);
+  // Creates the shortcut container into the home container
+  var ShortcutStr = `<div class="shortcut-container"><h2>Shortcuts:</h2><div class="shortcuts" id="shortcuts"></div></div>`;
+  var Shortcut = stringToHTML(ShortcutStr);
+  // Appends the shortcut container into the home container
+  document.getElementById("home-container").append(Shortcut.firstChild);
 
-      function CheckUnmarkedAttendance(lessonattendance) {
-        if (lessonattendance === undefined) {
-          var lesson = " ";
-        } else {
-          var lesson = lessonattendance.label;
-        }
-        return lesson;
-      }
+  function CheckUnmarkedAttendance(lessonattendance) {
+    if (lessonattendance === undefined) {
+      var lesson = " ";
+    } else {
+      var lesson = lessonattendance.label;
+    }
+    return lesson;
+  }
 
-      function MakeLessonDiv(lesson) {
-        var lessondiv = stringToHTML(
-          `<div class="day" id=` +
-            JSON.stringify(lesson) +
-            ` style="` +
-            lesson.colour +
-            `"><h2>` +
-            lesson.description +
-            `</h2><h3>` +
-            lesson.staff +
-            `</h3><h3>` +
-            lesson.room +
-            `</h3><h4>` +
-            lesson.from +
-            " - " +
-            lesson.until +
-            `</h4><h5>` +
-            lesson.attendance +
-            `</h5></div>`
+  function MakeLessonDiv(lesson) {
+    var lessondiv = stringToHTML(
+      `<div class="day" id=` +
+        JSON.stringify(lesson) +
+        ` style="` +
+        lesson.colour +
+        `"><h2>` +
+        lesson.description +
+        `</h2><h3>` +
+        lesson.staff +
+        `</h3><h3>` +
+        lesson.room +
+        `</h3><h4>` +
+        lesson.from +
+        " - " +
+        lesson.until +
+        `</h4><h5>` +
+        lesson.attendance +
+        `</h5></div>`
+    );
+    return lessondiv;
+  }
+
+  function createNewShortcut(link, icon, title) {
+    // Creates the stucture and element information for each seperate shortcut
+    var shortcut = document.createElement("a");
+    shortcut.setAttribute("href", link);
+    shortcut.setAttribute("target", "_blank");
+    var shortcutdiv = document.createElement("div");
+    shortcutdiv.classList.add("shortcut");
+    var image = document.createElement("div");
+    image.setAttribute("style", "background-image: url(" + icon + ");");
+    image.classList.add("shortcuticondiv");
+    var text = document.createElement("p");
+    text.textContent = title;
+    shortcutdiv.append(image);
+    shortcutdiv.append(text);
+    shortcut.append(shortcutdiv);
+
+    document.getElementById("shortcuts").append(shortcut);
+  }
+  // Adds the shortcuts to the shortcut container
+  chrome.storage.local.get(["shortcuts"], function (result) {
+    var shortcuts = Object.values(result)[0];
+    for (let i = 0; i < shortcuts.length; i++) {
+      if (shortcuts[i].enabled) {
+        createNewShortcut(
+          shortcuts[i].link,
+          shortcuts[i].icon,
+          shortcuts[i].name
         );
-        return lessondiv;
       }
+    }
+  });
+  // Creates the notices container into the home container
+  var NoticesStr = `<div class="notices-container"><h2>Notices:</h2><div class="notice-container" id="notice-container"></div></div>`;
+  var Notices = stringToHTML(NoticesStr);
+  // Appends the shortcut container into the home container
+  document.getElementById("home-container").append(Notices.firstChild);
+  var weblink = window.location.href.split("/")[2];
 
-      function createNewShortcut(link, icon, title) {
-        // Creates the stucture and element information for each seperate shortcut
-        var shortcut = document.createElement("a");
-        shortcut.setAttribute("href", link);
-        shortcut.setAttribute("target", "_blank");
-        var shortcutdiv = document.createElement("div");
-        shortcutdiv.classList.add("shortcut");
-        var image = document.createElement("div");
-        image.setAttribute("style", "background-image: url(" + icon + ");");
-        image.classList.add("shortcuticondiv");
-        var text = document.createElement("p");
-        text.textContent = title;
-        shortcutdiv.append(image);
-        shortcutdiv.append(text);
-        shortcut.append(shortcutdiv);
+  // Creates a HTTP Post Request to the SEQTA page for the students timetable
+  var xhr = new XMLHttpRequest();
+  xhr.open(
+    "POST",
+    "https://" + weblink + "/seqta/student/load/timetable?",
+    true
+  );
+  // Sets the response type to json
+  xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
 
-        document.getElementById("shortcuts").append(shortcut);
-      }
-      // Adds the shortcuts to the shortcut container
-      chrome.storage.local.get(["shortcuts"], function (result) {
-        var shortcuts = Object.values(result)[0];
-        for (let i = 0; i < shortcuts.length; i++) {
-          if (shortcuts[i].enabled) {
-            createNewShortcut(
-              shortcuts[i].link,
-              shortcuts[i].icon,
-              shortcuts[i].name
-            );
-          }
+  xhr.onreadystatechange = function () {
+    // Once the response is ready
+    if (xhr.readyState === 4) {
+      var serverResponse = JSON.parse(xhr.response);
+      lessonArray = [];
+      // If items in response:
+      if (serverResponse.payload.items.length > 0) {
+        // console.log(serverResponse.payload.items.length);
+        for (let i = 1; i < serverResponse.payload.items.length; i++) {
+          lessonArray.push(serverResponse.payload.items[i]);
         }
-      });
-      // Creates the notices container into the home container
-      var NoticesStr = `<div class="notices-container"><h2>Notices:</h2><div class="notice-container" id="notice-container"></div></div>`;
-      var Notices = stringToHTML(NoticesStr);
-      // Appends the shortcut container into the home container
-      document.getElementById("home-container").append(Notices.firstChild);
-      var weblink = window.location.href.split("/")[2];
+        // If items in the response, set each corresponding value into divs
+        // console.log(lessonArray);
+        for (let i = 0; i < lessonArray.length; i++) {
+          lessonArray[i].colour = document.querySelector(
+            "[data-colour='timetable.subject.colour." +
+              lessonArray[i].code +
+              "']"
+          ).style.cssText;
+          // Removes seconds from the start and end times
+          lessonArray[i].from = lessonArray[i].from.substring(0, 5);
+          lessonArray[i].until = lessonArray[i].until.substring(0, 5);
+          // Checks if attendance is unmarked, and sets the string to " ".
+          lessonArray[i].attendance = CheckUnmarkedAttendance(
+            lessonArray[i].attendance
+          );
+        }
+        // If on home page, apply each lesson to HTML with information in each div
 
-      // Creates a HTTP Post Request to the SEQTA page for the students timetable
-      var xhr = new XMLHttpRequest();
-      xhr.open(
+        for (let i = 0; i < lessonArray.length; i++) {
+          var div = MakeLessonDiv(lessonArray[i]);
+          // Append each of the lessons into the day-container
+          document.getElementById("day-container").append(div.firstChild);
+        }
+
+        for (i = 0; i < lessonArray.length; i++) {
+          CheckCurrentLesson(lessonArray[i], i + 1);
+        }
+        // For each lesson, check the start and end times
+        CheckCurrentLessonAll(lessonArray);
+      } else {
+        var dummyDay = document.createElement("div");
+        dummyDay.classList.add("day");
+        document.getElementById("day-container").append(dummyDay);
+      }
+    }
+  };
+  xhr.send(
+    JSON.stringify({
+      // Information sent to SEQTA page as a request with the dates and student number
+      from: TodayFormatted,
+      until: TodayFormatted,
+      // Funny number
+      student: 69,
+    })
+  );
+
+  // Sends similar HTTP Post Request for the notices
+  var xhr2 = new XMLHttpRequest();
+  xhr2.open(
+    "POST",
+    "https://" + weblink + "/seqta/student/load/notices?",
+    true
+  );
+  xhr2.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+
+  xhr2.onreadystatechange = function () {
+    if (xhr2.readyState === 4) {
+      var NoticesPayload = JSON.parse(xhr2.response);
+      var NoticeContainer = document.getElementById("notice-container");
+      if (NoticesPayload.payload.length == 0) {
+        // If no notices: display no notices
+        var dummyNotice = document.createElement("div");
+        dummyNotice.textContent = "No notices for today.";
+        dummyNotice.classList.add("dummynotice");
+
+        NoticeContainer.append(dummyNotice);
+      } else {
+        // For each element in the response json:
+        for (let i = 0; i < NoticesPayload.payload.length; i++) {
+          // Create a div, and place information from json response
+          var NewNotice = document.createElement("div");
+          NewNotice.classList.add("notice");
+          var title = stringToHTML(
+            `<h3>` + NoticesPayload.payload[i].title + `</h3>`
+          );
+          NewNotice.append(title.firstChild);
+
+          if (NoticesPayload.payload[i].label_title != undefined) {
+            var label = stringToHTML(
+              `<h5>` + NoticesPayload.payload[i].label_title + `</h5>`
+            );
+            NewNotice.append(label.firstChild);
+          }
+
+          var staff = stringToHTML(
+            `<h6>` + NoticesPayload.payload[i].staff + `</h6>`
+          );
+          NewNotice.append(staff.firstChild);
+          // Converts the string into HTML
+          var content = stringToHTML(NoticesPayload.payload[i].contents);
+          for (let i = 0; i < content.childNodes.length; i++) {
+            NewNotice.append(content.childNodes[i]);
+          }
+          // Gets the colour for the top section of each notice
+          var colour = NoticesPayload.payload[i].colour;
+          var colourbar = document.createElement("div");
+          colourbar.classList.add("colourbar");
+          colourbar.style.background = colour;
+          // Appends the colour bar to the new notice
+          NewNotice.append(colourbar);
+          // Appends the new notice into the notice container
+          NoticeContainer.append(NewNotice);
+        }
+      }
+    }
+  };
+  // Data sent as the POST request
+  xhr2.send(JSON.stringify({ date: TodayFormatted }));
+
+  // Sends similar HTTP Post Request for the notices
+  chrome.storage.local.get(null, function (result) {
+    if (result.notificationcollector) {
+      var xhr3 = new XMLHttpRequest();
+      xhr3.open(
         "POST",
-        "https://" + weblink + "/seqta/student/load/timetable?",
+        "https://" + weblink + "/seqta/student/heartbeat?",
         true
       );
-      // Sets the response type to json
-      xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-
-      xhr.onreadystatechange = function () {
-        // Once the response is ready
-        if (xhr.readyState === 4) {
-          var serverResponse = JSON.parse(xhr.response);
-          lessonArray = [];
-          // If items in response:
-          if (serverResponse.payload.items.length > 0) {
-            // console.log(serverResponse.payload.items.length);
-            for (let i = 1; i < serverResponse.payload.items.length; i++) {
-              lessonArray.push(serverResponse.payload.items[i]);
-            }
-            // If items in the response, set each corresponding value into divs
-            // console.log(lessonArray);
-            for (let i = 0; i < lessonArray.length; i++) {
-              lessonArray[i].colour = document.querySelector(
-                "[data-colour='timetable.subject.colour." +
-                  lessonArray[i].code +
-                  "']"
-              ).style.cssText;
-              // Removes seconds from the start and end times
-              lessonArray[i].from = lessonArray[i].from.substring(0, 5);
-              lessonArray[i].until = lessonArray[i].until.substring(0, 5);
-              // Checks if attendance is unmarked, and sets the string to " ".
-              lessonArray[i].attendance = CheckUnmarkedAttendance(
-                lessonArray[i].attendance
-              );
-            }
-            if ((name = "home")) {
-              // If on home page, apply each lesson to HTML with information in each div
-
-              for (let i = 0; i < lessonArray.length; i++) {
-                var div = MakeLessonDiv(lessonArray[i]);
-                // Append each of the lessons into the day-container
-                document.getElementById("day-container").append(div.firstChild);
-              }
-            }
-
-            for (i = 0; i < lessonArray.length; i++) {
-              CheckCurrentLesson(lessonArray[i], i + 1);
-            }
-            // For each lesson, check the start and end times
-            CheckCurrentLessonAll(lessonArray);
-          } else {
-            if ((name = "home")) {
-              var dummyDay = document.createElement("div");
-              dummyDay.classList.add("day");
-              document.getElementById("day-container").append(dummyDay);
-            }
-          }
+      xhr3.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+      xhr3.onreadystatechange = function () {
+        if (xhr3.readyState === 4) {
+          var Notifications = JSON.parse(xhr3.response);
+          var alertdiv = document.getElementsByClassName(
+            "notifications__bubble___1EkSQ"
+          )[0];
+          alertdiv.textContent = Notifications.payload.notifications.length;
         }
       };
-      xhr.send(
+      xhr3.send(
         JSON.stringify({
-          // Information sent to SEQTA page as a request with the dates and student number
-          from: TodayFormatted,
-          until: TodayFormatted,
-          // Funny number
-          student: 69,
+          timestamp: "1970-01-01 00:00:00.0",
+          hash: "#?page=/home",
         })
       );
-
-      // Sends similar HTTP Post Request for the notices
-      var xhr2 = new XMLHttpRequest();
-      xhr2.open(
-        "POST",
-        "https://" + weblink + "/seqta/student/load/notices?",
-        true
-      );
-      xhr2.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-
-      xhr2.onreadystatechange = function () {
-        if (xhr2.readyState === 4) {
-          var NoticesPayload = JSON.parse(xhr2.response);
-          var NoticeContainer = document.getElementById("notice-container");
-          if (NoticesPayload.payload.length == 0) {
-            // If no notices: display no notices
-            var dummyNotice = document.createElement("div");
-            dummyNotice.textContent = "No notices for today.";
-            dummyNotice.classList.add("dummynotice");
-
-            NoticeContainer.append(dummyNotice);
-          } else {
-            // For each element in the response json:
-            for (let i = 0; i < NoticesPayload.payload.length; i++) {
-              // Create a div, and place information from json response
-              var NewNotice = document.createElement("div");
-              NewNotice.classList.add("notice");
-              var title = stringToHTML(
-                `<h3>` + NoticesPayload.payload[i].title + `</h3>`
-              );
-              NewNotice.append(title.firstChild);
-
-              if (NoticesPayload.payload[i].label_title != undefined) {
-                var label = stringToHTML(
-                  `<h5>` + NoticesPayload.payload[i].label_title + `</h5>`
-                );
-                NewNotice.append(label.firstChild);
-              }
-
-              var staff = stringToHTML(
-                `<h6>` + NoticesPayload.payload[i].staff + `</h6>`
-              );
-              NewNotice.append(staff.firstChild);
-              // Converts the string into HTML
-              var content = stringToHTML(NoticesPayload.payload[i].contents);
-              for (let i = 0; i < content.childNodes.length; i++) {
-                NewNotice.append(content.childNodes[i]);
-              }
-              // Gets the colour for the top section of each notice
-              var colour = NoticesPayload.payload[i].colour;
-              var colourbar = document.createElement("div");
-              colourbar.classList.add("colourbar");
-              colourbar.style.background = colour;
-              // Appends the colour bar to the new notice
-              NewNotice.append(colourbar);
-              // Appends the new notice into the notice container
-              NoticeContainer.append(NewNotice);
-            }
-          }
-        }
-      };
-      // Data sent as the POST request
-      xhr2.send(JSON.stringify({ date: TodayFormatted }));
-
-      // Sends similar HTTP Post Request for the notices
-      chrome.storage.local.get(null, function (result) {
-        if (result.notificationcollector) {
-          var xhr3 = new XMLHttpRequest();
-          xhr3.open(
-            "POST",
-            "https://" + weblink + "/seqta/student/heartbeat?",
-            true
-          );
-          xhr3.setRequestHeader(
-            "Content-Type",
-            "application/json; charset=utf-8"
-          );
-          xhr3.onreadystatechange = function () {
-            if (xhr3.readyState === 4) {
-              var Notifications = JSON.parse(xhr3.response);
-              var alertdiv = document.getElementsByClassName(
-                "notifications__bubble___1EkSQ"
-              )[0];
-              alertdiv.textContent = Notifications.payload.notifications.length;
-            }
-          };
-          xhr3.send(
-            JSON.stringify({
-              timestamp: "1970-01-01 00:00:00.0",
-              hash: "#?page=/home",
-            })
-          );
-        }
-      });
-    }.bind(name),
-    1
-  );
+    }
+  });
 }
 
 function EnabledDisabledToBool(input) {
@@ -832,7 +828,7 @@ function LoadInit() {
   console.log("[BetterSEQTA] Started Init");
   chrome.storage.local.get(null, function (result) {
     if (result.onoff) {
-      SendPageData("home");
+      SendHomePage();
     }
   });
 }
