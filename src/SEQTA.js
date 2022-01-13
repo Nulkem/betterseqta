@@ -814,50 +814,6 @@ function SendPageData(name) {
           );
         }
       });
-
-      var xhr4 = new XMLHttpRequest();
-      xhr4.open(
-        "GET",
-        "https://api.github.com/repos/Nulkem/better-seqta/releases/latest",
-        true
-      );
-      xhr4.onreadystatechange = function () {
-        if (xhr4.readyState === 4) {
-          // Typical action to be performed when the document is ready:
-          var LatestRelease = JSON.parse(xhr4.response);
-          var code = document.getElementsByClassName("code")[0].textContent;
-          code = code.split(" ")[1];
-
-          if (code == LatestRelease.name) {
-            console.log("[BetterSEQTA] Up to date.");
-          } else {
-            console.log(
-              "[BetterSEQTA] New version available. Release available here: https://github.com/Nulkem/better-seqta/releases/latest"
-            );
-            var newversion = document.createElement("div");
-            newversion.classList.add("newversion");
-            var newversiontext = document.createElement("a");
-            newversiontext.textContent =
-              "New version of BetterSEQTA is available. Click to go to the download page.";
-            newversiontext.href =
-              "https://github.com/Nulkem/better-seqta/releases/latest";
-            newversiontext.target = "_blank";
-            newversion.appendChild(newversiontext);
-            var newversionbutton = document.createElement("button");
-            newversionbutton.type = "button";
-            newversionbutton.setAttribute(
-              "onclick",
-              "return this.parentNode.remove();"
-            );
-            newversionbutton.textContent = "X";
-            newversionbutton.classList.add("versionbutton");
-            newversion.appendChild(newversionbutton);
-            document.getElementById("main").appendChild(newversion);
-          }
-        }
-      };
-
-      xhr4.send();
     }.bind(name),
     1
   );

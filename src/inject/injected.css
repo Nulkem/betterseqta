@@ -693,30 +693,6 @@ body {
   width: 80% !important;
   margin: 0 auto !important;
 }
-.newversion {
-  height: 1em;
-  background-color: #c61851;
-  padding: 20px;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  margin: 20px;
-  border-radius: 50px;
-  color: #e8e8e8;
-}
-.newversion a {
-  padding: 5px;
-  text-decoration: none;
-  background: none;
-  border: none;
-}
-.versionbutton {
-  vertical-align: unset !important;
-  padding: 1px 5px !important;
-  margin-left: 4px !important;
-  background: none !important;
-  border-radius: 50%;
-}
 .hidden {
   display: none;
 }
