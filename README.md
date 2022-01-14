@@ -7,6 +7,11 @@
 <h4 align="center">A dark-themed Firefox/Chrome Extension that adds additional features and gives an overall better experience for <a href="https://seqta.com.au/" target="_blank">SEQTA Learn</a>.</h4>
 
 <p align="center">
+ <a href="#download-for-firefox-users"><img src="https://user-images.githubusercontent.com/95666457/149519713-159d7ef7-2c21-4034-a616-f037ff46d9a4.png" alt="ChromeDownload" width="300"></a>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/betterseqta/"><img src="https://user-images.githubusercontent.com/95666457/149519731-31535143-abe6-4f3a-b170-a3ad313bf829.png" alt="FirefoxDownload" width="300"></a>
+</p>
+  
+<p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#download-for-firefox-users">Download</a> •
   <a href="#credits">Credits</a>
