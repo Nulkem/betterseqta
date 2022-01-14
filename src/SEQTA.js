@@ -92,22 +92,24 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function SetDisplayNone(ElementName){
-  return `li[data-key=${ElementName}]{display:none !important;}`
+function SetDisplayNone(ElementName) {
+  return `li[data-key=${ElementName}]{display:none !important;}`;
 }
 
-function ApplyCSSToHiddenMenuItems(){
-  var stylesheetInnerText = ''
+function ApplyCSSToHiddenMenuItems() {
+  var stylesheetInnerText = "";
   chrome.storage.local.get(null, function (result) {
     for (let i = 0; i < Object.keys(result.menuitems).length; i++) {
-      if (!Object.values(result.menuitems)[i]){
-        stylesheetInnerText += SetDisplayNone(Object.keys(result.menuitems)[i])
-        console.log(`[BetterSEQTA] Hiding ${Object.keys(result.menuitems)[i]} menu item`)
+      if (!Object.values(result.menuitems)[i]) {
+        stylesheetInnerText += SetDisplayNone(Object.keys(result.menuitems)[i]);
+        console.log(
+          `[BetterSEQTA] Hiding ${Object.keys(result.menuitems)[i]} menu item`
+        );
       }
     }
-    MenuItemStyle = document.createElement('style')
-    MenuItemStyle.innerHTML = stylesheetInnerText
-    document.head.appendChild(MenuItemStyle)
+    MenuItemStyle = document.createElement("style");
+    MenuItemStyle.innerText = stylesheetInnerText;
+    document.head.appendChild(MenuItemStyle);
   });
 }
 
