@@ -292,7 +292,7 @@ function RunFunctionOnTrue(storedSetting) {
 
     ApplyCSSToHiddenMenuItems();
 
-    // loading();
+    loading();
     tryLoad();
     window.addEventListener("load", function () {
       tryLoad();
