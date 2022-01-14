@@ -92,53 +92,23 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function DeleteCurrentMenuItems(storagevalues) {
-  var menu = document.querySelector("#menu").firstChild;
-  for (let z = 0; z < menu.length; z++) {
-    itemname = menu.childNodes[z].attributes["data-key"].value;
+function SetDisplayNone(ElementName){
+  return `li[data-key=${ElementName}]{display:none !important;}`
+}
 
-    for (let i = 0; i < Object.keys(storagevalues.menuitems).length; i++) {
-      if (
-        itemname == Object.keys(storagevalues.menuitems)[i] &&
-        !Object.values(storagevalues.menuitems)[i]
-      ) {
-        deleteMenuItem(itemname);
-        z -= 1;
-        break;
+function ApplyCSSToHiddenMenuItems(){
+  var stylesheetInnerText = ''
+  chrome.storage.local.get(null, function (result) {
+    for (let i = 0; i < Object.keys(result.menuitems).length; i++) {
+      if (!Object.values(result.menuitems)[i]){
+        stylesheetInnerText += SetDisplayNone(Object.keys(result.menuitems)[i])
+        console.log(`[BetterSEQTA] Hiding ${Object.keys(result.menuitems)[i]} menu item`)
       }
     }
-  }
-}
-
-function CheckMenuItems() {
-  chrome.storage.local.get(null, function (result) {
-    DeleteCurrentMenuItems(result);
-    const observer = new MutationObserver(function (mutations_list) {
-      mutations_list.forEach(function (mutation) {
-        mutation.addedNodes.forEach(function (added_node) {
-          itemname = added_node.attributes["data-key"].value;
-          for (let i = 0; i < Object.keys(result.menuitems).length; i++) {
-            if (
-              itemname == Object.keys(result.menuitems)[i] &&
-              !Object.values(result.menuitems)[i]
-            ) {
-              deleteMenuItem(itemname);
-            }
-          }
-        });
-      });
-    });
-
-    observer.observe(document.querySelector("#menu").firstChild, {
-      subtree: false,
-      childList: true,
-    });
+    MenuItemStyle = document.createElement('style')
+    MenuItemStyle.innerHTML = stylesheetInnerText
+    document.head.appendChild(MenuItemStyle)
   });
-}
-
-async function menuItemCheckonDelay() {
-  await delay(2000);
-  CheckMenuItems();
 }
 
 async function finishLoad() {
@@ -278,9 +248,6 @@ async function CheckForiFrames() {
 }
 
 function tryLoad() {
-  waitForElm("#menu").then((elm) => {
-    CheckMenuItems();
-  });
   waitForElm(".day-container").then((elm) => {
     LoadingDone = true;
     finishLoad();
@@ -292,8 +259,6 @@ function tryLoad() {
     window.location.replace("https://" + weblink + "/#?page=/home");
     LoadInit();
   });
-
-  MenuItemsDeleted = false;
 
   // Waits for page to call on load, run scripts
   document.addEventListener(
@@ -325,7 +290,9 @@ function RunFunctionOnTrue(storedSetting) {
     fileref.setAttribute("href", cssFile);
     document.head.appendChild(fileref);
 
-    loading();
+    ApplyCSSToHiddenMenuItems();
+
+    // loading();
     tryLoad();
     window.addEventListener("load", function () {
       tryLoad();
@@ -338,7 +305,6 @@ document.addEventListener(
   "load",
   function () {
     if (document.childNodes[1].textContent.includes("SEQTA") && !IsSEQTAPage) {
-      tryLoad();
       IsSEQTAPage = true;
       console.log("[BetterSEQTA] Verified SEQTA Page");
       chrome.storage.local.get(null, function (items) {
