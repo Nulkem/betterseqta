@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
-  <a href="#download">Download</a> •
+  <a href="#download-for-firefox-users">Download</a> •
   <a href="#credits">Credits</a>
 </p>
 
@@ -32,13 +32,9 @@
 * Browser Support
   - Firefox and Chrome Supported
 
-## Download
+## Download For Firefox Users:
 
-This extension is not currently accessable on the Chrome Webstore or Firefox Addon pages, however, it can be downloaded from the [releases](https://github.com/Nulkem/better-seqta/releases) page.
-
-## For Firefox Users:
-
-Firefox users can install the latest version of BetterSEQTA via the [betterseqta-firefox.xpi](https://github.com/Nulkem/better-seqta/releases/download/v1.21/betterseqta-firefox.xpi) file.
+Firefox users can install the latest version of BetterSEQTA via the Firefox Addon page. [Click to download](https://addons.mozilla.org/en-US/firefox/addon/betterseqta/)
 
 
 ## For Chrome Users:
