@@ -4,14 +4,14 @@
     "version": "1.21",
     "description": "A dark-themed Firefox/Chrome Extension that adds additional features and gives an overall better experience for SEQTA Learn.",
     "icons": {
-        "48": "icons/logo-learn-light.png"
+        "48": "icons/icon-48.png"
     },
     "browser_action": {
         "browser_style": true,
         "default_popup": "popup/info.html",
         "default_icon": {
-            "16": "icons/page-32.png",
-            "32": "icons/page-32.png"
+            "32": "icons/icon-32.png",
+            "64": "icons/icon-64.png"
         }
     },
     "permissions": [
