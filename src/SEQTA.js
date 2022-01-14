@@ -386,18 +386,6 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function deleteMenuItem(name) {
-  var element = document.querySelector("[data-key=" + name + "]");
-  // If the menu item exists; remove it
-  if (element != null) {
-    element.remove();
-    console.log("[BetterSEQTA] Removed " + name + " menu item");
-    // Delays 200ms and attempts to remove it again for slower loading
-    await delay(1000);
-    element.remove();
-  }
-}
-
 function ChangeCurrentPage(newpage) {
   var weblink = window.location.href.split("/")[2];
   window.location.replace("https://" + weblink + "/#?page=/" + newpage);
@@ -503,7 +491,6 @@ function SendHomePage() {
   document.title = "Home ― SEQTA Learn";
   var element = document.querySelector("[data-key=home]");
 
-  menuItemCheckonDelay();
   // Apply the active class to indicate clicked on home button
   element.classList.add("active");
 
