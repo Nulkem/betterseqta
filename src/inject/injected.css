@@ -519,7 +519,7 @@ html {
 }
 iframe.userHTML {
   color: white !important;
-  background: var(--better-sub);
+  background: var(--better-light);
 }
 .userHTML > div:first-of-type {
   color: white;
