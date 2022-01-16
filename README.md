@@ -7,8 +7,13 @@
 <h4 align="center">A dark-themed Firefox/Chrome Extension that adds additional features and gives an overall better experience for <a href="https://seqta.com.au/" target="_blank">SEQTA Learn</a>.</h4>
 
 <p align="center">
+ <a href="#download-for-firefox-users"><img src="https://user-images.githubusercontent.com/95666457/149519713-159d7ef7-2c21-4034-a616-f037ff46d9a4.png" alt="ChromeDownload" width="250"></a>
+<a href="https://addons.mozilla.org/en-US/firefox/addon/betterseqta/"><img src="https://user-images.githubusercontent.com/95666457/149519731-31535143-abe6-4f3a-b170-a3ad313bf829.png" alt="FirefoxDownload" width="250"></a>
+</p>
+  
+<p align="center">
   <a href="#key-features">Key Features</a> •
-  <a href="#download">Download</a> •
+  <a href="#download-for-firefox-users">Download</a> •
   <a href="#credits">Credits</a>
 </p>
 
@@ -32,13 +37,9 @@
 * Browser Support
   - Firefox and Chrome Supported
 
-## Download
+## Download For Firefox Users:
 
-This extension is not currently accessable on the Chrome Webstore or Firefox Addon pages, however, it can be downloaded from the [releases](https://github.com/Nulkem/better-seqta/releases) page.
-
-## For Firefox Users:
-
-Firefox users can install the latest version of BetterSEQTA via the [betterseqta-firefox.xpi](https://github.com/Nulkem/better-seqta/releases/download/v1.21/betterseqta-firefox.xpi) file.
+Firefox users can install the latest version of BetterSEQTA via the Firefox Addon page. [Click to download](https://addons.mozilla.org/en-US/firefox/addon/betterseqta/)
 
 
 ## For Chrome Users:
