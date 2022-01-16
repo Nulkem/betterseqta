@@ -637,7 +637,7 @@ body::-webkit-scrollbar-thumb {
   box-shadow: inset 0px 10px 0 var(--item-colour, transparent);
 }
 .formattedText > .wrapper > .cke > .cke_inner > .cke_contents {
-  background: var(--better-light);
+  background: #1e1e1e;
 }
 .formattedText > .footer {
   background-color: var(--better-sub);
@@ -650,8 +650,35 @@ body::-webkit-scrollbar-thumb {
   background: var(--better-main);
 }
 .cke_toolbox {
-  background: unset;
+  background: unset !important;
 }
+#cke_1_top a:hover {
+  background: #5a5a5a;
+}
+.legacy-root button.depressed,
+.legacy-root button.toggled {
+  background: #797979;
+}
+.cke_toolbox > .cke_toolbar .cke_combo_on > .cke_combo_button,
+.cke_toolbox > .cke_toolbar .cke_button_on {
+  background-color: #797979 !important;
+}
+
+.legacy-root input.singleSelect:focus {
+  background-color: var(--better-sub);
+}
+
+ul.singleSelect,
+ul.buttonChecklist,
+ul.buttonMenu,
+ul.colourButtonOptions,
+ul.uiSplitButtonList,
+.contactFormPanel {
+  background: var(--better-light) !important;
+  border: solid 4px var(--better-sub);
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .legacy-root input,
 .legacy-root textarea,
 .legacy-root select,

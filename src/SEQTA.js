@@ -230,23 +230,38 @@ function waitForElm(selector) {
 }
 var LoadingDone = false;
 
-async function CheckForiFrames() {
-  // Checks for iframes
-  var iframes = document.getElementsByTagName("iframe");
+function CheckiFrameItems() {
+  // Injecting CSS File to the webpage to overwrite iFrame default CSS
+  var cssFile = chrome.runtime.getURL("inject/iframe.css");
+  var fileref = document.createElement("link");
+  fileref.setAttribute("rel", "stylesheet");
+  fileref.setAttribute("type", "text/css");
+  fileref.setAttribute("href", cssFile);
 
-  // For each iframe on page, wait for the document to load, and apply white text
-  if (iframes.length > 0) {
-    for (i = 0; i < iframes.length; i++) {
-      while (
-        iframes[i].contentDocument.documentElement.lastChild.classList[0] !=
-        "userHTML"
-      ) {
-        await delay(50);
-      }
-      iframes[i].contentDocument.documentElement.lastChild.style.color =
-        "#dadada";
-    }
-  }
+  const observer = new MutationObserver(function (mutations_list) {
+    mutations_list.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (added_node) {
+        if (added_node.tagName == "IFRAME") {
+          added_node.addEventListener("load", function () {
+            if (
+              !added_node.contentDocument.documentElement.firstChild.innerHTML.includes(
+                "iframe.css"
+              )
+            ) {
+              added_node.contentDocument.documentElement.firstChild.appendChild(
+                fileref
+              );
+            }
+          });
+        }
+      });
+    });
+  });
+
+  observer.observe(document.body, {
+    subtree: true,
+    childList: true,
+  });
 }
 
 function tryLoad() {
@@ -266,7 +281,7 @@ function tryLoad() {
   document.addEventListener(
     "load",
     function () {
-      CheckForiFrames();
+      CheckiFrameItems();
     },
     true
   );
