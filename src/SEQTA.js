@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-var isChrome = !!window.chrome;
+var isChrome = window.chrome;
 
 var stringToHTML = function (str) {
   var parser = new DOMParser();
@@ -312,7 +312,8 @@ function RunFunctionOnTrue(storedSetting) {
     ApplyCSSToHiddenMenuItems();
 
     loading();
-    if (!isChrome) {
+    console.log(isChrome);
+    if (!isChrome || isChrome == "undefined") {
       tryLoad();
     }
 
