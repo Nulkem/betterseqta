@@ -382,8 +382,8 @@ function AddBetterSEQTAElements() {
       var AddedSettings = document.getElementById("AddedSettings");
       var AddedDashboard = document.getElementById("AddedDashboard");
       AddedSettings.addEventListener("click", function () {
+        
         ChangeCurrentPage("settings");
-        browser.pageAction.openPopup();
       });
       AddedDashboard.addEventListener("click", function () {
         ChangeCurrentPage("dashboard");
