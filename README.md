@@ -1,7 +1,8 @@
 
 <h1 align="center">
   <br>
-  <a href="https://github.com/Nulkem/better-seqta/"><img src="https://user-images.githubusercontent.com/95666457/148668509-d21c3f0d-6a4a-48e6-b354-6b1a9485282c.png" alt="BetterSEQTA" width="500"></a>
+  <a href="https://github.com/Nulkem/better-seqta/"><img src="https://user-images.githubusercontent.com/95666457/149907844-f4466dfc-f40d-409a-a888-a094c57040f0.png" alt="BetterSEQTA" width="600"></a>
+
 </h1>
 
 <h4 align="center">A dark-themed Firefox/Chrome Extension that adds additional features and gives an overall better experience for <a href="https://seqta.com.au/" target="_blank">SEQTA Learn</a>.</h4>
