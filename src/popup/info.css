@@ -13,12 +13,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
-html,
-body {
+.outside-container {
   width: 350px;
   margin: 0;
   background-color: #131313;
   overflow: hidden;
+  position: absolute;
+  right: 18px;
+  top: 65px;
 }
 
 .selector-container {
@@ -26,7 +28,7 @@ body {
   background-color: #131313;
   color: white;
   padding: 4px;
-  font-size: 1.5em;
+  font-size: 1.5em !important;
   text-align: center;
   width: 90%;
   display: flex;
@@ -57,7 +59,7 @@ body {
   padding: 8px;
   background-color: #4cd964;
   width: 40%;
-  font-size: 14px;
+  font-size: 14px !important;
   justify-self: right;
   cursor: pointer;
   height: fit-content;
@@ -78,14 +80,14 @@ body {
 .logo-container img {
   width: 70%;
 }
-.item {
-  font-size: 16px;
+.addonitem {
+  font-size: 16px !important;
   margin: 0;
   margin-left: 5px;
   font-weight: 500;
 }
 .main {
-  font-size: 20px;
+  font-size: 20px !important;
   margin-left: 5px;
   width: 70%;
   font-weight: 700;
@@ -94,14 +96,14 @@ body {
   width: 100%;
   margin-left: 0;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 20px !important;
 }
 .menu-item-selection {
   max-height: 15em;
   overflow-y: auto;
 }
 .subitem {
-  font-size: 12px;
+  font-size: 12px !important;
   font-weight: 300;
 }
 .bottom-container {
@@ -113,7 +115,7 @@ body {
   flex-direction: row;
   justify-content: space-between;
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 13px !important;
 }
 .bottom-container div {
   margin-top: 4px;
@@ -134,10 +136,8 @@ body {
   height: 4em;
   border-bottom: 1px solid rgb(90, 90, 90);
   padding: 5px;
-  /* background-color: royalblue; */
   display: flex;
   flex-direction: row;
-  /* padding: 5px; */
   text-align: left;
   align-items: center;
 }
@@ -147,19 +147,13 @@ body {
   flex-direction: row;
   align-items: center;
 }
-/* .selection-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: 0;
-} */
 .toggle {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   width: 62px;
   height: 26px;
+  padding: 0 !important;
   display: inline-block;
   position: relative;
   border-radius: 50px;
@@ -167,7 +161,7 @@ body {
   outline: none;
   border: none;
   cursor: pointer;
-  background-color: #707070;
+  background-color: #707070 !important;
   transition: background-color ease 0.3s;
 }
 
@@ -195,7 +189,7 @@ body {
 }
 
 .toggle:checked {
-  background-color: #4cd964;
+  background-color: #4cd964 !important;
 }
 
 .toggle:checked:before {
@@ -230,7 +224,7 @@ body {
 }
 .back-button {
   width: 30%;
-  font-size: 20px;
+  font-size: 20px !important;
   color: white;
   display: flex;
   align-content: center;

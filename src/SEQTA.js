@@ -14,6 +14,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 var isChrome = window.chrome;
+var SettingsClicked = false
 
 var stringToHTML = function (str) {
   var parser = new DOMParser();
@@ -25,7 +26,7 @@ function loading() {
   // loadinghtml = stringToHTML(
   //   `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
   //   <svg width="300" height="160" id="clackers" style="display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);"><svg><path id="arc-left-up" fill="none" d="M 90 90 A 90 90 0 0 1 0 0"/></svg><svg><path id="arc-right-up" fill="none" d="M 100 90 A 90 90 0 0 0 190 0"/></svg><text x="150" y="50" fill="#ffffff" font-size="18"text-anchor="middle">B E T T E R S E Q T A</text><circle style="fill: #333333;" cx="15" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-left-up"/></animateMotion></circle><circle style="fill: #242424;" cx="135" cy="105" r="15" /><circle style="fill: #161616;" cx="165" cy="105" r="15" /><circle style="fill: #313131;" cx="95" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-right-up"/></animateMotion></circle></svg>
-  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.25</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
+  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.26</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
   // );
   loadinghtml = stringToHTML(
     `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
@@ -84,7 +85,7 @@ function loading() {
     <svg height="135" width="135" viewBox="0 0 1000 1000" class="small-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L455.999 938C455.986 936.008 456.301 933.282 454.972 931.603C453.594 929.862 450.977 930.062 448.999 929.835C443.991 929.258 438.987 928.463 434 927.728C414.788 924.898 395.564 920.733 377 915.025C300.826 891.602 231.835 849.314 178.17 790C106.263 710.526 63.7248 603.522 65.0039 496C65.7806 430.71 81.6532 365.691 110.259 307C130.156 266.177 157.727 228.746 189.039 196C222.33 161.185 262.986 132.26 306 110.753C345.737 90.8846 389.756 75.6209 434 70L434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.501 68.7513 294.622 88.2739 254 113.576C215.656 137.46 181.298 167.82 151.87 202C33.2034 339.827 7.62905 544.971 91.2585 707C112.853 748.839 140.699 787.699 174 821C210.688 857.688 253.047 888.542 300 910.781C332.493 926.171 365.923 937.713 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
     <svg height="180" width="180" viewBox="0 0 1000 1000" class="big-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M454 952L454 887C441.324 886.456 428.346 883.444 416 880.65C389.799 874.722 364.497 866.349 340 855.306C205.92 794.861 116.45 660.408 110.039 514C108.593 480.976 112.302 447.246 119.424 415C144.931 299.518 226.1 198.275 333 147.781C389.157 121.255 450.99 108.496 513 110.015C612.241 112.446 711.495 157.399 779.961 229C839.544 291.312 879.215 372.892 887.831 459C893.323 513.894 887.624 569.466 870.329 622C836.537 724.647 758.42 810.937 660 855.306C635.503 866.349 610.201 874.722 584 880.65C571.383 883.505 557.974 886.732 545 887L545 952C562.916 951.63 581.566 947.595 599 943.65C637.149 935.018 673.043 921.725 708 904.247C753.184 881.655 792.42 850.594 828 815C859.416 783.572 885.414 745.666 905.247 706C933.723 649.048 949.566 588.445 953.911 525C963.014 392.066 906.622 254.399 808 165.17C769.47 130.31 725.8 101.975 678 81.5787C629.733 60.9833 575.64 47.3041 523 46.0146C469.032 44.6927 415.748 49.9443 364 66.0255C223.375 109.726 109.726 223.376 66.0255 364C14.4181 530.066 63.7205 715.347 191 833.911C229.196 869.491 274.051 897.962 322 918.421C362.806 935.833 409.371 950.084 454 952z"/></svg>
     <svg height="220" width="220" viewBox="0 0 1000 1000" class="outer-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L456 946C438.715 945.258 420.843 941.462 404 937.65C369.403 929.822 335.739 918.116 304 902.247C255.981 878.237 211.768 846.374 175.09 807C62.5744 686.214 23.1598 509.033 78.6921 353C96.4653 303.062 122.84 256.974 156.424 216C207.709 153.43 278.099 103.658 355 78C372.453 72.1767 389.992 67.0399 408 63.2107C413.31 62.0816 418.647 60.9853 424 60.0811C426.508 59.6575 430.352 59.6852 432.397 57.9869C434.897 55.9098 434 50.8766 434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.517 68.7473 294.608 88.2827 254 113.576C215.673 137.45 181.285 167.835 151.87 202C33.9725 338.933 8.37009 541.243 89.2485 703C110.949 746.4 139.693 786.693 174 821C210.688 857.688 253.047 888.542 300 910.781C332.484 926.167 365.934 937.716 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
-    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.25</div></div>`
+    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.26</div></div>`
   );
   var html = document.getElementsByTagName("html")[0];
   html.append(loadinghtml.firstChild);
@@ -273,7 +274,7 @@ function tryLoad() {
   });
 
   waitForElm(".code").then((elm) => {
-    AddBetterSEQTAElements();
+    AddBetterSEQTAElements(true);
     var weblink = window.location.href.split("/")[2];
     window.location.replace("https://" + weblink + "/#?page=/home");
     LoadInit();
@@ -289,6 +290,33 @@ function tryLoad() {
   );
 }
 
+function AppendElementsToDisabledPage(){
+  AddBetterSEQTAElements(false);
+
+  settingsStyle = document.createElement('style')
+  settingsStyle.innerText = `
+    .addedButton {
+    position: absolute !important;
+    right: 50px;
+    width: 35px;
+    height: 35px;
+    padding: 6px !important;
+    overflow: unset !important;
+    border-radius: 50%;
+    margin: 7px !important;
+    cursor: pointer;
+    color: white !important;
+  }
+  .addedButton svg {
+    margin: 6px;
+  }
+  .outside-container {
+    top: 48px !important;
+  }
+  `
+  document.head.append(settingsStyle)
+}
+
 function RunFunctionOnTrue(storedSetting) {
   // If value for off and on is not defined
   if (typeof storedSetting.onoff == "undefined") {
@@ -298,6 +326,7 @@ function RunFunctionOnTrue(storedSetting) {
       RunFunctionOnTrue(items);
     });
   }
+
   // If the option is 'on', open BetterSEQTA
   if (storedSetting.onoff) {
     console.log("[BetterSEQTA] Enabled");
@@ -312,7 +341,6 @@ function RunFunctionOnTrue(storedSetting) {
     ApplyCSSToHiddenMenuItems();
 
     loading();
-    console.log(isChrome);
     if (!isChrome || isChrome == "undefined") {
       tryLoad();
     }
@@ -321,6 +349,19 @@ function RunFunctionOnTrue(storedSetting) {
       tryLoad();
     });
   }
+  else {
+    if (!isChrome || isChrome == "undefined") {
+      waitForElm(".code").then((elm) => {
+        AppendElementsToDisabledPage();
+      });
+    }
+    window.addEventListener("load", function () {
+      waitForElm(".code").then((elm) => {
+        AppendElementsToDisabledPage();
+      });
+
+    });
+  };
 }
 var NonSEQTAPage = false;
 var IsSEQTAPage = false;
@@ -348,45 +389,333 @@ document.addEventListener(
   true
 );
 
-function AddBetterSEQTAElements() {
+function RunExtensionSettingsJS(){
+
+const onoffselection = document.querySelector("#onoff");
+const notificationcollector = document.querySelector("#notification");
+const sidemenusection = document.querySelector("#sidemenusection");
+const shortcutsection = document.querySelector("#shortcutsection");
+const mainpage = document.querySelector("#mainpage");
+
+const menupage = document.querySelector("#menupage");
+const menuback = document.querySelector("#menuback");
+
+const shortcutpage = document.querySelector("#shortcutpage");
+const shortcutback = document.querySelector("#shortcutback");
+
+var applybuttons = document.getElementsByClassName("apply-changes");
+var menubuttons = document.getElementsByClassName("menuitem");
+var shortcutbuttons = document.getElementsByClassName("shortcutitem");
+
+const github = document.getElementById("github");
+
+function openGithub() {
+  chrome.runtime.sendMessage({type: "githubTab"});
+  
+}
+
+function openMenuPage() {
+  mainpage.style.left = "-350px";
+  menupage.style.right = "0px";
+}
+
+function backFromMenu() {
+  mainpage.style.left = "0px";
+  menupage.style.right = "-350px";
+}
+
+function openShortcutPage() {
+  mainpage.style.left = "-350px";
+  shortcutpage.style.right = "0px";
+}
+
+function backFromShortcut() {
+  mainpage.style.left = "0px";
+  shortcutpage.style.right = "-350px";
+}
+
+function FindSEQTATab() {
+  chrome.runtime.sendMessage({type: "reloadTabs", });
+}
+/*
+Store the currently selected settings using chrome.storage.local.
+*/
+function storeSettings() {
+  chrome.storage.local.set({ onoff: onoffselection.checked }, function () {
+    FindSEQTATab();
+  });
+}
+
+function storeNotificationCollectorSetting() {
+  chrome.storage.local.set(
+    { notificationcollector: notificationcollector.checked },
+    function () {}
+  );
+}
+
+function StoreAllSettings() {
+  chrome.storage.local.get(["menuitems"], function (result) {
+    var menuItems = result.menuitems;
+    console.log(result.menuitems);
+    for (var i = 0; i < menubuttons.length; i++) {
+      var id = menubuttons[i].id;
+
+      menuItems[id] = menubuttons[i].checked;
+      console.log(menuItems[id]);
+    }
+    chrome.storage.local.set({ menuitems: menuItems });
+  });
+  
+  chrome.storage.local.get(["shortcuts"], function (result) {
+    var shortcuts = Object.values(result)[0];
+    console.log(shortcuts);
+    for (var i = 0; i < shortcutbuttons.length; i++) {
+      shortcuts[i].enabled = shortcutbuttons[i].checked;
+    }
+    chrome.storage.local.set({ shortcuts: shortcuts });
+  });
+
+  FindSEQTATab();
+
+  
+}
+/*
+Update the options UI with the settings values retrieved from storage,
+or the default settings if the stored settings are empty.
+*/
+function updateUI(restoredSettings) {
+  if (restoredSettings.onoff == null) {
+    var menuItems = {};
+    for (var i = 0; i < menubuttons.length; i++) {
+      var id = menubuttons[i].id;
+      menuItems = Object.assign(menuItems, { [id]: false });
+    }
+
+    chrome.storage.local.set({ menuitems: menuItems });
+    var shortcutArray = [];
+    shortcutArray.push({
+      name: "YouTube",
+      link: "https://www.youtube.com/",
+      icon: "https://www.youtube.com/s/desktop/310f846f/img/favicon_144x144.png",
+      enabled: true,
+    });
+    shortcutArray.push({
+      name: "Outlook",
+      link: "https://outlook.office365.com/mail/inbox",
+      icon: "https://outlook-1.cdn.office.net/assets/mail/pwa/v1/pngs/apple-touch-icon.png",
+      enabled: true,
+    });
+    shortcutArray.push({
+      name: "Office",
+      link: "http://office.com",
+      icon: "https://www.tecon.es/wp-content/uploads/2016/01/logo-OFFICE-365-solo.png",
+      enabled: true,
+    });
+    shortcutArray.push({
+      name: "Spotify",
+      link: "https://accounts.spotify.com/en/login",
+      icon: "https://www.scdn.co/i/_global/touch-icon-144.png",
+      enabled: true,
+    });
+    shortcutArray.push({
+      name: "Google",
+      link: "https://google.com",
+      icon: "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
+      enabled: false,
+    });
+    shortcutArray.push({
+      name: "DuckDuckGo",
+      link: "https://duckduckgo.com/",
+      icon: "https://duckduckgo.com/assets/icons/meta/DDG-iOS-icon_152x152.png",
+      enabled: false,
+    });
+    shortcutArray.push({
+      name: "Cool Math Games",
+      link: "https://coolmathgames.com/",
+      icon: "https://www.coolmathgames.com/pwa/images/icon-512x512.png",
+      enabled: false,
+    });
+    shortcutArray.push({
+      name: "SACE",
+      link: "https://apps.sace.sa.edu.au/students-online/login.do",
+      icon: "https://pbs.twimg.com/profile_images/948035664783622144/iE9ebnfW_400x400.jpg",
+      enabled: false,
+    });
+    chrome.storage.local.set({ shortcuts: shortcutArray });
+    chrome.storage.local.set({ onoff: true });
+    chrome.storage.local.set({ notificationcollector: false });
+    chrome.storage.local.get(null, function (result) {
+      updateUI(result);
+    });
+  } else {
+    onoffselection.checked = restoredSettings.onoff;
+    notificationcollector.checked = restoredSettings.notificationcollector;
+    chrome.storage.local.get(["menuitems"], function (result) {
+      var menuItems = Object.values(result)[0];
+      for (var i = 0; i < menubuttons.length; i++) {
+        var id = menubuttons[i].id;
+        menubuttons[i].checked = menuItems[id];
+      }
+    });
+
+    chrome.storage.local.get(["shortcuts"], function (result) {
+      var shortcuts = Object.values(result)[0];
+      console.log(shortcuts);
+      for (var i = 0; i < shortcutbuttons.length; i++) {
+        shortcutbuttons[i].checked = shortcuts[i].enabled;
+      }
+      chrome.storage.local.set({ shortcuts: shortcuts });
+    });
+  }
+}
+
+function onError(e) {
+  console.error(e);
+}
+chrome.storage.local.get(null, function (result) {
+  console.log(result);
+  updateUI(result);
+});
+
+github.addEventListener("click", openGithub);
+
+sidemenusection.addEventListener("click", openMenuPage);
+menuback.addEventListener("click", backFromMenu);
+
+shortcutsection.addEventListener("click", openShortcutPage);
+shortcutback.addEventListener("click", backFromShortcut);
+
+for (var i = 0; i < applybuttons.length; i++) {
+  applybuttons[i].addEventListener(
+    "click",
+    StoreAllSettings.bind(applybuttons[i], i)
+  );
+}
+
+onoffselection.addEventListener("change", storeSettings);
+notificationcollector.addEventListener(
+  "change",
+  storeNotificationCollectorSetting
+);
+
+}
+
+function CallExtensionSettings(){
+  // Injecting CSS File to the webpage to overwrite iFrame default CSS
+  var cssFile = chrome.runtime.getURL("popup/info.css");
+  var fileref = document.createElement("link");
+  fileref.setAttribute("rel", "stylesheet");
+  fileref.setAttribute("type", "text/css");
+  fileref.setAttribute("href", cssFile);
+  document.head.append(fileref)
+
+  NextPageImage = chrome.runtime.getURL('popup/page.png')
+  Settings = stringToHTML(`<div class="outside-container hidden" id="ExtensionPopup"><div class="logo-container"><img src=${chrome.runtime.getURL('popup/better-seqta.png')}></div>
+  <div class="main-page" id="mainpage">
+  <div class="selector-container">
+  <div class="item-container offontoggle"><h1 class="item main">Toggle BetterSEQTA</h1><div class="checkbox-container"><input class="toggle offon" type="checkbox" id="onoff"></div></div>
+  <div class="item-container clickable" id="sidemenusection"><div class="text-container"><h1 class="addonitem">Side Menu Items</h1><p class="item subitem">Choose which items to keep on the side menu.</p></div><div class="checkbox-container"><img src="${NextPageImage}" alt="" width="20px" height="20px"></div></div>
+  <div class="item-container clickable" id="shortcutsection"><div class="text-container"><h1 class="addonitem">Shortcut Items</h1><p class="item subitem">Choose which shortcuts to use on the Home Page.</p></div><div class="checkbox-container"><img src="${NextPageImage}" alt="" width="20px" height="20px"></div></div>
+  <div class="item-container"><div class="text-container"><h1 class="addonitem">Notification Collector</h1><p class="item subitem">Uncaps the 9+ limit for notifications, showing the real number.</p></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="notification"></div></div>
+  <div class="apply-changes">Apply Changes</div>
+  </div>
+</div>
+
+<div class="menu-page" id="menupage">
+  <div class="selector-container" style="margin-bottom: 0;">
+    <div class="item-container" style="border-bottom: none; height: 2em;"><h1 class="item menumain" style="width: 100%;">Hide/Show Menu Items</h1></div>
+    <div class="menu-item-selection">
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Welcome</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="welcome"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Portals</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="portals"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Dashboard</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="dashboard"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Forums</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="forums"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Settings</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="settings"></div></div>
+    
+  </div>
+</div>
+<div style="display: flex; color: white; justify-content: space-around;">
+  <div class="back-button" id="menuback"><img src="${NextPageImage}" alt="" width="20px" height="20px">Back</div>
+  <div class="apply-changes" style="margin-top: 10px;">Apply Changes</div>
+</div>
+</div>
+
+<div class="menu-page" id="shortcutpage">
+  <div class="selector-container" style="margin-bottom: 0;">
+    <div class="item-container" style="border-bottom: none; height: 2em;"><h1 class="item menumain" style="width: 100%;">Select Shortcuts for Home</h1></div>
+    <div class="menu-item-selection">
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">YouTube</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="youtube"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Outlook</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="outlook"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Office</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="office"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Spotify</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="spotify"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Google</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="google"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">DuckDuckGo</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="duckduckgo"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Cool Math Games</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="coolmathgames"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">SACE</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="sace"></div></div>
+  </div>
+</div>
+<div style="display: flex; color: white; justify-content: space-around;">
+  <div class="back-button" id="shortcutback"><img src="${NextPageImage}" alt="" width="20px" height="20px">Back</div>
+  <div class="apply-changes" style="margin-top: 10px;">Apply Changes</div>
+</div>
+</div>
+
+  <div class="bottom-container"><div>Created by Nulkem</div><img src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github"></div></div>`)
+  document.body.append(Settings.firstChild)
+
+  RunExtensionSettingsJS();
+
+  var container = document.getElementById('container');
+  var extensionsettings = document.getElementById('ExtensionPopup');
+  container.onclick = function(){
+    if (!SettingsClicked){
+      extensionsettings.classList.add('hidden');
+    }
+    SettingsClicked = false
+  }
+
+
+}
+
+
+function AddBetterSEQTAElements(toggle) {
   var code = document.getElementsByClassName("code")[0];
   // Replaces students code with the version of BetterSEQTA
   if (code != null) {
     if (!code.innerHTML.includes("BetterSEQTA")) {
-      CreateBackground();
-      code.innerHTML = "BetterSEQTA v1.25";
-      // Creates Home menu button and appends it as the first child of the list
-      var NewButtonStr = `<li class="item" data-key="home" id="homebutton" data-path="/home"><label><svg width="24" height="24" viewBox="0 0 400 400"><g style="fill: currentcolor;"><g><path d="M191.540 1.929 C 188.821 2.547,184.505 4.211,181.949 5.627 C 176.214 8.805,3.477 152.579,1.452 155.859 C -3.707 164.219,2.514 174.994,12.500 174.994 C 18.353 174.994,11.310 180.532,107.805 100.061 C 199.964 23.206,197.279 25.249,203.300 27.393 C 205.436 28.154,229.584 47.783,278.205 88.281 L 349.957 148.047 349.960 254.688 C 349.963 362.177,349.874 365.669,347.041 369.471 C 343.191 374.635,343.559 374.585,307.617 374.844 L 275.000 375.079 275.000 302.844 C 275.000 217.447,275.473 221.245,263.433 209.983 C 252.763 200.003,252.746 200.000,200.000 200.000 C 147.254 200.000,147.237 200.003,136.567 209.983 C 124.527 221.245,125.000 217.447,125.000 302.844 L 125.000 375.079 92.383 374.844 C 56.441 374.585,56.809 374.635,52.959 369.471 C 50.171 365.729,50.037 361.891,50.016 284.766 C 49.995 209.763,49.963 208.151,48.442 205.657 C 43.742 197.949,31.258 197.949,26.558 205.657 C 24.188 209.545,24.115 366.549,26.480 374.148 C 30.063 385.661,39.956 395.389,51.509 398.761 C 57.984 400.651,342.016 400.651,348.491 398.761 C 360.044 395.389,369.937 385.661,373.520 374.148 C 374.940 369.585,375.000 365.342,375.000 269.366 L 375.000 169.341 376.758 170.626 C 382.018 174.472,383.303 174.994,387.500 174.994 C 395.341 174.994,399.994 170.341,399.994 162.500 C 399.994 155.980,399.648 155.628,364.197 126.172 L 331.290 98.828 331.267 75.391 C 331.239 46.356,330.210 43.756,318.750 43.756 C 308.785 43.756,306.759 47.089,306.250 64.320 L 305.859 77.545 264.453 43.002 C 212.011 -0.748,209.516 -2.153,191.540 1.929 M242.887 226.953 C 250.178 231.247,249.960 228.796,249.981 306.836 L 250.000 375.000 199.980 375.000 L 149.960 375.000 150.175 304.883 C 150.415 226.874,150.053 232.041,155.565 227.933 C 159.111 225.290,161.987 225.123,201.563 225.258 C 238.701 225.385,240.340 225.453,242.887 226.953 M180.657 289.058 C 169.777 295.692,174.683 312.494,187.500 312.494 C 195.341 312.494,199.994 307.841,199.994 300.000 C 199.994 292.159,195.341 287.506,187.500 287.506 C 184.587 287.506,182.383 288.006,180.657 289.058 "></path></g></g></svg>Home</label></li>`;
-      var NewButton = stringToHTML(NewButtonStr);
-      var menu = document.getElementById("menu");
-      var List = menu.firstChild;
-      List.insertBefore(NewButton.firstChild, List.firstChild);
+      code.innerHTML = "BetterSEQTA v1.26";
 
-      // Creates the home container when the menu button is pressed
-      var homebutton = document.getElementById("homebutton");
-      homebutton.addEventListener("click", function () {
-        SendHomePage();
-      });
+      if (toggle){
+         // Creates Home menu button and appends it as the first child of the list
+        CreateBackground();
+        var NewButtonStr = `<li class="item" data-key="home" id="homebutton" data-path="/home"><label><svg width="24" height="24" viewBox="0 0 400 400"><g style="fill: currentcolor;"><g><path d="M191.540 1.929 C 188.821 2.547,184.505 4.211,181.949 5.627 C 176.214 8.805,3.477 152.579,1.452 155.859 C -3.707 164.219,2.514 174.994,12.500 174.994 C 18.353 174.994,11.310 180.532,107.805 100.061 C 199.964 23.206,197.279 25.249,203.300 27.393 C 205.436 28.154,229.584 47.783,278.205 88.281 L 349.957 148.047 349.960 254.688 C 349.963 362.177,349.874 365.669,347.041 369.471 C 343.191 374.635,343.559 374.585,307.617 374.844 L 275.000 375.079 275.000 302.844 C 275.000 217.447,275.473 221.245,263.433 209.983 C 252.763 200.003,252.746 200.000,200.000 200.000 C 147.254 200.000,147.237 200.003,136.567 209.983 C 124.527 221.245,125.000 217.447,125.000 302.844 L 125.000 375.079 92.383 374.844 C 56.441 374.585,56.809 374.635,52.959 369.471 C 50.171 365.729,50.037 361.891,50.016 284.766 C 49.995 209.763,49.963 208.151,48.442 205.657 C 43.742 197.949,31.258 197.949,26.558 205.657 C 24.188 209.545,24.115 366.549,26.480 374.148 C 30.063 385.661,39.956 395.389,51.509 398.761 C 57.984 400.651,342.016 400.651,348.491 398.761 C 360.044 395.389,369.937 385.661,373.520 374.148 C 374.940 369.585,375.000 365.342,375.000 269.366 L 375.000 169.341 376.758 170.626 C 382.018 174.472,383.303 174.994,387.500 174.994 C 395.341 174.994,399.994 170.341,399.994 162.500 C 399.994 155.980,399.648 155.628,364.197 126.172 L 331.290 98.828 331.267 75.391 C 331.239 46.356,330.210 43.756,318.750 43.756 C 308.785 43.756,306.759 47.089,306.250 64.320 L 305.859 77.545 264.453 43.002 C 212.011 -0.748,209.516 -2.153,191.540 1.929 M242.887 226.953 C 250.178 231.247,249.960 228.796,249.981 306.836 L 250.000 375.000 199.980 375.000 L 149.960 375.000 150.175 304.883 C 150.415 226.874,150.053 232.041,155.565 227.933 C 159.111 225.290,161.987 225.123,201.563 225.258 C 238.701 225.385,240.340 225.453,242.887 226.953 M180.657 289.058 C 169.777 295.692,174.683 312.494,187.500 312.494 C 195.341 312.494,199.994 307.841,199.994 300.000 C 199.994 292.159,195.341 287.506,187.500 287.506 C 184.587 287.506,182.383 288.006,180.657 289.058 "></path></g></g></svg>Home</label></li>`;
+        var NewButton = stringToHTML(NewButtonStr);
+        var menu = document.getElementById("menu");
+        var List = menu.firstChild;
+        List.insertBefore(NewButton.firstChild, List.firstChild);
+
+        // Creates the home container when the menu button is pressed
+        var homebutton = document.getElementById("homebutton");
+        homebutton.addEventListener("click", function () {
+          SendHomePage();
+        });
+      }
+
+
+      CallExtensionSettings();
 
       // Creates settings and dashboard buttons next to alerts
       var SettingsButton = stringToHTML(
-        `<div class="addedButton" style="right: 70px;" id="AddedSettings""><svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M23.182,6.923c-.29,0-3.662,2.122-4.142,2.4l-2.8-1.555V4.511l4.257-2.456a.518.518,0,0,0,.233-.408.479.479,0,0,0-.233-.407,6.511,6.511,0,1,0-3.327,12.107,6.582,6.582,0,0,0,6.148-4.374,5.228,5.228,0,0,0,.333-1.542A.461.461,0,0,0,23.182,6.923Z"></path><path d="M9.73,10.418,7.376,12.883c-.01.01-.021.016-.03.025L1.158,19.1a2.682,2.682,0,1,0,3.793,3.793l4.583-4.582,0,0,4.1-4.005-.037-.037A9.094,9.094,0,0,1,9.73,10.418ZM3.053,21.888A.894.894,0,1,1,3.946,21,.893.893,0,0,1,3.053,21.888Z"></path></g></g></svg></div>`
-      );
-      var DashboardButton = stringToHTML(
-        `<div class="addedButton" style="right: 120px;" id="AddedDashboard"><svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M15.81,6.446a.749.749,0,0,0-1,.367L12.64,11.527A3.261,3.261,0,0,0,12,11.463a3.214,3.214,0,1,0,2,.7l2.178-4.72A.751.751,0,0,0,15.81,6.446ZM12,16.371a1.7,1.7,0,1,1,1.7-1.7A1.7,1.7,0,0,1,12,16.371Z"></path><path d="M23.965,13.71A12.04,12.04,0,0,0,12.831,2.7c-.278-.018-.554-.028-.828-.028A12,12,0,0,0,1.376,20.245a.817.817,0,0,0,.725.427h19.8a.815.815,0,0,0,.725-.427A11.964,11.964,0,0,0,23.965,13.71Zm-2.476,5.462H2.516a10.368,10.368,0,0,1-1.013-4.5A10.512,10.512,0,0,1,12,4.172c.241,0,.486.009.728.025a10.5,10.5,0,0,1,8.758,14.975Z"></path><path d="M19.625,14.328a1.364,1.364,0,1,0,1.364,1.364A1.364,1.364,0,0,0,19.625,14.328Z"></path><circle cx="4.381" cy="15.692" r="1.364"></circle><path d="M6.146,8.369A1.364,1.364,0,1,0,7.51,9.733,1.364,1.364,0,0,0,6.146,8.369Z"></path><path d="M19.224,9.733A1.364,1.364,0,1,0,17.86,11.1,1.364,1.364,0,0,0,19.224,9.733Z"></path><path d="M12,8.369a1.364,1.364,0,1,0-1.364-1.364A1.364,1.364,0,0,0,12,8.369Z"></path></g></g></svg></div>`
+        `<button class="addedButton" id="AddedSettings""><svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M23.182,6.923c-.29,0-3.662,2.122-4.142,2.4l-2.8-1.555V4.511l4.257-2.456a.518.518,0,0,0,.233-.408.479.479,0,0,0-.233-.407,6.511,6.511,0,1,0-3.327,12.107,6.582,6.582,0,0,0,6.148-4.374,5.228,5.228,0,0,0,.333-1.542A.461.461,0,0,0,23.182,6.923Z"></path><path d="M9.73,10.418,7.376,12.883c-.01.01-.021.016-.03.025L1.158,19.1a2.682,2.682,0,1,0,3.793,3.793l4.583-4.582,0,0,4.1-4.005-.037-.037A9.094,9.094,0,0,1,9.73,10.418ZM3.053,21.888A.894.894,0,1,1,3.946,21,.893.893,0,0,1,3.053,21.888Z"></path></g></g></svg></button>`
       );
       var ContentDiv = document.getElementById("content");
       ContentDiv.append(SettingsButton.firstChild);
-      ContentDiv.append(DashboardButton.firstChild);
 
       var AddedSettings = document.getElementById("AddedSettings");
-      var AddedDashboard = document.getElementById("AddedDashboard");
+      console.log(AddedSettings)
+      var extensionsettings = document.getElementById("ExtensionPopup")
       AddedSettings.addEventListener("click", function () {
-        
-        ChangeCurrentPage("settings");
-      });
-      AddedDashboard.addEventListener("click", function () {
-        ChangeCurrentPage("dashboard");
+        extensionsettings.classList.toggle('hidden');
+        SettingsClicked = true        
       });
     }
   }
@@ -811,5 +1140,6 @@ function LoadInit() {
     if (result.onoff) {
       SendHomePage();
     }
+
   });
 }

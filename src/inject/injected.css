@@ -34,15 +34,16 @@
   color: white;
 }
 .addedButton {
-  position: absolute;
+  position: absolute !important;
   right: 70px;
   width: 35px;
   height: 35px;
-  background-color: white;
+  padding: 6px !important;
+  overflow: unset !important;
   border-radius: 50%;
-  margin: 14px;
+  margin: 14px !important;
   cursor: pointer;
-  color: var(--better-sub);
+  color: white !important;
 }
 #main > .dashboard {
   background: unset;
@@ -746,4 +747,7 @@ body {
 }
 .MessageList__MessageList___3DxoC > ol > li.MessageList__unread___3imtO {
   box-shadow: inset 3px 0 rgb(255, 255, 255);
+}
+.connectedNotificationsWrapper > div > button {
+  background: #363636 !important;
 }
