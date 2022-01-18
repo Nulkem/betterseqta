@@ -79,7 +79,7 @@ html {
 }
 
 .student #menu > ul::before {
-  background-image: url(/icons/logo-learn-light.svg);
+  background-image: url(/icons/betterseqta-light-full.png);
 }
 .item {
   border-radius: 0px 20px 20px 0px !important;
