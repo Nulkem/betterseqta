@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/BetterSEQTA/static/css/main.eb871e8c.css",
-    "main.js": "/BetterSEQTA/static/js/main.821417ec.js",
-    "static/media/better-seqta.png": "/BetterSEQTA/static/media/better-seqta.f15249089722da701aec.png",
-    "index.html": "/BetterSEQTA/index.html",
-    "main.eb871e8c.css.map": "/BetterSEQTA/static/css/main.eb871e8c.css.map",
-    "main.821417ec.js.map": "/BetterSEQTA/static/js/main.821417ec.js.map"
+    "main.css": "/betterseqta/static/css/main.eb871e8c.css",
+    "main.js": "/betterseqta/static/js/main.bc6f6810.js",
+    "static/media/better-seqta.png": "/betterseqta/static/media/better-seqta.f15249089722da701aec.png",
+    "index.html": "/betterseqta/index.html",
+    "main.eb871e8c.css.map": "/betterseqta/static/css/main.eb871e8c.css.map",
+    "main.bc6f6810.js.map": "/betterseqta/static/js/main.bc6f6810.js.map"
   },
   "entrypoints": [
     "static/css/main.eb871e8c.css",
-    "static/js/main.821417ec.js"
+    "static/js/main.bc6f6810.js"
   ]
 }
