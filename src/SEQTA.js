@@ -977,45 +977,52 @@ function SendHomePage() {
       if (xhr.readyState === 4) {
         var serverResponse = JSON.parse(xhr.response);
         lessonArray = [];
+        var DayContainer = document.getElementById("day-container")
         // If items in response:
         if (serverResponse.payload.items.length > 0) {
-          // console.log(serverResponse.payload.items.length);
-          for (let i = 1; i < serverResponse.payload.items.length; i++) {
-            lessonArray.push(serverResponse.payload.items[i]);
-          }
-          // If items in the response, set each corresponding value into divs
-          // console.log(lessonArray);
-          for (let i = 0; i < lessonArray.length; i++) {
-            lessonArray[i].colour = document.querySelector(
-              "[data-colour='timetable.subject.colour." +
-                lessonArray[i].code +
-                "']"
-            ).style.cssText;
-            // Removes seconds from the start and end times
-            lessonArray[i].from = lessonArray[i].from.substring(0, 5);
-            lessonArray[i].until = lessonArray[i].until.substring(0, 5);
-            // Checks if attendance is unmarked, and sets the string to " ".
-            lessonArray[i].attendance = CheckUnmarkedAttendance(
-              lessonArray[i].attendance
-            );
-          }
-          // If on home page, apply each lesson to HTML with information in each div
+          if (!DayContainer.innerText){
+            // console.log(serverResponse.payload.items.length);
+            for (let i = 1; i < serverResponse.payload.items.length; i++) {
+              lessonArray.push(serverResponse.payload.items[i]);
+            }
+            // If items in the response, set each corresponding value into divs
+            // console.log(lessonArray);
+            for (let i = 0; i < lessonArray.length; i++) {
+              lessonArray[i].colour = document.querySelector(
+                "[data-colour='timetable.subject.colour." +
+                  lessonArray[i].code +
+                  "']"
+              ).style.cssText;
+              // Removes seconds from the start and end times
+              lessonArray[i].from = lessonArray[i].from.substring(0, 5);
+              lessonArray[i].until = lessonArray[i].until.substring(0, 5);
+              // Checks if attendance is unmarked, and sets the string to " ".
+              lessonArray[i].attendance = CheckUnmarkedAttendance(
+                lessonArray[i].attendance
+              );
+            }
+            // If on home page, apply each lesson to HTML with information in each div
 
-          for (let i = 0; i < lessonArray.length; i++) {
-            var div = MakeLessonDiv(lessonArray[i]);
-            // Append each of the lessons into the day-container
-            document.getElementById("day-container").append(div.firstChild);
-          }
+            for (let i = 0; i < lessonArray.length; i++) {
+              var div = MakeLessonDiv(lessonArray[i]);
+              // Append each of the lessons into the day-container
+              DayContainer.append(div.firstChild);
+            }
 
-          for (i = 0; i < lessonArray.length; i++) {
-            CheckCurrentLesson(lessonArray[i], i + 1);
+            for (i = 0; i < lessonArray.length; i++) {
+              CheckCurrentLesson(lessonArray[i], i + 1);
+            }
+            // For each lesson, check the start and end times
+            CheckCurrentLessonAll(lessonArray);
+            } 
           }
-          // For each lesson, check the start and end times
-          CheckCurrentLessonAll(lessonArray);
-        } else {
-          var dummyDay = document.createElement("div");
-          dummyDay.classList.add("day");
-          document.getElementById("day-container").append(dummyDay);
+          else {
+            if (!DayContainer.innerText){
+              var dummyDay = document.createElement("div");
+              dummyDay.classList.add("day");
+              DayContainer.append(dummyDay); 
+            }
+
         }
       }
     };
@@ -1043,50 +1050,54 @@ function SendHomePage() {
         var NoticesPayload = JSON.parse(xhr2.response);
         var NoticeContainer = document.getElementById("notice-container");
         if (NoticesPayload.payload.length == 0) {
-          // If no notices: display no notices
-          var dummyNotice = document.createElement("div");
-          dummyNotice.textContent = "No notices for today.";
-          dummyNotice.classList.add("dummynotice");
-
-          NoticeContainer.append(dummyNotice);
-        } else {
-          // For each element in the response json:
-          for (let i = 0; i < NoticesPayload.payload.length; i++) {
-            // Create a div, and place information from json response
-            var NewNotice = document.createElement("div");
-            NewNotice.classList.add("notice");
-            var title = stringToHTML(
-              `<h3>` + NoticesPayload.payload[i].title + `</h3>`
-            );
-            NewNotice.append(title.firstChild);
-
-            if (NoticesPayload.payload[i].label_title != undefined) {
-              var label = stringToHTML(
-                `<h5>` + NoticesPayload.payload[i].label_title + `</h5>`
-              );
-              NewNotice.append(label.firstChild);
-            }
-
-            var staff = stringToHTML(
-              `<h6>` + NoticesPayload.payload[i].staff + `</h6>`
-            );
-            NewNotice.append(staff.firstChild);
-            // Converts the string into HTML
-            var content = stringToHTML(NoticesPayload.payload[i].contents);
-            for (let i = 0; i < content.childNodes.length; i++) {
-              NewNotice.append(content.childNodes[i]);
-            }
-            // Gets the colour for the top section of each notice
-            var colour = NoticesPayload.payload[i].colour;
-            var colourbar = document.createElement("div");
-            colourbar.classList.add("colourbar");
-            colourbar.style.background = colour;
-            // Appends the colour bar to the new notice
-            NewNotice.append(colourbar);
-            // Appends the new notice into the notice container
-            NoticeContainer.append(NewNotice);
+          if (!NoticeContainer.innerText){
+            // If no notices: display no notices
+            var dummyNotice = document.createElement("div");
+            dummyNotice.textContent = "No notices for today.";
+            dummyNotice.classList.add("dummynotice");
+            NoticeContainer.append(dummyNotice);
           }
+
+        } else {
+          if (!NoticeContainer.innerText){
+            // For each element in the response json:
+            for (let i = 0; i < NoticesPayload.payload.length; i++) {
+              // Create a div, and place information from json response
+              var NewNotice = document.createElement("div");
+              NewNotice.classList.add("notice");
+              var title = stringToHTML(
+                `<h3>` + NoticesPayload.payload[i].title + `</h3>`
+              );
+              NewNotice.append(title.firstChild);
+
+              if (NoticesPayload.payload[i].label_title != undefined) {
+                var label = stringToHTML(
+                  `<h5>` + NoticesPayload.payload[i].label_title + `</h5>`
+                );
+                NewNotice.append(label.firstChild);
+              }
+
+              var staff = stringToHTML(
+                `<h6>` + NoticesPayload.payload[i].staff + `</h6>`
+              );
+              NewNotice.append(staff.firstChild);
+              // Converts the string into HTML
+              var content = stringToHTML(NoticesPayload.payload[i].contents);
+              for (let i = 0; i < content.childNodes.length; i++) {
+                NewNotice.append(content.childNodes[i]);
+              }
+              // Gets the colour for the top section of each notice
+              var colour = NoticesPayload.payload[i].colour;
+              var colourbar = document.createElement("div");
+              colourbar.classList.add("colourbar");
+              colourbar.style.background = colour;
+              // Appends the colour bar to the new notice
+              NewNotice.append(colourbar);
+              // Appends the new notice into the notice container
+              NoticeContainer.append(NewNotice);
+            }
         }
+      }
       }
     };
     // Data sent as the POST request
