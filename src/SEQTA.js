@@ -22,11 +22,54 @@ var stringToHTML = function (str) {
   return doc.body;
 };
 
+const ShortcutLinks = {
+  YouTube: {
+    link: "https://www.youtube.com/",
+    icon: "https://www.youtube.com/s/desktop/310f846f/img/favicon_144x144.png"
+  },
+  Outlook: {
+    link: "https://outlook.office365.com/mail/inbox",
+    icon: "https://outlook-1.cdn.office.net/assets/mail/pwa/v1/pngs/apple-touch-icon.png",
+  },
+  Office: {
+    link: "http://office.com",
+    icon: "https://www.tecon.es/wp-content/uploads/2016/01/logo-OFFICE-365-solo.png"
+  },
+  Spotify: {
+    link: "https://accounts.spotify.com/en/login",
+    icon: "https://www.scdn.co/i/_global/touch-icon-144.png"
+  },
+  Google: {
+    link: "https://google.com",
+    icon: "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png"
+  },
+  DuckDuckGo: {
+    link: "https://duckduckgo.com/",
+    icon: "https://duckduckgo.com/assets/icons/meta/DDG-iOS-icon_152x152.png"
+  },
+  CoolMathGames: {
+    link: "https://coolmathgames.com/",
+    icon: "https://www.coolmathgames.com/pwa/images/icon-512x512.png"
+  },
+  SACE: {
+    link: "https://apps.sace.sa.edu.au/students-online/login.do",
+    icon: "https://pbs.twimg.com/profile_images/948035664783622144/iE9ebnfW_400x400.jpg"
+  },
+  GoogleScholar: {
+    link: "https://scholar.google.com",
+    icon: "https://scholar.google.com/favicon.ico"
+  },
+  Gmail: {
+    link: "https://mail.google.com",
+    icon: "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"
+  }
+  }
+
 function loading() {
   // loadinghtml = stringToHTML(
   //   `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
   //   <svg width="300" height="160" id="clackers" style="display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);"><svg><path id="arc-left-up" fill="none" d="M 90 90 A 90 90 0 0 1 0 0"/></svg><svg><path id="arc-right-up" fill="none" d="M 100 90 A 90 90 0 0 0 190 0"/></svg><text x="150" y="50" fill="#ffffff" font-size="18"text-anchor="middle">B E T T E R S E Q T A</text><circle style="fill: #333333;" cx="15" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-left-up"/></animateMotion></circle><circle style="fill: #242424;" cx="135" cy="105" r="15" /><circle style="fill: #161616;" cx="165" cy="105" r="15" /><circle style="fill: #313131;" cx="95" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-right-up"/></animateMotion></circle></svg>
-  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.3</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
+  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.31</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
   // );
   loadinghtml = stringToHTML(
     `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
@@ -85,7 +128,7 @@ function loading() {
     <svg height="135" width="135" viewBox="0 0 1000 1000" class="small-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L455.999 938C455.986 936.008 456.301 933.282 454.972 931.603C453.594 929.862 450.977 930.062 448.999 929.835C443.991 929.258 438.987 928.463 434 927.728C414.788 924.898 395.564 920.733 377 915.025C300.826 891.602 231.835 849.314 178.17 790C106.263 710.526 63.7248 603.522 65.0039 496C65.7806 430.71 81.6532 365.691 110.259 307C130.156 266.177 157.727 228.746 189.039 196C222.33 161.185 262.986 132.26 306 110.753C345.737 90.8846 389.756 75.6209 434 70L434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.501 68.7513 294.622 88.2739 254 113.576C215.656 137.46 181.298 167.82 151.87 202C33.2034 339.827 7.62905 544.971 91.2585 707C112.853 748.839 140.699 787.699 174 821C210.688 857.688 253.047 888.542 300 910.781C332.493 926.171 365.923 937.713 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
     <svg height="180" width="180" viewBox="0 0 1000 1000" class="big-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M454 952L454 887C441.324 886.456 428.346 883.444 416 880.65C389.799 874.722 364.497 866.349 340 855.306C205.92 794.861 116.45 660.408 110.039 514C108.593 480.976 112.302 447.246 119.424 415C144.931 299.518 226.1 198.275 333 147.781C389.157 121.255 450.99 108.496 513 110.015C612.241 112.446 711.495 157.399 779.961 229C839.544 291.312 879.215 372.892 887.831 459C893.323 513.894 887.624 569.466 870.329 622C836.537 724.647 758.42 810.937 660 855.306C635.503 866.349 610.201 874.722 584 880.65C571.383 883.505 557.974 886.732 545 887L545 952C562.916 951.63 581.566 947.595 599 943.65C637.149 935.018 673.043 921.725 708 904.247C753.184 881.655 792.42 850.594 828 815C859.416 783.572 885.414 745.666 905.247 706C933.723 649.048 949.566 588.445 953.911 525C963.014 392.066 906.622 254.399 808 165.17C769.47 130.31 725.8 101.975 678 81.5787C629.733 60.9833 575.64 47.3041 523 46.0146C469.032 44.6927 415.748 49.9443 364 66.0255C223.375 109.726 109.726 223.376 66.0255 364C14.4181 530.066 63.7205 715.347 191 833.911C229.196 869.491 274.051 897.962 322 918.421C362.806 935.833 409.371 950.084 454 952z"/></svg>
     <svg height="220" width="220" viewBox="0 0 1000 1000" class="outer-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L456 946C438.715 945.258 420.843 941.462 404 937.65C369.403 929.822 335.739 918.116 304 902.247C255.981 878.237 211.768 846.374 175.09 807C62.5744 686.214 23.1598 509.033 78.6921 353C96.4653 303.062 122.84 256.974 156.424 216C207.709 153.43 278.099 103.658 355 78C372.453 72.1767 389.992 67.0399 408 63.2107C413.31 62.0816 418.647 60.9853 424 60.0811C426.508 59.6575 430.352 59.6852 432.397 57.9869C434.897 55.9098 434 50.8766 434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.517 68.7473 294.608 88.2827 254 113.576C215.673 137.45 181.285 167.835 151.87 202C33.9725 338.933 8.37009 541.243 89.2485 703C110.949 746.4 139.693 786.693 174 821C210.688 857.688 253.047 888.542 300 910.781C332.484 926.167 365.934 937.716 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
-    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.3</div></div>`
+    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.31</div></div>`
   );
   var html = document.getElementsByTagName("html")[0];
   html.append(loadinghtml.firstChild);
@@ -123,73 +166,6 @@ async function finishLoad() {
   loadingbk.style.opacity = "0";
   await delay(501);
   loadingbk.remove();
-}
-
-function SetDefaultValues() {
-  chrome.storage.local.set({
-    onoff: true,
-    notificationcollector: false,
-  });
-
-  var menuItems = {
-    welcome: false,
-    portals: false,
-    dashboard: false,
-    forums: false,
-    settings: false,
-  };
-  chrome.storage.local.set({ menuitems: menuItems });
-
-  var shortcutArray = [];
-  shortcutArray.push({
-    name: "YouTube",
-    link: "https://www.youtube.com/",
-    icon: "https://www.youtube.com/s/desktop/310f846f/img/favicon_144x144.png",
-    enabled: true,
-  });
-  shortcutArray.push({
-    name: "Outlook",
-    link: "https://outlook.office365.com/mail/inbox",
-    icon: "https://outlook-1.cdn.office.net/assets/mail/pwa/v1/pngs/apple-touch-icon.png",
-    enabled: true,
-  });
-  shortcutArray.push({
-    name: "Office",
-    link: "http://office.com",
-    icon: "https://www.tecon.es/wp-content/uploads/2016/01/logo-OFFICE-365-solo.png",
-    enabled: true,
-  });
-  shortcutArray.push({
-    name: "Spotify",
-    link: "https://accounts.spotify.com/en/login",
-    icon: "https://www.scdn.co/i/_global/touch-icon-144.png",
-    enabled: true,
-  });
-  shortcutArray.push({
-    name: "Google",
-    link: "https://google.com",
-    icon: "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
-    enabled: false,
-  });
-  shortcutArray.push({
-    name: "DuckDuckGo",
-    link: "https://duckduckgo.com/",
-    icon: "https://duckduckgo.com/assets/icons/meta/DDG-iOS-icon_152x152.png",
-    enabled: false,
-  });
-  shortcutArray.push({
-    name: "Cool Math Games",
-    link: "https://coolmathgames.com/",
-    icon: "https://www.coolmathgames.com/pwa/images/icon-512x512.png",
-    enabled: false,
-  });
-  shortcutArray.push({
-    name: "SACE",
-    link: "https://apps.sace.sa.edu.au/students-online/login.do",
-    icon: "https://pbs.twimg.com/profile_images/948035664783622144/iE9ebnfW_400x400.jpg",
-    enabled: false,
-  });
-  chrome.storage.local.set({ shortcuts: shortcutArray });
 }
 
 function CreateBackground() {
@@ -318,16 +294,10 @@ function AppendElementsToDisabledPage(){
 }
 
 function RunFunctionOnTrue(storedSetting) {
-  // If value for off and on is not defined
-  if (typeof storedSetting.onoff == "undefined") {
-    // Set the value to true, and rerun the function
-    SetDefaultValues();
-    chrome.storage.local.get(null, function (items) {
-      RunFunctionOnTrue(items);
-    });
-  }
-
   // If the option is 'on', open BetterSEQTA
+  if (typeof storedSetting.onoff == 'undefined'){
+    chrome.runtime.sendMessage({type: "setDefaultStorage"});
+  }
   if (storedSetting.onoff) {
     console.log("[BetterSEQTA] Enabled");
     // Injecting CSS File to the webpage to overwrite SEQTA's default CSS
@@ -393,6 +363,7 @@ function RunExtensionSettingsJS(){
 
 const onoffselection = document.querySelector("#onoff");
 const notificationcollector = document.querySelector("#notification");
+const lessonalert = document.querySelector("#lessonalert");
 const sidemenusection = document.querySelector("#sidemenusection");
 const shortcutsection = document.querySelector("#shortcutsection");
 const mainpage = document.querySelector("#mainpage");
@@ -446,11 +417,10 @@ function storeSettings() {
   });
 }
 
-function storeNotificationCollectorSetting() {
+function storeNotificationSettings() {
   chrome.storage.local.set(
-    { notificationcollector: notificationcollector.checked },
-    function () {}
-  );
+    { notificationcollector: notificationcollector.checked });
+    chrome.storage.local.set({ lessonalert: lessonalert.checked });
 }
 
 function StoreAllSettings() {
@@ -484,72 +454,16 @@ Update the options UI with the settings values retrieved from storage,
 or the default settings if the stored settings are empty.
 */
 function updateUI(restoredSettings) {
-  if (restoredSettings.onoff == null) {
-    var menuItems = {};
-    for (var i = 0; i < menubuttons.length; i++) {
-      var id = menubuttons[i].id;
-      menuItems = Object.assign(menuItems, { [id]: false });
-    }
+  if (typeof restoredSettings.onoff == 'undefined') {
+    chrome.runtime.sendMessage({type: "setDefaultStorage"});
 
-    chrome.storage.local.set({ menuitems: menuItems });
-    var shortcutArray = [];
-    shortcutArray.push({
-      name: "YouTube",
-      link: "https://www.youtube.com/",
-      icon: "https://www.youtube.com/s/desktop/310f846f/img/favicon_144x144.png",
-      enabled: true,
-    });
-    shortcutArray.push({
-      name: "Outlook",
-      link: "https://outlook.office365.com/mail/inbox",
-      icon: "https://outlook-1.cdn.office.net/assets/mail/pwa/v1/pngs/apple-touch-icon.png",
-      enabled: true,
-    });
-    shortcutArray.push({
-      name: "Office",
-      link: "http://office.com",
-      icon: "https://www.tecon.es/wp-content/uploads/2016/01/logo-OFFICE-365-solo.png",
-      enabled: true,
-    });
-    shortcutArray.push({
-      name: "Spotify",
-      link: "https://accounts.spotify.com/en/login",
-      icon: "https://www.scdn.co/i/_global/touch-icon-144.png",
-      enabled: true,
-    });
-    shortcutArray.push({
-      name: "Google",
-      link: "https://google.com",
-      icon: "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
-      enabled: false,
-    });
-    shortcutArray.push({
-      name: "DuckDuckGo",
-      link: "https://duckduckgo.com/",
-      icon: "https://duckduckgo.com/assets/icons/meta/DDG-iOS-icon_152x152.png",
-      enabled: false,
-    });
-    shortcutArray.push({
-      name: "Cool Math Games",
-      link: "https://coolmathgames.com/",
-      icon: "https://www.coolmathgames.com/pwa/images/icon-512x512.png",
-      enabled: false,
-    });
-    shortcutArray.push({
-      name: "SACE",
-      link: "https://apps.sace.sa.edu.au/students-online/login.do",
-      icon: "https://pbs.twimg.com/profile_images/948035664783622144/iE9ebnfW_400x400.jpg",
-      enabled: false,
-    });
-    chrome.storage.local.set({ shortcuts: shortcutArray });
-    chrome.storage.local.set({ onoff: true });
-    chrome.storage.local.set({ notificationcollector: false });
     chrome.storage.local.get(null, function (result) {
       updateUI(result);
     });
   } else {
     onoffselection.checked = restoredSettings.onoff;
     notificationcollector.checked = restoredSettings.notificationcollector;
+    lessonalert.checked = restoredSettings.lessonalert;
     chrome.storage.local.get(["menuitems"], function (result) {
       var menuItems = Object.values(result)[0];
       for (var i = 0; i < menubuttons.length; i++) {
@@ -560,7 +474,6 @@ function updateUI(restoredSettings) {
 
     chrome.storage.local.get(["shortcuts"], function (result) {
       var shortcuts = Object.values(result)[0];
-      console.log(shortcuts);
       for (var i = 0; i < shortcutbuttons.length; i++) {
         shortcutbuttons[i].checked = shortcuts[i].enabled;
       }
@@ -573,7 +486,6 @@ function onError(e) {
   console.error(e);
 }
 chrome.storage.local.get(null, function (result) {
-  console.log(result);
   updateUI(result);
 });
 
@@ -595,8 +507,9 @@ for (var i = 0; i < applybuttons.length; i++) {
 onoffselection.addEventListener("change", storeSettings);
 notificationcollector.addEventListener(
   "change",
-  storeNotificationCollectorSetting
+  storeNotificationSettings
 );
+lessonalert.addEventListener("change", storeNotificationSettings)
 
 }
 
@@ -616,6 +529,7 @@ function CallExtensionSettings(){
   <div class="item-container offontoggle"><h1 class="item main">Toggle BetterSEQTA</h1><div class="checkbox-container"><input class="toggle offon" type="checkbox" id="onoff"></div></div>
   <div class="item-container clickable" id="sidemenusection"><div class="text-container"><h1 class="addonitem">Side Menu Items</h1><p class="item subitem">Choose which items to keep on the side menu.</p></div><div class="checkbox-container"><img src="${NextPageImage}" alt="" width="20px" height="20px"></div></div>
   <div class="item-container clickable" id="shortcutsection"><div class="text-container"><h1 class="addonitem">Shortcut Items</h1><p class="item subitem">Choose which shortcuts to use on the Home Page.</p></div><div class="checkbox-container"><img src="${NextPageImage}" alt="" width="20px" height="20px"></div></div>
+  <div class="item-container"><div class="text-container"><h1 class="addonitem">Lesson Alerts</h1><p class="item subitem">Sends a native browser notification ~5 minutes prior to lessons.</p></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="lessonalert"></div></div>
   <div class="item-container"><div class="text-container"><h1 class="addonitem">Notification Collector</h1><p class="item subitem">Uncaps the 9+ limit for notifications, showing the real number.</p></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="notification"></div></div>
   <div class="apply-changes">Apply Changes</div>
   </div>
@@ -651,6 +565,8 @@ function CallExtensionSettings(){
     <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">DuckDuckGo</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="duckduckgo"></div></div>
     <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Cool Math Games</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="coolmathgames"></div></div>
     <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">SACE</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="sace"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Google Scholar</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="googlescholar"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Gmail</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="gmail"></div></div>
   </div>
 </div>
 <div style="display: flex; color: white; justify-content: space-around;">
@@ -682,7 +598,7 @@ function AddBetterSEQTAElements(toggle) {
   // Replaces students code with the version of BetterSEQTA
   if (code != null) {
     if (!code.innerHTML.includes("BetterSEQTA")) {
-      code.innerHTML = "BetterSEQTA v1.3";
+      code.innerHTML = "BetterSEQTA v1.31";
 
       if (toggle){
          // Creates Home menu button and appends it as the first child of the list
@@ -711,7 +627,6 @@ function AddBetterSEQTAElements(toggle) {
       ContentDiv.append(SettingsButton.firstChild);
 
       var AddedSettings = document.getElementById("AddedSettings");
-      console.log(AddedSettings)
       var extensionsettings = document.getElementById("ExtensionPopup")
       AddedSettings.addEventListener("click", function () {
         extensionsettings.classList.toggle('hidden');
@@ -768,46 +683,51 @@ function CheckCurrentLesson(lesson, num) {
 
   // If 5 minutes before the start of another lesson:
   if (minutes == 5) {
-    // Checks if notifications are supported
-    if (!window.Notification) {
-      console.log("Browser does not support notifications.");
-    } else {
-      // check if permission is already granted
-      if (Notification.permission === "granted") {
-        // show notification here
-        var notify = new Notification("Next Lesson in 5 Minutes:", {
-          body:
-            "Subject: " +
-            lesson.description +
-            " \nRoom: " +
-            lesson.room +
-            " \nTeacher: " +
-            lesson.staff,
-        });
-      } else {
-        // request permission from user
-        Notification.requestPermission()
-          .then(function (p) {
-            if (p === "granted") {
-              // show notification here
-              var notify = new Notification("Hi there!", {
-                body:
-                  "Subject: " +
-                  lesson.description +
-                  " \nRoom: " +
-                  lesson.room +
-                  " \nTeacher: " +
-                  lesson.staff,
+    chrome.storage.local.get('lessonalert', function(result){
+      if (result.lessonalert){
+        // Checks if notifications are supported
+        if (!window.Notification) {
+          console.log("Browser does not support notifications.");
+        } else {
+          // check if permission is already granted
+          if (Notification.permission === "granted") {
+            // show notification here
+            var notify = new Notification("Next Lesson in 5 Minutes:", {
+              body:
+                "Subject: " +
+                lesson.description +
+                " \nRoom: " +
+                lesson.room +
+                " \nTeacher: " +
+                lesson.staff,
+            });
+          } else {
+            // request permission from user
+            Notification.requestPermission()
+              .then(function (p) {
+                if (p === "granted") {
+                  // show notification here
+                  var notify = new Notification("Next Lesson in 5 Minutes:", {
+                    body:
+                      "Subject: " +
+                      lesson.description +
+                      " \nRoom: " +
+                      lesson.room +
+                      " \nTeacher: " +
+                      lesson.staff,
+                  });
+                } else {
+                  console.log("User blocked notifications.");
+                }
+              })
+              .catch(function (err) {
+                console.error(err);
               });
-            } else {
-              console.log("User blocked notifications.");
-            }
-          })
-          .catch(function (err) {
-            console.error(err);
-          });
-      }
-    }
+          }
+        }
+        }
+    });
+
   }
   // Checks if current time is between the start time and end time of current tested lesson
   valid = startDate < currentDate && endDate > currentDate;
@@ -947,9 +867,10 @@ function SendHomePage() {
       var shortcuts = Object.values(result)[0];
       for (let i = 0; i < shortcuts.length; i++) {
         if (shortcuts[i].enabled) {
-          createNewShortcut(
-            shortcuts[i].link,
-            shortcuts[i].icon,
+          Itemname = (shortcuts[i].name).replace(/ /g, '')
+          createNewShortcut(  
+            ShortcutLinks[Itemname].link,
+            ShortcutLinks[Itemname].icon,
             shortcuts[i].name
           );
         }
@@ -1133,7 +1054,7 @@ function SendHomePage() {
         );
       }
     });
-  }, 1);
+  }, 8);
 }
 
 function EnabledDisabledToBool(input) {

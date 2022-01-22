@@ -15,6 +15,7 @@
 
 const onoffselection = document.querySelector("#onoff");
 const notificationcollector = document.querySelector("#notification");
+const lessonalert = document.querySelector("#lessonalert");
 const sidemenusection = document.querySelector("#sidemenusection");
 const shortcutsection = document.querySelector("#shortcutsection");
 const mainpage = document.querySelector("#mainpage");
@@ -75,12 +76,12 @@ function storeSettings() {
   });
 }
 
-function storeNotificationCollectorSetting() {
+function storeNotificationSettings() {
   chrome.storage.local.set(
-    { notificationcollector: notificationcollector.checked },
-    function () {}
-  );
+    { notificationcollector: notificationcollector.checked });
+    chrome.storage.local.set({ lessonalert: lessonalert.checked });
 }
+
 
 function StoreAllSettings() {
   chrome.storage.local.get(["menuitems"], function (result) {
@@ -111,72 +112,16 @@ Update the options UI with the settings values retrieved from storage,
 or the default settings if the stored settings are empty.
 */
 function updateUI(restoredSettings) {
-  if (restoredSettings.onoff == null) {
-    var menuItems = {};
-    for (var i = 0; i < menubuttons.length; i++) {
-      var id = menubuttons[i].id;
-      menuItems = Object.assign(menuItems, { [id]: false });
-    }
+  if (typeof restoredSettings.onoff == 'undefined') {
+    chrome.runtime.sendMessage({type: "setDefaultStorage"});
 
-    chrome.storage.local.set({ menuitems: menuItems });
-    var shortcutArray = [];
-    shortcutArray.push({
-      name: "YouTube",
-      link: "https://www.youtube.com/",
-      icon: "https://www.youtube.com/s/desktop/310f846f/img/favicon_144x144.png",
-      enabled: true,
-    });
-    shortcutArray.push({
-      name: "Outlook",
-      link: "https://outlook.office365.com/mail/inbox",
-      icon: "https://outlook-1.cdn.office.net/assets/mail/pwa/v1/pngs/apple-touch-icon.png",
-      enabled: true,
-    });
-    shortcutArray.push({
-      name: "Office",
-      link: "http://office.com",
-      icon: "https://www.tecon.es/wp-content/uploads/2016/01/logo-OFFICE-365-solo.png",
-      enabled: true,
-    });
-    shortcutArray.push({
-      name: "Spotify",
-      link: "https://accounts.spotify.com/en/login",
-      icon: "https://www.scdn.co/i/_global/touch-icon-144.png",
-      enabled: true,
-    });
-    shortcutArray.push({
-      name: "Google",
-      link: "https://google.com",
-      icon: "https://www.google.com/images/branding/googleg/1x/googleg_standard_color_128dp.png",
-      enabled: false,
-    });
-    shortcutArray.push({
-      name: "DuckDuckGo",
-      link: "https://duckduckgo.com/",
-      icon: "https://duckduckgo.com/assets/icons/meta/DDG-iOS-icon_152x152.png",
-      enabled: false,
-    });
-    shortcutArray.push({
-      name: "Cool Math Games",
-      link: "https://coolmathgames.com/",
-      icon: "https://www.coolmathgames.com/pwa/images/icon-512x512.png",
-      enabled: false,
-    });
-    shortcutArray.push({
-      name: "SACE",
-      link: "https://apps.sace.sa.edu.au/students-online/login.do",
-      icon: "https://pbs.twimg.com/profile_images/948035664783622144/iE9ebnfW_400x400.jpg",
-      enabled: false,
-    });
-    chrome.storage.local.set({ shortcuts: shortcutArray });
-    chrome.storage.local.set({ onoff: true });
-    chrome.storage.local.set({ notificationcollector: false });
     chrome.storage.local.get(null, function (result) {
       updateUI(result);
     });
   } else {
     onoffselection.checked = restoredSettings.onoff;
     notificationcollector.checked = restoredSettings.notificationcollector;
+    lessonalert.checked = restoredSettings.lessonalert;
     chrome.storage.local.get(["menuitems"], function (result) {
       var menuItems = Object.values(result)[0];
       for (var i = 0; i < menubuttons.length; i++) {
@@ -230,5 +175,7 @@ document.addEventListener("DOMContentLoaded", function () {
 onoffselection.addEventListener("change", storeSettings);
 notificationcollector.addEventListener(
   "change",
-  storeNotificationCollectorSetting
+  storeNotificationSettings
 );
+lessonalert.addEventListener("change", storeNotificationSettings)
+
