@@ -1043,7 +1043,13 @@ function SendHomePage() {
             var alertdiv = document.getElementsByClassName(
               "notifications__bubble___1EkSQ"
             )[0];
-            alertdiv.textContent = Notifications.payload.notifications.length;
+            if (typeof alertdiv == 'undefined'){
+              console.log("[BetterSEQTA] No notifications currently")
+             
+            }
+            else {
+              alertdiv.textContent = Notifications.payload.notifications.length;
+            }
           }
         };
         xhr3.send(
