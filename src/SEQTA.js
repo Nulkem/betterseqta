@@ -33,7 +33,7 @@ const ShortcutLinks = {
   },
   Office: {
     link: "http://office.com",
-    icon: "https://www.tecon.es/wp-content/uploads/2016/01/logo-OFFICE-365-solo.png"
+    icon: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Microsoft_Office_logo_%282019%E2%80%93present%29.svg"
   },
   Spotify: {
     link: "https://accounts.spotify.com/en/login",

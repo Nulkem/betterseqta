@@ -697,7 +697,7 @@ body {
   background: var(--better-main);
 }
 .shortcuticondiv {
-  height: 37px;
+  height: 39px;
   width: 39px;
   border-radius: 50%;
   padding: 0;
@@ -751,3 +751,19 @@ body {
 .connectedNotificationsWrapper > div > button {
   background: #363636 !important;
 }
+#userActions > .details > .name::before {
+  content: "";
+  width: 14px;
+  height: 12px;
+  background-image: url(/icons/betterseqta-light-outline.png);
+  display: inline flow-root list-item;
+  background-size: 18px 18px;
+  color: #fff;
+  margin-right: 2px;
+  background-position: center;
+}
+#userActions > .details {
+  opacity: unset !important;
+  color: rgb(134, 134, 134);
+}
+
