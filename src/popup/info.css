@@ -82,10 +82,13 @@
   width: 70%;
 }
 .addonitem {
-  font-size: 12px !important;
+  font-size: 14px !important;
   margin: 0;
   /* margin-left: 5px; */
   font-weight: 700;
+}
+p {
+  margin: 0 0 1ex;
 }
 .main {
   font-size: 20px !important;
@@ -104,7 +107,7 @@
   overflow-y: auto;
 }
 .subitem {
-  font-size: 10px !important;
+  font-size: 12px !important;
   font-weight: 300;
 }
 .bottom-container {

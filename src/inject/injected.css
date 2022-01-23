@@ -756,11 +756,12 @@ body {
   width: 14px;
   height: 12px;
   background-image: url(/icons/betterseqta-light-outline.png);
-  display: inline flow-root list-item;
+  display: inline-block;
   background-size: 18px 18px;
   color: #fff;
   margin-right: 2px;
   background-position: center;
+  vertical-align: top;
 }
 #userActions > .details {
   opacity: unset !important;
