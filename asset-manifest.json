@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.52bed844.css",
-    "main.js": "/static/js/main.74515da1.js",
+    "main.js": "/static/js/main.4d8f83f5.js",
     "static/media/betterseqta-light-full.png": "/static/media/betterseqta-light-full.2145eb127cb8ff4d674e.png",
     "index.html": "/index.html",
     "main.52bed844.css.map": "/static/css/main.52bed844.css.map",
-    "main.74515da1.js.map": "/static/js/main.74515da1.js.map"
+    "main.4d8f83f5.js.map": "/static/js/main.4d8f83f5.js.map"
   },
   "entrypoints": [
     "static/css/main.52bed844.css",
-    "static/js/main.74515da1.js"
+    "static/js/main.4d8f83f5.js"
   ]
 }
