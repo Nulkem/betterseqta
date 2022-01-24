@@ -658,7 +658,7 @@ function ChangeCurrentPage(newpage) {
   window.location.replace("https://" + weblink + "/#?page=/" + newpage);
 }
 
-function CheckCurrentLesson(lesson, num) {
+function CheckCurrentLesson(lesson) {
   var startTime = lesson.from;
   var endTime = lesson.until;
   // Gets current time
@@ -680,6 +680,21 @@ function CheckCurrentLesson(lesson, num) {
   var difference = startDate.getTime() - currentDate.getTime();
   // Converts the difference into minutes
   var minutes = Math.floor(difference / 1000 / 60);
+
+  // Checks if current time is between the start time and end time of current tested lesson
+  valid = startDate < currentDate && endDate > currentDate;
+
+  if (valid) {
+    // Apply the activelesson class to increase the box-shadow of current lesson
+    var elementA = document.getElementById(lesson.code);
+    elementA.classList.add("activelesson");
+  } else {
+    // Removes the activelesson class to ensure only the active lesson have the class
+    var elementA = document.getElementById(lesson.code);
+    if (elementA != null) {
+      elementA.classList.remove("activelesson");
+    }
+  }
 
   // If 5 minutes before the start of another lesson:
   if (minutes == 5) {
@@ -729,20 +744,7 @@ function CheckCurrentLesson(lesson, num) {
     });
 
   }
-  // Checks if current time is between the start time and end time of current tested lesson
-  valid = startDate < currentDate && endDate > currentDate;
 
-  if (valid) {
-    // Apply the activelesson class to increase the box-shadow of current lesson
-    var elementA = document.getElementById("lesson" + num);
-    elementA.classList.add("activelesson");
-  } else {
-    // Removes the activelesson class to ensure only the active lesson have the class
-    var elementA = document.getElementById("lesson" + num);
-    if (elementA != null) {
-      elementA.classList.remove("activelesson");
-    }
-  }
 }
 
 function CheckCurrentLessonAll(lessons) {
@@ -750,7 +752,7 @@ function CheckCurrentLessonAll(lessons) {
   setInterval(
     function () {
       for (i = 0; i < 5; i++) {
-        CheckCurrentLesson(lessons[i], i + 1);
+        CheckCurrentLesson(lessons[i]);
       }
     }.bind(lessons),
     60000
@@ -823,23 +825,7 @@ function SendHomePage() {
 
     function MakeLessonDiv(lesson) {
       var lessondiv = stringToHTML(
-        `<div class="day" id=` +
-          JSON.stringify(lesson) +
-          ` style="` +
-          lesson.colour +
-          `"><h2>` +
-          lesson.description +
-          `</h2><h3>` +
-          lesson.staff +
-          `</h3><h3>` +
-          lesson.room +
-          `</h3><h4>` +
-          lesson.from +
-          " - " +
-          lesson.until +
-          `</h4><h5>` +
-          lesson.attendance +
-          `</h5></div>`
+        `<div class="day" id=${lesson.code} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendance}</h5></div>`
       );
       return lessondiv;
     }
@@ -907,34 +893,55 @@ function SendHomePage() {
               lessonArray.push(serverResponse.payload.items[i]);
             }
             // If items in the response, set each corresponding value into divs
-            // console.log(lessonArray);
-            for (let i = 0; i < lessonArray.length; i++) {
-              lessonArray[i].colour = document.querySelector(
-                "[data-colour='timetable.subject.colour." +
-                  lessonArray[i].code +
-                  "']"
-              ).style.cssText;
-              // Removes seconds from the start and end times
-              lessonArray[i].from = lessonArray[i].from.substring(0, 5);
-              lessonArray[i].until = lessonArray[i].until.substring(0, 5);
-              // Checks if attendance is unmarked, and sets the string to " ".
-              lessonArray[i].attendance = CheckUnmarkedAttendance(
-                lessonArray[i].attendance
-              );
-            }
-            // If on home page, apply each lesson to HTML with information in each div
 
-            for (let i = 0; i < lessonArray.length; i++) {
-              var div = MakeLessonDiv(lessonArray[i]);
-              // Append each of the lessons into the day-container
-              DayContainer.append(div.firstChild);
-            }
+            fetch("https://" + weblink + "/seqta/student/load/prefs?", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8",
+              },
+              body: JSON.stringify({"request":"userPrefs","asArray":true,"user":69})
+            })
+              .then((result) => result.json())
+              .then((response) => {
+                subjects = response.payload
 
-            for (i = 0; i < lessonArray.length; i++) {
-              CheckCurrentLesson(lessonArray[i], i + 1);
-            }
-            // For each lesson, check the start and end times
-            CheckCurrentLessonAll(lessonArray);
+                for (let i = 0; i < lessonArray.length; i++) {
+
+                  subjectname = `timetable.subject.colour.${lessonArray[i].code}`
+                  
+                  subject = subjects.find(element => element.name === subjectname)
+                  if (!subject){
+                    lessonArray[i].colour = `--item-colour: #8e8e8e;`
+                  }
+                  else {
+                  lessonArray[i].colour = `--item-colour: ${subject.value};`
+                  }
+                  // Removes seconds from the start and end times
+                  lessonArray[i].from = lessonArray[i].from.substring(0, 5);
+                  lessonArray[i].until = lessonArray[i].until.substring(0, 5);
+                  // Checks if attendance is unmarked, and sets the string to " ".
+                  lessonArray[i].attendance = CheckUnmarkedAttendance(
+                    lessonArray[i].attendance
+                  );
+                }
+                // If on home page, apply each lesson to HTML with information in each div
+    
+                for (let i = 0; i < lessonArray.length; i++) {
+                  console.log(lessonArray[i])
+                  var div = MakeLessonDiv(lessonArray[i]);
+                  // Append each of the lessons into the day-container
+                  DayContainer.append(div.firstChild);
+                }
+    
+                for (i = 0; i < lessonArray.length; i++) {
+                  CheckCurrentLesson(lessonArray[i]);
+                }
+                // For each lesson, check the start and end times
+                CheckCurrentLessonAll(lessonArray);
+
+              });
+
+
             } 
           }
           else {
@@ -944,7 +951,7 @@ function SendHomePage() {
               DayContainer.append(dummyDay); 
             }
 
-        }
+          }
       }
     };
     xhr.send(
