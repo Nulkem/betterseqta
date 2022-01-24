@@ -222,6 +222,7 @@ function CheckiFrameItems() {
       mutation.addedNodes.forEach(function (added_node) {
         if (added_node.tagName == "IFRAME") {
           added_node.addEventListener("load", function () {
+            added_node.contentDocument.documentElement.childNodes[1].style.color = "white"
             if (
               !added_node.contentDocument.documentElement.firstChild.innerHTML.includes(
                 "iframe.css"
@@ -247,6 +248,10 @@ function tryLoad() {
   waitForElm(".day-container").then((elm) => {
     LoadingDone = true;
     finishLoad();
+  });
+
+  waitForElm("[data-key=welcome]").then((elm) => {
+    elm.classList.remove('active')
   });
 
   waitForElm(".code").then((elm) => {

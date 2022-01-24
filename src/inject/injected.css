@@ -33,6 +33,9 @@
 #main {
   color: white;
 }
+.defaultWelcome {
+  background: var(--better-main);
+}
 .addedButton {
   position: absolute !important;
   right: 70px;
@@ -767,4 +770,6 @@ body {
   opacity: unset !important;
   color: rgb(134, 134, 134);
 }
-
+.defaultWelcomeWrapper {
+  background: unset !important;
+}
