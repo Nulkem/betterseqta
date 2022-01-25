@@ -954,6 +954,7 @@ function SendHomePage() {
             for (let i = 1; i < serverResponse.payload.items.length; i++) {
               lessonArray.push(serverResponse.payload.items[i]);
             }
+            lessonArray.sort((a, b) => parseFloat(a.from) - parseFloat(b.from));
             // If items in the response, set each corresponding value into divs
 
             fetch("https://" + weblink + "/seqta/student/load/prefs?", {
