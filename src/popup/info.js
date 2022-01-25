@@ -79,7 +79,7 @@ function storeSettings() {
 function storeNotificationSettings() {
   chrome.storage.local.set(
     { notificationcollector: notificationcollector.checked });
-    chrome.storage.local.set({ lessonalert: lessonalert.checked });
+  chrome.storage.local.set({ lessonalert: lessonalert.checked });
 }
 
 
@@ -90,7 +90,7 @@ function StoreAllSettings() {
     for (var i = 0; i < menubuttons.length; i++) {
       var id = menubuttons[i].id;
 
-      menuItems[id] = menubuttons[i].checked;
+      menuItems[id].toggle = menubuttons[i].checked;
       console.log(menuItems[id]);
     }
     chrome.storage.local.set({ menuitems: menuItems });
@@ -113,7 +113,7 @@ or the default settings if the stored settings are empty.
 */
 function updateUI(restoredSettings) {
   if (typeof restoredSettings.onoff == 'undefined') {
-    chrome.runtime.sendMessage({type: "setDefaultStorage"});
+    chrome.runtime.sendMessage({ type: "setDefaultStorage" });
 
     chrome.storage.local.get(null, function (result) {
       updateUI(result);
@@ -126,7 +126,11 @@ function updateUI(restoredSettings) {
       var menuItems = Object.values(result)[0];
       for (var i = 0; i < menubuttons.length; i++) {
         var id = menubuttons[i].id;
-        menubuttons[i].checked = menuItems[id];
+        menubuttons[i].checked = menuItems[id].toggle;
+
+        if (menuItems[id].seqtaenabled == false) {
+          document.getElementById(id).parentNode.parentNode.style.display = 'none';
+        }
       }
     });
 

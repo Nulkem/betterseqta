@@ -104,6 +104,7 @@ p {
 }
 .menu-item-selection {
   max-height: 15em;
+  min-height: 15em;
   overflow-y: auto;
 }
 .subitem {

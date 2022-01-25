@@ -53,7 +53,7 @@ const ShortcutLinks = {
   },
   SACE: {
     link: "https://apps.sace.sa.edu.au/students-online/login.do",
-    icon: "https://pbs.twimg.com/profile_images/948035664783622144/iE9ebnfW_400x400.jpg"
+    icon: "https://www.sace.sa.edu.au/o/sace-theme/images/favicon/certificate/favicon.ico"
   },
   GoogleScholar: {
     link: "https://scholar.google.com",
@@ -63,13 +63,13 @@ const ShortcutLinks = {
     link: "https://mail.google.com",
     icon: "https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"
   }
-  }
+}
 
 function loading() {
   // loadinghtml = stringToHTML(
   //   `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
   //   <svg width="300" height="160" id="clackers" style="display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);"><svg><path id="arc-left-up" fill="none" d="M 90 90 A 90 90 0 0 1 0 0"/></svg><svg><path id="arc-right-up" fill="none" d="M 100 90 A 90 90 0 0 0 190 0"/></svg><text x="150" y="50" fill="#ffffff" font-size="18"text-anchor="middle">B E T T E R S E Q T A</text><circle style="fill: #333333;" cx="15" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-left-up"/></animateMotion></circle><circle style="fill: #242424;" cx="135" cy="105" r="15" /><circle style="fill: #161616;" cx="165" cy="105" r="15" /><circle style="fill: #313131;" cx="95" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-right-up"/></animateMotion></circle></svg>
-  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.35</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
+  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.36</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
   // );
   loadinghtml = stringToHTML(
     `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
@@ -128,7 +128,7 @@ function loading() {
     <svg height="135" width="135" viewBox="0 0 1000 1000" class="small-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L455.999 938C455.986 936.008 456.301 933.282 454.972 931.603C453.594 929.862 450.977 930.062 448.999 929.835C443.991 929.258 438.987 928.463 434 927.728C414.788 924.898 395.564 920.733 377 915.025C300.826 891.602 231.835 849.314 178.17 790C106.263 710.526 63.7248 603.522 65.0039 496C65.7806 430.71 81.6532 365.691 110.259 307C130.156 266.177 157.727 228.746 189.039 196C222.33 161.185 262.986 132.26 306 110.753C345.737 90.8846 389.756 75.6209 434 70L434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.501 68.7513 294.622 88.2739 254 113.576C215.656 137.46 181.298 167.82 151.87 202C33.2034 339.827 7.62905 544.971 91.2585 707C112.853 748.839 140.699 787.699 174 821C210.688 857.688 253.047 888.542 300 910.781C332.493 926.171 365.923 937.713 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
     <svg height="180" width="180" viewBox="0 0 1000 1000" class="big-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M454 952L454 887C441.324 886.456 428.346 883.444 416 880.65C389.799 874.722 364.497 866.349 340 855.306C205.92 794.861 116.45 660.408 110.039 514C108.593 480.976 112.302 447.246 119.424 415C144.931 299.518 226.1 198.275 333 147.781C389.157 121.255 450.99 108.496 513 110.015C612.241 112.446 711.495 157.399 779.961 229C839.544 291.312 879.215 372.892 887.831 459C893.323 513.894 887.624 569.466 870.329 622C836.537 724.647 758.42 810.937 660 855.306C635.503 866.349 610.201 874.722 584 880.65C571.383 883.505 557.974 886.732 545 887L545 952C562.916 951.63 581.566 947.595 599 943.65C637.149 935.018 673.043 921.725 708 904.247C753.184 881.655 792.42 850.594 828 815C859.416 783.572 885.414 745.666 905.247 706C933.723 649.048 949.566 588.445 953.911 525C963.014 392.066 906.622 254.399 808 165.17C769.47 130.31 725.8 101.975 678 81.5787C629.733 60.9833 575.64 47.3041 523 46.0146C469.032 44.6927 415.748 49.9443 364 66.0255C223.375 109.726 109.726 223.376 66.0255 364C14.4181 530.066 63.7205 715.347 191 833.911C229.196 869.491 274.051 897.962 322 918.421C362.806 935.833 409.371 950.084 454 952z"/></svg>
     <svg height="220" width="220" viewBox="0 0 1000 1000" class="outer-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L456 946C438.715 945.258 420.843 941.462 404 937.65C369.403 929.822 335.739 918.116 304 902.247C255.981 878.237 211.768 846.374 175.09 807C62.5744 686.214 23.1598 509.033 78.6921 353C96.4653 303.062 122.84 256.974 156.424 216C207.709 153.43 278.099 103.658 355 78C372.453 72.1767 389.992 67.0399 408 63.2107C413.31 62.0816 418.647 60.9853 424 60.0811C426.508 59.6575 430.352 59.6852 432.397 57.9869C434.897 55.9098 434 50.8766 434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.517 68.7473 294.608 88.2827 254 113.576C215.673 137.45 181.285 167.835 151.87 202C33.9725 338.933 8.37009 541.243 89.2485 703C110.949 746.4 139.693 786.693 174 821C210.688 857.688 253.047 888.542 300 910.781C332.484 926.167 365.934 937.716 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
-    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.35</div></div>`
+    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.36</div></div>`
   );
   var html = document.getElementsByTagName("html")[0];
   html.append(loadinghtml.firstChild);
@@ -146,7 +146,7 @@ function ApplyCSSToHiddenMenuItems() {
   var stylesheetInnerText = "";
   chrome.storage.local.get(null, function (result) {
     for (let i = 0; i < Object.keys(result.menuitems).length; i++) {
-      if (!Object.values(result.menuitems)[i]) {
+      if (!Object.values(result.menuitems)[i].toggle) {
         stylesheetInnerText += SetDisplayNone(Object.keys(result.menuitems)[i]);
         console.log(
           `[BetterSEQTA] Hiding ${Object.keys(result.menuitems)[i]} menu item`
@@ -220,9 +220,24 @@ function CheckiFrameItems() {
   const observer = new MutationObserver(function (mutations_list) {
     mutations_list.forEach(function (mutation) {
       mutation.addedNodes.forEach(function (added_node) {
+
         if (added_node.tagName == "IFRAME") {
+          if (added_node.contentDocument.documentElement.childNodes[1].style.color != "white") {
+            added_node.contentDocument.documentElement.childNodes[1].style.color = "white";
+          }
+          if (
+            !added_node.contentDocument.documentElement.firstChild.innerHTML.includes(
+              "iframe.css"
+            )
+          ) {
+            added_node.contentDocument.documentElement.firstChild.appendChild(
+              fileref
+            );
+          }
           added_node.addEventListener("load", function () {
-            added_node.contentDocument.documentElement.childNodes[1].style.color = "white"
+            if (added_node.contentDocument.documentElement.childNodes[1].style.color != "white") {
+              added_node.contentDocument.documentElement.childNodes[1].style.color = "white";
+            }
             if (
               !added_node.contentDocument.documentElement.firstChild.innerHTML.includes(
                 "iframe.css"
@@ -271,7 +286,7 @@ function tryLoad() {
   );
 }
 
-function AppendElementsToDisabledPage(){
+function AppendElementsToDisabledPage() {
   AddBetterSEQTAElements(false);
 
   settingsStyle = document.createElement('style')
@@ -300,8 +315,8 @@ function AppendElementsToDisabledPage(){
 
 function RunFunctionOnTrue(storedSetting) {
   // If the option is 'on', open BetterSEQTA
-  if (typeof storedSetting.onoff == 'undefined'){
-    chrome.runtime.sendMessage({type: "setDefaultStorage"});
+  if (typeof storedSetting.onoff == 'undefined') {
+    chrome.runtime.sendMessage({ type: "setDefaultStorage" });
   }
   if (storedSetting.onoff) {
     console.log("[BetterSEQTA] Enabled");
@@ -364,161 +379,199 @@ document.addEventListener(
   true
 );
 
-function RunExtensionSettingsJS(){
+function CheckSEQTAMenuDisabled(callback) {
+  chrome.storage.local.get(null, function (result) {
+    var weblink = window.location.href.split("/")[2];
+    fetch("https://" + weblink + "/seqta/student/load/settings?", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({})
+    })
+      .then((result) => result.json())
+      .then((response) => {
+        var MenuItems = result.menuitems
+        for (let i = 0; i < Object.keys(result.menuitems).length; i++) {
+          IteminSettings = response.payload[`coneqt-s.page.${Object.keys(result.menuitems)[i]}`]
+          if (IteminSettings) {
+            Object.values(MenuItems)[i].seqtaenabled = EnabledDisabledToBool(IteminSettings.value);
+            if (!EnabledDisabledToBool(IteminSettings.value)) {
+              Object.values(MenuItems)[i].toggle = true;
+            }
+          }
+          else {
+            Object.values(MenuItems)[i].seqtaenabled = null;
+          }
+        }
+        chrome.storage.local.set({ menuitems: MenuItems });
 
-const onoffselection = document.querySelector("#onoff");
-const notificationcollector = document.querySelector("#notification");
-const lessonalert = document.querySelector("#lessonalert");
-const sidemenusection = document.querySelector("#sidemenusection");
-const shortcutsection = document.querySelector("#shortcutsection");
-const mainpage = document.querySelector("#mainpage");
+        callback();
 
-const menupage = document.querySelector("#menupage");
-const menuback = document.querySelector("#menuback");
 
-const shortcutpage = document.querySelector("#shortcutpage");
-const shortcutback = document.querySelector("#shortcutback");
-
-var applybuttons = document.getElementsByClassName("apply-changes");
-var menubuttons = document.getElementsByClassName("menuitem");
-var shortcutbuttons = document.getElementsByClassName("shortcutitem");
-
-const github = document.getElementById("github");
-
-function openGithub() {
-  chrome.runtime.sendMessage({type: "githubTab"});
-  
+      })
+  })
 }
 
-function openMenuPage() {
-  mainpage.style.left = "-350px";
-  menupage.style.right = "0px";
-}
+function RunExtensionSettingsJS() {
 
-function backFromMenu() {
-  mainpage.style.left = "0px";
-  menupage.style.right = "-350px";
-}
+  const onoffselection = document.querySelector("#onoff");
+  const notificationcollector = document.querySelector("#notification");
+  const lessonalert = document.querySelector("#lessonalert");
+  const sidemenusection = document.querySelector("#sidemenusection");
+  const shortcutsection = document.querySelector("#shortcutsection");
+  const mainpage = document.querySelector("#mainpage");
 
-function openShortcutPage() {
-  mainpage.style.left = "-350px";
-  shortcutpage.style.right = "0px";
-}
+  const menupage = document.querySelector("#menupage");
+  const menuback = document.querySelector("#menuback");
 
-function backFromShortcut() {
-  mainpage.style.left = "0px";
-  shortcutpage.style.right = "-350px";
-}
+  const shortcutpage = document.querySelector("#shortcutpage");
+  const shortcutback = document.querySelector("#shortcutback");
 
-function FindSEQTATab() {
-  chrome.runtime.sendMessage({type: "reloadTabs", });
-}
-/*
-Store the currently selected settings using chrome.storage.local.
-*/
-function storeSettings() {
-  chrome.storage.local.set({ onoff: onoffselection.checked }, function () {
-    FindSEQTATab();
-  });
-}
+  var applybuttons = document.getElementsByClassName("apply-changes");
+  var menubuttons = document.getElementsByClassName("menuitem");
+  var shortcutbuttons = document.getElementsByClassName("shortcutitem");
 
-function storeNotificationSettings() {
-  chrome.storage.local.set(
-    { notificationcollector: notificationcollector.checked });
-    chrome.storage.local.set({ lessonalert: lessonalert.checked });
-}
+  const github = document.getElementById("github");
 
-function StoreAllSettings() {
-  chrome.storage.local.get(["menuitems"], function (result) {
-    var menuItems = result.menuitems;
-    console.log(result.menuitems);
-    for (var i = 0; i < menubuttons.length; i++) {
-      var id = menubuttons[i].id;
+  function openGithub() {
+    chrome.runtime.sendMessage({ type: "githubTab" });
 
-      menuItems[id] = menubuttons[i].checked;
-      console.log(menuItems[id]);
-    }
-    chrome.storage.local.set({ menuitems: menuItems });
-  });
-  
-  chrome.storage.local.get(["shortcuts"], function (result) {
-    var shortcuts = Object.values(result)[0];
-    console.log(shortcuts);
-    for (var i = 0; i < shortcutbuttons.length; i++) {
-      shortcuts[i].enabled = shortcutbuttons[i].checked;
-    }
-    chrome.storage.local.set({ shortcuts: shortcuts });
-  });
+  }
 
-  FindSEQTATab();
+  function openMenuPage() {
+    mainpage.style.left = "-350px";
+    menupage.style.right = "0px";
+  }
 
-  
-}
-/*
-Update the options UI with the settings values retrieved from storage,
-or the default settings if the stored settings are empty.
-*/
-function updateUI(restoredSettings) {
-  if (typeof restoredSettings.onoff == 'undefined') {
-    chrome.runtime.sendMessage({type: "setDefaultStorage"});
+  function backFromMenu() {
+    mainpage.style.left = "0px";
+    menupage.style.right = "-350px";
+  }
 
-    chrome.storage.local.get(null, function (result) {
-      updateUI(result);
+  function openShortcutPage() {
+    mainpage.style.left = "-350px";
+    shortcutpage.style.right = "0px";
+  }
+
+  function backFromShortcut() {
+    mainpage.style.left = "0px";
+    shortcutpage.style.right = "-350px";
+  }
+
+  function FindSEQTATab() {
+    chrome.runtime.sendMessage({ type: "reloadTabs", });
+  }
+  /*
+  Store the currently selected settings using chrome.storage.local.
+  */
+  function storeSettings() {
+    chrome.storage.local.set({ onoff: onoffselection.checked }, function () {
+      FindSEQTATab();
     });
-  } else {
-    onoffselection.checked = restoredSettings.onoff;
-    notificationcollector.checked = restoredSettings.notificationcollector;
-    lessonalert.checked = restoredSettings.lessonalert;
+  }
+
+  function storeNotificationSettings() {
+    chrome.storage.local.set(
+      { notificationcollector: notificationcollector.checked });
+    chrome.storage.local.set({ lessonalert: lessonalert.checked });
+  }
+
+  function StoreAllSettings() {
     chrome.storage.local.get(["menuitems"], function (result) {
-      var menuItems = Object.values(result)[0];
+      var menuItems = result.menuitems;
+      console.log(result.menuitems);
       for (var i = 0; i < menubuttons.length; i++) {
         var id = menubuttons[i].id;
-        menubuttons[i].checked = menuItems[id];
+
+        menuItems[id].toggle = menubuttons[i].checked;
+        console.log(menuItems[id]);
       }
+      chrome.storage.local.set({ menuitems: menuItems });
     });
 
     chrome.storage.local.get(["shortcuts"], function (result) {
       var shortcuts = Object.values(result)[0];
+      console.log(shortcuts);
       for (var i = 0; i < shortcutbuttons.length; i++) {
-        shortcutbuttons[i].checked = shortcuts[i].enabled;
+        shortcuts[i].enabled = shortcutbuttons[i].checked;
       }
       chrome.storage.local.set({ shortcuts: shortcuts });
     });
+
+    FindSEQTATab();
+
+
   }
-}
+  /*
+  Update the options UI with the settings values retrieved from storage,
+  or the default settings if the stored settings are empty.
+  */
+  function updateUI(restoredSettings) {
+    if (typeof restoredSettings.onoff == 'undefined') {
+      chrome.runtime.sendMessage({ type: "setDefaultStorage" });
 
-function onError(e) {
-  console.error(e);
-}
-chrome.storage.local.get(null, function (result) {
-  updateUI(result);
-});
+      chrome.storage.local.get(null, function (result) {
+        updateUI(result);
+      });
+    } else {
+      onoffselection.checked = restoredSettings.onoff;
+      notificationcollector.checked = restoredSettings.notificationcollector;
+      lessonalert.checked = restoredSettings.lessonalert;
+      chrome.storage.local.get(["menuitems"], function (result) {
+        var menuItems = Object.values(result)[0];
+        for (var i = 0; i < menubuttons.length; i++) {
+          var id = menubuttons[i].id;
+          menubuttons[i].checked = menuItems[id].toggle;
 
-github.addEventListener("click", openGithub);
+          if (menuItems[id].seqtaenabled == false) {
+            document.getElementById(id).parentNode.parentNode.style.display = 'none';
+          }
+        }
+      });
 
-sidemenusection.addEventListener("click", openMenuPage);
-menuback.addEventListener("click", backFromMenu);
+      chrome.storage.local.get(["shortcuts"], function (result) {
+        var shortcuts = Object.values(result)[0];
+        for (var i = 0; i < shortcutbuttons.length; i++) {
+          shortcutbuttons[i].checked = shortcuts[i].enabled;
+        }
+        chrome.storage.local.set({ shortcuts: shortcuts });
+      });
+    }
+  }
 
-shortcutsection.addEventListener("click", openShortcutPage);
-shortcutback.addEventListener("click", backFromShortcut);
+  function onError(e) {
+    console.error(e);
+  }
+  chrome.storage.local.get(null, function (result) {
+    updateUI(result);
+  });
 
-for (var i = 0; i < applybuttons.length; i++) {
-  applybuttons[i].addEventListener(
-    "click",
-    StoreAllSettings.bind(applybuttons[i], i)
+  github.addEventListener("click", openGithub);
+
+  sidemenusection.addEventListener("click", openMenuPage);
+  menuback.addEventListener("click", backFromMenu);
+
+  shortcutsection.addEventListener("click", openShortcutPage);
+  shortcutback.addEventListener("click", backFromShortcut);
+
+  for (var i = 0; i < applybuttons.length; i++) {
+    applybuttons[i].addEventListener(
+      "click",
+      StoreAllSettings.bind(applybuttons[i], i)
+    );
+  }
+
+  onoffselection.addEventListener("change", storeSettings);
+  notificationcollector.addEventListener(
+    "change",
+    storeNotificationSettings
   );
-}
-
-onoffselection.addEventListener("change", storeSettings);
-notificationcollector.addEventListener(
-  "change",
-  storeNotificationSettings
-);
-lessonalert.addEventListener("change", storeNotificationSettings)
+  lessonalert.addEventListener("change", storeNotificationSettings)
 
 }
 
-function CallExtensionSettings(){
+function CallExtensionSettings() {
   // Injecting CSS File to the webpage to overwrite iFrame default CSS
   var cssFile = chrome.runtime.getURL("popup/info.css");
   var fileref = document.createElement("link");
@@ -547,7 +600,9 @@ function CallExtensionSettings(){
     <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Welcome</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="welcome"></div></div>
     <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Portals</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="portals"></div></div>
     <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Dashboard</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="dashboard"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Forums</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="forums"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Forums</h1><p style="font-size: 9px; color: rgb(182, 182, 182);">(Only accessible to Students currently in a Forum)</p></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="forums"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Goals</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="goals"></div></div>
+    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Documents</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="documents"></div></div>
     <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Settings</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="settings"></div></div>
     
   </div>
@@ -582,13 +637,13 @@ function CallExtensionSettings(){
 
   <div class="bottom-container"><div>Created by Nulkem</div><img src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github"></div></div>`)
   document.body.append(Settings.firstChild)
+  CheckSEQTAMenuDisabled(RunExtensionSettingsJS);
 
-  RunExtensionSettingsJS();
 
   var container = document.getElementById('container');
   var extensionsettings = document.getElementById('ExtensionPopup');
-  container.onclick = function(){
-    if (!SettingsClicked){
+  container.onclick = function () {
+    if (!SettingsClicked) {
       extensionsettings.classList.add('hidden');
     }
     SettingsClicked = false
@@ -603,10 +658,10 @@ function AddBetterSEQTAElements(toggle) {
   // Replaces students code with the version of BetterSEQTA
   if (code != null) {
     if (!code.innerHTML.includes("BetterSEQTA")) {
-      code.innerHTML = "BetterSEQTA v1.35";
+      code.innerHTML = "BetterSEQTA v1.36";
 
-      if (toggle){
-         // Creates Home menu button and appends it as the first child of the list
+      if (toggle) {
+        // Creates Home menu button and appends it as the first child of the list
         CreateBackground();
         var NewButtonStr = `<li class="item" data-key="home" id="homebutton" data-path="/home"><label><svg width="24" height="24" viewBox="0 0 400 400"><g style="fill: currentcolor;"><g><path d="M191.540 1.929 C 188.821 2.547,184.505 4.211,181.949 5.627 C 176.214 8.805,3.477 152.579,1.452 155.859 C -3.707 164.219,2.514 174.994,12.500 174.994 C 18.353 174.994,11.310 180.532,107.805 100.061 C 199.964 23.206,197.279 25.249,203.300 27.393 C 205.436 28.154,229.584 47.783,278.205 88.281 L 349.957 148.047 349.960 254.688 C 349.963 362.177,349.874 365.669,347.041 369.471 C 343.191 374.635,343.559 374.585,307.617 374.844 L 275.000 375.079 275.000 302.844 C 275.000 217.447,275.473 221.245,263.433 209.983 C 252.763 200.003,252.746 200.000,200.000 200.000 C 147.254 200.000,147.237 200.003,136.567 209.983 C 124.527 221.245,125.000 217.447,125.000 302.844 L 125.000 375.079 92.383 374.844 C 56.441 374.585,56.809 374.635,52.959 369.471 C 50.171 365.729,50.037 361.891,50.016 284.766 C 49.995 209.763,49.963 208.151,48.442 205.657 C 43.742 197.949,31.258 197.949,26.558 205.657 C 24.188 209.545,24.115 366.549,26.480 374.148 C 30.063 385.661,39.956 395.389,51.509 398.761 C 57.984 400.651,342.016 400.651,348.491 398.761 C 360.044 395.389,369.937 385.661,373.520 374.148 C 374.940 369.585,375.000 365.342,375.000 269.366 L 375.000 169.341 376.758 170.626 C 382.018 174.472,383.303 174.994,387.500 174.994 C 395.341 174.994,399.994 170.341,399.994 162.500 C 399.994 155.980,399.648 155.628,364.197 126.172 L 331.290 98.828 331.267 75.391 C 331.239 46.356,330.210 43.756,318.750 43.756 C 308.785 43.756,306.759 47.089,306.250 64.320 L 305.859 77.545 264.453 43.002 C 212.011 -0.748,209.516 -2.153,191.540 1.929 M242.887 226.953 C 250.178 231.247,249.960 228.796,249.981 306.836 L 250.000 375.000 199.980 375.000 L 149.960 375.000 150.175 304.883 C 150.415 226.874,150.053 232.041,155.565 227.933 C 159.111 225.290,161.987 225.123,201.563 225.258 C 238.701 225.385,240.340 225.453,242.887 226.953 M180.657 289.058 C 169.777 295.692,174.683 312.494,187.500 312.494 C 195.341 312.494,199.994 307.841,199.994 300.000 C 199.994 292.159,195.341 287.506,187.500 287.506 C 184.587 287.506,182.383 288.006,180.657 289.058 "></path></g></g></svg>Home</label></li>`;
         var NewButton = stringToHTML(NewButtonStr);
@@ -621,7 +676,6 @@ function AddBetterSEQTAElements(toggle) {
         });
       }
 
-
       CallExtensionSettings();
 
       // Creates settings and dashboard buttons next to alerts
@@ -635,7 +689,7 @@ function AddBetterSEQTAElements(toggle) {
       var extensionsettings = document.getElementById("ExtensionPopup")
       AddedSettings.addEventListener("click", function () {
         extensionsettings.classList.toggle('hidden');
-        SettingsClicked = true        
+        SettingsClicked = true
       });
     }
   }
@@ -693,7 +747,7 @@ function CheckCurrentLesson(lesson, num) {
 
   if (valid) {
     // Apply the activelesson class to increase the box-shadow of current lesson
-    
+
     var elementA = document.getElementById(id);
     elementA.classList.add("activelesson");
   } else {
@@ -706,8 +760,8 @@ function CheckCurrentLesson(lesson, num) {
 
   // If 5 minutes before the start of another lesson:
   if (minutes == 5) {
-    chrome.storage.local.get('lessonalert', function(result){
-      if (result.lessonalert){
+    chrome.storage.local.get('lessonalert', function (result) {
+      if (result.lessonalert) {
         // Checks if notifications are supported
         if (!window.Notification) {
           console.log("Browser does not support notifications.");
@@ -748,7 +802,7 @@ function CheckCurrentLesson(lesson, num) {
               });
           }
         }
-        }
+      }
     });
 
   }
@@ -760,7 +814,7 @@ function CheckCurrentLessonAll(lessons) {
   setInterval(
     function () {
       for (i = 0; i < 5; i++) {
-        CheckCurrentLesson(lessons[i], i+1);
+        CheckCurrentLesson(lessons[i], i + 1);
       }
     }.bind(lessons),
     60000
@@ -862,7 +916,7 @@ function SendHomePage() {
       for (let i = 0; i < shortcuts.length; i++) {
         if (shortcuts[i].enabled) {
           Itemname = (shortcuts[i].name).replace(/ /g, '')
-          createNewShortcut(  
+          createNewShortcut(
             ShortcutLinks[Itemname].link,
             ShortcutLinks[Itemname].icon,
             shortcuts[i].name
@@ -895,7 +949,7 @@ function SendHomePage() {
         var DayContainer = document.getElementById("day-container")
         // If items in response:
         if (serverResponse.payload.items.length > 0) {
-          if (!DayContainer.innerText){
+          if (!DayContainer.innerText) {
             // console.log(serverResponse.payload.items.length);
             for (let i = 1; i < serverResponse.payload.items.length; i++) {
               lessonArray.push(serverResponse.payload.items[i]);
@@ -907,7 +961,7 @@ function SendHomePage() {
               headers: {
                 "Content-Type": "application/json; charset=utf-8",
               },
-              body: JSON.stringify({"request":"userPrefs","asArray":true,"user":69})
+              body: JSON.stringify({ "request": "userPrefs", "asArray": true, "user": 69 })
             })
               .then((result) => result.json())
               .then((response) => {
@@ -916,13 +970,13 @@ function SendHomePage() {
                 for (let i = 0; i < lessonArray.length; i++) {
 
                   subjectname = `timetable.subject.colour.${lessonArray[i].code}`
-                  
+
                   subject = subjects.find(element => element.name === subjectname)
-                  if (!subject){
+                  if (!subject) {
                     lessonArray[i].colour = `--item-colour: #8e8e8e;`
                   }
                   else {
-                  lessonArray[i].colour = `--item-colour: ${subject.value};`
+                    lessonArray[i].colour = `--item-colour: ${subject.value};`
                   }
                   // Removes seconds from the start and end times
                   lessonArray[i].from = lessonArray[i].from.substring(0, 5);
@@ -933,16 +987,16 @@ function SendHomePage() {
                   );
                 }
                 // If on home page, apply each lesson to HTML with information in each div
-    
+
                 for (let i = 0; i < lessonArray.length; i++) {
                   console.log(lessonArray[i])
-                  var div = MakeLessonDiv(lessonArray[i], i+1);
+                  var div = MakeLessonDiv(lessonArray[i], i + 1);
                   // Append each of the lessons into the day-container
                   DayContainer.append(div.firstChild);
                 }
-    
+
                 for (i = 0; i < lessonArray.length; i++) {
-                  CheckCurrentLesson(lessonArray[i], i+1);
+                  CheckCurrentLesson(lessonArray[i], i + 1);
                 }
                 // For each lesson, check the start and end times
                 CheckCurrentLessonAll(lessonArray);
@@ -950,16 +1004,16 @@ function SendHomePage() {
               });
 
 
-            } 
           }
-          else {
-            if (!DayContainer.innerText){
-              var dummyDay = document.createElement("div");
-              dummyDay.classList.add("day");
-              DayContainer.append(dummyDay); 
-            }
+        }
+        else {
+          if (!DayContainer.innerText) {
+            var dummyDay = document.createElement("div");
+            dummyDay.classList.add("day");
+            DayContainer.append(dummyDay);
+          }
 
-          }
+        }
       }
     };
     xhr.send(
@@ -986,7 +1040,7 @@ function SendHomePage() {
         var NoticesPayload = JSON.parse(xhr2.response);
         var NoticeContainer = document.getElementById("notice-container");
         if (NoticesPayload.payload.length == 0) {
-          if (!NoticeContainer.innerText){
+          if (!NoticeContainer.innerText) {
             // If no notices: display no notices
             var dummyNotice = document.createElement("div");
             dummyNotice.textContent = "No notices for today.";
@@ -995,7 +1049,7 @@ function SendHomePage() {
           }
 
         } else {
-          if (!NoticeContainer.innerText){
+          if (!NoticeContainer.innerText) {
             // For each element in the response json:
             for (let i = 0; i < NoticesPayload.payload.length; i++) {
               // Create a div, and place information from json response
@@ -1032,8 +1086,8 @@ function SendHomePage() {
               // Appends the new notice into the notice container
               NoticeContainer.append(NewNotice);
             }
+          }
         }
-      }
       }
     };
     // Data sent as the POST request
@@ -1058,9 +1112,9 @@ function SendHomePage() {
             var alertdiv = document.getElementsByClassName(
               "notifications__bubble___1EkSQ"
             )[0];
-            if (typeof alertdiv == 'undefined'){
+            if (typeof alertdiv == 'undefined') {
               console.log("[BetterSEQTA] No notifications currently")
-             
+
             }
             else {
               alertdiv.textContent = Notifications.payload.notifications.length;
