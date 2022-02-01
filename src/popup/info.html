@@ -16,6 +16,8 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="coloris.css" />
+  <script src="coloris.js"></script>
   <meta charset="utf-8">
   <link rel="stylesheet" href="info.css" />
 </head>
@@ -29,6 +31,7 @@
       overflow: hidden;
     }
   </style>
+
   <div class="logo-container"><img src="/icons/betterseqta-light-full.png"></div>
   <div class="main-page" id="mainpage">
     <div class="selector-container">
@@ -217,6 +220,12 @@
       </div>
       <div class="apply-changes" style="margin-top: 10px;">Apply Changes</div>
     </div>
+  </div>
+
+  <div class="clr-field" style="width: 96%; justify-content: end; display: flex; margin: 5px;">
+    <p style="color: white; margin: 5px; margin-right: 20px;">Custom Theme Colour: </p>
+    <button aria-labelledby="clr-open-label" style="width: 51px; right: 0px; border: 1px solid white;"></button>
+    <input type="text" id="colorpicker" class="coloris" style="width: 43px;" />
   </div>
 
   <div class="bottom-container">

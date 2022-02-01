@@ -122,6 +122,9 @@ p {
   margin-top: 10px;
   font-size: 13px !important;
 }
+.clr-field input:hover {
+  cursor: pointer;
+}
 .bottom-container div {
   margin-top: 4px;
 }
@@ -243,4 +246,41 @@ p {
 }
 .menushortcuts {
   height: 2em;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  transition: 1.0s;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(127, 127, 127, 0.6);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  transition: 1.0s;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background-color: rgb(110, 110, 110);
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+
+
+::-webkit-scrollbar-thumb:vertical:active,
+::-webkit-scrollbar-thumb:horizontal:active {
+  background: rgba(95, 91, 91, 1);
+
+}
+
+::-webkit-scrollbar-corner {
+  background: none;
+}
+:root, html, body, div, ol {
+  scrollbar-width: thin !important;
+  scrollbar-color: #5e5e5f #161616 !important;
 }

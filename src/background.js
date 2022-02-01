@@ -37,6 +37,7 @@ const DefaultValues = {
     documents: { toggle: false, seqtaenabled: false },
     settings: { toggle: false, seqtaenabled: false },
   },
+  selectedColor: '#161616',
   shortcuts: [
     {
       name: "YouTube",

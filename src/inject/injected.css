@@ -24,10 +24,6 @@
 }
 * {
   font-family: "Roboto" !important;
-  --better-main: #1a1a1a;
-  --better-sub: #161616;
-  --better-light: #333333;
-  --better-alert-highlight: #c61851;
   --theme-fg-parts: white;
 }
 #main {
@@ -226,8 +222,8 @@ html {
   box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
 }
 .day-container {
-  background-color: #242424;
-
+  background-color: var(--better-sub);
+  padding-bottom: 2px;
   width: 100%;
   height: 12em;
   display: flex;
@@ -244,7 +240,7 @@ html {
   box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
 }
 .notice-container {
-  background-color: #242424;
+  background-color: var(--better-sub);
   width: 100%;
   max-height: 55em;
   overflow-y: auto;
@@ -268,7 +264,7 @@ html {
   display: flex;
   flex-direction: column;
   margin: 7px auto;
-  background: var(--better-main);
+  background: var(--better-sub);
   box-shadow: inset 0px 5px 20px 1px rgba(0, 0, 0, 0.3);
 }
 .dummynotice {
@@ -276,7 +272,7 @@ html {
   padding: 20px;
   margin: 7px auto;
   box-shadow: inset 0px 5px 20px 1px rgba(0, 0, 0, 0.3);
-  background: var(--better-main);
+  background: var(--better-sub);
 }
 .Empty__Empty___2F6rn {
   color: white;
@@ -296,7 +292,7 @@ html {
   font-weight: 400;
 }
 .shortcuts {
-  background-color: #242424;
+  background-color: var(--better-sub);
   width: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -319,8 +315,8 @@ html {
   width: 15em;
   max-width: 15em;
   background: #141414;
-  border-radius: 50px;
   display: flex;
+  border: 2px solid var(--better-light);
 }
 .shortcut:hover {
   background: #1d1d1d;
@@ -467,7 +463,7 @@ html {
 }
 .legacy-root button,
 .legacy-root a {
-  background: #363636;
+  background: var(--better-light);
 }
 .notifications__item___2ErJN {
   background: var(--better-main) !important;
@@ -529,7 +525,8 @@ iframe.userHTML {
   color: white;
 }
 #main > .reports > .item > .report {
-  background: #242424;
+  background: var(--better-sub);
+  filter: brightness(0.90);
 }
 #main > .reports {
   background: var(--better-sub);
@@ -577,23 +574,48 @@ iframe.userHTML {
 #main > .course > .content > .resources > h2 {
   color: white;
 }
-body::-webkit-scrollbar {
-  width: 11px;
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  transition: 1.0s;
 }
 
-body {
-  scrollbar-width: thin;
-  scrollbar-color: #303030 #1b1b1b;
+::-webkit-scrollbar-thumb {
+  background-color: var(--better-light);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  transition: 1.0s;
 }
 
-body::-webkit-scrollbar-track {
-  background: #1b1b1b;
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background-color: var(--better-light);
 }
 
-body::-webkit-scrollbar-thumb {
-  background-color: #303030;
-  border-radius: 6px;
-  border: 3px solid #1b1b1b;
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+
+
+::-webkit-scrollbar-thumb:vertical:active,
+::-webkit-scrollbar-thumb:horizontal:active {
+  background: var(--better-light);
+
+}
+
+::-webkit-scrollbar-corner {
+  background: none;
+}
+:root, html, body, div, ol {
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--better-light) var(--better-sub) !important;
+}
+
+
+.connectedNotificationsWrapper > div > button {
+  color: var(--better-sub) !important;
 }
 .programmeNavigator {
   width: 400px;
@@ -692,7 +714,7 @@ ul.uiSplitButtonList,
 }
 
 body {
-  background: #313131;
+  background: var(--better-light);
   overflow: hidden;
 }
 #main > .notices > .notice {
@@ -752,7 +774,7 @@ body {
   box-shadow: inset 3px 0 rgb(255, 255, 255);
 }
 .connectedNotificationsWrapper > div > button {
-  background: #363636 !important;
+  background: var(--better-light) !important;
 }
 #userActions > .details > .name::before {
   content: "";
@@ -772,4 +794,46 @@ body {
 }
 .defaultWelcomeWrapper {
   background: unset !important;
+}
+.clr-swatches button::after, .clr-dark .clr-preview::after, .clr-field button::after{
+  opacity: unset;
+  padding-top: unset;
+  -webkit-transform: unset;
+  transform: unset;
+  -webkit-transform-origin: unset;
+  transform-origin: unset;
+  visibility: unset;
+-webkit-animation-name: unset !important;
+animation-name: unset !important;
+background-color: currentColor !important;
+}
+.clr-swatches button {
+  align-items: unset;
+  display: block;
+  padding: unset;
+  transition: none;
+}
+.clr-clear {
+  display: none !important;
+}
+
+.clr-preview::before, .clr-preview::after {
+  visibility: unset;
+  -webkit-transform-origin: unset;
+  transform-origin: unset;
+  -webkit-transform: unset;
+  transform: unset;
+  padding-top: unset;
+  opacity: unset;
+
+}
+#clr-color-preview {
+  margin: 15px 0 20px 20px;
+  border: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.MessageList__MessageList___3DxoC > ol > li.MessageList__selected___1SJNz {
+  background: var(--better-main);
 }

@@ -19,6 +19,7 @@ const lessonalert = document.querySelector("#lessonalert");
 const sidemenusection = document.querySelector("#sidemenusection");
 const shortcutsection = document.querySelector("#shortcutsection");
 const mainpage = document.querySelector("#mainpage");
+const colorpicker = document.querySelector("#colorpicker");
 
 const menupage = document.querySelector("#menupage");
 const menuback = document.querySelector("#menuback");
@@ -152,6 +153,8 @@ function onError(e) {
 On opening the options page, fetch stored settings and update the UI with them.
 */
 chrome.storage.local.get(null, function (result) {
+  document.getElementsByClassName('clr-field')[0].style.color = result.selectedColor;
+  colorpicker.value = result.selectedColor;
   console.log(result);
   updateUI(result);
 });
@@ -183,3 +186,20 @@ notificationcollector.addEventListener(
 );
 lessonalert.addEventListener("change", storeNotificationSettings)
 
+
+
+colorpicker.addEventListener("input", function (a) {
+  if (a.explicitOriginalTarget.style.color) {
+    var hex = a.explicitOriginalTarget.style.color.split("(")[1].split(")")[0];
+    hex = hex.split(",");
+    var b = hex.map(function (x) {             //For each array element
+      x = parseInt(x).toString(16);      //Convert to a base16 string
+      return (x.length == 1) ? "0" + x : x;  //Add zero if we get only one character
+    })
+    b = "#" + b.join("");
+
+    chrome.storage.local.set({ selectedColor: b })
+  }
+
+
+})
