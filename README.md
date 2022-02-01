@@ -45,12 +45,7 @@ Firefox users can install the latest version of BetterSEQTA via the Firefox Addo
 
 ## For Chrome Users:
 
-Chrome users can install the latest version of BetterSEQTA via the [betterseqta-chrome.zip](https://github.com/Nulkem/better-seqta/releases/download/v1.21/betterseqta-chrome.zip) file. Due to it not being a Chrome Webstore Extension, Chrome users will need to:
-- Extract the zip file
-- Load the extension by opening chrome://extensions/
-- Enable the 'developer mode' in the top right
-- Click the 'Load unpacked' button
-- Select the unzipped folder for BetterSEQTA
+Chrome users can install the latest version of BetterSEQTA via the Chrome Webstore page. [Click to download](https://chrome.google.com/webstore/detail/betterseqta/boikofabjaholheekefimfojfncpjfib)
 
 ## Credits
 
