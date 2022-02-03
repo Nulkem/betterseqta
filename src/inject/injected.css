@@ -205,11 +205,19 @@ html {
   width: 1050px;
 }
 .home-container h1 {
+  border: 4px solid var(--better-main);
   text-align: center;
   font-size: 3em !important;
   font-weight: 300;
-  margin: 26.5px 0px;
-  margin-bottom: 50px;
+  margin: 30px auto 0;
+  background-color: var(--better-sub);
+  height: 3em;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 94%;
+  -webkit-box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
 }
 .timetable-container {
   width: 94%;
@@ -225,7 +233,7 @@ html {
   background-color: var(--better-sub);
   padding-bottom: 2px;
   width: 100%;
-  height: 12em;
+  height: 12.2em;
   display: flex;
   flex-direction: row;
 }
@@ -240,7 +248,7 @@ html {
   box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
 }
 .notice-container {
-  background-color: var(--better-sub);
+  background-color: var(--better-main);
   width: 100%;
   max-height: 55em;
   overflow-y: auto;
@@ -263,7 +271,7 @@ html {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  margin: 7px auto;
+  margin: 0px auto 7px;
   background: var(--better-sub);
   box-shadow: inset 0px 5px 20px 1px rgba(0, 0, 0, 0.3);
 }
@@ -278,13 +286,17 @@ html {
   color: white;
 }
 .shortcut-container {
+  border: 2px solid var(--better-main);
   width: 94%;
-  margin: 50px auto;
+  margin: 10px auto 50px;
   background-color: var(--better-main);
   display: flex;
   flex-direction: column;
   -webkit-box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
+}
+.border {
+  border-radius: 15px;
 }
 .shortcut-container h2 {
   margin: 20px;
@@ -314,9 +326,9 @@ html {
   height: 4em;
   width: 15em;
   max-width: 15em;
-  background: #141414;
+  background: #1a1a1a;
   display: flex;
-  border: 2px solid var(--better-light);
+  border-radius: 5px;
 }
 .shortcut:hover {
   background: #1d1d1d;
@@ -358,6 +370,10 @@ html {
   text-shadow: 0px 0px 15px rgb(22, 22, 22);
   transition: 200ms;
   position: relative;
+  
+}
+.clickable {
+  cursor: pointer;
 }
 .day:hover {
   box-shadow: inset 0px 300px 0 var(--item-colour, transparent);
@@ -556,7 +572,7 @@ iframe.userHTML {
 }
 .programmeNavigator > .navigator,
 .programmeNavigator > .navigator > li > ul {
-  background: var(--better-main);
+  background: var(--better-sub);
   color: white;
 }
 .programmeNavigator > .navigator > .search {
@@ -608,7 +624,7 @@ iframe.userHTML {
 ::-webkit-scrollbar-corner {
   background: none;
 }
-:root, html, body, div, ol {
+:root, html, body, div, ol, ul {
   scrollbar-width: thin !important;
   scrollbar-color: var(--better-light) var(--better-sub) !important;
 }
@@ -619,6 +635,7 @@ iframe.userHTML {
 }
 .programmeNavigator {
   width: 400px;
+  background: var(--better-sub);
 }
 #userActions > .details > .code {
   text-transform: initial;
@@ -655,9 +672,21 @@ iframe.userHTML {
   background: unset;
 }
 #main > .course > .content > .header > .coverImage.blurred {
+  display: none;
   background-image: unset !important;
   height: 0px;
   width: 0px;
+}
+.coverImage, blurred {
+  display: none;
+}
+.icon-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  cursor: pointer;
 }
 .activelesson {
   box-shadow: inset 0px 10px 0 var(--item-colour, transparent);

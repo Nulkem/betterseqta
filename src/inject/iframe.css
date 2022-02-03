@@ -13,9 +13,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
-html {
+html, p, div, span {
   color: white !important;
+  text-shadow: 1px 1px 2px #161616, 0 0 1em #161616;
 }
+
 blockquote.forward > .preamble {
   color: rgba(255, 255, 255, 0.7) !important;
 }
