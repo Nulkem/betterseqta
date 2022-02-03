@@ -963,15 +963,25 @@ function SendHomePage() {
     // Appends the timetable container into the home container
     document.getElementById("home-container").append(Timetable.firstChild);
 
+    function CheckUnmarkedAttendance(lessonattendance) {
+      if (lessonattendance) {
+        var lesson = lessonattendance.label;
+      }
+      else {
+        var lesson = " ";
+      }
+      return lesson;
+    }
+
     function MakeLessonDiv(lesson, num) {
       if (lesson.programmeID != 0) {
         var lessondiv = stringToHTML(
-          `<div class="day clickable" id=${lesson.code + num} style="${lesson.colour}" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4></div>`
+          `<div class="day clickable" id=${lesson.code + num} style="${lesson.colour}" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5></div>`
         );
       }
       else {
         var lessondiv = stringToHTML(
-          `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4></div>`
+          `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5></div>`
         );
       }
 
@@ -1068,6 +1078,10 @@ function SendHomePage() {
                   // Removes seconds from the start and end times
                   lessonArray[i].from = lessonArray[i].from.substring(0, 5);
                   lessonArray[i].until = lessonArray[i].until.substring(0, 5);
+
+                  // Checks if attendance is unmarked, and sets the string to " ".
+                  lessonArray[i].attendanceTitle = CheckUnmarkedAttendance(
+                    lessonArray[i].attendance)
                 }
                 // If on home page, apply each lesson to HTML with information in each div
                 DayContainer.innerText = '';
