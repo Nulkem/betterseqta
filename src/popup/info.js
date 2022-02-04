@@ -188,9 +188,10 @@ lessonalert.addEventListener("change", storeNotificationSettings)
 
 
 
-colorpicker.addEventListener("input", function (a) {
-  if (a.explicitOriginalTarget.style.color) {
-    var hex = a.explicitOriginalTarget.style.color.split("(")[1].split(")")[0];
+colorpicker.addEventListener("input", function () {
+  var colorPreview = document.querySelector('#clr-color-preview')
+  if (colorPreview.style.color) {
+    var hex = colorPreview.style.color.split("(")[1].split(")")[0];
     hex = hex.split(",");
     var b = hex.map(function (x) {             //For each array element
       x = parseInt(x).toString(16);      //Convert to a base16 string

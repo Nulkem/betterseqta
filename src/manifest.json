@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "BetterSEQTA",
-    "version": "1.46",
+    "version": "1.47",
     "description": "A dark-themed Firefox/Chrome Extension that adds additional features and gives an overall better experience for SEQTA Learn.",
     "icons": {
         "48": "icons/icon-48.png"

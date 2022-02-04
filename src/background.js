@@ -78,6 +78,10 @@ const DefaultValues = {
     {
       name: "Gmail",
       enabled: false
+    },
+    {
+      name: "Netflix",
+      enabled: false
     }
   ]
 }
