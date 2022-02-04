@@ -717,7 +717,7 @@ function CallExtensionSettings() {
     <input type="text" id="colorpicker" class="coloris" style="width: 40px;" />
   </div>
 
-  <div class="bottom-container"><div>Created by Nulkem</div><img src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github"></div></div>`)
+  <div class="bottom-container"><div>Created by Nulkem</div><div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177);">v1.47</div><img src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github"></div></div>`)
   document.body.append(Settings.firstChild)
   CheckSEQTAMenuDisabled(RunExtensionSettingsJS);
 
