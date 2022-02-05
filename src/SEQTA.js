@@ -164,8 +164,6 @@ function ApplyCSSToHiddenMenuItems() {
 }
 
 async function finishLoad() {
-  var container = document.getElementById("container");
-  container.style.bottom = "0px";
   var loadingbk = document.getElementById("loading");
   loadingbk.style.opacity = "0";
   await delay(501);
@@ -264,6 +262,11 @@ function CheckiFrameItems() {
 }
 
 function tryLoad() {
+  waitForElm(".login").then((elm) => {
+    LoadingDone = true;
+    finishLoad();
+  });
+
   waitForElm(".day-container").then((elm) => {
     LoadingDone = true;
     finishLoad();
@@ -375,6 +378,7 @@ function RunFunctionOnTrue(storedSetting) {
     ApplyCSSToHiddenMenuItems();
 
     loading();
+
     if (!isChrome || isChrome == "undefined") {
       tryLoad();
     }
@@ -403,7 +407,7 @@ document.addEventListener(
   "load",
   function () {
     var weblink = window.location.href.split("/")[2];
-    if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && !IsSEQTAPage && weblink.includes('learn.')) {
+    if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && !IsSEQTAPage && (weblink.includes('learn.') || weblink.includes('student.') || weblink.includes('coneqt'))) {
       IsSEQTAPage = true;
       console.log("[BetterSEQTA] Verified SEQTA Page");
 
