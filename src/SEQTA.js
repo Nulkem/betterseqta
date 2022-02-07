@@ -1052,12 +1052,12 @@ function SendHomePage() {
         if (serverResponse.payload.items.length > 0) {
           if (!DayContainer.innerText) {
             // console.log(serverResponse.payload.items.length);
-            for (let i = 1; i < serverResponse.payload.items.length; i++) {
+            for (let i = 0; i < serverResponse.payload.items.length; i++) {
               lessonArray.push(serverResponse.payload.items[i]);
             }
             lessonArray.sort((a, b) => parseFloat(a.from) - parseFloat(b.from));
             // If items in the response, set each corresponding value into divs
-
+            lessonArray = lessonArray.splice(1)
             fetch("https://" + weblink + "/seqta/student/load/prefs?", {
               method: "POST",
               headers: {
