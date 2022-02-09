@@ -73,7 +73,7 @@ function loading() {
   // loadinghtml = stringToHTML(
   //   `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
   //   <svg width="300" height="160" id="clackers" style="display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);"><svg><path id="arc-left-up" fill="none" d="M 90 90 A 90 90 0 0 1 0 0"/></svg><svg><path id="arc-right-up" fill="none" d="M 100 90 A 90 90 0 0 0 190 0"/></svg><text x="150" y="50" fill="#ffffff" font-size="18"text-anchor="middle">B E T T E R S E Q T A</text><circle style="fill: #333333;" cx="15" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-left-up"/></animateMotion></circle><circle style="fill: #242424;" cx="135" cy="105" r="15" /><circle style="fill: #161616;" cx="165" cy="105" r="15" /><circle style="fill: #313131;" cx="95" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-right-up"/></animateMotion></circle></svg>
-  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.50</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
+  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.55</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
   // );
   loadinghtml = stringToHTML(
     `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
@@ -132,7 +132,7 @@ function loading() {
     <svg height="135" width="135" viewBox="0 0 1000 1000" class="small-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L455.999 938C455.986 936.008 456.301 933.282 454.972 931.603C453.594 929.862 450.977 930.062 448.999 929.835C443.991 929.258 438.987 928.463 434 927.728C414.788 924.898 395.564 920.733 377 915.025C300.826 891.602 231.835 849.314 178.17 790C106.263 710.526 63.7248 603.522 65.0039 496C65.7806 430.71 81.6532 365.691 110.259 307C130.156 266.177 157.727 228.746 189.039 196C222.33 161.185 262.986 132.26 306 110.753C345.737 90.8846 389.756 75.6209 434 70L434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.501 68.7513 294.622 88.2739 254 113.576C215.656 137.46 181.298 167.82 151.87 202C33.2034 339.827 7.62905 544.971 91.2585 707C112.853 748.839 140.699 787.699 174 821C210.688 857.688 253.047 888.542 300 910.781C332.493 926.171 365.923 937.713 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
     <svg height="180" width="180" viewBox="0 0 1000 1000" class="big-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M454 952L454 887C441.324 886.456 428.346 883.444 416 880.65C389.799 874.722 364.497 866.349 340 855.306C205.92 794.861 116.45 660.408 110.039 514C108.593 480.976 112.302 447.246 119.424 415C144.931 299.518 226.1 198.275 333 147.781C389.157 121.255 450.99 108.496 513 110.015C612.241 112.446 711.495 157.399 779.961 229C839.544 291.312 879.215 372.892 887.831 459C893.323 513.894 887.624 569.466 870.329 622C836.537 724.647 758.42 810.937 660 855.306C635.503 866.349 610.201 874.722 584 880.65C571.383 883.505 557.974 886.732 545 887L545 952C562.916 951.63 581.566 947.595 599 943.65C637.149 935.018 673.043 921.725 708 904.247C753.184 881.655 792.42 850.594 828 815C859.416 783.572 885.414 745.666 905.247 706C933.723 649.048 949.566 588.445 953.911 525C963.014 392.066 906.622 254.399 808 165.17C769.47 130.31 725.8 101.975 678 81.5787C629.733 60.9833 575.64 47.3041 523 46.0146C469.032 44.6927 415.748 49.9443 364 66.0255C223.375 109.726 109.726 223.376 66.0255 364C14.4181 530.066 63.7205 715.347 191 833.911C229.196 869.491 274.051 897.962 322 918.421C362.806 935.833 409.371 950.084 454 952z"/></svg>
     <svg height="220" width="220" viewBox="0 0 1000 1000" class="outer-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L456 946C438.715 945.258 420.843 941.462 404 937.65C369.403 929.822 335.739 918.116 304 902.247C255.981 878.237 211.768 846.374 175.09 807C62.5744 686.214 23.1598 509.033 78.6921 353C96.4653 303.062 122.84 256.974 156.424 216C207.709 153.43 278.099 103.658 355 78C372.453 72.1767 389.992 67.0399 408 63.2107C413.31 62.0816 418.647 60.9853 424 60.0811C426.508 59.6575 430.352 59.6852 432.397 57.9869C434.897 55.9098 434 50.8766 434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.517 68.7473 294.608 88.2827 254 113.576C215.673 137.45 181.285 167.835 151.87 202C33.9725 338.933 8.37009 541.243 89.2485 703C110.949 746.4 139.693 786.693 174 821C210.688 857.688 253.047 888.542 300 910.781C332.484 926.167 365.934 937.716 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
-    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.50</div></div>`
+    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.55</div></div>`
   );
   var html = document.getElementsByTagName("html")[0];
   html.append(loadinghtml.firstChild);
@@ -466,52 +466,49 @@ function CheckSEQTAMenuDisabled(callback) {
 }
 
 function RunExtensionSettingsJS() {
-
   const onoffselection = document.querySelector("#onoff");
   const notificationcollector = document.querySelector("#notification");
   const lessonalert = document.querySelector("#lessonalert");
   const sidemenusection = document.querySelector("#sidemenusection");
   const shortcutsection = document.querySelector("#shortcutsection");
+  const miscsection = document.querySelector('#miscsection');
   const mainpage = document.querySelector("#mainpage");
   const colorpicker = document.querySelector("#colorpicker");
-
+  const animatedbk = document.querySelector('#animatedbk');
+  
+  
+  const applybutton = document.querySelector('#applychanges')
+  
+  const navbuttons = document.getElementsByClassName("navitem");
+  const menupages = document.getElementsByClassName("menu-page")
+  
+  const allinputs = document.getElementsByTagName('input');
+  
   const menupage = document.querySelector("#menupage");
-  const menuback = document.querySelector("#menuback");
-
+  
   const shortcutpage = document.querySelector("#shortcutpage");
-  const shortcutback = document.querySelector("#shortcutback");
-
-  var applybuttons = document.getElementsByClassName("apply-changes");
+  
+  const miscpage = document.querySelector('#miscpage');
+  
   var menubuttons = document.getElementsByClassName("menuitem");
   var shortcutbuttons = document.getElementsByClassName("shortcutitem");
-
+  
   const github = document.getElementById("github");
-
+  
   function openGithub() {
     chrome.runtime.sendMessage({ type: "githubTab" });
-
   }
-
-  function openMenuPage() {
-    mainpage.style.left = "-350px";
-    menupage.style.right = "0px";
+  
+  function resetActive(){
+    for (let i = 0; i < navbuttons.length; i++) {
+      navbuttons[i].classList.remove('activenav');
+    }
+    for (let i = 0; i < menupages.length; i++) {
+      menupages[i].classList.add('hiddenmenu');
+    }
+  
   }
-
-  function backFromMenu() {
-    mainpage.style.left = "0px";
-    menupage.style.right = "-350px";
-  }
-
-  function openShortcutPage() {
-    mainpage.style.left = "-350px";
-    shortcutpage.style.right = "0px";
-  }
-
-  function backFromShortcut() {
-    mainpage.style.left = "0px";
-    shortcutpage.style.right = "-350px";
-  }
-
+  
   function FindSEQTATab() {
     chrome.runtime.sendMessage({ type: "reloadTabs", });
   }
@@ -523,26 +520,26 @@ function RunExtensionSettingsJS() {
       FindSEQTATab();
     });
   }
-
+  
   function storeNotificationSettings() {
     chrome.storage.local.set(
       { notificationcollector: notificationcollector.checked });
     chrome.storage.local.set({ lessonalert: lessonalert.checked });
+    chrome.storage.local.set({ animatedbk: animatedbk.checked });
   }
-
+  
+  
   function StoreAllSettings() {
     chrome.storage.local.get(["menuitems"], function (result) {
       var menuItems = result.menuitems;
-      console.log(result.menuitems);
       for (var i = 0; i < menubuttons.length; i++) {
         var id = menubuttons[i].id;
-
+  
         menuItems[id].toggle = menubuttons[i].checked;
-        console.log(menuItems[id]);
       }
       chrome.storage.local.set({ menuitems: menuItems });
     });
-
+  
     chrome.storage.local.get(["shortcuts"], function (result) {
       var shortcuts = Object.values(result)[0];
       console.log(shortcuts);
@@ -551,10 +548,8 @@ function RunExtensionSettingsJS() {
       }
       chrome.storage.local.set({ shortcuts: shortcuts });
     });
-
+  
     FindSEQTATab();
-
-
   }
   /*
   Update the options UI with the settings values retrieved from storage,
@@ -563,7 +558,7 @@ function RunExtensionSettingsJS() {
   function updateUI(restoredSettings) {
     if (typeof restoredSettings.onoff == 'undefined') {
       chrome.runtime.sendMessage({ type: "setDefaultStorage" });
-
+  
       chrome.storage.local.get(null, function (result) {
         updateUI(result);
       });
@@ -571,20 +566,22 @@ function RunExtensionSettingsJS() {
       onoffselection.checked = restoredSettings.onoff;
       notificationcollector.checked = restoredSettings.notificationcollector;
       lessonalert.checked = restoredSettings.lessonalert;
+      animatedbk.checked = restoredSettings.animatedbk;
       chrome.storage.local.get(["menuitems"], function (result) {
         var menuItems = Object.values(result)[0];
+        console.log(menubuttons)
         for (var i = 0; i < menubuttons.length; i++) {
           var id = menubuttons[i].id;
           menubuttons[i].checked = menuItems[id].toggle;
-
+  
           if (menuItems[id].seqtaenabled == false) {
             document.getElementById(id).parentNode.parentNode.style.display = 'none';
           }
         }
       });
-
       chrome.storage.local.get(["shortcuts"], function (result) {
         var shortcuts = Object.values(result)[0];
+        console.log(shortcuts);
         for (var i = 0; i < shortcutbuttons.length; i++) {
           shortcutbuttons[i].checked = shortcuts[i].enabled;
         }
@@ -592,30 +589,23 @@ function RunExtensionSettingsJS() {
       });
     }
   }
-
+  
   function onError(e) {
     console.error(e);
   }
   chrome.storage.local.get(null, function (result) {
     document.getElementsByClassName('clr-field')[0].style.color = result.selectedColor;
     colorpicker.value = result.selectedColor;
+    console.log(result);
     updateUI(result);
   });
-
+  
   github.addEventListener("click", openGithub);
+  sidemenusection.addEventListener("click", () => {resetActive(); sidemenusection.classList.add('activenav'); menupage.classList.remove('hiddenmenu')});
+  
+  shortcutsection.addEventListener("click", () => {resetActive(); shortcutsection.classList.add('activenav'); shortcutpage.classList.remove('hiddenmenu')});
 
-  sidemenusection.addEventListener("click", openMenuPage);
-  menuback.addEventListener("click", backFromMenu);
-
-  shortcutsection.addEventListener("click", openShortcutPage);
-  shortcutback.addEventListener("click", backFromShortcut);
-
-  for (var i = 0; i < applybuttons.length; i++) {
-    applybuttons[i].addEventListener(
-      "click",
-      StoreAllSettings.bind(applybuttons[i], i)
-    );
-  }
+  miscsection.addEventListener("click", () => {resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu')})
 
   onoffselection.addEventListener("change", storeSettings);
   notificationcollector.addEventListener(
@@ -623,19 +613,38 @@ function RunExtensionSettingsJS() {
     storeNotificationSettings
   );
   lessonalert.addEventListener("change", storeNotificationSettings)
-
-  const o = new MutationObserver((mutations) => {
-    var hex = mutations[0].target.style.color.split("(")[1].split(")")[0];
-    hex = hex.split(",");
-    var b = hex.map(function (x) {             //For each array element
-      x = parseInt(x).toString(16);      //Convert to a base16 string
-      return (x.length == 1) ? "0" + x : x;  //Add zero if we get only one character
-    })
-    b = "#" + b.join("");
-
-    chrome.storage.local.set({ selectedColor: b })
-  });
-  o.observe(document.querySelector('#clr-color-preview'), { attributes: true, attributeFilter: ["style"] });
+  
+  animatedbk.addEventListener("change", storeNotificationSettings)
+  
+  
+  
+  var unsavedchangesshown = false
+  
+  for (let i = 0; i < allinputs.length; i++) {
+    if (allinputs[i].id != 'colorpicker'){
+      allinputs[i].addEventListener("change", () => {applybutton.style.left = "4px"})
+    }
+  }
+  
+  applybutton.addEventListener('click', () => {StoreAllSettings(); applybutton.style.left = "-150px"})
+  
+  
+  colorpicker.addEventListener("input", function () {
+    var colorPreview = document.querySelector('#clr-color-preview')
+    if (colorPreview.style.color) {
+      var hex = colorPreview.style.color.split("(")[1].split(")")[0];
+      hex = hex.split(",");
+      var b = hex.map(function (x) {             //For each array element
+        x = parseInt(x).toString(16);      //Convert to a base16 string
+        return (x.length == 1) ? "0" + x : x;  //Add zero if we get only one character
+      })
+      b = "#" + b.join("");
+  
+      chrome.storage.local.set({ selectedColor: b })
+    }
+  
+  
+  })
 
 }
 
@@ -663,65 +672,253 @@ function CallExtensionSettings() {
   NextPageImage = chrome.runtime.getURL('popup/page.png')
   Settings = stringToHTML(`<div class="outside-container hidden" id="ExtensionPopup"><div class="logo-container"><img src=${chrome.runtime.getURL('icons/betterseqta-light-full.png')}></div>
   <div class="main-page" id="mainpage">
-  <div class="selector-container">
-  <div class="item-container offontoggle"><h1 class="item main">Toggle BetterSEQTA</h1><div class="checkbox-container"><input class="toggle offon" type="checkbox" id="onoff"></div></div>
-  <div class="item-container clickable" id="sidemenusection"><div class="text-container"><h1 class="addonitem">Side Menu Items</h1><p class="item subitem">Choose which items to keep on the side menu.</p></div><div class="checkbox-container"><img src="${NextPageImage}" alt="" width="20px" height="20px"></div></div>
-  <div class="item-container clickable" id="shortcutsection"><div class="text-container"><h1 class="addonitem">Shortcut Items</h1><p class="item subitem">Choose which shortcuts to use on the Home Page.</p></div><div class="checkbox-container"><img src="${NextPageImage}" alt="" width="20px" height="20px"></div></div>
-  <div class="item-container"><div class="text-container"><h1 class="addonitem">Lesson Alerts</h1><p class="item subitem">Sends a native browser notification ~5 minutes prior to lessons.</p></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="lessonalert"></div></div>
-  <div class="item-container"><div class="text-container"><h1 class="addonitem">Notification Collector</h1><p class="item subitem">Uncaps the 9+ limit for notifications, showing the real number.</p></div><div class="checkbox-container"><input class="toggle notification" type="checkbox" id="notification"></div></div>
-  <div class="apply-changes">Apply Changes</div>
-  </div>
-</div>
-
-<div class="menu-page" id="menupage">
-  <div class="selector-container" style="margin-bottom: 0;">
-    <div class="item-container" style="border-bottom: none; height: 2em;"><h1 class="item menumain" style="width: 100%;">Hide/Show Menu Items</h1></div>
-    <div class="menu-item-selection">
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Welcome</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="welcome"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Portals</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="portals"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Dashboard</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="dashboard"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Forums</h1><p style="font-size: 9px; color: rgb(182, 182, 182);">(Only accessible to Students currently in a Forum)</p></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="forums"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Goals</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="goals"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Documents</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="documents"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Settings</h1></div><div class="checkbox-container"><input class="toggle notification menuitem" type="checkbox" id="settings"></div></div>
-    
-  </div>
-</div>
-<div style="display: flex; color: white; justify-content: space-around;">
-  <div class="back-button" id="menuback"><img src="${NextPageImage}" alt="" width="20px" height="20px">Back</div>
-  <div class="apply-changes" style="margin-top: 10px;">Apply Changes</div>
-</div>
-</div>
-
-<div class="menu-page" id="shortcutpage">
-  <div class="selector-container" style="margin-bottom: 0;">
-    <div class="item-container" style="border-bottom: none; height: 2em;"><h1 class="item menumain" style="width: 100%;">Select Shortcuts for Home</h1></div>
-    <div class="menu-item-selection">
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">YouTube</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="youtube"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Outlook</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="outlook"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Office</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="office"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Spotify</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="spotify"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Google</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="google"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">DuckDuckGo</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="duckduckgo"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Cool Math Games</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="coolmathgames"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">SACE</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="sace"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Google Scholar</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="googlescholar"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Gmail</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="gmail"></div></div>
-    <div class="item-container menushortcuts"><div class="text-container"><h1 class="addonitem">Netflix</h1></div><div class="checkbox-container"><input class="toggle notification shortcutitem" type="checkbox" id="netflix"></div></div>
+      <div class="topmenu">
+        <div class="navitem activenav" id="miscsection">Settings</div>
+        <div class="navitem" id="shortcutsection">Shortcuts</div>
+        <div class="navitem" id="sidemenusection">Menu Items</div>
+      </div>
     </div>
-</div>
-<div style="display: flex; color: white; justify-content: space-around;">
-  <div class="back-button" id="shortcutback"><img src="${NextPageImage}" alt="" width="20px" height="20px">Back</div>
-  <div class="apply-changes" style="margin-top: 10px;">Apply Changes</div>
-</div>
-</div>
-  <div class="clr-field" style="width: 96%; justify-content: end; display: flex; margin: 5px;">
-    <p style="color: white; margin: 5px; margin-right: 20px;">Custom Theme Colour: </p>
-    <button aria-labelledby="clr-open-label" style="width: 51px; right: 0px; border: 1px solid white;"></button>
-    <input type="text" id="colorpicker" class="coloris" style="width: 40px;" />
+  
+
+  <div class="menu-page hiddenmenu" id="menupage">
+    <div class="selector-container" style="margin-bottom: 0;">
+      <div class="menu-item-selection">
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Welcome</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification menuitem" type="checkbox" id="welcome">
+            <label for="welcome" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Portals</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification menuitem" type="checkbox" id="portals">
+            <label for="portals" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Dashboard</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification menuitem" type="checkbox" id="dashboard">
+            <label for="dashboard" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Forums</h1>
+            <p style="font-size: 9px; color: rgb(182, 182, 182);">(Only accessible to Students currently in a Forum)</p>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification menuitem" type="checkbox" id="forums">
+            <label for="forums" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Goals</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification menuitem" type="checkbox" id="goals">
+            <label for="goals" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Documents</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification menuitem" type="checkbox" id="documents">
+            <label for="documents" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Settings</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification menuitem" type="checkbox" id="settings">
+            <label for="settings" class="onoffswitch-label"></label>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 
-  <div class="bottom-container"><div>Created by Nulkem</div><div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177);">v1.50</div><img src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github"></div></div>`)
+  <div class="menu-page hiddenmenu" id="shortcutpage">
+    <div class="selector-container" style="margin-bottom: 0;">
+      <div class="menu-item-selection">
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">YouTube</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox" id="youtube">
+            <label for="youtube" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Outlook</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox" id="outlook">
+            <label for="outlook" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Office</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox" id="office">
+            <label for="office" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Spotify</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox" id="spotify">
+            <label for="spotify" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Google</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox" id="google">
+            <label for="google" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">DuckDuckGo</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox"
+              id="duckduckgo">
+              <label for="duckduckgo" class="onoffswitch-label"></label>
+            </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Cool Math Games</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox"
+              id="coolmathgames">
+              <label for="coolmathgames" class="onoffswitch-label"></label>
+            </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">SACE</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox" id="sace">
+            <label for="sace" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Google Scholar</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox"
+              id="googlescholar">
+              <label for="googlescholar" class="onoffswitch-label"></label>
+            </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Gmail</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox" id="gmail">
+            <label for="gmail" class="onoffswitch-label"></label>
+          </div>
+        </div>
+        <div class="item-container menushortcuts">
+          <div class="text-container">
+            <h1 class="addonitem">Netflix</h1>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification shortcutitem" type="checkbox" id="netflix">
+            <label for="netflix" class="onoffswitch-label"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-page" id="miscpage">
+    <div class="selector-container" style="margin-bottom: 0;">
+      <div class="menu-item-selection">
+
+        <div class="item-container">
+          <div class="text-container">
+            <h1 class="addonitem">Notification Collector</h1>
+            <p class="item subitem">Uncaps the 9+ limit for notifications, showing the real number.</p>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification" type="checkbox" id="notification">
+          <label for="notification" class="onoffswitch-label"></label>
+          </div>
+        </div>
+
+
+        <div class="item-container">
+          <div class="text-container">
+            <h1 class="addonitem">Lesson Alerts</h1>
+            <p class="item subitem">Sends a native browser notification ~5 minutes prior to lessons.</p>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification" type="checkbox" id="lessonalert">
+            <label for="lessonalert" class="onoffswitch-label"></label>
+          </div>
+        </div>
+
+        <div class="item-container">
+          <div class="text-container">
+            <h1 class="addonitem">Animated Background</h1>
+            <p class="item subitem">Adds an animated background to BetterSEQTA. (May impact battery life)</p>
+          </div>
+          <div class="onoffswitch"><input class="onoffswitch-checkbox notification" type="checkbox" id="animatedbk">
+          <label for="animatedbk" class="onoffswitch-label"></label>
+          </div>
+        </div>
+
+        <div class="item-container">
+          <div class="text-container">
+            <h1 class="addonitem">Custom Theme Colour</h1>
+            <p class="item subitem">Customise the overall theme colour of SEQTA Learn.</p>
+          </div>
+          <div class="clr-field" style="justify-content: end; display: flex; margin: 5px;">
+            <button aria-labelledby="clr-open-label" style="width: 51px; right: 0px; border: 1px solid white;"></button>
+            <input type="text" id="colorpicker" class="coloris" style="width: 42px; border-radius: 3px;" />
+          </div>
+        </div>
+
+
+        <div class="item-container" style="height: 2em; margin-top: 0px;">
+          <div class="text-container">
+            <h1 class="addonitem">BetterSEQTA</h1>
+          </div>
+          <div class="onoffswitch" style="margin-bottom: 0px;"><input class="onoffswitch-checkbox notification" type="checkbox" id="onoff">
+            <label for="onoff" class="onoffswitch-label"></label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="bottom-container">
+    <div class="applychanges" id="applychanges" style="height: 25px;">
+      <div style="margin-top:0px;">
+      <h5>Unsaved Changes</h5>
+      <h6>Click to apply.</h6>
+      </div>
+    </div>
+
+    <div></div>
+
+    <div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177); display: flex;"><p style="margin: 0; margin-right: 5px; color: white;">Created by Nulkem </p> v1.55</div><img
+    src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github">
+  </div></div>`)
   document.body.append(Settings.firstChild)
   CheckSEQTAMenuDisabled(RunExtensionSettingsJS);
 
@@ -744,12 +941,18 @@ function AddBetterSEQTAElements(toggle) {
   // Replaces students code with the version of BetterSEQTA
   if (code != null) {
     if (!code.innerHTML.includes("BetterSEQTA")) {
-      code.innerHTML = "BetterSEQTA v1.50";
+      code.innerHTML = "BetterSEQTA v1.55";
 
       if (toggle) {
         // Creates Home menu button and appends it as the first child of the list
 
-        CreateBackground();
+        chrome.storage.local.get(['animatedbk'], function(result){
+          if (result.animatedbk){
+            CreateBackground();
+          }
+        })
+
+        
         var NewButtonStr = `<li class="item" data-key="home" id="homebutton" data-path="/home"><label><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg>Home</label></li>`;
         var NewButton = stringToHTML(NewButtonStr);
         var menu = document.getElementById("menu");

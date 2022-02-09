@@ -18,16 +18,25 @@ const notificationcollector = document.querySelector("#notification");
 const lessonalert = document.querySelector("#lessonalert");
 const sidemenusection = document.querySelector("#sidemenusection");
 const shortcutsection = document.querySelector("#shortcutsection");
+const miscsection = document.querySelector('#miscsection');
 const mainpage = document.querySelector("#mainpage");
 const colorpicker = document.querySelector("#colorpicker");
+const animatedbk = document.querySelector('#animatedbk');
+
+
+const applybutton = document.querySelector('#applychanges')
+
+const navbuttons = document.getElementsByClassName("navitem");
+const menupages = document.getElementsByClassName("menu-page")
+
+const allinputs = document.getElementsByTagName('input');
 
 const menupage = document.querySelector("#menupage");
-const menuback = document.querySelector("#menuback");
 
 const shortcutpage = document.querySelector("#shortcutpage");
-const shortcutback = document.querySelector("#shortcutback");
 
-var applybuttons = document.getElementsByClassName("apply-changes");
+const miscpage = document.querySelector('#miscpage');
+
 var menubuttons = document.getElementsByClassName("menuitem");
 var shortcutbuttons = document.getElementsByClassName("shortcutitem");
 
@@ -37,24 +46,28 @@ function openGithub() {
   chrome.tabs.create({ url: "https://github.com/Nulkem/better-seqta" });
 }
 
-function openMenuPage() {
+
+function openPage(page) {
   mainpage.style.left = "-350px";
-  menupage.style.right = "0px";
+  page.style.right = '0px';
 }
 
-function backFromMenu() {
+function backToMainMenu(){
   mainpage.style.left = "0px";
+
   menupage.style.right = "-350px";
-}
-
-function openShortcutPage() {
-  mainpage.style.left = "-350px";
-  shortcutpage.style.right = "0px";
-}
-
-function backFromShortcut() {
-  mainpage.style.left = "0px";
   shortcutpage.style.right = "-350px";
+  miscpage.style.right = "-350px";
+}
+
+function resetActive(){
+  for (let i = 0; i < navbuttons.length; i++) {
+    navbuttons[i].classList.remove('activenav');
+  }
+  for (let i = 0; i < menupages.length; i++) {
+    menupages[i].classList.add('hiddenmenu');
+  }
+
 }
 
 function FindSEQTATab() {
@@ -81,18 +94,17 @@ function storeNotificationSettings() {
   chrome.storage.local.set(
     { notificationcollector: notificationcollector.checked });
   chrome.storage.local.set({ lessonalert: lessonalert.checked });
+  chrome.storage.local.set({ animatedbk: animatedbk.checked });
 }
 
 
 function StoreAllSettings() {
   chrome.storage.local.get(["menuitems"], function (result) {
     var menuItems = result.menuitems;
-    console.log(result.menuitems);
     for (var i = 0; i < menubuttons.length; i++) {
       var id = menubuttons[i].id;
 
       menuItems[id].toggle = menubuttons[i].checked;
-      console.log(menuItems[id]);
     }
     chrome.storage.local.set({ menuitems: menuItems });
   });
@@ -123,8 +135,10 @@ function updateUI(restoredSettings) {
     onoffselection.checked = restoredSettings.onoff;
     notificationcollector.checked = restoredSettings.notificationcollector;
     lessonalert.checked = restoredSettings.lessonalert;
+    animatedbk.checked = restoredSettings.animatedbk;
     chrome.storage.local.get(["menuitems"], function (result) {
       var menuItems = Object.values(result)[0];
+      console.log(menubuttons)
       for (var i = 0; i < menubuttons.length; i++) {
         var id = menubuttons[i].id;
         menubuttons[i].checked = menuItems[id].toggle;
@@ -134,7 +148,6 @@ function updateUI(restoredSettings) {
         }
       }
     });
-
     chrome.storage.local.get(["shortcuts"], function (result) {
       var shortcuts = Object.values(result)[0];
       console.log(shortcuts);
@@ -165,18 +178,11 @@ On blur, save the currently selected settings.
 document.addEventListener("DOMContentLoaded", function () {
   github.addEventListener("click", openGithub);
 
-  sidemenusection.addEventListener("click", openMenuPage);
-  menuback.addEventListener("click", backFromMenu);
+  sidemenusection.addEventListener("click", () => {resetActive(); sidemenusection.classList.add('activenav'); menupage.classList.remove('hiddenmenu')});
 
-  shortcutsection.addEventListener("click", openShortcutPage);
-  shortcutback.addEventListener("click", backFromShortcut);
+  shortcutsection.addEventListener("click", () => {resetActive(); shortcutsection.classList.add('activenav'); shortcutpage.classList.remove('hiddenmenu')});
 
-  for (var i = 0; i < applybuttons.length; i++) {
-    applybuttons[i].addEventListener(
-      "click",
-      StoreAllSettings.bind(applybuttons[i], i)
-    );
-  }
+  miscsection.addEventListener("click", () => {resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu')})
 });
 
 onoffselection.addEventListener("change", storeSettings);
@@ -186,6 +192,19 @@ notificationcollector.addEventListener(
 );
 lessonalert.addEventListener("change", storeNotificationSettings)
 
+animatedbk.addEventListener("change", storeNotificationSettings)
+
+
+
+var unsavedchangesshown = false
+
+for (let i = 0; i < allinputs.length; i++) {
+  if (allinputs[i].id != 'colorpicker'){
+    allinputs[i].addEventListener("change", () => {applybutton.style.left = "4px"})
+  }
+}
+
+applybutton.addEventListener('click', () => {StoreAllSettings(); applybutton.style.left = "-150px"})
 
 
 colorpicker.addEventListener("input", function () {

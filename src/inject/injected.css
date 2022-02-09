@@ -19,7 +19,7 @@
   --navy: #1a1a1a !important;
 }
 #container {
-  /* bottom: -2000px; */
+  background: radial-gradient(circle, var(--better-sub) 0%, var(--better-main) 100%);
   transition: 1s;
 }
 * {

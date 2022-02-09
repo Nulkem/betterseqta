@@ -34,7 +34,7 @@
   width: 90%;
   display: flex;
   flex-direction: column;
-  margin: 20px auto;
+  margin: 0px auto;
 }
 .main-page {
   position: relative;
@@ -42,9 +42,6 @@
   transition: 0.4s;
 }
 .menu-page {
-  position: absolute;
-  right: -350px;
-  top: 72px;
   transition: 0.4s;
   width: 100%;
 }
@@ -67,6 +64,16 @@
   text-align: center;
   text-shadow: 0px 0px 15px rgb(22, 22, 22);
 }
+.apply-changes h3, h5 {
+  margin: 0;
+}
+.apply-changes h3 {
+  font-size: 10px;
+}
+.apply-changes h5 {
+  font-size: 13px;
+}
+
 .logo-container {
   margin-top: 10px;
   width: 100%;
@@ -103,9 +110,10 @@ p {
   font-size: 20px !important;
 }
 .menu-item-selection {
-  max-height: 15em;
-  min-height: 15em;
+  max-height: 17em;
+  min-height: 17em;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .subitem {
   font-size: 12px !important;
@@ -139,6 +147,7 @@ p {
   width: 70%;
 }
 .item-container {
+  justify-content: space-between;
   width: 96%;
   margin: 0px auto;
   height: 3em;
@@ -149,7 +158,7 @@ p {
   text-align: left;
   align-items: center;
 }
-.offontoggle {
+/* .offontoggle {
   border-bottom: none;
   height: 3em;
   flex-direction: row;
@@ -202,7 +211,48 @@ p {
 
 .toggle:checked:before {
   left: 38px;
+} */
+
+.onoffswitch {
+  margin: 0 0 1ex;
+  position: relative; width: 42px;
 }
+.onoffswitch-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.onoffswitch-label {
+  display: block; overflow: hidden; cursor: pointer;
+  height: 16px; padding: 0; line-height: 16px;
+  border: 0px solid #FFFFFF; border-radius: 24px;
+  background-color: #9E9E9E;
+}
+.onoffswitch-label:before {
+  content: "";
+  display: block; width: 24px; margin: -4px;
+  background: #FFFFFF;
+  position: absolute; top: 0; bottom: 0;
+  right: 22px;
+  border-radius: 24px;
+  transition: 0.3s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+  background-color: #20E060;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+ border-color: #20E060;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+  transition: 0.3s;
+  right: 0px; 
+  background-color: #86F078; 
+  box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
+}
+
 .notification {
   width: 50px;
   height: 20px;
@@ -283,4 +333,58 @@ p {
 :root, html, body, div, ol {
   scrollbar-width: thin !important;
   scrollbar-color: #5e5e5f #161616 !important;
+}
+
+
+.topmenu {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  
+}
+.navitem {
+  width: 33.34%;
+  padding: 15px 0;
+  position: relative;
+  font-weight: 400;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  overflow: hidden;
+  border-bottom: 2px solid #a5a5a5;
+  color: #a5a5a5;
+  transition: 0.3s;
+  
+}
+.activenav {
+  border-bottom: 2px solid #3277d1;
+  color: #3277d1;
+}
+.hiddenmenu {
+  display: none;
+}
+.applychanges {
+  color: #fcdfb5;
+  border: 2px solid #ffb64c;
+  background-color: #131313;
+  height: 45px;
+  width: 35%;
+  position: absolute;
+  padding: 6px;
+  cursor: pointer;
+  bottom: 4px;
+  left: -150px;
+  z-index: 2;
+  transition: 0.6s;
+  border-radius: 5px;
+}
+.applychanges:hover {
+  background-color: #202020;
+}
+.applychanges h5, h6 {
+  margin: 0;
+  font-weight: 400;
 }

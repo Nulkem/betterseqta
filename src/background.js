@@ -26,6 +26,7 @@ chrome.runtime.onMessage.addListener(function (request, sender) {
 
 const DefaultValues = {
   onoff: true,
+  animatedbk: false,
   lessonalert: false,
   notificationcollector: true,
   menuitems: {
