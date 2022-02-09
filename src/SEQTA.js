@@ -279,8 +279,51 @@ function tryLoad() {
   waitForElm(".code").then((elm) => {
     AddBetterSEQTAElements(true);
     var weblink = window.location.href.split("/")[2];
-    window.location.replace("https://" + weblink + "/#?page=/home");
-    LoadInit();
+    if (window.location.href.split("/")[4] == "home" || typeof window.location.href.split("/")[4] == 'undefined'){
+      window.location.replace("https://" + weblink + "/#?page=/home");
+        LoadInit();
+    } else {
+          finishLoad();
+
+          // Sends similar HTTP Post Request for the notices
+          chrome.storage.local.get(null, function (result) {
+            if (result.notificationcollector) {
+              var xhr3 = new XMLHttpRequest();
+              xhr3.open(
+                "POST",
+                "https://" + weblink + "/seqta/student/heartbeat?",
+                true
+              );
+              xhr3.setRequestHeader(
+                "Content-Type",
+                "application/json; charset=utf-8"
+              );
+              xhr3.onreadystatechange = function () {
+                if (xhr3.readyState === 4) {
+                  var Notifications = JSON.parse(xhr3.response);
+                  var alertdiv = document.getElementsByClassName(
+                    "notifications__bubble___1EkSQ"
+                  )[0];
+                  if (typeof alertdiv == 'undefined') {
+                    console.log("[BetterSEQTA] No notifications currently")
+
+                  }
+                  else {
+                    alertdiv.textContent = Notifications.payload.notifications.length;
+                  }
+                }
+              };
+              xhr3.send(
+                JSON.stringify({
+                  timestamp: "1970-01-01 00:00:00.0",
+                  hash: "#?page=/home",
+                })
+              );
+            }
+          });
+    }
+   
+  
   });
 
   // Waits for page to call on load, run scripts
