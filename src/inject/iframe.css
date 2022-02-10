@@ -30,3 +30,6 @@ blockquote.forward > .preamble > .date > .label,
 blockquote.forward > .preamble > .sender > .label {
   color: rgba(255, 255, 255, 0.7) !important;
 }
+table th {
+  background-color: #161616;
+}

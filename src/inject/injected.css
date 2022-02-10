@@ -142,7 +142,7 @@ html {
   left: 300px;
   transition: 1s;
 } */
-.Canvas__canvas___OBdCZ {
+.welcome > .portalPageView > .powerPortalPage > .Body__body___3pGxr > .Container__container___33GlY > .Document__document___1KJCG > .Canvas__canvas___OBdCZ {
   background-color: unset !important;
   background-image: unset !important;
   background-size: unset;
@@ -153,6 +153,18 @@ html {
   background-repeat: no-repeat;
   background-position: center;
   background-position: 10% 10%;
+}
+
+.Module__wrapper___2sbOo {
+  background: var(--better-sub) !important;
+}
+.composer > .Body__body___3pGxr > .Container__container___33GlY > .Document__document___1KJCG > .Canvas__canvas___OBdCZ {
+  background-color: unset !important;
+  color: white !important;
+}
+
+#main > .notices > .notice > .contents {
+  background: var(--better-sub);
 }
 
 #title {

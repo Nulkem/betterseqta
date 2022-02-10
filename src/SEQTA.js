@@ -279,51 +279,51 @@ function tryLoad() {
   waitForElm(".code").then((elm) => {
     AddBetterSEQTAElements(true);
     var weblink = window.location.href.split("/")[2];
-    if (window.location.href.split("/")[4] == "home" || typeof window.location.href.split("/")[4] == 'undefined'){
+    if (window.location.href.split("/")[4] == "home" || typeof window.location.href.split("/")[4] == 'undefined') {
       window.location.replace("https://" + weblink + "/#?page=/home");
-        LoadInit();
+      LoadInit();
     } else {
-          finishLoad();
+      finishLoad();
 
-          // Sends similar HTTP Post Request for the notices
-          chrome.storage.local.get(null, function (result) {
-            if (result.notificationcollector) {
-              var xhr3 = new XMLHttpRequest();
-              xhr3.open(
-                "POST",
-                "https://" + weblink + "/seqta/student/heartbeat?",
-                true
-              );
-              xhr3.setRequestHeader(
-                "Content-Type",
-                "application/json; charset=utf-8"
-              );
-              xhr3.onreadystatechange = function () {
-                if (xhr3.readyState === 4) {
-                  var Notifications = JSON.parse(xhr3.response);
-                  var alertdiv = document.getElementsByClassName(
-                    "notifications__bubble___1EkSQ"
-                  )[0];
-                  if (typeof alertdiv == 'undefined') {
-                    console.log("[BetterSEQTA] No notifications currently")
+      // Sends similar HTTP Post Request for the notices
+      chrome.storage.local.get(null, function (result) {
+        if (result.notificationcollector) {
+          var xhr3 = new XMLHttpRequest();
+          xhr3.open(
+            "POST",
+            "https://" + weblink + "/seqta/student/heartbeat?",
+            true
+          );
+          xhr3.setRequestHeader(
+            "Content-Type",
+            "application/json; charset=utf-8"
+          );
+          xhr3.onreadystatechange = function () {
+            if (xhr3.readyState === 4) {
+              var Notifications = JSON.parse(xhr3.response);
+              var alertdiv = document.getElementsByClassName(
+                "notifications__bubble___1EkSQ"
+              )[0];
+              if (typeof alertdiv == 'undefined') {
+                console.log("[BetterSEQTA] No notifications currently")
 
-                  }
-                  else {
-                    alertdiv.textContent = Notifications.payload.notifications.length;
-                  }
-                }
-              };
-              xhr3.send(
-                JSON.stringify({
-                  timestamp: "1970-01-01 00:00:00.0",
-                  hash: "#?page=/home",
-                })
-              );
+              }
+              else {
+                alertdiv.textContent = Notifications.payload.notifications.length;
+              }
             }
-          });
+          };
+          xhr3.send(
+            JSON.stringify({
+              timestamp: "1970-01-01 00:00:00.0",
+              hash: "#?page=/home",
+            })
+          );
+        }
+      });
     }
-   
-  
+
+
   });
 
   // Waits for page to call on load, run scripts
@@ -518,40 +518,40 @@ function RunExtensionSettingsJS() {
   const mainpage = document.querySelector("#mainpage");
   const colorpicker = document.querySelector("#colorpicker");
   const animatedbk = document.querySelector('#animatedbk');
-  
-  
+
+
   const applybutton = document.querySelector('#applychanges')
-  
+
   const navbuttons = document.getElementsByClassName("navitem");
   const menupages = document.getElementsByClassName("menu-page")
-  
+
   const allinputs = document.getElementsByTagName('input');
-  
+
   const menupage = document.querySelector("#menupage");
-  
+
   const shortcutpage = document.querySelector("#shortcutpage");
-  
+
   const miscpage = document.querySelector('#miscpage');
-  
+
   var menubuttons = document.getElementsByClassName("menuitem");
   var shortcutbuttons = document.getElementsByClassName("shortcutitem");
-  
+
   const github = document.getElementById("github");
-  
+
   function openGithub() {
     chrome.runtime.sendMessage({ type: "githubTab" });
   }
-  
-  function resetActive(){
+
+  function resetActive() {
     for (let i = 0; i < navbuttons.length; i++) {
       navbuttons[i].classList.remove('activenav');
     }
     for (let i = 0; i < menupages.length; i++) {
       menupages[i].classList.add('hiddenmenu');
     }
-  
+
   }
-  
+
   function FindSEQTATab() {
     chrome.runtime.sendMessage({ type: "reloadTabs", });
   }
@@ -563,26 +563,26 @@ function RunExtensionSettingsJS() {
       FindSEQTATab();
     });
   }
-  
+
   function storeNotificationSettings() {
     chrome.storage.local.set(
       { notificationcollector: notificationcollector.checked });
     chrome.storage.local.set({ lessonalert: lessonalert.checked });
     chrome.storage.local.set({ animatedbk: animatedbk.checked });
   }
-  
-  
+
+
   function StoreAllSettings() {
     chrome.storage.local.get(["menuitems"], function (result) {
       var menuItems = result.menuitems;
       for (var i = 0; i < menubuttons.length; i++) {
         var id = menubuttons[i].id;
-  
+
         menuItems[id].toggle = menubuttons[i].checked;
       }
       chrome.storage.local.set({ menuitems: menuItems });
     });
-  
+
     chrome.storage.local.get(["shortcuts"], function (result) {
       var shortcuts = Object.values(result)[0];
       console.log(shortcuts);
@@ -591,7 +591,7 @@ function RunExtensionSettingsJS() {
       }
       chrome.storage.local.set({ shortcuts: shortcuts });
     });
-  
+
     FindSEQTATab();
   }
   /*
@@ -601,7 +601,7 @@ function RunExtensionSettingsJS() {
   function updateUI(restoredSettings) {
     if (typeof restoredSettings.onoff == 'undefined') {
       chrome.runtime.sendMessage({ type: "setDefaultStorage" });
-  
+
       chrome.storage.local.get(null, function (result) {
         updateUI(result);
       });
@@ -616,7 +616,7 @@ function RunExtensionSettingsJS() {
         for (var i = 0; i < menubuttons.length; i++) {
           var id = menubuttons[i].id;
           menubuttons[i].checked = menuItems[id].toggle;
-  
+
           if (menuItems[id].seqtaenabled == false) {
             document.getElementById(id).parentNode.parentNode.style.display = 'none';
           }
@@ -632,7 +632,7 @@ function RunExtensionSettingsJS() {
       });
     }
   }
-  
+
   function onError(e) {
     console.error(e);
   }
@@ -642,13 +642,13 @@ function RunExtensionSettingsJS() {
     console.log(result);
     updateUI(result);
   });
-  
-  github.addEventListener("click", openGithub);
-  sidemenusection.addEventListener("click", () => {resetActive(); sidemenusection.classList.add('activenav'); menupage.classList.remove('hiddenmenu')});
-  
-  shortcutsection.addEventListener("click", () => {resetActive(); shortcutsection.classList.add('activenav'); shortcutpage.classList.remove('hiddenmenu')});
 
-  miscsection.addEventListener("click", () => {resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu')})
+  github.addEventListener("click", openGithub);
+  sidemenusection.addEventListener("click", () => { resetActive(); sidemenusection.classList.add('activenav'); menupage.classList.remove('hiddenmenu') });
+
+  shortcutsection.addEventListener("click", () => { resetActive(); shortcutsection.classList.add('activenav'); shortcutpage.classList.remove('hiddenmenu') });
+
+  miscsection.addEventListener("click", () => { resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu') })
 
   onoffselection.addEventListener("change", storeSettings);
   notificationcollector.addEventListener(
@@ -656,22 +656,22 @@ function RunExtensionSettingsJS() {
     storeNotificationSettings
   );
   lessonalert.addEventListener("change", storeNotificationSettings)
-  
+
   animatedbk.addEventListener("change", storeNotificationSettings)
-  
-  
-  
+
+
+
   var unsavedchangesshown = false
-  
+
   for (let i = 0; i < allinputs.length; i++) {
-    if (allinputs[i].id != 'colorpicker'){
-      allinputs[i].addEventListener("change", () => {applybutton.style.left = "4px"})
+    if (allinputs[i].id != 'colorpicker') {
+      allinputs[i].addEventListener("change", () => { applybutton.style.left = "4px" })
     }
   }
-  
-  applybutton.addEventListener('click', () => {StoreAllSettings(); applybutton.style.left = "-150px"})
-  
-  
+
+  applybutton.addEventListener('click', () => { StoreAllSettings(); applybutton.style.left = "-150px" })
+
+
   colorpicker.addEventListener("input", function () {
     var colorPreview = document.querySelector('#clr-color-preview')
     if (colorPreview.style.color) {
@@ -682,11 +682,11 @@ function RunExtensionSettingsJS() {
         return (x.length == 1) ? "0" + x : x;  //Add zero if we get only one character
       })
       b = "#" + b.join("");
-  
+
       chrome.storage.local.set({ selectedColor: b })
     }
-  
-  
+
+
   })
 
 }
@@ -989,13 +989,13 @@ function AddBetterSEQTAElements(toggle) {
       if (toggle) {
         // Creates Home menu button and appends it as the first child of the list
 
-        chrome.storage.local.get(['animatedbk'], function(result){
-          if (result.animatedbk){
+        chrome.storage.local.get(['animatedbk'], function (result) {
+          if (result.animatedbk) {
             CreateBackground();
           }
         })
 
-        
+
         var NewButtonStr = `<li class="item" data-key="home" id="homebutton" data-path="/home"><label><svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="currentColor" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg>Home</label></li>`;
         var NewButton = stringToHTML(NewButtonStr);
         var menu = document.getElementById("menu");
@@ -1305,7 +1305,9 @@ function SendHomePage() {
             for (let i = 0; i < serverResponse.payload.items.length; i++) {
               lessonArray.push(serverResponse.payload.items[i]);
             }
-            lessonArray.sort((a, b) => parseFloat(a.from) - parseFloat(b.from));
+            lessonArray.sort(function (a, b) {
+              return a.from.localeCompare(b.from);
+            });
             // If items in the response, set each corresponding value into divs
             lessonArray = lessonArray.splice(1)
             fetch("https://" + weblink + "/seqta/student/load/prefs?", {
