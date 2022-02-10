@@ -129,18 +129,9 @@ p {
   justify-content: space-between;
   margin-top: 10px;
   font-size: 13px !important;
+  position:relative;
 }
 .clr-field input:hover {
-  cursor: pointer;
-}
-.bottom-container div {
-  margin-top: 4px;
-}
-.bottom-container img {
-  width: 25px;
-  height: 25px;
-  filter: invert(99%) sepia(0%) saturate(627%) hue-rotate(255deg)
-    brightness(122%) contrast(100%);
   cursor: pointer;
 }
 .text-container {
@@ -222,6 +213,15 @@ p {
   opacity: 0;
   pointer-events: none;
 }
+
+#github {
+  width: 25px;
+  height: 25px;
+  filter: invert(99%) sepia(0%) saturate(627%) hue-rotate(255deg)
+    brightness(122%) contrast(100%);
+  cursor: pointer;
+}
+
 .onoffswitch-label {
   display: block; overflow: hidden; cursor: pointer;
   height: 16px; padding: 0; line-height: 16px;
@@ -370,7 +370,6 @@ p {
   color: #fcdfb5;
   border: 2px solid #ffb64c;
   background-color: #131313;
-  height: 45px;
   width: 35%;
   position: absolute;
   padding: 6px;
@@ -383,6 +382,9 @@ p {
 }
 .applychanges:hover {
   background-color: #202020;
+}
+#applychanges {
+  margin-top: 0px;
 }
 .applychanges h5, h6 {
   margin: 0;
