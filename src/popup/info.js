@@ -16,7 +16,7 @@
 const onoffselection = document.querySelector("#onoff");
 const notificationcollector = document.querySelector("#notification");
 const lessonalert = document.querySelector("#lessonalert");
-const sidemenusection = document.querySelector("#sidemenusection");
+const aboutsection = document.querySelector("#aboutsection");
 const shortcutsection = document.querySelector("#shortcutsection");
 const miscsection = document.querySelector('#miscsection');
 const mainpage = document.querySelector("#mainpage");
@@ -37,7 +37,6 @@ const shortcutpage = document.querySelector("#shortcutpage");
 
 const miscpage = document.querySelector('#miscpage');
 
-var menubuttons = document.getElementsByClassName("menuitem");
 var shortcutbuttons = document.getElementsByClassName("shortcutitem");
 
 const github = document.getElementById("github");
@@ -99,19 +98,8 @@ function storeNotificationSettings() {
 
 
 function StoreAllSettings() {
-  chrome.storage.local.get(["menuitems"], function (result) {
-    var menuItems = result.menuitems;
-    for (var i = 0; i < menubuttons.length; i++) {
-      var id = menubuttons[i].id;
-
-      menuItems[id].toggle = menubuttons[i].checked;
-    }
-    chrome.storage.local.set({ menuitems: menuItems });
-  });
-
   chrome.storage.local.get(["shortcuts"], function (result) {
     var shortcuts = Object.values(result)[0];
-    console.log(shortcuts);
     for (var i = 0; i < shortcutbuttons.length; i++) {
       shortcuts[i].enabled = shortcutbuttons[i].checked;
     }
@@ -136,21 +124,8 @@ function updateUI(restoredSettings) {
     notificationcollector.checked = restoredSettings.notificationcollector;
     lessonalert.checked = restoredSettings.lessonalert;
     animatedbk.checked = restoredSettings.animatedbk;
-    chrome.storage.local.get(["menuitems"], function (result) {
-      var menuItems = Object.values(result)[0];
-      console.log(menubuttons)
-      for (var i = 0; i < menubuttons.length; i++) {
-        var id = menubuttons[i].id;
-        menubuttons[i].checked = menuItems[id].toggle;
-
-        if (menuItems[id].seqtaenabled == false) {
-          document.getElementById(id).parentNode.parentNode.style.display = 'none';
-        }
-      }
-    });
     chrome.storage.local.get(["shortcuts"], function (result) {
       var shortcuts = Object.values(result)[0];
-      console.log(shortcuts);
       for (var i = 0; i < shortcutbuttons.length; i++) {
         shortcutbuttons[i].checked = shortcuts[i].enabled;
       }
@@ -178,7 +153,7 @@ On blur, save the currently selected settings.
 document.addEventListener("DOMContentLoaded", function () {
   github.addEventListener("click", openGithub);
 
-  sidemenusection.addEventListener("click", () => {resetActive(); sidemenusection.classList.add('activenav'); menupage.classList.remove('hiddenmenu')});
+  aboutsection.addEventListener("click", () => {resetActive(); aboutsection.classList.add('activenav'); menupage.classList.remove('hiddenmenu')});
 
   shortcutsection.addEventListener("click", () => {resetActive(); shortcutsection.classList.add('activenav'); shortcutpage.classList.remove('hiddenmenu')});
 

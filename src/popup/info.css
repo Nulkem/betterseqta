@@ -149,60 +149,33 @@ p {
   text-align: left;
   align-items: center;
 }
-/* .offontoggle {
-  border-bottom: none;
-  height: 3em;
+.aboutcontainer {
+  justify-content: space-between;
+  width: 96%;
+  margin: 0px auto;
+    margin-top: 0px;
+  margin-top: 5px;
+  display: flex;
   flex-direction: row;
+  text-align: left;
   align-items: center;
 }
-.toggle {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 62px;
-  height: 26px;
-  padding: 0 !important;
-  display: inline-block;
-  position: relative;
-  border-radius: 50px;
-  overflow: hidden;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  background-color: #707070 !important;
-  transition: background-color ease 0.3s;
+.aboutlinks {
+  display: flex;
+  margin: 6px 0 !important;
+  padding: 5px 18px !important;
+  font-size: 12px;
+  background: #3d3d3d !important;
+  align-items: center;
+  border-radius: 20px !important;
+  color: white !important;
+  border: none !important;
+  text-decoration: none;
 }
-
-.toggle:before {
-  content: "on off";
-  display: block;
-  position: absolute;
-  z-index: 2;
-  width: 22px;
-  height: 22px;
-  background: #fff;
-  left: 2px;
-  top: 2px;
-  border-radius: 50%;
-  font: 10px/22px Helvetica;
-  text-transform: uppercase;
-  font-weight: bold;
-  text-indent: -22px;
-  word-spacing: 32px;
-  color: #fff;
-  text-shadow: -1px -1px rgba(0, 0, 0, 0.15);
-  white-space: nowrap;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+.aboutlinks svg {
+  margin: 0 !important;
+  margin-right: 5px !important;
 }
-
-.toggle:checked {
-  background-color: #4cd964 !important;
-}
-
-.toggle:checked:before {
-  left: 38px;
-} */
 
 .onoffswitch {
   margin: 0 0 1ex;
@@ -230,7 +203,7 @@ p {
 }
 .onoffswitch-label:before {
   content: "";
-  display: block; width: 24px; margin: -4px;
+  display: block; width: 24px; margin: -4px; height: 24px;
   background: #FFFFFF;
   position: absolute; top: 0; bottom: 0;
   right: 22px;
@@ -360,8 +333,8 @@ p {
   
 }
 .activenav {
-  border-bottom: 2px solid #3277d1;
-  color: #3277d1;
+  border-bottom: 2px solid #ff5f5f;
+  color: #ff5f5f;
 }
 .hiddenmenu {
   display: none;
@@ -389,4 +362,21 @@ p {
 .applychanges h5, h6 {
   margin: 0;
   font-weight: 400;
+}
+.draggable {
+  list-style: none;
+  position: relative;
+  margin-left: 10px;
+  cursor:grab;
+}
+.draggable:active {
+  cursor:-moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+.draggable::before {
+  position: absolute;
+  z-index: 20;
+  left: -8px;
+  top: 28px;
+  content: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="30" width="15"><path fill="white" d="M9,3H11V5H9V3M13,3H15V5H13V3M9,7H11V9H9V7M13,7H15V9H13V7M9,11H11V13H9V11M13,11H15V13H13V11M9,15H11V17H9V15M13,15H15V17H13V15M9,19H11V21H9V19M13,19H15V21H13V19Z" /></svg>');
 }
