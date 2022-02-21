@@ -153,8 +153,7 @@ p {
   justify-content: space-between;
   width: 96%;
   margin: 0px auto;
-    margin-top: 0px;
-  margin-top: 5px;
+  margin-top: 0px;
   display: flex;
   flex-direction: row;
   text-align: left;
