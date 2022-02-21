@@ -286,6 +286,111 @@ function CheckiFrameItems() {
   });
 }
 
+function LoadPageElements(){
+  AddBetterSEQTAElements(true);
+  var weblink = window.location.href.split("/")[2];
+  var sublink = window.location.href.split("/")[4];
+  switch (sublink){
+    case "news":
+      console.log("[BetterSEQTA] Started Init");
+      chrome.storage.local.get(null, function (result) {
+        if (result.onoff) {
+          SendNewsPage();
+
+                // Sends similar HTTP Post Request for the notices
+          chrome.storage.local.get(null, function (result) {
+            if (result.notificationcollector) {
+              var xhr3 = new XMLHttpRequest();
+              xhr3.open(
+                "POST",
+                "https://" + weblink + "/seqta/student/heartbeat?",
+                true
+              );
+              xhr3.setRequestHeader(
+                "Content-Type",
+                "application/json; charset=utf-8"
+              );
+              xhr3.onreadystatechange = function () {
+                if (xhr3.readyState === 4) {
+                  var Notifications = JSON.parse(xhr3.response);
+                  var alertdiv = document.getElementsByClassName(
+                    "notifications__bubble___1EkSQ"
+                  )[0];
+                  if (typeof alertdiv == 'undefined') {
+                    console.log("[BetterSEQTA] No notifications currently")
+
+                  }
+                  else {
+                    alertdiv.textContent = Notifications.payload.notifications.length;
+                  }
+                }
+              };
+              xhr3.send(
+                JSON.stringify({
+                  timestamp: "1970-01-01 00:00:00.0",
+                  hash: "#?page=/home",
+                })
+              );
+            }
+          });
+
+          finishLoad();
+        }
+    
+      });
+      break;
+
+    case "home":
+        window.location.replace("https://" + weblink + "/#?page=/home");
+        LoadInit();
+        break;
+    case undefined:
+        window.location.replace("https://" + weblink + "/#?page=/home");
+        LoadInit();
+        break;
+    default:
+      finishLoad();
+
+      // Sends similar HTTP Post Request for the notices
+      chrome.storage.local.get(null, function (result) {
+        if (result.notificationcollector) {
+          var xhr3 = new XMLHttpRequest();
+          xhr3.open(
+            "POST",
+            "https://" + weblink + "/seqta/student/heartbeat?",
+            true
+          );
+          xhr3.setRequestHeader(
+            "Content-Type",
+            "application/json; charset=utf-8"
+          );
+          xhr3.onreadystatechange = function () {
+            if (xhr3.readyState === 4) {
+              var Notifications = JSON.parse(xhr3.response);
+              var alertdiv = document.getElementsByClassName(
+                "notifications__bubble___1EkSQ"
+              )[0];
+              if (typeof alertdiv == 'undefined') {
+                console.log("[BetterSEQTA] No notifications currently")
+
+              }
+              else {
+                alertdiv.textContent = Notifications.payload.notifications.length;
+              }
+            }
+          };
+          xhr3.send(
+            JSON.stringify({
+              timestamp: "1970-01-01 00:00:00.0",
+              hash: "#?page=/home",
+            })
+          );
+        }
+      });
+      break;
+  }
+}
+
 function tryLoad() {
   waitForElm(".login").then((elm) => {
     LoadingDone = true;
@@ -302,108 +407,8 @@ function tryLoad() {
   });
 
   waitForElm(".code").then((elm) => {
-    AddBetterSEQTAElements(true);
-    var weblink = window.location.href.split("/")[2];
-    var sublink = window.location.href.split("/")[4];
-    switch (sublink){
-      case "news":
-        console.log("[BetterSEQTA] Started Init");
-        chrome.storage.local.get(null, function (result) {
-          if (result.onoff) {
-            SendNewsPage();
-
-                  // Sends similar HTTP Post Request for the notices
-            chrome.storage.local.get(null, function (result) {
-              if (result.notificationcollector) {
-                var xhr3 = new XMLHttpRequest();
-                xhr3.open(
-                  "POST",
-                  "https://" + weblink + "/seqta/student/heartbeat?",
-                  true
-                );
-                xhr3.setRequestHeader(
-                  "Content-Type",
-                  "application/json; charset=utf-8"
-                );
-                xhr3.onreadystatechange = function () {
-                  if (xhr3.readyState === 4) {
-                    var Notifications = JSON.parse(xhr3.response);
-                    var alertdiv = document.getElementsByClassName(
-                      "notifications__bubble___1EkSQ"
-                    )[0];
-                    if (typeof alertdiv == 'undefined') {
-                      console.log("[BetterSEQTA] No notifications currently")
-
-                    }
-                    else {
-                      alertdiv.textContent = Notifications.payload.notifications.length;
-                    }
-                  }
-                };
-                xhr3.send(
-                  JSON.stringify({
-                    timestamp: "1970-01-01 00:00:00.0",
-                    hash: "#?page=/home",
-                  })
-                );
-              }
-            });
-
-            finishLoad();
-          }
-      
-        });
-        break;
-
-      case "home":
-          window.location.replace("https://" + weblink + "/#?page=/home");
-          LoadInit();
-          break;
-      case undefined:
-          window.location.replace("https://" + weblink + "/#?page=/home");
-          LoadInit();
-          break;
-      default:
-        finishLoad();
-
-        // Sends similar HTTP Post Request for the notices
-        chrome.storage.local.get(null, function (result) {
-          if (result.notificationcollector) {
-            var xhr3 = new XMLHttpRequest();
-            xhr3.open(
-              "POST",
-              "https://" + weblink + "/seqta/student/heartbeat?",
-              true
-            );
-            xhr3.setRequestHeader(
-              "Content-Type",
-              "application/json; charset=utf-8"
-            );
-            xhr3.onreadystatechange = function () {
-              if (xhr3.readyState === 4) {
-                var Notifications = JSON.parse(xhr3.response);
-                var alertdiv = document.getElementsByClassName(
-                  "notifications__bubble___1EkSQ"
-                )[0];
-                if (typeof alertdiv == 'undefined') {
-                  console.log("[BetterSEQTA] No notifications currently")
-  
-                }
-                else {
-                  alertdiv.textContent = Notifications.payload.notifications.length;
-                }
-              }
-            };
-            xhr3.send(
-              JSON.stringify({
-                timestamp: "1970-01-01 00:00:00.0",
-                hash: "#?page=/home",
-              })
-            );
-          }
-        });
-        break;
-    }
+    if (!elm.innerText.includes("BetterSEQTA"))
+    LoadPageElements();
   });
 
 
@@ -421,9 +426,7 @@ function tryLoad() {
 function ChangeMenuItemPositions(storage) {
   menuorder = storage;
 
-  var menuList = document.querySelector('#menu').firstChild;
-  menuList = menuList.childNodes;
-
+  var menuList = document.querySelector('#menu').firstChild.childNodes;
 
   listorder = []
   for (let i = 0; i < menuList.length; i++) {
@@ -452,24 +455,26 @@ function ChangeMenuItemPositions(storage) {
 
 async function ObserveMenuItemPosition(){
   chrome.storage.local.get(["menuorder"], function(result){
+
     menuorder = result.menuorder
-
-    console.log(menuorder);
-
-    const observer = new MutationObserver(function (mutations_list) {
-      mutations_list.forEach(function (mutation) {
-        mutation.addedNodes.forEach(function (added_node) {
-          if (!added_node.dataset.checked && !MenuOptionsOpen){
-            ChangeMenuItemPositions(menuorder);
-          }
+    if (menuorder){
+      const observer = new MutationObserver(function (mutations_list) {
+        mutations_list.forEach(function (mutation) {
+          mutation.addedNodes.forEach(function (added_node) {
+            if (!added_node.dataset.checked && !MenuOptionsOpen){
+              ChangeMenuItemPositions(menuorder);
+            }
+          });
         });
       });
-    });
-  
-    observer.observe(document.querySelector('#menu').firstChild, {
-      subtree: true,
-      childList: true,
-    });
+    
+      observer.observe(document.querySelector('#menu').firstChild, {
+        subtree: true,
+        childList: true,
+      });
+    }
+
+
   })
 
 }
@@ -531,6 +536,22 @@ chrome.storage.onChanged.addListener(function (changes) {
   }
 })
 
+var PageLoaded = false;
+async function CheckLoadOnPeriods(){
+  if (!PageLoaded){
+    await delay(1000);
+    var code = document.getElementsByClassName('code')[0];
+    if (code && !code.innerText.includes('BetterSEQTA')){
+      LoadPageElements();
+      finishLoad();
+      PageLoaded = true;
+    }
+    if (!code) {
+      CheckLoadOnPeriods();
+    }
+  }
+}
+
 function RunFunctionOnTrue(storedSetting) {
   // If the option is 'on', open BetterSEQTA
   if (typeof storedSetting.onoff == 'undefined') {
@@ -561,6 +582,8 @@ function RunFunctionOnTrue(storedSetting) {
     ApplyCSSToHiddenMenuItems();
 
     loading();
+
+    CheckLoadOnPeriods();
 
     if (!isChrome || isChrome == "undefined") {
       tryLoad();
@@ -1221,12 +1244,33 @@ function OpenMenuOptions(){
       }
     }
 
+    if (Object.keys(result.menuitems).length == 0){
+      menubuttons = menu.firstChild.childNodes;
+      var menuItems = {};
+      for (var i = 0; i < menubuttons.length; i++) {
+        var id = menubuttons[i].dataset.key;
+        const element = {}
+        element.toggle = true;
+        menuItems[id] = element;
+      }
+      console.log(menuItems);
+      chrome.storage.local.set({ menuitems: menuItems });
+    }
+
     var menubuttons = document.getElementsByClassName('menuitem');
     chrome.storage.local.get(["menuitems"], function (result) {
-      var menuItems = Object.values(result)[0];
-      for (var i = 0; i < menubuttons.length; i++) {
-        var id = menubuttons[i].id;
-        menubuttons[i].checked = menuItems[id].toggle;
+      var menuItems = result.menuitems;
+      buttons = document.getElementsByClassName('menuitem');
+      for (var i = 0; i < buttons.length; i++) {
+         
+        var id = buttons[i].id;
+        if (menuItems[id]){
+          buttons[i].checked = menuItems[id].toggle;
+        }
+        if (!menuItems[id]){
+          buttons[i].checked = true;
+        }
+        
       }
     });
 
@@ -1236,13 +1280,16 @@ function OpenMenuOptions(){
     function StoreMenuSettings(){
       chrome.storage.local.get(["menuitems"], function (result) {
         var menuItems = {};
+        menubuttons = menu.firstChild.childNodes;
+        button = document.getElementsByClassName('menuitem');
         for (var i = 0; i < menubuttons.length; i++) {
-          var id = menubuttons[i].id;
+          var id = menubuttons[i].dataset.key;
           const element = {}
-          element.toggle = menubuttons[i].checked;
+          element.toggle = button[i].checked;
 
           menuItems[id] = element;
         }
+        console.log(menuItems)
         chrome.storage.local.set({ menuitems: menuItems });
       });
 
@@ -1289,6 +1336,8 @@ function OpenMenuOptions(){
       for (let i = 0; i < switches.length; i++) {
         switches[i].remove()
       }
+
+      StoreMenuSettings();
     }
 
     cover.addEventListener('click', closeAll)
@@ -1297,6 +1346,7 @@ function OpenMenuOptions(){
     defaultbutton.addEventListener('click', function(){
       chrome.storage.local.get(null, function(response){
         const options = response.defaultmenuorder
+        chrome.storage.local.set({menuorder: options})
         ChangeMenuItemPositions(options);
 
         for (let i = 0; i < menubuttons.length; i++) {
@@ -1455,6 +1505,8 @@ function CheckCurrentLesson(lesson, num) {
 
   id = lesson.code + num
 
+  console.log(valid)
+
   if (valid) {
     // Apply the activelesson class to increase the box-shadow of current lesson
 
@@ -1594,10 +1646,13 @@ function SendHomePage() {
       return lesson;
     }
 
+    assessmentsicon = `<svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M16.029,11.207a.748.748,0,0,0,.705.5h0a.75.75,0,0,0,.75-.75V3.234a.413.413,0,0,0-.413-.414H4.574a.413.413,0,0,0-.413.414V18.06a.413.413,0,0,0,.413.413h6.859a.75.75,0,0,0,0-1.5H9.473V14.65h2.846a.977.977,0,0,0,.975-.975V11.207ZM5.661,10.082V7.765H8.348v2.317Zm2.687,1.125v2.318H5.661V11.207ZM9.473,7.765h2.7v2.317h-2.7Zm0-1.125V4.32h2.7V6.64Zm3.821,1.125h2.69v2.317h-2.69Zm2.69-1.125h-2.69V4.32h2.69ZM8.348,4.32V6.64H5.661V4.32Zm0,12.653H5.661V14.65H8.348Zm3.821-3.448h-2.7V11.207h2.7Z"></path><path d="M21.951,14.038a.657.657,0,0,0-.906.2l-5.033,7.93a.656.656,0,0,0,1.108.7l5.033-7.93A.657.657,0,0,0,21.951,14.038Z"></path><path d="M11.433,19.609H3.141a.148.148,0,0,1-.149-.149V1.848a.149.149,0,0,1,.149-.15H18.46a.15.15,0,0,1,.15.15v9.113a.75.75,0,0,0,.75.75h0a.75.75,0,0,0,.75-.75V1.848A1.65,1.65,0,0,0,18.46.2H3.141a1.649,1.649,0,0,0-1.649,1.65V19.46a1.649,1.649,0,0,0,1.649,1.649h8.292a.75.75,0,0,0,0-1.5Z"></path><path d="M16.7,18.341a1.928,1.928,0,0,0,0-3.777,2,2,0,0,0-.389-.039,1.928,1.928,0,0,0-1.927,1.928A1.93,1.93,0,0,0,16.7,18.341ZM15.8,16.8a.6.6,0,0,1-.092-.219.636.636,0,0,1-.013-.124.628.628,0,0,1,.013-.124.613.613,0,0,1,.6-.491.628.628,0,0,1,.124.012.615.615,0,0,1,0,1.205.561.561,0,0,1-.124.013A.615.615,0,0,1,15.8,16.8Z"></path><path d="M23.591,20a1.94,1.94,0,0,0-.358-.646A1.918,1.918,0,0,0,22,18.686c-.024,0-.047-.012-.072-.014-.057,0-.113-.007-.169-.007h0a1.924,1.924,0,0,0-.476,3.789,1.987,1.987,0,0,0,.311.059c.057,0,.113.007.169.007a1.977,1.977,0,0,0,.363-.034,1.934,1.934,0,0,0,1.171-.729,1.875,1.875,0,0,0,.187-.3A1.939,1.939,0,0,0,23.591,20Zm-1.832,1.21a.507.507,0,0,1-.055,0h0a.545.545,0,0,1-.136-.029.509.509,0,0,1-.054-.022.571.571,0,0,1-.061-.029c-.019-.011-.038-.024-.056-.037a.375.375,0,0,1-.036-.027.6.6,0,0,1-.134-.159c-.007-.012-.013-.026-.02-.04a.6.6,0,0,1-.028-.063c-.007-.02-.012-.042-.018-.064s-.009-.037-.012-.057a.631.631,0,0,1-.005-.139.617.617,0,0,1,.286-.467.609.609,0,0,1,.325-.095h0a.471.471,0,0,1,.053,0,.6.6,0,0,1,.294.108.612.612,0,0,1,.266.557.62.62,0,0,1-.5.551A.557.557,0,0,1,21.759,21.208Z"></path></g></g></svg>`;
+    coursesicon = `<svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M23.51,21.431l-.7-.7-2.121,2.121.7.7a1.5,1.5,0,1,0,2.121-2.121Z"></path><path d="M18.062,15.983l-.433-.433-.446-.446-2.238-.53a.414.414,0,0,0-.414.413l.531,2.239.446.446.432.432,3.687,3.687,2.121-2.122Z"></path><path d="M15.111,19.849l-2.4.423V19.125l.778-.138a.75.75,0,0,0-.261-1.477l-.517.091V4.794l6.57-1.159a.563.563,0,0,1,.078-.007.158.158,0,0,1,.078.014.214.214,0,0,1,.021.112V6.087h0v9a.438.438,0,0,0,.127.308l.63.63a.434.434,0,0,0,.743-.282V5.822l.257-.046.73-.128a.46.46,0,0,1,.079-.008.156.156,0,0,1,.08.015.208.208,0,0,1,.022.114V16.586a2.022,2.022,0,0,1-.11.644.726.726,0,0,0,.159.751l.051.051a.722.722,0,0,0,1.19-.257,3.545,3.545,0,0,0,.21-1.189V5.769a1.566,1.566,0,0,0-1.6-1.629,2.005,2.005,0,0,0-.34.03l-.726.128V3.743a1.562,1.562,0,0,0-1.6-1.626,1.994,1.994,0,0,0-.339.03L11.964,3.392,4.9,2.147a1.994,1.994,0,0,0-.339-.03,1.546,1.546,0,0,0-1.48.979,1.764,1.764,0,0,0-.122.658V4.3L2.237,4.17a2.005,2.005,0,0,0-.34-.03A1.566,1.566,0,0,0,.3,5.769V16.586a4.088,4.088,0,0,0,3.284,3.863l8,1.411a.836.836,0,0,0,.14.012,1.082,1.082,0,0,0,.241-.03,1.066,1.066,0,0,0,.24.03.836.836,0,0,0,.14-.012l3.028-.534a.75.75,0,1,0-.261-1.477ZM4.463,3.743a.294.294,0,0,1,.009-.079l.009-.022a.148.148,0,0,1,.077-.014.577.577,0,0,1,.079.007L11.213,4.8V17.6l-6.05-1.066a.926.926,0,0,1-.7-.8ZM1.8,16.586V5.769a.208.208,0,0,1,.022-.114A.156.156,0,0,1,1.9,5.64a.46.46,0,0,1,.079.008l.723.127.264.047V15.73A2.416,2.416,0,0,0,4.9,18.012l6.31,1.112v1.148l-7.374-1.3A2.605,2.605,0,0,1,1.8,16.586Z"></path></g></g></svg>`;
+
     function MakeLessonDiv(lesson, num) {
       if (lesson.programmeID != 0) {
         var lessondiv = stringToHTML(
-          `<div class="day clickable" id=${lesson.code + num} style="${lesson.colour}" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5></div>`
+          `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5><div class="day-button clickable" style="left: 8px;" onclick="location.href='../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}'">${assessmentsicon}</div><div class="day-button clickable" style="left: 40px;" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'">${coursesicon}</div></div>`
         );
       }
       else {
@@ -1884,7 +1939,7 @@ function SendNewsPage() {
 
     // Creates the root of the home page added to the main div
     var htmlStr =
-      `<div class="home-root"><div class="home-container" id="news-container"><h1 class="border">Top Headlines For Today: ABC News</h1></div></div>`;
+      `<div class="home-root"><div class="home-container" id="news-container"><h1 class="border">Latest Headlines - ABC News</h1></div></div>`;
 
     var html = stringToHTML(htmlStr);
     // Appends the html file to main div
@@ -1900,8 +1955,10 @@ function SendNewsPage() {
       document.getElementById('newsloading').remove();
       for (let i = 0; i < newsarticles.length; i++) {
 
-        newsarticle = document.createElement('div');
+        newsarticle = document.createElement('a');
         newsarticle.classList.add('NewsArticle');
+        newsarticle.href = newsarticles[i].url;
+        newsarticle.target = '_blank';
 
         articleimage = document.createElement('img');
 
