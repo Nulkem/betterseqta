@@ -1299,7 +1299,6 @@ function OpenMenuOptions() {
 
           menuItems[id] = element;
         }
-        console.log(menuItems)
         chrome.storage.local.set({ menuitems: menuItems });
       });
 
@@ -1527,8 +1526,6 @@ function CheckCurrentLesson(lesson, num) {
   valid = startDate < currentDate && endDate > currentDate;
 
   id = lesson.code + num
-
-  console.log(valid)
 
   if (valid) {
     // Apply the activelesson class to increase the box-shadow of current lesson
