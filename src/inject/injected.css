@@ -19,15 +19,20 @@
   --navy: #1a1a1a !important;
 }
 #container {
-  background: radial-gradient(circle, var(--better-sub) 0%, var(--better-main) 100%);
   transition: 1s;
 }
 * {
   font-family: "Roboto" !important;
   --theme-fg-parts: white;
 }
+#title {
+  color: var(--text-color);
+}
 #main {
   color: white;
+}
+.forums {
+  color: var(--text-color);
 }
 .defaultWelcome {
   background: var(--better-main);
@@ -72,13 +77,20 @@ ul.magicDelete > li.deleting {
 .sub,
 .nav {
   background: var(--better-main) !important;
+  color: var(--text-color) !important;
+}
+#menu li {
+  border-bottom: 1px solid rgba(174, 174, 174, 0.1);
 }
 html {
   background-color: var(--better-main) !important;
 }
 
 .student #menu > ul::before {
-  background-image: url(/icons/betterseqta-light-full.png);
+  background-image: var(--betterseqta-logo);
+}
+#menu li:hover {
+  background: rgba(0, 0, 0, 0.15);
 }
 .item {
   border-radius: 0px 20px 20px 0px !important;
@@ -88,7 +100,7 @@ html {
 }
 #menu li.active, #menu section.active {
   background: var(--better-light);
-  color: white !important;
+  color: var(--text-color) !important;
 }
 #menu li, #menu section {
   box-shadow: inset 3px 0 var(--item-colour, transparent);
@@ -233,6 +245,12 @@ html {
   display: flex;
   color: white;
   font-size: unset;
+}
+.home-subtitle {
+  color: var(--text-color);
+}
+.notice a {
+  background: rgba(var(--theme-bg-parts),0.5) !important;
 }
 .home-container {
   max-width: 1050px;
@@ -546,6 +564,7 @@ html {
 }
 .Viewer__sidebar___1Btu4 {
   background: var(--better-main);
+  color: var(--text-color);
 }
 .Viewer__sidebar___1Btu4 > header {
   background: unset;
@@ -586,8 +605,10 @@ iframe.userHTML {
 }
 #main > .reports > .item > .report > .year {
   background: var(--better-light);
+  color: var(--text-color);
 }
 #main > .reports > .item > .report > .term {
+  color: var(--text-color);
   background: var(--better-main);
 }
 .Collapsible__Collapsible___3O8P3 > .Collapsible__header___-Afvq {
@@ -596,14 +617,14 @@ iframe.userHTML {
 .AssessmentList__AssessmentList___1GdCl
   > .AssessmentList__searchFilter___3N70o
   + .AssessmentList__items___3LcmQ {
-  color: white;
+  color: var(--text-color);
 }
 .Thermoscore__Thermoscore___2tWMi {
   background-image: unset;
   background-color: var(--better-sub);
 }
 #toolbar {
-  color: white;
+  color: var(--text-color);
   background: unset;
 }
 .programmeNavigator > .navigator,
@@ -692,10 +713,10 @@ iframe.userHTML {
   box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
 }
 .dailycal > .header {
-  color: white;
+  color: var(--text-color);
 }
 #main > .timetablepage > .container > .dailycal {
-  color: white;
+  color: var(--text-color);
 }
 #main > .timetablepage > .note {
   color: white;
@@ -776,6 +797,7 @@ ul.uiSplitButtonList,
 .legacy-root option,
 .legacy-root .input {
   background: var(--better-main);
+  color: var(--text-color);
 }
 
 body {
@@ -783,7 +805,7 @@ body {
   overflow: hidden;
 }
 #main > .notices > .notice {
-  color: white;
+  color: var(--text-color);
   background: var(--better-main);
 }
 .shortcuticondiv {
@@ -855,7 +877,7 @@ body {
 }
 #userActions > .details {
   opacity: unset !important;
-  color: rgb(134, 134, 134);
+  color: var(--text-color);
 }
 .defaultWelcomeWrapper {
   background: unset !important;
@@ -901,6 +923,7 @@ background-color: currentColor !important;
 }
 .MessageList__MessageList___3DxoC > ol > li.MessageList__selected___1SJNz {
   background: var(--better-main);
+  color: var(--text-color);
 }
 
 .NewsArticle {
@@ -1081,4 +1104,14 @@ background-color: currentColor !important;
 .code:hover:before {
   opacity: 1;
   visibility: visible;
+}
+.day-inverted:hover {
+  color: black !important;
+}
+
+.day-inverted:hover > h3 {
+  color: black !important;
+}
+#menu {
+  color: var(--text-color);
 }
