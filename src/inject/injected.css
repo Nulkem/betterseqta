@@ -1115,3 +1115,9 @@ background-color: currentColor !important;
 #menu {
   color: var(--text-color);
 }
+.notifications__item___2ErJN > .notifications__details___193F4 {
+  color: var(--text-color) !important;
+}
+#menuToggle {
+  color: var(--text-color);
+}
