@@ -87,7 +87,7 @@ function loading() {
   // loadinghtml = stringToHTML(
   //   `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
   //   <svg width="300" height="160" id="clackers" style="display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);"><svg><path id="arc-left-up" fill="none" d="M 90 90 A 90 90 0 0 1 0 0"/></svg><svg><path id="arc-right-up" fill="none" d="M 100 90 A 90 90 0 0 0 190 0"/></svg><text x="150" y="50" fill="#ffffff" font-size="18"text-anchor="middle">B E T T E R S E Q T A</text><circle style="fill: #333333;" cx="15" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-left-up"/></animateMotion></circle><circle style="fill: #242424;" cx="135" cy="105" r="15" /><circle style="fill: #161616;" cx="165" cy="105" r="15" /><circle style="fill: #313131;" cx="95" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-right-up"/></animateMotion></circle></svg>
-  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.65</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
+  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.66</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
   // );
   loadinghtml = stringToHTML(
     `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
@@ -146,7 +146,7 @@ function loading() {
     <svg height="135" width="135" viewBox="0 0 1000 1000" class="small-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L455.999 938C455.986 936.008 456.301 933.282 454.972 931.603C453.594 929.862 450.977 930.062 448.999 929.835C443.991 929.258 438.987 928.463 434 927.728C414.788 924.898 395.564 920.733 377 915.025C300.826 891.602 231.835 849.314 178.17 790C106.263 710.526 63.7248 603.522 65.0039 496C65.7806 430.71 81.6532 365.691 110.259 307C130.156 266.177 157.727 228.746 189.039 196C222.33 161.185 262.986 132.26 306 110.753C345.737 90.8846 389.756 75.6209 434 70L434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.501 68.7513 294.622 88.2739 254 113.576C215.656 137.46 181.298 167.82 151.87 202C33.2034 339.827 7.62905 544.971 91.2585 707C112.853 748.839 140.699 787.699 174 821C210.688 857.688 253.047 888.542 300 910.781C332.493 926.171 365.923 937.713 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
     <svg height="180" width="180" viewBox="0 0 1000 1000" class="big-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M454 952L454 887C441.324 886.456 428.346 883.444 416 880.65C389.799 874.722 364.497 866.349 340 855.306C205.92 794.861 116.45 660.408 110.039 514C108.593 480.976 112.302 447.246 119.424 415C144.931 299.518 226.1 198.275 333 147.781C389.157 121.255 450.99 108.496 513 110.015C612.241 112.446 711.495 157.399 779.961 229C839.544 291.312 879.215 372.892 887.831 459C893.323 513.894 887.624 569.466 870.329 622C836.537 724.647 758.42 810.937 660 855.306C635.503 866.349 610.201 874.722 584 880.65C571.383 883.505 557.974 886.732 545 887L545 952C562.916 951.63 581.566 947.595 599 943.65C637.149 935.018 673.043 921.725 708 904.247C753.184 881.655 792.42 850.594 828 815C859.416 783.572 885.414 745.666 905.247 706C933.723 649.048 949.566 588.445 953.911 525C963.014 392.066 906.622 254.399 808 165.17C769.47 130.31 725.8 101.975 678 81.5787C629.733 60.9833 575.64 47.3041 523 46.0146C469.032 44.6927 415.748 49.9443 364 66.0255C223.375 109.726 109.726 223.376 66.0255 364C14.4181 530.066 63.7205 715.347 191 833.911C229.196 869.491 274.051 897.962 322 918.421C362.806 935.833 409.371 950.084 454 952z"/></svg>
     <svg height="220" width="220" viewBox="0 0 1000 1000" class="outer-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L456 946C438.715 945.258 420.843 941.462 404 937.65C369.403 929.822 335.739 918.116 304 902.247C255.981 878.237 211.768 846.374 175.09 807C62.5744 686.214 23.1598 509.033 78.6921 353C96.4653 303.062 122.84 256.974 156.424 216C207.709 153.43 278.099 103.658 355 78C372.453 72.1767 389.992 67.0399 408 63.2107C413.31 62.0816 418.647 60.9853 424 60.0811C426.508 59.6575 430.352 59.6852 432.397 57.9869C434.897 55.9098 434 50.8766 434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.517 68.7473 294.608 88.2827 254 113.576C215.673 137.45 181.285 167.835 151.87 202C33.9725 338.933 8.37009 541.243 89.2485 703C110.949 746.4 139.693 786.693 174 821C210.688 857.688 253.047 888.542 300 910.781C332.484 926.167 365.934 937.716 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
-    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.65</div></div>`
+    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.66</div></div>`
   );
   var html = document.getElementsByTagName("html")[0];
   html.append(loadinghtml.firstChild);
@@ -1094,7 +1094,7 @@ function CallExtensionSettings() {
 
     <div></div>
 
-    <div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177); display: flex;"><p style="margin: 0; margin-right: 5px; color: white;">Created by Nulkem </p> v1.65</div><img
+    <div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177); display: flex;"><p style="margin: 0; margin-right: 5px; color: white;">Created by Nulkem </p> v1.66</div><img
     src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github">
   </div></div>`)
   document.body.append(Settings.firstChild)
@@ -1405,7 +1405,7 @@ function AddBetterSEQTAElements(toggle) {
   if (code != null) {
     if (!code.innerHTML.includes("BetterSEQTA")) {
       UserInitalCode = code.innerText;
-      code.innerText = "BetterSEQTA v1.65";
+      code.innerText = "BetterSEQTA v1.66";
       code.setAttribute('data-hover', 'Click for user code');
       code.addEventListener('click', function () {
         var code = document.getElementsByClassName("code")[0];
@@ -1414,7 +1414,7 @@ function AddBetterSEQTAElements(toggle) {
           code.setAttribute('data-hover', 'Click for BetterSEQTA version')
         }
         else {
-          code.innerText = 'BetterSEQTA v1.65'
+          code.innerText = 'BetterSEQTA v1.66'
           code.setAttribute('data-hover', 'Click for user code');
         }
       })
@@ -1638,6 +1638,146 @@ function CheckCurrentLessonAll(lessons) {
   );
 }
 
+function MakeLessonDiv(lesson, num) {
+  if (lesson.programmeID != 0) {
+    var lessondiv = stringToHTML(
+      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5><div class="day-button clickable" style="left: 8px;" onclick="location.href='../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}'">${assessmentsicon}</div><div class="day-button clickable" style="left: 40px;" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'">${coursesicon}</div></div>`
+    );
+  }
+  else {
+    var lessondiv = stringToHTML(
+      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5></div>`
+    );
+  }
+
+  return lessondiv;
+}
+
+function CheckUnmarkedAttendance(lessonattendance) {
+  if (lessonattendance) {
+    var lesson = lessonattendance.label;
+  }
+  else {
+    var lesson = " ";
+  }
+  return lesson;
+}
+
+function callHomeTimetable(date, change) {
+  var weblink = window.location.href.split("/")[2];
+  // Creates a HTTP Post Request to the SEQTA page for the students timetable
+  var xhr = new XMLHttpRequest();
+  xhr.open(
+    "POST",
+    "https://" + weblink + "/seqta/student/load/timetable?",
+    true
+  );
+  // Sets the response type to json
+  xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+
+  xhr.onreadystatechange = function () {
+    // Once the response is ready
+    if (xhr.readyState === 4) {
+      var serverResponse = JSON.parse(xhr.response);
+      lessonArray = [];
+      var DayContainer = document.getElementById("day-container")
+      // If items in response:
+      if (serverResponse.payload.items.length > 0) {
+        if (!DayContainer.innerText || change) {
+          // console.log(serverResponse.payload.items.length);
+          for (let i = 0; i < serverResponse.payload.items.length; i++) {
+            lessonArray.push(serverResponse.payload.items[i]);
+          }
+          lessonArray.sort(function (a, b) {
+            return a.from.localeCompare(b.from);
+          });
+          // If items in the response, set each corresponding value into divs
+          lessonArray = lessonArray.splice(1)
+          fetch("https://" + weblink + "/seqta/student/load/prefs?", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify({ "request": "userPrefs", "asArray": true, "user": 69 })
+          })
+            .then((result) => result.json())
+            .then((response) => {
+              subjects = response.payload
+
+              for (let i = 0; i < lessonArray.length; i++) {
+
+                subjectname = `timetable.subject.colour.${lessonArray[i].code}`
+
+                subject = subjects.find(element => element.name === subjectname)
+                if (!subject) {
+                  lessonArray[i].colour = `--item-colour: #8e8e8e;`
+                }
+                else {
+                  lessonArray[i].colour = `--item-colour: ${subject.value};`
+                  result = GetThresholdofHex(subject.value);
+
+                  if (result > 300) {
+                    lessonArray[i].invert = true;
+                  }
+                }
+                // Removes seconds from the start and end times
+                lessonArray[i].from = lessonArray[i].from.substring(0, 5);
+                lessonArray[i].until = lessonArray[i].until.substring(0, 5);
+
+                // Checks if attendance is unmarked, and sets the string to " ".
+                lessonArray[i].attendanceTitle = CheckUnmarkedAttendance(
+                  lessonArray[i].attendance)
+              }
+              // If on home page, apply each lesson to HTML with information in each div
+              DayContainer.innerText = '';
+              for (let i = 0; i < lessonArray.length; i++) {
+                var div = MakeLessonDiv(lessonArray[i], i + 1);
+                // Append each of the lessons into the day-container
+                if (lessonArray[i].invert) {
+                  div.firstChild.classList.add('day-inverted');
+                }
+
+                DayContainer.append(div.firstChild);
+              }
+
+              for (i = 0; i < lessonArray.length; i++) {
+                CheckCurrentLesson(lessonArray[i], i + 1);
+              }
+              // For each lesson, check the start and end times
+              CheckCurrentLessonAll(lessonArray);
+
+            });
+
+
+        }
+      }
+      else {
+        if (!DayContainer.innerText || change) {
+          DayContainer.innerText = '';
+          var dummyDay = document.createElement("div");
+          dummyDay.classList.add("day-empty");
+          img = document.createElement('img')
+          img.src = chrome.runtime.getURL('icons/betterseqta-light-icon.png')
+          text = document.createElement('p')
+          text.innerText = "No lessons available."
+          dummyDay.append(img);
+          dummyDay.append(text);
+          DayContainer.append(dummyDay);
+        }
+      }
+    }
+  };
+  xhr.send(
+    JSON.stringify({
+      // Information sent to SEQTA page as a request with the dates and student number
+      from: date,
+      until: date,
+      // Funny number
+      student: 69,
+    })
+  );
+}
+
 function SendHomePage() {
   setTimeout(function () {
     // Sends the html data for the home page
@@ -1671,6 +1811,7 @@ function SendHomePage() {
 
     // Gets the current date
     const date = new Date();
+    var currentSelectedDate = new Date();
     // Formats the current date used send a request for timetable and notices later
     var TodayFormatted =
       date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
@@ -1686,38 +1827,59 @@ function SendHomePage() {
     document.getElementById("home-container").append(Shortcut.firstChild);
 
     // Creates the container div for the timetable portion of the home page
-    var TimetableStr = `<div class="timetable-container border"><h2 class="home-subtitle">Today's Lessons</h2><div class="day-container" id="day-container"></div></div>`;
+    var TimetableStr = `<div class="timetable-container border"><div class="home-subtitle"><h2 id="home-lesson-subtitle">Today's Lessons</h2><div class="timetable-arrows"><svg width="24" height="24" viewBox="0 0 24 24" style="transform: scale(-1,1)" id="home-timetable-back"><g style="fill: currentcolor;"><path d="M8.578 16.359l4.594-4.594-4.594-4.594 1.406-1.406 6 6-6 6z"></path></g></svg><svg width="24" height="24" viewBox="0 0 24 24" id="home-timetable-forward"><g style="fill: currentcolor;"><path d="M8.578 16.359l4.594-4.594-4.594-4.594 1.406-1.406 6 6-6 6z"></path></g></svg></div></div><div class="day-container" id="day-container"></div></div>`;
     var Timetable = stringToHTML(TimetableStr);
     // Appends the timetable container into the home container
     document.getElementById("home-container").append(Timetable.firstChild);
 
-    function CheckUnmarkedAttendance(lessonattendance) {
-      if (lessonattendance) {
-        var lesson = lessonattendance.label;
+    var timetablearrowback = document.getElementById('home-timetable-back')
+    var timetablearrowforward = document.getElementById('home-timetable-forward')
+
+    function SetTimetableSubtitle() {
+      var homelessonsubtitle = document.getElementById('home-lesson-subtitle');
+      const date = new Date();
+      if (date.getYear() == currentSelectedDate.getYear() && date.getMonth() == currentSelectedDate.getMonth()) {
+        if (date.getDate() == currentSelectedDate.getDate()) {
+          // Change text to Today's Lessons
+          homelessonsubtitle.innerText = "Today's Lessons";
+        }
+        else if ((date.getDate() - 1) == currentSelectedDate.getDate()) {
+          // Change text to Yesterday's Lessons
+          homelessonsubtitle.innerText = "Yesterday's Lessons";
+        }
+        else if ((date.getDate() + 1) == currentSelectedDate.getDate()) {
+          // Change text to Tomorrow's Lessons
+          homelessonsubtitle.innerText = "Tomorrow's Lessons";
+        }
+        else {
+          // Change text to date of the day
+          homelessonsubtitle.innerText = `${currentSelectedDate.toLocaleString('en-us', { weekday: 'short' })} ${currentSelectedDate.toLocaleDateString('en-au')}`;
+        }
       }
-      else {
-        var lesson = " ";
-      }
-      return lesson;
     }
+
+    function changeTimetable(value) {
+
+      if (value == -1) {
+        currentSelectedDate.setDate(currentSelectedDate.getDate() - 1)
+        FormattedDate = currentSelectedDate.getFullYear() + "-" + (currentSelectedDate.getMonth() + 1) + "-" + currentSelectedDate.getDate();
+        callHomeTimetable(FormattedDate, true);
+      }
+      if (value == 1) {
+        currentSelectedDate.setDate(currentSelectedDate.getDate() + 1)
+        FormattedDate = currentSelectedDate.getFullYear() + "-" + (currentSelectedDate.getMonth() + 1) + "-" + currentSelectedDate.getDate();
+        callHomeTimetable(FormattedDate, true);
+      }
+      SetTimetableSubtitle();
+    }
+
+    timetablearrowback.addEventListener('click', function () { changeTimetable(-1) })
+    timetablearrowforward.addEventListener('click', function () { changeTimetable(1) })
+
+
 
     assessmentsicon = `<svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M16.029,11.207a.748.748,0,0,0,.705.5h0a.75.75,0,0,0,.75-.75V3.234a.413.413,0,0,0-.413-.414H4.574a.413.413,0,0,0-.413.414V18.06a.413.413,0,0,0,.413.413h6.859a.75.75,0,0,0,0-1.5H9.473V14.65h2.846a.977.977,0,0,0,.975-.975V11.207ZM5.661,10.082V7.765H8.348v2.317Zm2.687,1.125v2.318H5.661V11.207ZM9.473,7.765h2.7v2.317h-2.7Zm0-1.125V4.32h2.7V6.64Zm3.821,1.125h2.69v2.317h-2.69Zm2.69-1.125h-2.69V4.32h2.69ZM8.348,4.32V6.64H5.661V4.32Zm0,12.653H5.661V14.65H8.348Zm3.821-3.448h-2.7V11.207h2.7Z"></path><path d="M21.951,14.038a.657.657,0,0,0-.906.2l-5.033,7.93a.656.656,0,0,0,1.108.7l5.033-7.93A.657.657,0,0,0,21.951,14.038Z"></path><path d="M11.433,19.609H3.141a.148.148,0,0,1-.149-.149V1.848a.149.149,0,0,1,.149-.15H18.46a.15.15,0,0,1,.15.15v9.113a.75.75,0,0,0,.75.75h0a.75.75,0,0,0,.75-.75V1.848A1.65,1.65,0,0,0,18.46.2H3.141a1.649,1.649,0,0,0-1.649,1.65V19.46a1.649,1.649,0,0,0,1.649,1.649h8.292a.75.75,0,0,0,0-1.5Z"></path><path d="M16.7,18.341a1.928,1.928,0,0,0,0-3.777,2,2,0,0,0-.389-.039,1.928,1.928,0,0,0-1.927,1.928A1.93,1.93,0,0,0,16.7,18.341ZM15.8,16.8a.6.6,0,0,1-.092-.219.636.636,0,0,1-.013-.124.628.628,0,0,1,.013-.124.613.613,0,0,1,.6-.491.628.628,0,0,1,.124.012.615.615,0,0,1,0,1.205.561.561,0,0,1-.124.013A.615.615,0,0,1,15.8,16.8Z"></path><path d="M23.591,20a1.94,1.94,0,0,0-.358-.646A1.918,1.918,0,0,0,22,18.686c-.024,0-.047-.012-.072-.014-.057,0-.113-.007-.169-.007h0a1.924,1.924,0,0,0-.476,3.789,1.987,1.987,0,0,0,.311.059c.057,0,.113.007.169.007a1.977,1.977,0,0,0,.363-.034,1.934,1.934,0,0,0,1.171-.729,1.875,1.875,0,0,0,.187-.3A1.939,1.939,0,0,0,23.591,20Zm-1.832,1.21a.507.507,0,0,1-.055,0h0a.545.545,0,0,1-.136-.029.509.509,0,0,1-.054-.022.571.571,0,0,1-.061-.029c-.019-.011-.038-.024-.056-.037a.375.375,0,0,1-.036-.027.6.6,0,0,1-.134-.159c-.007-.012-.013-.026-.02-.04a.6.6,0,0,1-.028-.063c-.007-.02-.012-.042-.018-.064s-.009-.037-.012-.057a.631.631,0,0,1-.005-.139.617.617,0,0,1,.286-.467.609.609,0,0,1,.325-.095h0a.471.471,0,0,1,.053,0,.6.6,0,0,1,.294.108.612.612,0,0,1,.266.557.62.62,0,0,1-.5.551A.557.557,0,0,1,21.759,21.208Z"></path></g></g></svg>`;
     coursesicon = `<svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M23.51,21.431l-.7-.7-2.121,2.121.7.7a1.5,1.5,0,1,0,2.121-2.121Z"></path><path d="M18.062,15.983l-.433-.433-.446-.446-2.238-.53a.414.414,0,0,0-.414.413l.531,2.239.446.446.432.432,3.687,3.687,2.121-2.122Z"></path><path d="M15.111,19.849l-2.4.423V19.125l.778-.138a.75.75,0,0,0-.261-1.477l-.517.091V4.794l6.57-1.159a.563.563,0,0,1,.078-.007.158.158,0,0,1,.078.014.214.214,0,0,1,.021.112V6.087h0v9a.438.438,0,0,0,.127.308l.63.63a.434.434,0,0,0,.743-.282V5.822l.257-.046.73-.128a.46.46,0,0,1,.079-.008.156.156,0,0,1,.08.015.208.208,0,0,1,.022.114V16.586a2.022,2.022,0,0,1-.11.644.726.726,0,0,0,.159.751l.051.051a.722.722,0,0,0,1.19-.257,3.545,3.545,0,0,0,.21-1.189V5.769a1.566,1.566,0,0,0-1.6-1.629,2.005,2.005,0,0,0-.34.03l-.726.128V3.743a1.562,1.562,0,0,0-1.6-1.626,1.994,1.994,0,0,0-.339.03L11.964,3.392,4.9,2.147a1.994,1.994,0,0,0-.339-.03,1.546,1.546,0,0,0-1.48.979,1.764,1.764,0,0,0-.122.658V4.3L2.237,4.17a2.005,2.005,0,0,0-.34-.03A1.566,1.566,0,0,0,.3,5.769V16.586a4.088,4.088,0,0,0,3.284,3.863l8,1.411a.836.836,0,0,0,.14.012,1.082,1.082,0,0,0,.241-.03,1.066,1.066,0,0,0,.24.03.836.836,0,0,0,.14-.012l3.028-.534a.75.75,0,1,0-.261-1.477ZM4.463,3.743a.294.294,0,0,1,.009-.079l.009-.022a.148.148,0,0,1,.077-.014.577.577,0,0,1,.079.007L11.213,4.8V17.6l-6.05-1.066a.926.926,0,0,1-.7-.8ZM1.8,16.586V5.769a.208.208,0,0,1,.022-.114A.156.156,0,0,1,1.9,5.64a.46.46,0,0,1,.079.008l.723.127.264.047V15.73A2.416,2.416,0,0,0,4.9,18.012l6.31,1.112v1.148l-7.374-1.3A2.605,2.605,0,0,1,1.8,16.586Z"></path></g></g></svg>`;
-
-    function MakeLessonDiv(lesson, num) {
-      if (lesson.programmeID != 0) {
-        var lessondiv = stringToHTML(
-          `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5><div class="day-button clickable" style="left: 8px;" onclick="location.href='../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}'">${assessmentsicon}</div><div class="day-button clickable" style="left: 40px;" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'">${coursesicon}</div></div>`
-        );
-      }
-      else {
-        var lessondiv = stringToHTML(
-          `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5></div>`
-        );
-      }
-
-      return lessondiv;
-    }
 
     function createNewShortcut(link, icon, viewBox, title) {
       // Creates the stucture and element information for each seperate shortcut
@@ -1726,24 +1888,8 @@ function SendHomePage() {
       shortcut.setAttribute("target", "_blank");
       var shortcutdiv = document.createElement("div");
       shortcutdiv.classList.add("shortcut");
-      // var image = document.createElement("svg");
-      // image.setAttribute("viewBox", '0 0 24 24');
-      // image.style.width = '39px';
-      // image.style.height = '39px';
 
-      // path = document.createElement('path');
-      // path.setAttribute("fill", 'CurrentColor');
-      // path.setAttribute("d", icon);
-
-      // image.append(path)
-
-      image = stringToHTML(`<svg style="width:39px;height:39px" viewBox="${viewBox}">
-      <path fill="currentColor" d="${icon}" />
-  </svg>`).firstChild
-
-
-
-
+      image = stringToHTML(`<svg style="width:39px;height:39px" viewBox="${viewBox}"><path fill="currentColor" d="${icon}" /></svg>`).firstChild
       image.classList.add("shortcuticondiv");
       var text = document.createElement("p");
       text.textContent = title;
@@ -1775,111 +1921,8 @@ function SendHomePage() {
     document.getElementById("home-container").append(Notices.firstChild);
     var weblink = window.location.href.split("/")[2];
 
-    // Creates a HTTP Post Request to the SEQTA page for the students timetable
-    var xhr = new XMLHttpRequest();
-    xhr.open(
-      "POST",
-      "https://" + weblink + "/seqta/student/load/timetable?",
-      true
-    );
-    // Sets the response type to json
-    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    callHomeTimetable(TodayFormatted);
 
-    xhr.onreadystatechange = function () {
-      // Once the response is ready
-      if (xhr.readyState === 4) {
-        var serverResponse = JSON.parse(xhr.response);
-        lessonArray = [];
-        var DayContainer = document.getElementById("day-container")
-        // If items in response:
-        if (serverResponse.payload.items.length > 0) {
-          if (!DayContainer.innerText) {
-            // console.log(serverResponse.payload.items.length);
-            for (let i = 0; i < serverResponse.payload.items.length; i++) {
-              lessonArray.push(serverResponse.payload.items[i]);
-            }
-            lessonArray.sort(function (a, b) {
-              return a.from.localeCompare(b.from);
-            });
-            // If items in the response, set each corresponding value into divs
-            lessonArray = lessonArray.splice(1)
-            fetch("https://" + weblink + "/seqta/student/load/prefs?", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json; charset=utf-8",
-              },
-              body: JSON.stringify({ "request": "userPrefs", "asArray": true, "user": 69 })
-            })
-              .then((result) => result.json())
-              .then((response) => {
-                subjects = response.payload
-
-                for (let i = 0; i < lessonArray.length; i++) {
-
-                  subjectname = `timetable.subject.colour.${lessonArray[i].code}`
-
-                  subject = subjects.find(element => element.name === subjectname)
-                  if (!subject) {
-                    lessonArray[i].colour = `--item-colour: #8e8e8e;`
-                  }
-                  else {
-                    lessonArray[i].colour = `--item-colour: ${subject.value};`
-                    result = GetThresholdofHex(subject.value);
-
-                    if (result > 300) {
-                      lessonArray[i].invert = true;
-                    }
-                  }
-                  // Removes seconds from the start and end times
-                  lessonArray[i].from = lessonArray[i].from.substring(0, 5);
-                  lessonArray[i].until = lessonArray[i].until.substring(0, 5);
-
-                  // Checks if attendance is unmarked, and sets the string to " ".
-                  lessonArray[i].attendanceTitle = CheckUnmarkedAttendance(
-                    lessonArray[i].attendance)
-                }
-                // If on home page, apply each lesson to HTML with information in each div
-                DayContainer.innerText = '';
-                for (let i = 0; i < lessonArray.length; i++) {
-                  var div = MakeLessonDiv(lessonArray[i], i + 1);
-                  // Append each of the lessons into the day-container
-                  if (lessonArray[i].invert) {
-                    div.firstChild.classList.add('day-inverted');
-                  }
-
-                  DayContainer.append(div.firstChild);
-                }
-
-                for (i = 0; i < lessonArray.length; i++) {
-                  CheckCurrentLesson(lessonArray[i], i + 1);
-                }
-                // For each lesson, check the start and end times
-                CheckCurrentLessonAll(lessonArray);
-
-              });
-
-
-          }
-        }
-        else {
-          if (!DayContainer.innerText) {
-            var dummyDay = document.createElement("div");
-            dummyDay.classList.add("day");
-            DayContainer.append(dummyDay);
-          }
-
-        }
-      }
-    };
-    xhr.send(
-      JSON.stringify({
-        // Information sent to SEQTA page as a request with the dates and student number
-        from: TodayFormatted,
-        until: TodayFormatted,
-        // Funny number
-        student: 69,
-      })
-    );
 
     // Sends similar HTTP Post Request for the notices
     var xhr2 = new XMLHttpRequest();
