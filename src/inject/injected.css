@@ -350,7 +350,7 @@ html {
   background: var(--better-sub);
 }
 .Empty__Empty___2F6rn {
-  color: white;
+  color: var(--text-color);
 }
 .shortcut-container {
   border: 2px solid var(--better-main);
@@ -545,15 +545,11 @@ html {
   border: 4px solid var(--better-sub);
   background: var(--better-sub);
 }
-.legacy-root button,
-.legacy-root a {
-  background: var(--better-light);
-}
 .notifications__item___2ErJN {
-  background: var(--better-main) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 .notifications__item___2ErJN:hover {
-  background: var(--better-light) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 .connectedNotificationsWrapper > div > button + div {
   color: white;
@@ -702,7 +698,7 @@ iframe.userHTML {
 
 
 .connectedNotificationsWrapper > div > button {
-  color: var(--better-sub) !important;
+  color: var(--text-color) !important;
 }
 .programmeNavigator {
   width: 400px;
@@ -712,7 +708,7 @@ iframe.userHTML {
   text-transform: initial;
 }
 .SelectedAssessment__SelectedAssessment___3Bu5D {
-  color: white;
+  color: var(--text-color);
 }
 .TabSet__TabSet___Vo-SZ > .TabSet__tabContainer___3iIRe {
   background: unset;
@@ -875,7 +871,12 @@ body {
   box-shadow: inset 3px 0 rgb(255, 255, 255);
 }
 .connectedNotificationsWrapper > div > button {
-  background: var(--better-light) !important;
+  background: rgba(var(--better-light),0.1) !important;
+  box-shadow: 0px 0px 10px 2px var(--better-light) !important;
+}
+#AddedSettings {
+  background: rgba(var(--better-light),0.1) !important;
+  box-shadow: 0px 0px 10px 2px var(--better-light) !important;
 }
 #userActions > .details > .name::before {
   content: "";
