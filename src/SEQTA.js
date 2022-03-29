@@ -2076,15 +2076,16 @@ function SendNewsPage() {
         newsarticle.href = newsarticles[i].url;
         newsarticle.target = '_blank';
 
-        articleimage = document.createElement('img');
+        articleimage = document.createElement('div');
+        articleimage.classList.add('articleimage')
 
         if (newsarticles[i].urlToImage == 'null') {
-          articleimage.src = chrome.runtime.getURL("icons/betterseqta-light-outline.png");
+          articleimage.style.backgroundImage = `url(${chrome.runtime.getURL("icons/betterseqta-light-outline.png")})`;
           articleimage.style.width = '20%'
           articleimage.style.margin = '0 7.5%';
         }
         else {
-          articleimage.src = newsarticles[i].urlToImage;
+          articleimage.style.backgroundImage = `url(${newsarticles[i].urlToImage})`;
         }
 
         articletext = document.createElement('div');

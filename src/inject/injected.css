@@ -546,10 +546,12 @@ html {
   background: var(--better-sub);
 }
 .notifications__item___2ErJN {
-  background: rgba(255, 255, 255, 0.2) !important;
+  background: var(--better-sub) !important;
+  border-left: 4px solid var(--better-main) !important;
+  margin-bottom: 4px !important;
 }
 .notifications__item___2ErJN:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
+  filter: brightness(1.1);
 }
 .connectedNotificationsWrapper > div > button + div {
   color: white;
@@ -648,6 +650,7 @@ iframe.userHTML {
 .programmeNavigator > .navigator > .week > .lessons > .lesson.selected,
 .programmeNavigator > .navigator > .cover.selected {
   background: var(--better-light);
+  color: var(--text-color) !important;
 }
 #main > .course > .content > h1 {
   color: white;
@@ -717,7 +720,7 @@ iframe.userHTML {
   background: var(--better-light);
 }
 .legacy-root .uiFileHandler {
-  background: var(--better-light);
+  background: var(--better-sub);
   margin: 8px 0px 0px 0px;
   -webkit-box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
@@ -796,7 +799,7 @@ ul.buttonMenu,
 ul.colourButtonOptions,
 ul.uiSplitButtonList,
 .contactFormPanel {
-  background: var(--better-light) !important;
+  background: var(--better-sub) !important;
   border: solid 4px var(--better-sub);
   color: rgba(255, 255, 255, 0.8);
 }
@@ -945,12 +948,20 @@ background-color: currentColor !important;
   border: 2px solid var(--better-main) !important;
   border-radius: 5px !important;
   width: 94%;
+  padding: 0 !important;
   margin: 10px auto 50px !important;
   background: var(--better-sub) !important;
   display: flex;
   flex-direction: row;
   -webkit-box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
   box-shadow: 0px 5px 16px 6px rgba(0, 0, 0, 0.3);
+}
+.articleimage {
+  width: 35%;
+  background-position: center;
+  background-size: cover;
+  min-height: 18em;
+  background-repeat: no-repeat;
 }
 .NewsArticle img {
   width: 35%;
@@ -1129,9 +1140,6 @@ background-color: currentColor !important;
 #menu {
   color: var(--text-color);
 }
-.notifications__item___2ErJN > .notifications__details___193F4 {
-  color: var(--text-color) !important;
-}
 #menuToggle {
   color: var(--text-color);
 }
@@ -1146,4 +1154,9 @@ background-color: currentColor !important;
 }
 .day-empty p {
   margin: 0;
+}
+
+.notifications__actions___1UX7r > button {
+  background: none !important;
+  border: 1px solid white;
 }
