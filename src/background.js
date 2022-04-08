@@ -63,6 +63,7 @@ const DefaultValues = {
   defaultmenuorder: [],
   menuitems: {},
   menuorder: [],
+  subjectfilters: {},
   selectedColor: '#1a1a1a',
   shortcuts: [
     {
