@@ -42,13 +42,27 @@ chrome.runtime.onMessage.addListener(
         console.log(TodayFormatted)
         console.log(from)
 
-
       // var url = `https://newsapi.org/v2/everything?sources=abc-news&from=${TodayFormatted}&sortBy=popularity&apiKey=17c0da766ba347c89d094449504e3080`;
       var url = `https://newsapi.org/v2/everything?domains=abc.net.au&from=${from}&apiKey=17c0da766ba347c89d094449504e3080`
       var req = new Request(url);
-      fetch(url)
-      .then((result) => result.json())
-      .then((response) => {sendResponse({news: response})})
+
+      function GetNews(){
+        fetch(url)
+        .then((result) => result.json())
+        .then((response) => {
+          if (response.code == 'rateLimited'){
+            url += '%00';
+            GetNews();
+          }
+          else {
+            sendResponse({news: response})
+          }
+        })
+      }
+
+      GetNews();
+
+
 
       return true;
     }
