@@ -596,7 +596,7 @@ function RunFunctionOnTrue(storedSetting) {
     document.getElementsByTagName("html")[0].appendChild(fileref);
 
     document.documentElement.style.setProperty('--better-sub', "#161616");
-    document.documentElement.style.setProperty('--better-alert-highlight', "#c61851");
+    document.documentElement.style.setProperty('--better-alert-highlight', "#f80ab2");
 
 
     rbg = GetThresholdofHex(storedSetting.selectedColor);
@@ -698,6 +698,7 @@ document.addEventListener(
 function RunExtensionSettingsJS() {
   const onoffselection = document.querySelector("#onoff");
   const notificationcollector = document.querySelector("#notification");
+  //const betteraudio = document.querySelector("#betteraudio");
   const lessonalert = document.querySelector("#lessonalert");
   const aboutsection = document.querySelector("#aboutsection");
   const shortcutsection = document.querySelector("#shortcutsection");
@@ -755,6 +756,7 @@ function RunExtensionSettingsJS() {
       { notificationcollector: notificationcollector.checked });
     chrome.storage.local.set({ lessonalert: lessonalert.checked });
     chrome.storage.local.set({ animatedbk: animatedbk.checked });
+    //chrome.storage.local.set({ betteraudio: betteraudio.checked });
   }
 
 
@@ -785,6 +787,7 @@ function RunExtensionSettingsJS() {
       notificationcollector.checked = restoredSettings.notificationcollector;
       lessonalert.checked = restoredSettings.lessonalert;
       animatedbk.checked = restoredSettings.animatedbk;
+      //betteraudio.checked = restoredSettings.betteraudio;
       chrome.storage.local.get(["shortcuts"], function (result) {
         var shortcuts = Object.values(result)[0];
         for (var i = 0; i < shortcutbuttons.length; i++) {
@@ -817,6 +820,8 @@ function RunExtensionSettingsJS() {
     storeNotificationSettings
   );
   lessonalert.addEventListener("change", storeNotificationSettings)
+
+  //betteraudio.addEventListener("change", storeNotificationSettings)
 
   animatedbk.addEventListener("change", storeNotificationSettings)
 

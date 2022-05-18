@@ -40,6 +40,7 @@
         "icons/*",
         "images/*",
         "inject/*",
-        "popup/*"
+        "popup/*",
+        "audio/*"
     ]
 }
