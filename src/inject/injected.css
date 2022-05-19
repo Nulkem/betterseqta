@@ -384,6 +384,7 @@ html {
   margin: 0px auto 7px;
   background: var(--better-sub);
   box-shadow: inset 0px 5px 20px 1px rgba(0, 0, 0, 0.3);
+  padding-bottom: 25px;
 }
 .dummynotice {
   width: 95%;
@@ -467,7 +468,7 @@ html {
   font-weight: 200;
 }
 .notice h6 {
-  margin: 0px 0px 40px 0px;
+  margin: 0px 0px 25px 0px;
   font-weight: 100;
   color: #c9c9c9;
 }

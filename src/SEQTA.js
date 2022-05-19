@@ -1660,12 +1660,12 @@ function CheckCurrentLessonAll(lessons) {
 function MakeLessonDiv(lesson, num) {
   if (lesson.programmeID != 0) {
     var lessondiv = stringToHTML(
-      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5><div class="day-button clickable" style="left: 8px;" onclick="location.href='../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}'">${assessmentsicon}</div><div class="day-button clickable" style="left: 40px;" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'">${coursesicon}</div></div>`
+      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson?.description ?? "Unknown"}</h2><h3>${lesson?.staff ?? "Unknown"}</h3><h3>${lesson?.room ?? "Unknown"}</h3><h4>${lesson?.from ?? "Unknown"} - ${lesson?.until ?? "Unknown"}</h4><h5>${lesson?.attendanceTitle ?? "Unknown"}</h5><div class="day-button clickable" style="left: 8px;" onclick="location.href='../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}'">${assessmentsicon}</div><div class="day-button clickable" style="left: 40px;" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'">${coursesicon}</div></div>`
     );
   }
   else {
     var lessondiv = stringToHTML(
-      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5></div>`
+      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson?.description ?? "Unknown"}</h2><h3>${lesson?.staff ?? "Unknown"}</h3><h3>${lesson?.room ?? "Unknown"}</h3><h4>${lesson?.from ?? "Unknown"} - ${lesson?.until ?? "Unknown"}</h4><h5>${lesson?.attendanceTitle ?? "Unknown"}</h5></div>`
     );
   }
 
