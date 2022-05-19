@@ -596,7 +596,8 @@ function RunFunctionOnTrue(storedSetting) {
     document.getElementsByTagName("html")[0].appendChild(fileref);
 
     document.documentElement.style.setProperty('--better-sub', "#161616");
-    document.documentElement.style.setProperty('--better-alert-highlight', "#f80ab2");
+    document.documentElement.style.setProperty('--better-primary', "#F80AB2");
+    document.documentElement.style.setProperty('--better-secondary', "#6ecefa");
 
 
     rbg = GetThresholdofHex(storedSetting.selectedColor);

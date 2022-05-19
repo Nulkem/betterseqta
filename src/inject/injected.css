@@ -17,11 +17,36 @@
   background-color: var(--better-main) !important;
   background: var(--better-main) !important;
   --navy: #1a1a1a !important;
-  --secondary: #6ecefa !important;
-  --orange: var(--better-alert-highlight) !important;
-  --blue: var(--secondary) !important;
-  --green: var(--secondary) !important;
-  --yellow: var(--secondary) !important;
+  --orange: var(--better-primary) !important;
+  --blue: var(--better-secondary) !important;
+  --green: var(--better-secondary) !important;
+  --yellow: var(--better-secondary) !important;
+  --theme-sel-bg-parts: var(--better-primary) !important;
+  --theme-bg-parts: 51, 51, 51 !important;
+}
+.MessageList__MessageList___3DxoC > ol > li .MessageList__flags___2kqiT > svg {
+  color: var(--better-secondary) !important;
+}
+#toolbar input {
+  background: rgba(var(--theme-bg-parts),0.5);
+}
+.dailycal>.times>.now {
+  border-bottom: 1px solid var(--better-primary);
+}
+.dashlet-summary-homework>.summary>.subject>.item>.todo {
+  color: var(--better-secondary) !important;
+}
+.Message__Message___3oJaU > .Message__recipients___3gLZX > li.Message__student___3Z6Hl {
+  --colour: var(--better-secondary) !important;
+}
+.Message__Message___3oJaU > .Message__recipients___3gLZX > li.Message__staff___16jB7 {
+  --colour: var(--better-primary) !important;
+}
+.anyoneSelect.distinguished>.listWrapper>.list>.item.staff {
+  box-shadow: inset 8px 0 var(--better-secondary) !important;
+}
+#main>.documents>.list>tbody .title>a {
+  color: white !important;
 }
 #container {
   transition: 1s;
@@ -575,7 +600,7 @@ html {
 .notifications__notifications___3mmLY
   > button
   > .notifications__bubble___1EkSQ {
-  background: var(--better-alert-highlight);
+  background: var(--better-primary);
   width: 25px;
   height: 25px;
 }
@@ -815,7 +840,7 @@ body::-webkit-scrollbar {
 }
 .legacy-root button.depressed,
 .legacy-root button.toggled {
-  background: #797979;
+  background: var(--better-primary);
 }
 .cke_toolbox > .cke_toolbar .cke_combo_on > .cke_combo_button,
 .cke_toolbox > .cke_toolbar .cke_button_on {
