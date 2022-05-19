@@ -24,6 +24,9 @@
   --theme-sel-bg-parts: var(--better-primary) !important;
   --theme-bg-parts: 51, 51, 51 !important;
 }
+#main>.timetablepage>.quickbar .actions>button, #main>.timetablepage>.quickbar .actions>a {
+  color: white !important;
+}
 .legacy-root input[type='checkbox'] {
   accent-color: var(--better-secondary) !important;
 }
@@ -952,7 +955,7 @@ body {
   background-image: url(/icons/betterseqta-light-outline.png);
   display: inline-block;
   background-size: 18px 18px;
-  color: #fff;
+  color: white;
   margin-right: 2px;
   background-position: center;
   vertical-align: top;

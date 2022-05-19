@@ -682,6 +682,13 @@ document.addEventListener(
       link.rel = "stylesheet";
       document.getElementsByTagName("html")[0].appendChild(link);
 
+      if (isChrome) {
+        document.querySelector('link[rel*="icon"]').href = chrome.extension.getURL("icons/icon-48.png");
+        chrome.storage.local.get(null, function (items) {
+        RunFunctionOnTrue(items);
+        });
+      }
+
       chrome.storage.local.get(null, function (items) {
         RunFunctionOnTrue(items);
       });
