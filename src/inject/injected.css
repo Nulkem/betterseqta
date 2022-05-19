@@ -24,6 +24,12 @@
   --theme-sel-bg-parts: var(--better-primary) !important;
   --theme-bg-parts: 51, 51, 51 !important;
 }
+.legacy-root input[type='checkbox'] {
+  accent-color: var(--better-secondary) !important;
+}
+.SelectedAssessment__SelectedAssessment___3Bu5D > .SelectedAssessment__meta___1gq_y > .SelectedAssessment__due___gaPre {
+  background: rgba(var(--theme-bg-parts),0.5);
+}
 .MessageList__MessageList___3DxoC > ol > li .MessageList__flags___2kqiT > svg {
   color: var(--better-secondary) !important;
 }
