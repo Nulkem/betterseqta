@@ -688,10 +688,6 @@ document.addEventListener(
         RunFunctionOnTrue(items);
         });
       }
-
-      chrome.storage.local.get(null, function (items) {
-        RunFunctionOnTrue(items);
-      });
     }
     if (
       !document.childNodes[1].textContent.includes("SEQTA") &&
