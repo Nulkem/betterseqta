@@ -41,6 +41,8 @@ var shortcutbuttons = document.getElementsByClassName("shortcutitem");
 
 const github = document.getElementById("github");
 
+const version = document.getElementById('version');
+
 function openGithub() {
   chrome.tabs.create({ url: "https://github.com/Nulkem/better-seqta" });
 }
@@ -51,7 +53,7 @@ function openPage(page) {
   page.style.right = '0px';
 }
 
-function backToMainMenu(){
+function backToMainMenu() {
   mainpage.style.left = "0px";
 
   menupage.style.right = "-350px";
@@ -59,7 +61,7 @@ function backToMainMenu(){
   miscpage.style.right = "-350px";
 }
 
-function resetActive(){
+function resetActive() {
   for (let i = 0; i < navbuttons.length; i++) {
     navbuttons[i].classList.remove('activenav');
   }
@@ -152,13 +154,14 @@ chrome.storage.local.get(null, function (result) {
 On blur, save the currently selected settings.
 */
 document.addEventListener("DOMContentLoaded", function () {
+  version.innerHTML = `v${chrome.runtime.getManifest().version}`;
   github.addEventListener("click", openGithub);
 
-  aboutsection.addEventListener("click", () => {resetActive(); aboutsection.classList.add('activenav'); menupage.classList.remove('hiddenmenu')});
+  aboutsection.addEventListener("click", () => { resetActive(); aboutsection.classList.add('activenav'); menupage.classList.remove('hiddenmenu') });
 
-  shortcutsection.addEventListener("click", () => {resetActive(); shortcutsection.classList.add('activenav'); shortcutpage.classList.remove('hiddenmenu')});
+  shortcutsection.addEventListener("click", () => { resetActive(); shortcutsection.classList.add('activenav'); shortcutpage.classList.remove('hiddenmenu') });
 
-  miscsection.addEventListener("click", () => {resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu')})
+  miscsection.addEventListener("click", () => { resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu') })
 });
 
 onoffselection.addEventListener("change", storeSettings);
@@ -175,12 +178,12 @@ animatedbk.addEventListener("change", storeNotificationSettings)
 var unsavedchangesshown = false
 
 for (let i = 0; i < allinputs.length; i++) {
-  if (allinputs[i].id != 'colorpicker'){
-    allinputs[i].addEventListener("change", () => {applybutton.style.left = "4px"})
+  if (allinputs[i].id != 'colorpicker') {
+    allinputs[i].addEventListener("change", () => { applybutton.style.left = "4px" })
   }
 }
 
-applybutton.addEventListener('click', () => {StoreAllSettings(); applybutton.style.left = "-150px"})
+applybutton.addEventListener('click', () => { StoreAllSettings(); applybutton.style.left = "-150px" })
 
 
 colorpicker.addEventListener("input", function () {

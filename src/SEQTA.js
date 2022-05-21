@@ -700,7 +700,6 @@ document.addEventListener(
 function RunExtensionSettingsJS() {
   const onoffselection = document.querySelector("#onoff");
   const notificationcollector = document.querySelector("#notification");
-  //const betteraudio = document.querySelector("#betteraudio");
   const lessonalert = document.querySelector("#lessonalert");
   const aboutsection = document.querySelector("#aboutsection");
   const shortcutsection = document.querySelector("#shortcutsection");
@@ -758,7 +757,6 @@ function RunExtensionSettingsJS() {
       { notificationcollector: notificationcollector.checked });
     chrome.storage.local.set({ lessonalert: lessonalert.checked });
     chrome.storage.local.set({ animatedbk: animatedbk.checked });
-    //chrome.storage.local.set({ betteraudio: betteraudio.checked });
   }
 
 
@@ -789,7 +787,6 @@ function RunExtensionSettingsJS() {
       notificationcollector.checked = restoredSettings.notificationcollector;
       lessonalert.checked = restoredSettings.lessonalert;
       animatedbk.checked = restoredSettings.animatedbk;
-      //betteraudio.checked = restoredSettings.betteraudio;
       chrome.storage.local.get(["shortcuts"], function (result) {
         var shortcuts = Object.values(result)[0];
         for (var i = 0; i < shortcutbuttons.length; i++) {
@@ -823,7 +820,6 @@ function RunExtensionSettingsJS() {
   );
   lessonalert.addEventListener("change", storeNotificationSettings)
 
-  //betteraudio.addEventListener("change", storeNotificationSettings)
 
   animatedbk.addEventListener("change", storeNotificationSettings)
 
