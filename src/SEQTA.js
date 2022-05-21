@@ -88,7 +88,7 @@ function loading() {
   // loadinghtml = stringToHTML(
   //   `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
   //   <svg width="300" height="160" id="clackers" style="display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);"><svg><path id="arc-left-up" fill="none" d="M 90 90 A 90 90 0 0 1 0 0"/></svg><svg><path id="arc-right-up" fill="none" d="M 100 90 A 90 90 0 0 0 190 0"/></svg><text x="150" y="50" fill="#ffffff" font-size="18"text-anchor="middle">B E T T E R S E Q T A</text><circle style="fill: #333333;" cx="15" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-left-up"/></animateMotion></circle><circle style="fill: #242424;" cx="135" cy="105" r="15" /><circle style="fill: #161616;" cx="165" cy="105" r="15" /><circle style="fill: #313131;" cx="95" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-right-up"/></animateMotion></circle></svg>
-  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.76</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
+  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v${chrome.runtime.getManifest().version}</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
   // );
   loadinghtml = stringToHTML(
     `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
@@ -147,7 +147,7 @@ function loading() {
     <svg height="135" width="135" viewBox="0 0 1000 1000" class="small-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L455.999 938C455.986 936.008 456.301 933.282 454.972 931.603C453.594 929.862 450.977 930.062 448.999 929.835C443.991 929.258 438.987 928.463 434 927.728C414.788 924.898 395.564 920.733 377 915.025C300.826 891.602 231.835 849.314 178.17 790C106.263 710.526 63.7248 603.522 65.0039 496C65.7806 430.71 81.6532 365.691 110.259 307C130.156 266.177 157.727 228.746 189.039 196C222.33 161.185 262.986 132.26 306 110.753C345.737 90.8846 389.756 75.6209 434 70L434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.501 68.7513 294.622 88.2739 254 113.576C215.656 137.46 181.298 167.82 151.87 202C33.2034 339.827 7.62905 544.971 91.2585 707C112.853 748.839 140.699 787.699 174 821C210.688 857.688 253.047 888.542 300 910.781C332.493 926.171 365.923 937.713 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
     <svg height="180" width="180" viewBox="0 0 1000 1000" class="big-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M454 952L454 887C441.324 886.456 428.346 883.444 416 880.65C389.799 874.722 364.497 866.349 340 855.306C205.92 794.861 116.45 660.408 110.039 514C108.593 480.976 112.302 447.246 119.424 415C144.931 299.518 226.1 198.275 333 147.781C389.157 121.255 450.99 108.496 513 110.015C612.241 112.446 711.495 157.399 779.961 229C839.544 291.312 879.215 372.892 887.831 459C893.323 513.894 887.624 569.466 870.329 622C836.537 724.647 758.42 810.937 660 855.306C635.503 866.349 610.201 874.722 584 880.65C571.383 883.505 557.974 886.732 545 887L545 952C562.916 951.63 581.566 947.595 599 943.65C637.149 935.018 673.043 921.725 708 904.247C753.184 881.655 792.42 850.594 828 815C859.416 783.572 885.414 745.666 905.247 706C933.723 649.048 949.566 588.445 953.911 525C963.014 392.066 906.622 254.399 808 165.17C769.47 130.31 725.8 101.975 678 81.5787C629.733 60.9833 575.64 47.3041 523 46.0146C469.032 44.6927 415.748 49.9443 364 66.0255C223.375 109.726 109.726 223.376 66.0255 364C14.4181 530.066 63.7205 715.347 191 833.911C229.196 869.491 274.051 897.962 322 918.421C362.806 935.833 409.371 950.084 454 952z"/></svg>
     <svg height="220" width="220" viewBox="0 0 1000 1000" class="outer-circle svg"><path xmlns="http://www.w3.org/2000/svg" style="fill:#ededed; stroke:none;" d="M456 954L456 946C438.715 945.258 420.843 941.462 404 937.65C369.403 929.822 335.739 918.116 304 902.247C255.981 878.237 211.768 846.374 175.09 807C62.5744 686.214 23.1598 509.033 78.6921 353C96.4653 303.062 122.84 256.974 156.424 216C207.709 153.43 278.099 103.658 355 78C372.453 72.1767 389.992 67.0399 408 63.2107C413.31 62.0816 418.647 60.9853 424 60.0811C426.508 59.6575 430.352 59.6852 432.397 57.9869C434.897 55.9098 434 50.8766 434 48C417.656 48.1353 400.764 53.1855 385 57.1265C338.517 68.7473 294.608 88.2827 254 113.576C215.673 137.45 181.285 167.835 151.87 202C33.9725 338.933 8.37009 541.243 89.2485 703C110.949 746.4 139.693 786.693 174 821C210.688 857.688 253.047 888.542 300 910.781C332.484 926.167 365.934 937.716 401 945.65C418.745 949.666 437.768 953.624 456 954z"/></svg>
-    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v1.76</div></div>`
+    <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v${chrome.runtime.getManifest().version}</div></div>`
   );
   var html = document.getElementsByTagName("html")[0];
   html.append(loadinghtml.firstChild);
@@ -238,8 +238,8 @@ function waitForElm(selector) {
 }
 var LoadingDone = false;
 
-async function RunColourCheck(element){
-  if (typeof element.contentDocument.documentElement.childNodes[1] == 'undefined'){
+async function RunColourCheck(element) {
+  if (typeof element.contentDocument.documentElement.childNodes[1] == 'undefined') {
     await delay(1000);
     RunColourCheck(element);
   }
@@ -682,12 +682,10 @@ document.addEventListener(
       link.rel = "stylesheet";
       document.getElementsByTagName("html")[0].appendChild(link);
 
-      if (isChrome) {
-        document.querySelector('link[rel*="icon"]').href = chrome.extension.getURL("icons/icon-48.png");
-        chrome.storage.local.get(null, function (items) {
+      document.querySelector('link[rel*="icon"]').href = chrome.extension.getURL("icons/icon-48.png");
+      chrome.storage.local.get(null, function (items) {
         RunFunctionOnTrue(items);
-        });
-      }
+      });
     }
     if (
       !document.childNodes[1].textContent.includes("SEQTA") &&
@@ -1114,7 +1112,7 @@ function CallExtensionSettings() {
 
     <div></div>
 
-    <div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177); display: flex;"><p style="margin: 0; margin-right: 5px; color: white;">Created by Nulkem </p> v1.76</div><img
+    <div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177); display: flex;"><p style="margin: 0; margin-right: 5px; color: white;">Created by Nulkem </p> v${chrome.runtime.getManifest().version}</div><img
     src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github">
   </div></div>`)
   document.body.append(Settings.firstChild)
@@ -1425,7 +1423,7 @@ function AddBetterSEQTAElements(toggle) {
   if (code != null) {
     if (!code.innerHTML.includes("BetterSEQTA")) {
       UserInitalCode = code.innerText;
-      code.innerText = "BetterSEQTA v1.76";
+      code.innerText = `BetterSEQTA v${chrome.runtime.getManifest().version}`;
       code.setAttribute('data-hover', 'Click for user code');
       code.addEventListener('click', function () {
         var code = document.getElementsByClassName("code")[0];
@@ -1434,7 +1432,7 @@ function AddBetterSEQTAElements(toggle) {
           code.setAttribute('data-hover', 'Click for BetterSEQTA version')
         }
         else {
-          code.innerText = 'BetterSEQTA v1.76'
+          code.innerText = `BetterSEQTA v${chrome.runtime.getManifest().version}`
           code.setAttribute('data-hover', 'Click for user code');
         }
       })
@@ -1715,50 +1713,50 @@ function callHomeTimetable(date, change) {
           });
           // If items in the response, set each corresponding value into divs
           lessonArray = lessonArray.splice(1)
-            GetLessonColours().then((colours) => {
-              subjects = colours;
-              for (let i = 0; i < lessonArray.length; i++) {
+          GetLessonColours().then((colours) => {
+            subjects = colours;
+            for (let i = 0; i < lessonArray.length; i++) {
 
-                subjectname = `timetable.subject.colour.${lessonArray[i].code}`
+              subjectname = `timetable.subject.colour.${lessonArray[i].code}`
 
-                subject = subjects.find(element => element.name === subjectname)
-                if (!subject) {
-                  lessonArray[i].colour = `--item-colour: #8e8e8e;`
-                }
-                else {
-                  lessonArray[i].colour = `--item-colour: ${subject.value};`
-                  result = GetThresholdofHex(subject.value);
-
-                  if (result > 300) {
-                    lessonArray[i].invert = true;
-                  }
-                }
-                // Removes seconds from the start and end times
-                lessonArray[i].from = lessonArray[i].from.substring(0, 5);
-                lessonArray[i].until = lessonArray[i].until.substring(0, 5);
-
-                // Checks if attendance is unmarked, and sets the string to " ".
-                lessonArray[i].attendanceTitle = CheckUnmarkedAttendance(
-                  lessonArray[i].attendance)
+              subject = subjects.find(element => element.name === subjectname)
+              if (!subject) {
+                lessonArray[i].colour = `--item-colour: #8e8e8e;`
               }
-              // If on home page, apply each lesson to HTML with information in each div
-              DayContainer.innerText = '';
-              for (let i = 0; i < lessonArray.length; i++) {
-                var div = MakeLessonDiv(lessonArray[i], i + 1);
-                // Append each of the lessons into the day-container
-                if (lessonArray[i].invert) {
-                  div.firstChild.classList.add('day-inverted');
-                }
+              else {
+                lessonArray[i].colour = `--item-colour: ${subject.value};`
+                result = GetThresholdofHex(subject.value);
 
-                DayContainer.append(div.firstChild);
+                if (result > 300) {
+                  lessonArray[i].invert = true;
+                }
+              }
+              // Removes seconds from the start and end times
+              lessonArray[i].from = lessonArray[i].from.substring(0, 5);
+              lessonArray[i].until = lessonArray[i].until.substring(0, 5);
+
+              // Checks if attendance is unmarked, and sets the string to " ".
+              lessonArray[i].attendanceTitle = CheckUnmarkedAttendance(
+                lessonArray[i].attendance)
+            }
+            // If on home page, apply each lesson to HTML with information in each div
+            DayContainer.innerText = '';
+            for (let i = 0; i < lessonArray.length; i++) {
+              var div = MakeLessonDiv(lessonArray[i], i + 1);
+              // Append each of the lessons into the day-container
+              if (lessonArray[i].invert) {
+                div.firstChild.classList.add('day-inverted');
               }
 
-              for (i = 0; i < lessonArray.length; i++) {
-                CheckCurrentLesson(lessonArray[i], i + 1);
-              }
-              // For each lesson, check the start and end times
-              CheckCurrentLessonAll(lessonArray);
-            })
+              DayContainer.append(div.firstChild);
+            }
+
+            for (i = 0; i < lessonArray.length; i++) {
+              CheckCurrentLesson(lessonArray[i], i + 1);
+            }
+            // For each lesson, check the start and end times
+            CheckCurrentLessonAll(lessonArray);
+          })
 
 
         }
@@ -1790,7 +1788,7 @@ function callHomeTimetable(date, change) {
   );
 }
 
-function GetUpcomingAssessments(){
+function GetUpcomingAssessments() {
 
   func = fetch(`${location.origin}/seqta/student/assessment/list/upcoming?`, {
     method: "POST",
@@ -1801,11 +1799,11 @@ function GetUpcomingAssessments(){
   })
 
   return func
-  .then((result) => result.json())
-  .then(response => (response.payload))
+    .then((result) => result.json())
+    .then(response => (response.payload))
 }
 
-function GetActiveClasses(){
+function GetActiveClasses() {
   func = fetch(`${location.origin}/seqta/student/load/subjects?`, {
     method: "POST",
     headers: {
@@ -1819,37 +1817,37 @@ function GetActiveClasses(){
     .then(response => (response.payload))
 }
 
-function comparedate( obj1, obj2 ) {
-  if ( obj1.date < obj2.date ){
+function comparedate(obj1, obj2) {
+  if (obj1.date < obj2.date) {
     return -1;
   }
-  if ( obj1.date > obj2.date ){
+  if (obj1.date > obj2.date) {
     return 1;
   }
   return 0;
 }
 
-function CreateElement(type, class_, id, innerText, innerHTML, style){
+function CreateElement(type, class_, id, innerText, innerHTML, style) {
   element = document.createElement(type);
-  if (class_ !== undefined){
+  if (class_ !== undefined) {
     element.classList.add(class_);
   }
-  if (id !== undefined){
-  element.id = id;
+  if (id !== undefined) {
+    element.id = id;
   }
-  if (innerText !== undefined){
-  element.innerText = innerText;
+  if (innerText !== undefined) {
+    element.innerText = innerText;
   }
-  if (innerHTML !== undefined){
-  element.innerHTML = innerHTML;
+  if (innerHTML !== undefined) {
+    element.innerHTML = innerHTML;
   }
-  if (style !== undefined){
-  element.style = style;
+  if (style !== undefined) {
+    element.style = style;
   }
   return element
 }
 
-function createAssessmentDateDiv(date, value, datecase=undefined){
+function createAssessmentDateDiv(date, value, datecase = undefined) {
   var options = { weekday: 'long', month: 'long', day: 'numeric' };
   const FormattedDate = new Date(date)
 
@@ -1859,7 +1857,7 @@ function createAssessmentDateDiv(date, value, datecase=undefined){
   DateTitleDiv = document.createElement('div');
   DateTitleDiv.classList.add('upcoming-date-title');
 
-  if (datecase){
+  if (datecase) {
     datetitle = document.createElement('h5');
     datetitle.classList.add('upcoming-special-day')
     datetitle.innerText = datecase;
@@ -1877,7 +1875,7 @@ function createAssessmentDateDiv(date, value, datecase=undefined){
 
   assessmentContainer = document.createElement('div')
   assessmentContainer.classList.add('upcoming-date-assessments');
-  
+
   for (let i = 0; i < assessments.length; i++) {
     const element = assessments[i];
     item = document.createElement('div')
@@ -1886,14 +1884,14 @@ function createAssessmentDateDiv(date, value, datecase=undefined){
     item.id = `assessment${element.id}`;
 
     item.style = element.colour;
-  
+
     titlediv = document.createElement('div');
     titlediv.classList.add('upcoming-subject-title');
 
     title = document.createElement('h5');
     title.innerText = element.subject;
     titlediv.append(title);
-  
+
     detailsdiv = document.createElement('div');
     detailsdiv.classList.add('upcoming-details');
     detailstitle = document.createElement('h5');
@@ -1901,10 +1899,10 @@ function createAssessmentDateDiv(date, value, datecase=undefined){
     subject = document.createElement('p');
     subject.innerText = element.title;
     subject.classList.add('upcoming-assessment-title');
-    subject.onclick = function(){location.href=`../#?page=/assessments/${element.programmeID}:${element.metaclassID}&item=${element.id}`};
+    subject.onclick = function () { location.href = `../#?page=/assessments/${element.programmeID}:${element.metaclassID}&item=${element.id}` };
     detailsdiv.append(detailstitle);
     detailsdiv.append(subject);
-  
+
     item.append(titlediv);
     item.append(detailsdiv);
     assessmentContainer.append(item);
@@ -1918,7 +1916,7 @@ function createAssessmentDateDiv(date, value, datecase=undefined){
     })
       .then((result) => result.json())
       .then((response) => {
-        if (response.payload.length > 0){
+        if (response.payload.length > 0) {
           console.log(response.payload)
           const assessment = document.querySelector(`#assessment${element.id}`);
 
@@ -1931,7 +1929,7 @@ function createAssessmentDateDiv(date, value, datecase=undefined){
       })
 
 
-    
+
   }
 
   container.append(assessmentContainer);
@@ -1940,38 +1938,38 @@ function createAssessmentDateDiv(date, value, datecase=undefined){
 
 }
 
-function CheckSpecialDay(date1, date2){
+function CheckSpecialDay(date1, date2) {
   if (
     date1.getFullYear() === date2.getFullYear() &&
     date1.getMonth() === date2.getMonth() &&
-    (date1.getDate()-1) === date2.getDate()
-  ){
+    (date1.getDate() - 1) === date2.getDate()
+  ) {
     return "Yesterday";
   }
   if (
     date1.getFullYear() === date2.getFullYear() &&
     date1.getMonth() === date2.getMonth() &&
     date1.getDate() === date2.getDate()
-  ){
+  ) {
     TodayinUpcoming = true;
     return "Today";
   }
   if (
     date1.getFullYear() === date2.getFullYear() &&
     date1.getMonth() === date2.getMonth() &&
-    (date1.getDate()+1) === date2.getDate()
-  ){
+    (date1.getDate() + 1) === date2.getDate()
+  ) {
     TomorrowinUpcoming = true;
     return "Tomorrow";
   }
 }
 
-function CreateDateCheckedDiv(text, date){
+function CreateDateCheckedDiv(text, date) {
   upcomingitemcontainer = document.querySelector('#upcoming-items')
-  container = CreateElement(type='div', class_='upcoming-date-container');
-  datecontainer = CreateElement(type='div', class_='upcoming-date-title');
-  titletext = CreateElement(type='h5', class_='upcoming-special-day', id=undefined, innerText=text);
-  titledate = CreateElement(type='h5', class_=undefined, id=undefined, innerText=date);
+  container = CreateElement(type = 'div', class_ = 'upcoming-date-container');
+  datecontainer = CreateElement(type = 'div', class_ = 'upcoming-date-title');
+  titletext = CreateElement(type = 'h5', class_ = 'upcoming-special-day', id = undefined, innerText = text);
+  titledate = CreateElement(type = 'h5', class_ = undefined, id = undefined, innerText = date);
 
   textcontainer = CreateElement('div', 'upcoming-blank')
   textblank = CreateElement('p');
@@ -1989,7 +1987,7 @@ function CreateDateCheckedDiv(text, date){
 
 
 
-function CreateSubjectFilter(subjectcode, itemcolour, checked){
+function CreateSubjectFilter(subjectcode, itemcolour, checked) {
   label = CreateElement('label', "upcoming-checkbox-container")
   label.innerText = subjectcode;
   input = CreateElement('input');
@@ -2001,33 +1999,33 @@ function CreateSubjectFilter(subjectcode, itemcolour, checked){
   label.append(input);
   label.append(span);
 
-  input.addEventListener('change', function(change){
-    chrome.storage.local.get(null, function(storage){
+  input.addEventListener('change', function (change) {
+    chrome.storage.local.get(null, function (storage) {
       filters = storage.subjectfilters;
       id = change.target.id.split('-')[1]
       filters[id] = change.target.checked
 
-      chrome.storage.local.set({subjectfilters: filters})
+      chrome.storage.local.set({ subjectfilters: filters })
     })
   })
 
   return label
 }
 
-function CreateFilters(subjects){
-  chrome.storage.local.get(null, function (result){
+function CreateFilters(subjects) {
+  chrome.storage.local.get(null, function (result) {
     filteroptions = result.subjectfilters
     console.log(filteroptions)
 
     filterdiv = document.querySelector('#upcoming-filters')
     for (let i = 0; i < subjects.length; i++) {
       const element = subjects[i];
-      if (!filteroptions.hasOwnProperty(element.code)){
+      if (!filteroptions.hasOwnProperty(element.code)) {
         filteroptions[element.code] = true;
-        chrome.storage.local.set({subjectfilters: filteroptions});
+        chrome.storage.local.set({ subjectfilters: filteroptions });
       }
       elementdiv = CreateSubjectFilter(element.code, element.colour, filteroptions[element.code])
-      
+
       filterdiv.append(elementdiv)
     }
   })
@@ -2035,7 +2033,7 @@ function CreateFilters(subjects){
 
 
 
-function CreateUpcomingSection(assessments){
+function CreateUpcomingSection(assessments) {
   upcomingitemcontainer = document.querySelector('#upcoming-items')
   homecontainer = document.querySelector('#home-container')
   overdueDates = [];
@@ -2052,119 +2050,119 @@ function CreateUpcomingSection(assessments){
   for (let i = 0; i < assessments.length; i++) {
     const element = assessments[i];
     assessmentdue = new Date(element.due);
-   
+
     CheckSpecialDay(Today, assessmentdue)
-    if (assessmentdue < Today){
-      if (!CheckSpecialDay(Today, assessmentdue)){
+    if (assessmentdue < Today) {
+      if (!CheckSpecialDay(Today, assessmentdue)) {
         overdueDates.push(element);
-        assessments.splice(i,1);
+        assessments.splice(i, 1);
         i--;
       }
     }
   }
   var options = { weekday: 'long', month: 'long', day: 'numeric' };
-  if (!TodayinUpcoming){
+  if (!TodayinUpcoming) {
     text = Today.toLocaleDateString("en-AU", options);
     CreateDateCheckedDiv("Today", text);
   }
 
-  function addTomorrowinUpcoming(){
+  function addTomorrowinUpcoming() {
     // var TomorrowDate = new Date(date);
     var TomorrowDate = new Date();
-    TomorrowDate.setDate((TomorrowDate.getDate()+1))
+    TomorrowDate.setDate((TomorrowDate.getDate() + 1))
     textDate = TomorrowDate.toLocaleDateString("en-AU", options);
     CreateDateCheckedDiv("Tomorrow", textDate);
   }
 
-  if (!TomorrowinUpcoming && !TodayinUpcoming){
+  if (!TomorrowinUpcoming && !TodayinUpcoming) {
     addTomorrowinUpcoming();
   }
 
-      GetLessonColours().then((colours) => {
-        subjects = colours;
-        for (let i = 0; i < assessments.length; i++) {
-  
-          subjectname = `timetable.subject.colour.${assessments[i].code}`
-  
-          subject = subjects.find(element => element.name === subjectname)
-          if (!subject) {
-            assessments[i].colour = `--item-colour: #8e8e8e;`
-          }
-          else {
-            assessments[i].colour = `--item-colour: ${subject.value};`
-            result = GetThresholdofHex(subject.value);
-          }
+  GetLessonColours().then((colours) => {
+    subjects = colours;
+    for (let i = 0; i < assessments.length; i++) {
+
+      subjectname = `timetable.subject.colour.${assessments[i].code}`
+
+      subject = subjects.find(element => element.name === subjectname)
+      if (!subject) {
+        assessments[i].colour = `--item-colour: #8e8e8e;`
+      }
+      else {
+        assessments[i].colour = `--item-colour: ${subject.value};`
+        result = GetThresholdofHex(subject.value);
+      }
+    }
+
+    for (let i = 0; i < activeSubjects.length; i++) {
+      const element = activeSubjects[i];
+      subjectname = `timetable.subject.colour.${element.code}`
+      colour = colours.find(element => element.name === subjectname);
+      if (!colour) {
+        element.colour = `--item-colour: #8e8e8e;`
+      }
+      else {
+        element.colour = `--item-colour: ${colour.value};`
+        result = GetThresholdofHex(colour.value);
+        if (result > 300) {
+          element.invert = true;
         }
+      }
 
-        for (let i = 0; i < activeSubjects.length; i++) {
-          const element = activeSubjects[i];
-          subjectname = `timetable.subject.colour.${element.code}`
-          colour = colours.find(element => element.name === subjectname);
-          if (!colour) {
-            element.colour = `--item-colour: #8e8e8e;`
-          }
-          else {
-            element.colour = `--item-colour: ${colour.value};`
-            result = GetThresholdofHex(colour.value);
-            if (result > 300){
-              element.invert = true;
-            }
-          }
-
-        }
+    }
 
 
-        CreateFilters(activeSubjects);
+    CreateFilters(activeSubjects);
 
 
 
-        for (let i = 0; i < assessments.length; i++) {
-          const element = assessments[i];
-          if (!upcomingDates[element.due]){
-            dateObj  = new Object();
-            dateObj.div = CreateElement(type='div', class_='upcoming-date-container')
-            dateObj.assessments = [];
+    for (let i = 0; i < assessments.length; i++) {
+      const element = assessments[i];
+      if (!upcomingDates[element.due]) {
+        dateObj = new Object();
+        dateObj.div = CreateElement(type = 'div', class_ = 'upcoming-date-container')
+        dateObj.assessments = [];
 
-            upcomingDates[element.due] = dateObj;
-          }
-          assessmentDateDiv = upcomingDates[element.due];
-          assessmentDateDiv.assessments.push(element);
-        }
+        upcomingDates[element.due] = dateObj;
+      }
+      assessmentDateDiv = upcomingDates[element.due];
+      assessmentDateDiv.assessments.push(element);
+    }
 
-        for (var date in upcomingDates){
+    for (var date in upcomingDates) {
 
-          assessmentdue = new Date(upcomingDates[date].assessments[0].due);
-          specialcase = CheckSpecialDay(Today, assessmentdue);
+      assessmentdue = new Date(upcomingDates[date].assessments[0].due);
+      specialcase = CheckSpecialDay(Today, assessmentdue);
 
-          if (specialcase){
-            assessmentDate = createAssessmentDateDiv(date, upcomingDates[date], datecase=specialcase);
-          } else {
-            assessmentDate = createAssessmentDateDiv(date, upcomingDates[date]);
-          }
+      if (specialcase) {
+        assessmentDate = createAssessmentDateDiv(date, upcomingDates[date], datecase = specialcase);
+      } else {
+        assessmentDate = createAssessmentDateDiv(date, upcomingDates[date]);
+      }
 
-          if (specialcase === 'Yesterday'){
-            upcomingitemcontainer.insertBefore(assessmentDate, upcomingitemcontainer.firstChild);
-          } else{
-            upcomingitemcontainer.append(assessmentDate)
-          }
+      if (specialcase === 'Yesterday') {
+        upcomingitemcontainer.insertBefore(assessmentDate, upcomingitemcontainer.firstChild);
+      } else {
+        upcomingitemcontainer.append(assessmentDate)
+      }
 
-          if (specialcase === 'Today' && !TomorrowinUpcoming){
-            addTomorrowinUpcoming();
-          }
+      if (specialcase === 'Today' && !TomorrowinUpcoming) {
+        addTomorrowinUpcoming();
+      }
 
-        
-        }
-        chrome.storage.local.get(null, function(result){
-          FilterUpcomingAssessments(result.subjectfilters);
-        })
-      })
+
+    }
+    chrome.storage.local.get(null, function (result) {
+      FilterUpcomingAssessments(result.subjectfilters);
+    })
+  })
 }
 
-function AddPlaceHolderToParent(parent, numberofassessments){
+function AddPlaceHolderToParent(parent, numberofassessments) {
   textcontainer = CreateElement('div', 'upcoming-blank')
   textblank = CreateElement('p', 'upcoming-hiddenassessment');
   s = "";
-  if (numberofassessments > 1){
+  if (numberofassessments > 1) {
     s = "s";
   }
   textblank.innerText = `${numberofassessments} hidden assessment${s} due`;
@@ -2174,43 +2172,43 @@ function AddPlaceHolderToParent(parent, numberofassessments){
   parent.append(textcontainer);
 }
 
-function FilterUpcomingAssessments(subjectoptions){
+function FilterUpcomingAssessments(subjectoptions) {
   for (var item in subjectoptions) {
     subjectdivs = document.querySelectorAll(`[data-subject="${item}"]`);
 
     for (let i = 0; i < subjectdivs.length; i++) {
       const element = subjectdivs[i];
 
-      if (!subjectoptions[item]){
+      if (!subjectoptions[item]) {
         element.classList.add('hidden');
       }
-      if (subjectoptions[item]){
+      if (subjectoptions[item]) {
         element.classList.remove('hidden');
       }
       element.parentNode.classList.remove('hidden');
 
-        children = element.parentNode.parentNode.children
-        for (let i = 0; i < children.length; i++) {
-          const element = children[i];
-          if (element.hasAttribute('data-hidden')){
-            element.remove();
-          }
+      children = element.parentNode.parentNode.children
+      for (let i = 0; i < children.length; i++) {
+        const element = children[i];
+        if (element.hasAttribute('data-hidden')) {
+          element.remove();
         }
+      }
 
-        if (element.parentNode.children.length == element.parentNode.querySelectorAll(".hidden").length) {
-          if (element.parentNode.querySelectorAll(".hidden").length > 0){
-            if (!element.parentNode.parentNode.hasAttribute('data-day')){
-              element.parentNode.parentNode.classList.add('hidden');
+      if (element.parentNode.children.length == element.parentNode.querySelectorAll(".hidden").length) {
+        if (element.parentNode.querySelectorAll(".hidden").length > 0) {
+          if (!element.parentNode.parentNode.hasAttribute('data-day')) {
+            element.parentNode.parentNode.classList.add('hidden');
           } else {
             AddPlaceHolderToParent(element.parentNode.parentNode, element.parentNode.querySelectorAll(".hidden").length)
           }
         }
-          
-          
-        }
-        else {
-          element.parentNode.parentNode.classList.remove('hidden');
-        }
+
+
+      }
+      else {
+        element.parentNode.parentNode.classList.remove('hidden');
+      }
     }
 
 
@@ -2224,7 +2222,7 @@ chrome.storage.onChanged.addListener(function (changes) {
   }
 })
 
-function GetLessonColours(){
+function GetLessonColours() {
   func = fetch(`${location.origin}/seqta/student/load/prefs?`, {
     method: "POST",
     headers: {
@@ -2232,7 +2230,7 @@ function GetLessonColours(){
     },
     body: JSON.stringify({ "request": "userPrefs", "asArray": true, "user": 69 })
   })
-    return func
+  return func
     .then((result) => result.json())
     .then(response => (response.payload))
 }
@@ -2520,47 +2518,47 @@ function SendHomePage() {
     });
 
     GetUpcomingAssessments()
-    .then((assessments) => {
-      GetActiveClasses().then((classes) => {
+      .then((assessments) => {
+        GetActiveClasses().then((classes) => {
 
-        // Gets all subjects for the student
-        for (let i = 0; i < classes.length; i++) {
-          const element = classes[i];
-          if (element.hasOwnProperty('active')){
-            // Finds the active class list with the current subjects
-            activeClassList = classes[i]
+          // Gets all subjects for the student
+          for (let i = 0; i < classes.length; i++) {
+            const element = classes[i];
+            if (element.hasOwnProperty('active')) {
+              // Finds the active class list with the current subjects
+              activeClassList = classes[i]
+            }
           }
-        }
-        activeSubjects = activeClassList.subjects
+          activeSubjects = activeClassList.subjects
 
-        activeSubjectCodes = []
-        // Gets the code for each of the subjects and puts them in an array
-        for (let i = 0; i < activeSubjects.length; i++) {
-          const element = activeSubjects[i];
-          activeSubjectCodes.push(element.code)
-        }
-
-        CurrentAssessments = []
-        for (let i = 0; i < assessments.length; i++) {
-          const element = assessments[i];
-          if (activeSubjectCodes.includes(element.code)){
-            CurrentAssessments.push(element)
+          activeSubjectCodes = []
+          // Gets the code for each of the subjects and puts them in an array
+          for (let i = 0; i < activeSubjects.length; i++) {
+            const element = activeSubjects[i];
+            activeSubjectCodes.push(element.code)
           }
-        }
 
-        
+          CurrentAssessments = []
+          for (let i = 0; i < assessments.length; i++) {
+            const element = assessments[i];
+            if (activeSubjectCodes.includes(element.code)) {
+              CurrentAssessments.push(element)
+            }
+          }
 
-        CurrentAssessments.sort(comparedate);
 
 
-        CreateUpcomingSection(CurrentAssessments, activeSubjects);
+          CurrentAssessments.sort(comparedate);
 
 
-      // Run function to check if gap between assessments > 7 days?
-        
-      })
+          CreateUpcomingSection(CurrentAssessments, activeSubjects);
 
-    });
+
+          // Run function to check if gap between assessments > 7 days?
+
+        })
+
+      });
 
   }, 8);
 }
