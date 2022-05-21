@@ -1,7 +1,8 @@
 function ReloadSEQTAPages() {
   chrome.tabs.query({}, function (tabs) {
     for (let tab of tabs) {
-      if (tab.url.includes("https://learn") && tab.url.includes(".edu.au/")) {
+      // Account for other possible subdomains
+      if ((tab.url.includes("https://learn") || tab.url.includes("https://student")) && tab.url.includes(".edu.au/")) {
         if (tab.title.includes("SEQTA Learn")) {
           chrome.tabs.reload(tab.id);
         }
@@ -44,7 +45,6 @@ chrome.runtime.onMessage.addListener(
 
       // var url = `https://newsapi.org/v2/everything?sources=abc-news&from=${TodayFormatted}&sortBy=popularity&apiKey=17c0da766ba347c89d094449504e3080`;
       var url = `https://newsapi.org/v2/everything?domains=abc.net.au&from=${from}&apiKey=17c0da766ba347c89d094449504e3080`
-      var req = new Request(url);
 
       function GetNews(){
         fetch(url)
@@ -74,6 +74,7 @@ const DefaultValues = {
   animatedbk: false,
   lessonalert: false,
   notificationcollector: true,
+  //betteraudio: false,
   defaultmenuorder: [],
   menuitems: {},
   menuorder: [],

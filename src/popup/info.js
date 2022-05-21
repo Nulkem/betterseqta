@@ -72,7 +72,8 @@ function resetActive(){
 function FindSEQTATab() {
   chrome.tabs.query({}, function (tabs) {
     for (let tab of tabs) {
-      if (tab.url.includes("https://learn") && tab.url.includes(".edu.au/")) {
+      // Account for other possible subdomains
+      if ((tab.url.includes("https://learn") || tab.url.includes("https://student")) && tab.url.includes(".edu.au/")) {
         if (tab.title.includes("SEQTA Learn")) {
           chrome.tabs.reload(tab.id);
         }

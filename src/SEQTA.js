@@ -596,7 +596,8 @@ function RunFunctionOnTrue(storedSetting) {
     document.getElementsByTagName("html")[0].appendChild(fileref);
 
     document.documentElement.style.setProperty('--better-sub', "#161616");
-    document.documentElement.style.setProperty('--better-alert-highlight', "#c61851");
+    document.documentElement.style.setProperty('--better-primary', "#F80AB2");
+    document.documentElement.style.setProperty('--better-secondary', "#6ecefa");
 
 
     rbg = GetThresholdofHex(storedSetting.selectedColor);
@@ -681,9 +682,12 @@ document.addEventListener(
       link.rel = "stylesheet";
       document.getElementsByTagName("html")[0].appendChild(link);
 
-      chrome.storage.local.get(null, function (items) {
+      if (isChrome) {
+        document.querySelector('link[rel*="icon"]').href = chrome.extension.getURL("icons/icon-48.png");
+        chrome.storage.local.get(null, function (items) {
         RunFunctionOnTrue(items);
-      });
+        });
+      }
     }
     if (
       !document.childNodes[1].textContent.includes("SEQTA") &&
@@ -698,6 +702,7 @@ document.addEventListener(
 function RunExtensionSettingsJS() {
   const onoffselection = document.querySelector("#onoff");
   const notificationcollector = document.querySelector("#notification");
+  //const betteraudio = document.querySelector("#betteraudio");
   const lessonalert = document.querySelector("#lessonalert");
   const aboutsection = document.querySelector("#aboutsection");
   const shortcutsection = document.querySelector("#shortcutsection");
@@ -755,6 +760,7 @@ function RunExtensionSettingsJS() {
       { notificationcollector: notificationcollector.checked });
     chrome.storage.local.set({ lessonalert: lessonalert.checked });
     chrome.storage.local.set({ animatedbk: animatedbk.checked });
+    //chrome.storage.local.set({ betteraudio: betteraudio.checked });
   }
 
 
@@ -785,6 +791,7 @@ function RunExtensionSettingsJS() {
       notificationcollector.checked = restoredSettings.notificationcollector;
       lessonalert.checked = restoredSettings.lessonalert;
       animatedbk.checked = restoredSettings.animatedbk;
+      //betteraudio.checked = restoredSettings.betteraudio;
       chrome.storage.local.get(["shortcuts"], function (result) {
         var shortcuts = Object.values(result)[0];
         for (var i = 0; i < shortcutbuttons.length; i++) {
@@ -817,6 +824,8 @@ function RunExtensionSettingsJS() {
     storeNotificationSettings
   );
   lessonalert.addEventListener("change", storeNotificationSettings)
+
+  //betteraudio.addEventListener("change", storeNotificationSettings)
 
   animatedbk.addEventListener("change", storeNotificationSettings)
 
@@ -1655,12 +1664,12 @@ function CheckCurrentLessonAll(lessons) {
 function MakeLessonDiv(lesson, num) {
   if (lesson.programmeID != 0) {
     var lessondiv = stringToHTML(
-      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5><div class="day-button clickable" style="left: 8px;" onclick="location.href='../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}'">${assessmentsicon}</div><div class="day-button clickable" style="left: 40px;" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'">${coursesicon}</div></div>`
+      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson?.description ?? "Unknown"}</h2><h3>${lesson?.staff ?? "Unknown"}</h3><h3>${lesson?.room ?? "Unknown"}</h3><h4>${lesson?.from ?? "Unknown"} - ${lesson?.until ?? "Unknown"}</h4><h5>${lesson?.attendanceTitle ?? "Unknown"}</h5><div class="day-button clickable" style="left: 8px;" onclick="location.href='../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}'">${assessmentsicon}</div><div class="day-button clickable" style="left: 40px;" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'">${coursesicon}</div></div>`
     );
   }
   else {
     var lessondiv = stringToHTML(
-      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson.description}</h2><h3>${lesson.staff}</h3><h3>${lesson.room}</h3><h4>${lesson.from} - ${lesson.until}</h4><h5>${lesson.attendanceTitle}</h5></div>`
+      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson?.description ?? "Unknown"}</h2><h3>${lesson?.staff ?? "Unknown"}</h3><h3>${lesson?.room ?? "Unknown"}</h3><h4>${lesson?.from ?? "Unknown"} - ${lesson?.until ?? "Unknown"}</h4><h5>${lesson?.attendanceTitle ?? "Unknown"}</h5></div>`
     );
   }
 

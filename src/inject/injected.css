@@ -17,6 +17,45 @@
   background-color: var(--better-main) !important;
   background: var(--better-main) !important;
   --navy: #1a1a1a !important;
+  --orange: var(--better-primary) !important;
+  --blue: var(--better-secondary) !important;
+  --green: var(--better-secondary) !important;
+  --yellow: var(--better-secondary) !important;
+  --theme-sel-bg-parts: var(--better-primary) !important;
+  --theme-bg-parts: 51, 51, 51 !important;
+}
+#main>.timetablepage>.quickbar .actions>button, #main>.timetablepage>.quickbar .actions>a {
+  color: white !important;
+}
+.legacy-root input[type='checkbox'] {
+  accent-color: var(--better-secondary) !important;
+}
+.SelectedAssessment__SelectedAssessment___3Bu5D > .SelectedAssessment__meta___1gq_y > .SelectedAssessment__due___gaPre {
+  background: rgba(var(--theme-bg-parts),0.5);
+}
+.MessageList__MessageList___3DxoC > ol > li .MessageList__flags___2kqiT > svg {
+  color: var(--better-secondary) !important;
+}
+#toolbar input {
+  background: rgba(var(--theme-bg-parts),0.5);
+}
+.dailycal>.times>.now {
+  border-bottom: 1px solid var(--better-primary);
+}
+.dashlet-summary-homework>.summary>.subject>.item>.todo {
+  color: var(--better-secondary) !important;
+}
+.Message__Message___3oJaU > .Message__recipients___3gLZX > li.Message__student___3Z6Hl {
+  --colour: var(--better-secondary) !important;
+}
+.Message__Message___3oJaU > .Message__recipients___3gLZX > li.Message__staff___16jB7 {
+  --colour: var(--better-primary) !important;
+}
+.anyoneSelect.distinguished>.listWrapper>.list>.item.staff {
+  box-shadow: inset 8px 0 var(--better-secondary) !important;
+}
+#main>.documents>.list>tbody .title>a {
+  color: white !important;
 }
 #container {
   transition: 1s;
@@ -91,6 +130,44 @@ html {
 }
 #menu li:hover {
   background: rgba(0, 0, 0, 0.15);
+}
+#main>.timetablepage>.quickbar>.wrapper:before,
+#main>.timetablepage>.quickbar>.wrapper:after,
+.entry:before,
+.entry:after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background: linear-gradient(45deg, var(--blue), #3a84eb, #8329e3, var(--orange), #8329e3, #3a84eb);
+    background-size: 400%;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: -1;
+    animation: gradient 20s linear infinite !important;
+}
+#main>.notices>.notice>h2::before {
+  background: linear-gradient(90deg, rgba(110, 206, 250, 1) 0%, rgba(58, 132, 235, 1) 30%, rgba(131, 41, 227, 1) 70%, rgba(248, 10, 178, 1) 100%) !important;
+}
+#main>.timetablepage>.quickbar>.wrapper {
+    background: var(--better-main) !important; 
+}
+@keyframes gradient {
+  0% {
+      background-position: 0 0;
+  }
+
+  50% {
+      background-position: 400% 0;
+  }
+
+  100% {
+      background-position: 0 0;
+  }
+}
+#main>.timetablepage>.quickbar>.wrapper:after,
+.entry:after {
+  filter: blur(30px);
 }
 .item {
   border-radius: 0px 20px 20px 0px !important;
@@ -341,6 +418,7 @@ html {
   margin: 0px auto 7px;
   background: var(--better-sub);
   box-shadow: inset 0px 5px 20px 1px rgba(0, 0, 0, 0.3);
+  padding-bottom: 25px;
 }
 .dummynotice {
   width: 95%;
@@ -412,6 +490,7 @@ html {
   position: absolute;
   top: 0;
   left: 0;
+  background: linear-gradient(90deg, rgba(110, 206, 250, 1) 0%, rgba(58, 132, 235, 1) 30%, rgba(131, 41, 227, 1) 70%, rgba(248, 10, 178, 1) 100%) !important;
 }
 .notice h3 {
   margin: 0;
@@ -423,7 +502,7 @@ html {
   font-weight: 200;
 }
 .notice h6 {
-  margin: 0px 0px 40px 0px;
+  margin: 0px 0px 25px 0px;
   font-weight: 100;
   color: #c9c9c9;
 }
@@ -524,10 +603,13 @@ html {
   height: 25px;
   width: 24px;
 }
+#userActions>button>svg>g>g>path:nth-child(2) {
+  fill: var(--orange) !important;
+}
 .notifications__notifications___3mmLY
   > button
   > .notifications__bubble___1EkSQ {
-  background: var(--better-alert-highlight);
+  background: var(--better-primary);
   width: 25px;
   height: 25px;
 }
@@ -661,44 +743,29 @@ iframe.userHTML {
   color: white;
 }
 
+body::-webkit-scrollbar {
+  width: 0 !important;
+  background: transparent !important;
+}
+
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-  transition: 1.0s;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--better-light);
-  background-clip: padding-box;
-  border: 2px solid transparent;
-  transition: 1.0s;
-}
-
-::-webkit-scrollbar-thumb:vertical:hover,
-::-webkit-scrollbar-thumb:horizontal:hover {
-  background-color: var(--better-light);
+  background-color: transparent !important;
+  width: 10px !important;
+  height: 10px !important;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
-
-
-::-webkit-scrollbar-thumb:vertical:active,
-::-webkit-scrollbar-thumb:horizontal:active {
-  background: var(--better-light);
-
+::-webkit-scrollbar-thumb {
+  background-color: white !important;
+  border-radius: 10px !important;
 }
 
-::-webkit-scrollbar-corner {
-  background: none;
+::-webkit-scrollbar-button {
+  display: none !important;
 }
-:root, html, body, div, ol, ul {
-  scrollbar-width: thin !important;
-  scrollbar-color: var(--better-light) var(--better-sub) !important;
-}
-
 
 .connectedNotificationsWrapper > div > button {
   color: var(--text-color) !important;
@@ -782,7 +849,7 @@ iframe.userHTML {
 }
 .legacy-root button.depressed,
 .legacy-root button.toggled {
-  background: #797979;
+  background: var(--better-primary);
 }
 .cke_toolbox > .cke_toolbar .cke_combo_on > .cke_combo_button,
 .cke_toolbox > .cke_toolbar .cke_button_on {
@@ -888,7 +955,7 @@ body {
   background-image: url(/icons/betterseqta-light-outline.png);
   display: inline-block;
   background-size: 18px 18px;
-  color: #fff;
+  color: white;
   margin-right: 2px;
   background-position: center;
   vertical-align: top;
