@@ -299,6 +299,24 @@ function CheckiFrameItems() {
   });
 }
 
+function SortMessagePageItems(messagesParentElement){
+  const observer = new MutationObserver(function (mutations_list) {
+    mutations_list.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (added_node) {
+        if (added_node.dataset.message){
+          // Check if added_node.firstChild.title is in block list
+        }
+      });
+    });
+  });
+
+  observer.observe(messagesParentElement, {
+    subtree: true,
+    childList: true,
+  });
+
+}
+
 function LoadPageElements() {
   AddBetterSEQTAElements(true);
   var sublink = window.location.href.split("/")[4];
@@ -401,6 +419,23 @@ function LoadPageElements() {
       });
       break;
   }
+
+  const observer = new MutationObserver(function (mutations_list) {
+    mutations_list.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (added_node) {
+        if (added_node.classList.contains('messages')){
+          SortMessagePageItems(added_node);
+        }
+      });
+    });
+  });
+
+  observer.observe(document.querySelector('#main'), {
+    subtree: false,
+    childList: true,
+  });
+
+
 }
 
 function tryLoad() {
@@ -596,8 +631,7 @@ function RunFunctionOnTrue(storedSetting) {
     document.getElementsByTagName("html")[0].appendChild(fileref);
 
     document.documentElement.style.setProperty('--better-sub', "#161616");
-    document.documentElement.style.setProperty('--better-primary', "#F80AB2");
-    document.documentElement.style.setProperty('--better-secondary', "#6ecefa");
+    document.documentElement.style.setProperty('--better-alert-highlight', "#c61851");
 
 
     rbg = GetThresholdofHex(storedSetting.selectedColor);
