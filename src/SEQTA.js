@@ -636,6 +636,7 @@ function RunFunctionOnTrue(storedSetting) {
     document.documentElement.style.setProperty('--better-sub', "#161616");
     document.documentElement.style.setProperty('--better-alert-highlight', "#c61851");
 
+    document.querySelector('link[rel*="icon"]').href = chrome.extension.getURL("icons/icon-48.png");
 
     rbg = GetThresholdofHex(storedSetting.selectedColor);
     if (rbg > 210) {
@@ -706,11 +707,10 @@ var IsSEQTAPage = false;
 document.addEventListener(
   "load",
   function () {
-    CheckForMenuList();
-
     var weblink = window.location.origin
     if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && !IsSEQTAPage && (weblink.includes('learn.') || weblink.includes('student.') || weblink.includes('coneqt'))) {
       IsSEQTAPage = true;
+      CheckForMenuList();
       console.log("[BetterSEQTA] Verified SEQTA Page");
 
       var link = document.createElement("link");
@@ -719,7 +719,6 @@ document.addEventListener(
       link.rel = "stylesheet";
       document.getElementsByTagName("html")[0].appendChild(link);
 
-      document.querySelector('link[rel*="icon"]').href = chrome.extension.getURL("icons/icon-48.png");
       chrome.storage.local.get(null, function (items) {
         RunFunctionOnTrue(items);
       });
@@ -2467,6 +2466,8 @@ function SendHomePage() {
     var UsersName = document.getElementsByClassName("name")[0];
     // Gets the students first name
     var FirstName = UsersName.innerHTML.replace(/ .*/, "");
+
+    document.querySelector('link[rel*="icon"]').href = chrome.extension.getURL("icons/icon-48.png");
 
     // Creates the root of the home page added to the main div
     var htmlStr =
