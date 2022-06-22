@@ -85,11 +85,6 @@ const ShortcutLinks = {
 }
 
 function loading() {
-  // loadinghtml = stringToHTML(
-  //   `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
-  //   <svg width="300" height="160" id="clackers" style="display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);"><svg><path id="arc-left-up" fill="none" d="M 90 90 A 90 90 0 0 1 0 0"/></svg><svg><path id="arc-right-up" fill="none" d="M 100 90 A 90 90 0 0 0 190 0"/></svg><text x="150" y="50" fill="#ffffff" font-size="18"text-anchor="middle">B E T T E R S E Q T A</text><circle style="fill: #333333;" cx="15" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-left-up"/></animateMotion></circle><circle style="fill: #242424;" cx="135" cy="105" r="15" /><circle style="fill: #161616;" cx="165" cy="105" r="15" /><circle style="fill: #313131;" cx="95" cy="15" r="15"><animateMotion dur="1.5s" repeatCount="indefinite"calcMode="linear"keyPoints="0.0;0.0;0.05;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0.0;0.19;0.36;0.51;0.64;0.75;0.84;0.91;0.96;0.99;1.0;0.99;0.96;0.91;0.84;0.75;0.64;0.51;0.36;0.19;0.0"keyTimes="0.0;0.025;0.05;0.075;0.1;0.125;0.15;0.175;0.2;0.225;0.25;0.275;0.3;0.325;0.35;0.375;0.4;0.425;0.45;0.475;0.5;0.525;0.55;0.575;0.6;0.625;0.65;0.675;0.7;0.725;0.75;0.775;0.8;0.825;0.85;0.875;0.9;0.925;0.95;0.975;1.0"><mpath xlink:href="#arc-right-up"/></animateMotion></circle></svg>
-  //   <div style="position: absolute;bottom: 0;right: 0;padding: 10px;color: #4f4f4f;text-anchor: middle;font-size: 20px;">v${chrome.runtime.getManifest().version}</div><div style="padding: 20px;background-color: #0d0d0d;width: 30%;border-radius: 60px;position: absolute;color: white;bottom: -100px;left: 50%;transform: translate(-50%, -50%);transition: 1s;" id="reloadnotification">This page is taking unusually long to load. Try refreshing the page.<div style="padding: 10px;position: absolute;right: 0;top: 0;background-color: #c61851;border-radius: 60px;width: 80px;text-align: center;margin: 10px;cursor: pointer;" onclick="window.location.reload(true)">Refresh</div></div></div>`
-  // );
   loadinghtml = stringToHTML(
     `<div class="bkloading" id="loading" style="background-color: #1a1a1a;width: 100%;overflow: hidden;opacity: 1;transition: 0.5s;height: 100%;top: 0;position: absolute;left: 0;z-index: 10000;">
     <style>
@@ -595,6 +590,14 @@ chrome.storage.onChanged.addListener(function (changes) {
       document.documentElement.style.setProperty('--better-light', ColorLuminance(changes.selectedColor.newValue, 0.99));
     }
   }
+
+  if (changes.customshortcuts.newValue){
+    if (changes.customshortcuts.oldValue.length > 0){
+      CreateCustomShortcutDiv(changes.customshortcuts.newValue[(changes.customshortcuts.oldValue.length)]);
+    } else {
+      CreateCustomShortcutDiv(changes.customshortcuts.newValue[0]);
+    }
+  }
 })
 
 var PageLoaded = false;
@@ -741,6 +744,13 @@ function RunExtensionSettingsJS() {
   const mainpage = document.querySelector("#mainpage");
   const colorpicker = document.querySelector("#colorpicker");
   const animatedbk = document.querySelector('#animatedbk');
+  const customshortcutbutton = document.getElementsByClassName('custom-shortcuts-button')[0];
+  const customshortcutdiv = document.getElementsByClassName('custom-shortcuts-container')[0];
+  const customshortcutsubmit = document.getElementsByClassName('custom-shortcuts-submit')[0];
+  const customshortcutinputname = document.querySelector('#shortcutname');
+  const customshortcutinputurl = document.querySelector('#shortcuturl');
+
+  const shortcutmenuitemselection = document.getElementsByClassName('menushortcut')[0];
 
 
   const applybutton = document.querySelector('#applychanges')
@@ -757,6 +767,9 @@ function RunExtensionSettingsJS() {
   const miscpage = document.querySelector('#miscpage');
 
   var shortcutbuttons = document.getElementsByClassName("shortcutitem");
+
+  var validURL = false;
+  var validName = false;
 
   const github = document.getElementById("github");
 
@@ -831,6 +844,94 @@ function RunExtensionSettingsJS() {
     }
   }
 
+  var stringtoHTML = function (str) {
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(str, "text/html");
+    return doc.body;
+  };
+  
+  function CreateShortcutDiv(name) {
+    
+    div = stringtoHTML(`
+    <div class="item-container menushortcuts" data-customshortcut="${name}">
+      <div class="text-container">
+        <h1 class="addonitem" style="font-size: 8px !important;font-weight: 300;">Custom</h1>
+        <h1 class="addonitem">${name}</h1>  
+      </div>
+      <svg id="delete-${name}" style="width:24px;height:24px;margin: 9px;cursor:pointer;" viewBox="0 0 24 24">
+      <path fill="#ffffff" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z"></path></svg>
+    </div>`).firstChild;
+  
+    shortcutmenuitemselection.append(div);
+  
+    const deletebutton = document.getElementById(`delete-${name}`);
+    deletebutton.addEventListener('click', function(){
+      DeleteCustomShortcut(name);
+      applybutton.style.left = "4px";
+    });
+  }
+  
+  function AddCustomShortcuts(){
+    chrome.storage.local.get(["customshortcuts"], function (result) {
+      var customshortcuts = Object.values(result)[0];
+      for (let i = 0; i < customshortcuts.length; i++) {
+        const element = customshortcuts[i];
+        CreateShortcutDiv(
+          element.name,
+        )
+      }
+    });
+  }
+  
+  function DeleteCustomShortcut(name){
+    item = document.querySelector(`[data-customshortcut="${name}"]`);
+    item.remove();
+    chrome.storage.local.get(["customshortcuts"], function (result) {
+      var customshortcuts = Object.values(result)[0];
+      for (let i = 0; i < customshortcuts.length; i++) {
+        if (customshortcuts[i].name == name){
+          customshortcuts.splice(i, 1);
+        }
+      }
+      chrome.storage.local.set({ customshortcuts: customshortcuts });
+    });
+  
+  }
+  
+  function CustomShortcutMenu(){
+    customshortcutinputname.value = '';
+    customshortcutinputurl.value = '';
+    validURL = false;
+    validName = false;
+    customshortcutsubmit.classList.remove("customshortcut-submit-valid");
+    if (customshortcutdiv.classList.contains('custom-shortcuts-container-shown')){
+      customshortcutdiv.classList.remove('custom-shortcuts-container-shown')
+    } else {
+      customshortcutdiv.classList.add('custom-shortcuts-container-shown')
+    };
+  }
+  
+  function CreateCustomShortcut(){
+    const shortcutname = customshortcutinputname.value;
+    var shortcuturl = customshortcutinputurl.value;
+  
+    if (!(shortcuturl.includes('http'))){
+      shortcuturl = "https://" + shortcuturl;
+    }
+
+    chrome.storage.local.get(["customshortcuts"], function (result) {
+      var customshortcuts = Object.values(result)[0];
+      customshortcuts.push({name: shortcutname, url: shortcuturl, icon: (shortcutname[0]).toUpperCase()});
+      chrome.storage.local.set({ customshortcuts: customshortcuts });
+    });
+  
+    CreateShortcutDiv(
+      shortcutname
+    );
+  
+  }
+  
+
   function onError(e) {
     console.error(e);
   }
@@ -845,7 +946,53 @@ function RunExtensionSettingsJS() {
 
   shortcutsection.addEventListener("click", () => { resetActive(); shortcutsection.classList.add('activenav'); shortcutpage.classList.remove('hiddenmenu') });
 
-  miscsection.addEventListener("click", () => { resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu') })
+  miscsection.addEventListener("click", () => { resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu') });
+
+  customshortcutbutton.addEventListener("click", () => { CustomShortcutMenu();})
+  customshortcutsubmit.addEventListener("click", () => { if (validName && validURL){ CreateCustomShortcut(); CustomShortcutMenu()}});
+
+  var sameName = false;
+  customshortcutinputname.addEventListener("input", function(){
+    sameName = false;
+    chrome.storage.local.get(["customshortcuts"], function (result) {
+      var customshortcuts = Object.values(result)[0];
+      for (let i = 0; i < customshortcuts.length; i++) {
+        if (customshortcuts[i].name == customshortcutinputname.value ){
+          sameName = true;
+        }
+      }
+
+      if (customshortcutinputname.value.length > 0 && customshortcutinputname.value.length < 22 && !sameName){
+        validName = true;
+      } else {
+        validName = false;
+      }
+  
+      if (validName && validURL){
+        customshortcutsubmit.classList.add("customshortcut-submit-valid");
+      }
+      else {
+        customshortcutsubmit.classList.remove("customshortcut-submit-valid");
+      }
+    });
+  });
+
+  customshortcutinputurl.addEventListener("input", function(){
+    if (customshortcutinputurl.value.length > 0 && customshortcutinputurl.value.includes('.')){
+      validURL = true;
+    } else {
+      validURL = false;
+    }
+
+    if (validName && validURL){
+      customshortcutsubmit.classList.add("customshortcut-submit-valid");
+    }
+    else {
+      customshortcutsubmit.classList.remove("customshortcut-submit-valid");
+    }
+  })
+
+  AddCustomShortcuts();
 
   onoffselection.addEventListener("change", storeSettings);
   notificationcollector.addEventListener(
@@ -857,12 +1004,8 @@ function RunExtensionSettingsJS() {
 
   animatedbk.addEventListener("change", storeNotificationSettings)
 
-
-
-  var unsavedchangesshown = false
-
   for (let i = 0; i < allinputs.length; i++) {
-    if (allinputs[i].id != 'colorpicker') {
+    if (allinputs[i].id != 'colorpicker' && allinputs[i].id != "shortcuturl" && allinputs[i].id != "shortcutname") {
       allinputs[i].addEventListener("change", () => { applybutton.style.left = "4px" })
     }
   }
@@ -972,8 +1115,18 @@ function CallExtensionSettings() {
   </div>
 
   <div class="menu-page hiddenmenu" id="shortcutpage">
-    <div class="selector-container" style="margin-bottom: 0;">
-      <div class="menu-item-selection">
+    <div class="selector-container" style="margin-bottom: 0; max-height: 17em; overflow-y:hidden;">
+      <div>
+        <div class="custom-shortcuts-button custom-shortcuts-buttons">Create Custom Shortcut</div>
+        <div class="custom-shortcuts-container">
+          <label for="shortcutname" class="custom-shortcuts-label">Shortcut Name:</label>
+          <input type="text" id="shortcutname" name="shortcutname" class="custom-shortcuts-field" placeholder="e.g. Google" maxlength="20">
+          <label for="shortcuturl" class="custom-shortcuts-label">URL:</label>
+          <input type="text" id="shortcuturl" name="shortcuturl" class="custom-shortcuts-field" placeholder="e.g. https://www.google.com">
+          <div class="custom-shortcuts-submit custom-shortcuts-buttons">Create</div>
+        </div>
+      </div>
+      <div class="menu-item-selection menushortcut">
         <div class="item-container menushortcuts">
           <div class="text-container">
             <h1 class="addonitem">YouTube</h1>
@@ -1338,7 +1491,6 @@ function OpenMenuOptions() {
         element.toggle = true;
         menuItems[id] = element;
       }
-      console.log(menuItems);
       chrome.storage.local.set({ menuitems: menuItems });
     }
 
@@ -1947,7 +2099,6 @@ function createAssessmentDateDiv(date, value, datecase = undefined) {
       .then((result) => result.json())
       .then((response) => {
         if (response.payload.length > 0) {
-          console.log(response.payload)
           const assessment = document.querySelector(`#assessment${element.id}`);
 
           ticksvg = stringToHTML(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--item-colour)" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>`).firstChild
@@ -2045,7 +2196,6 @@ function CreateSubjectFilter(subjectcode, itemcolour, checked) {
 function CreateFilters(subjects) {
   chrome.storage.local.get(null, function (result) {
     filteroptions = result.subjectfilters
-    console.log(filteroptions)
 
     filterdiv = document.querySelector('#upcoming-filters')
     for (let i = 0; i < subjects.length; i++) {
@@ -2265,6 +2415,36 @@ function GetLessonColours() {
     .then(response => (response.payload))
 }
 
+function CreateCustomShortcutDiv(element){
+    // Creates the stucture and element information for each seperate shortcut
+    var shortcut = document.createElement("a");
+    shortcut.setAttribute("href", element.url);
+    shortcut.setAttribute("target", "_blank");
+    var shortcutdiv = document.createElement("div");
+    shortcutdiv.classList.add("shortcut");
+
+    image = stringToHTML(`<svg viewBox="0 0 40 40" style="width:39px;height:39px"><text font-size="32" font-weight="bold" fill="#fff" x="50%" y="50%" text-anchor="middle" dominant-baseline="central">${element.icon}</text></svg>`).firstChild
+    image.classList.add("shortcuticondiv");
+    var text = document.createElement("p");
+    text.textContent = element.name;
+    shortcutdiv.append(image);
+    shortcutdiv.append(text);
+    shortcut.append(shortcutdiv);
+
+    document.getElementById("shortcuts").append(shortcut);
+}
+
+function AddCustomShortcutsToPage(){
+  chrome.storage.local.get(["customshortcuts"], function (result) {
+    var customshortcuts = Object.values(result)[0];
+    if (customshortcuts.length > 0){
+      for (let i = 0; i < customshortcuts.length; i++) {
+        const element = customshortcuts[i];
+        CreateCustomShortcutDiv(element);
+      }
+    }
+  });
+}
 
 function SendHomePage() {
   setTimeout(function () {
@@ -2406,6 +2586,9 @@ function SendHomePage() {
         }
       }
     });
+
+    AddCustomShortcutsToPage();
+
     // Creates the upcoming container and appends to the home container
     var upcomingcontainer = document.createElement('div');
     upcomingcontainer.classList.add('upcoming-container');

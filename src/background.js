@@ -124,7 +124,8 @@ const DefaultValues = {
       name: "Netflix",
       enabled: false
     }
-  ]
+  ],
+  customshortcuts: []
 }
 
 function SetStorageValue(object) {
@@ -163,8 +164,11 @@ function UpdateCurrentValues(details) {
         }
       }
     }
-
     CheckInnerElement(DefaultValues);
+    
+    if (items["customshortcuts"]){
+      NewValue["customshortcuts"] = items["customshortcuts"];
+    }
 
     SetStorageValue(NewValue);
   })

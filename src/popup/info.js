@@ -22,7 +22,13 @@ const miscsection = document.querySelector('#miscsection');
 const mainpage = document.querySelector("#mainpage");
 const colorpicker = document.querySelector("#colorpicker");
 const animatedbk = document.querySelector('#animatedbk');
+const customshortcutbutton = document.getElementsByClassName('custom-shortcuts-button')[0];
+const customshortcutdiv = document.getElementsByClassName('custom-shortcuts-container')[0];
+const customshortcutsubmit = document.getElementsByClassName('custom-shortcuts-submit')[0];
+const customshortcutinputname = document.querySelector('#shortcutname');
+const customshortcutinputurl = document.querySelector('#shortcuturl');
 
+const shortcutmenuitemselection = document.getElementsByClassName('menushortcut')[0];
 
 const applybutton = document.querySelector('#applychanges')
 
@@ -42,6 +48,9 @@ var shortcutbuttons = document.getElementsByClassName("shortcutitem");
 const github = document.getElementById("github");
 
 const version = document.getElementById('version');
+
+var validURL = false;
+var validName = false;
 
 function openGithub() {
   chrome.tabs.create({ url: "https://github.com/Nulkem/better-seqta" });
@@ -137,6 +146,93 @@ function updateUI(restoredSettings) {
   }
 }
 
+var stringtoHTML = function (str) {
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(str, "text/html");
+  return doc.body;
+};
+
+function CreateShortcutDiv(name) {
+  
+  div = stringtoHTML(`
+  <div class="item-container menushortcuts" data-customshortcut="${name}">
+    <div class="text-container">
+      <h1 class="addonitem" style="font-size: 8px !important;font-weight: 300;">Custom</h1>
+      <h1 class="addonitem">${name}</h1>  
+    </div>
+    <svg id="delete-${name}" style="width:24px;height:24px;margin: 9px;cursor:pointer;" viewBox="0 0 24 24">
+    <path fill="#ffffff" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z"></path></svg>
+  </div>`).firstChild;
+
+  shortcutmenuitemselection.append(div);
+
+  const deletebutton = document.getElementById(`delete-${name}`);
+  deletebutton.addEventListener('click', function(){
+    DeleteCustomShortcut(name);
+    applybutton.style.left = "4px";
+  });
+}
+
+function AddCustomShortcuts(){
+  chrome.storage.local.get(["customshortcuts"], function (result) {
+    var customshortcuts = Object.values(result)[0];
+    for (let i = 0; i < customshortcuts.length; i++) {
+      const element = customshortcuts[i];
+      CreateShortcutDiv(
+        element.name,
+      )
+    }
+  });
+}
+
+function DeleteCustomShortcut(name){
+  item = document.querySelector(`[data-customshortcut="${name}"]`);
+  item.remove();
+  chrome.storage.local.get(["customshortcuts"], function (result) {
+    var customshortcuts = Object.values(result)[0];
+    for (let i = 0; i < customshortcuts.length; i++) {
+      if (customshortcuts[i].name == name){
+        customshortcuts.splice(i, 1);
+      }
+    }
+    chrome.storage.local.set({ customshortcuts: customshortcuts });
+  });
+
+}
+
+function CustomShortcutMenu(){
+  customshortcutinputname.value = '';
+  customshortcutinputurl.value = '';
+  validURL = false;
+  validName = false;
+  customshortcutsubmit.classList.remove("customshortcut-submit-valid");
+  if (customshortcutdiv.classList.contains('custom-shortcuts-container-shown')){
+    customshortcutdiv.classList.remove('custom-shortcuts-container-shown')
+  } else {
+    customshortcutdiv.classList.add('custom-shortcuts-container-shown')
+  };
+}
+
+function CreateCustomShortcut(){
+  const shortcutname = customshortcutinputname.value;
+  var shortcuturl = customshortcutinputurl.value;
+
+  if (!(shortcuturl.includes('http'))){
+    shortcuturl = "https://" + shortcuturl;
+  }
+
+  chrome.storage.local.get(["customshortcuts"], function (result) {
+    var customshortcuts = Object.values(result)[0];
+    customshortcuts.push({name: shortcutname, url: shortcuturl, icon: (shortcutname[0]).toUpperCase()});
+    chrome.storage.local.set({ customshortcuts: customshortcuts });
+  });
+
+  CreateShortcutDiv(
+    shortcutname
+  );
+
+}
+
 function onError(e) {
   console.error(e);
 }
@@ -161,7 +257,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
   shortcutsection.addEventListener("click", () => { resetActive(); shortcutsection.classList.add('activenav'); shortcutpage.classList.remove('hiddenmenu') });
 
-  miscsection.addEventListener("click", () => { resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu') })
+  miscsection.addEventListener("click", () => { resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu') });
+
+  customshortcutbutton.addEventListener("click", () => { CustomShortcutMenu();})
+  customshortcutsubmit.addEventListener("click", () => { if (validName && validURL){ CreateCustomShortcut(); CustomShortcutMenu()}});
+
+  var sameName = false;
+  customshortcutinputname.addEventListener("input", function(){
+    sameName = false;
+    chrome.storage.local.get(["customshortcuts"], function (result) {
+      var customshortcuts = Object.values(result)[0];
+      for (let i = 0; i < customshortcuts.length; i++) {
+        if (customshortcuts[i].name == customshortcutinputname.value ){
+          sameName = true;
+        }
+      }
+
+      if (customshortcutinputname.value.length > 0 && customshortcutinputname.value.length < 22 && !sameName){
+        validName = true;
+      } else {
+        validName = false;
+      }
+  
+      if (validName && validURL){
+        customshortcutsubmit.classList.add("customshortcut-submit-valid");
+      }
+      else {
+        customshortcutsubmit.classList.remove("customshortcut-submit-valid");
+      }
+    });
+  });
+
+  customshortcutinputurl.addEventListener("input", function(){
+    if (customshortcutinputurl.value.length > 0 && customshortcutinputurl.value.includes('.')){
+      validURL = true;
+    } else {
+      validURL = false;
+    }
+
+    if (validName && validURL){
+      customshortcutsubmit.classList.add("customshortcut-submit-valid");
+    }
+    else {
+      customshortcutsubmit.classList.remove("customshortcut-submit-valid");
+    }
+  })
+
+  AddCustomShortcuts();
 });
 
 onoffselection.addEventListener("change", storeSettings);
@@ -173,12 +315,8 @@ lessonalert.addEventListener("change", storeNotificationSettings)
 
 animatedbk.addEventListener("change", storeNotificationSettings)
 
-
-
-var unsavedchangesshown = false
-
 for (let i = 0; i < allinputs.length; i++) {
-  if (allinputs[i].id != 'colorpicker') {
+  if (allinputs[i].id != 'colorpicker' && allinputs[i].id != "shortcuturl" && allinputs[i].id != "shortcutname") {
     allinputs[i].addEventListener("change", () => { applybutton.style.left = "4px" })
   }
 }
