@@ -12,6 +12,10 @@
 
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>. */
+@font-face {
+  font-family: Rubik;
+  src: url(Fonts/Rubik-Regular.ttf);
+}
 
 .outside-container {
   width: 350px;
@@ -19,13 +23,13 @@
   background-color: #131313;
   overflow: hidden;
   position: absolute;
-  right: 18px;
-  top: 65px;
+  right: 10px;
+  top: 80px;
   z-index: 20;
 }
 
 .selector-container {
-  font-family: "Roboto", Helvetica, sans-serif;
+  font-family: Rubik;
   background-color: #131313;
   color: white;
   padding: 4px;
@@ -244,7 +248,7 @@ p {
   left: 270px;
   color: white;
   font-size: 15px;
-  font-family: sans-serif;
+  font-family: Rubik;
 }
 .item-container img {
   opacity: 0.6;
@@ -375,8 +379,8 @@ p {
 .draggable::before {
   position: absolute;
   z-index: 20;
-  left: -8px;
-  top: 28px;
+  left: -14px;
+  top: 10px;
   content: url('data:image/svg+xml;charset=UTF-8, <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="30" width="15"><path fill="white" d="M9,3H11V5H9V3M13,3H15V5H13V3M9,7H11V9H9V7M13,7H15V9H13V7M9,11H11V13H9V11M13,11H15V13H13V11M9,15H11V17H9V15M13,15H15V17H13V15M9,19H11V21H9V19M13,19H15V21H13V19Z" /></svg>');
 }
 .custom-shortcuts-button {

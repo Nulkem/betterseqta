@@ -79,6 +79,7 @@ const DefaultValues = {
   menuorder: [],
   subjectfilters: {},
   selectedColor: '#1a1a1a',
+  DarkMode: true,
   shortcuts: [
     {
       name: "YouTube",
