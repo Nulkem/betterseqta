@@ -276,13 +276,19 @@ async function RunColourCheck(element) {
   }
 }
 
-function CheckiFrameItems() {
-  // Injecting CSS File to the webpage to overwrite iFrame default CSS
+function GetiFrameCSSElement(){
   var cssFile = chrome.runtime.getURL("inject/iframe.css");
   var fileref = document.createElement("link");
   fileref.setAttribute("rel", "stylesheet");
   fileref.setAttribute("type", "text/css");
   fileref.setAttribute("href", cssFile);
+
+  return fileref;
+}
+
+function CheckiFrameItems() {
+  // Injecting CSS File to the webpage to overwrite iFrame default CSS
+  fileref = GetiFrameCSSElement();
 
   const observer = new MutationObserver(function (mutations_list) {
     mutations_list.forEach(function (mutation) {
@@ -547,8 +553,6 @@ async function ObserveMenuItemPosition() {
   chrome.storage.local.get(null, function (result) {
 
     menuorder = result.menuorder
-    console.log(menuorder);
-    console.log(result.onoff);
     if (menuorder && result.onoff) {
       const observer = new MutationObserver(function (mutations_list) {
         mutations_list.forEach(function (mutation) {
@@ -1698,7 +1702,7 @@ function AddBetterSEQTAElements(toggle) {
             CreateBackground();
           }
           else {
-            document.getElementById('container').style.background = "radial-gradient(circle, var(--better-sub) 0%, var(--better-main) 100%)";
+            document.getElementById('container').style.background = "var(--background-secondary)";
           }
         })
 
@@ -1829,11 +1833,21 @@ function AddBetterSEQTAElements(toggle) {
           darklightText = document.getElementById('darklighttooliptext');
           LightDarkModeElement.addEventListener('click', function(){
             chrome.storage.local.get(['DarkMode'], function (result) {
+              alliframes = document.getElementsByTagName('iframe');
+              fileref = GetiFrameCSSElement();
+
               if (!result.DarkMode){
                 document.documentElement.style.setProperty('--background-primary', "#232323");
                 document.documentElement.style.setProperty('--background-secondary', "#1a1a1a");
                 document.documentElement.style.setProperty('--text-primary', "white");
                 LightDarkModeElement.firstChild.innerHTML = `<defs><clipPath id="__lottie_element_80"><rect width="24" height="24" x="0" y="0"></rect></clipPath></defs><g clip-path="url(#__lottie_element_80)"><g style="display: block;" transform="matrix(1,0,0,1,12,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,-4 C-2.2100000381469727,-4 -4,-2.2100000381469727 -4,0 C-4,2.2100000381469727 -2.2100000381469727,4 0,4 C2.2100000381469727,4 4,2.2100000381469727 4,0 C4,-2.2100000381469727 2.2100000381469727,-4 0,-4z"></path></g></g><g style="display: block;" transform="matrix(1,0,0,1,12,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,6 C-3.309999942779541,6 -6,3.309999942779541 -6,0 C-6,-3.309999942779541 -3.309999942779541,-6 0,-6 C3.309999942779541,-6 6,-3.309999942779541 6,0 C6,3.309999942779541 3.309999942779541,6 0,6z M8,-3.309999942779541 C8,-3.309999942779541 8,-8 8,-8 C8,-8 3.309999942779541,-8 3.309999942779541,-8 C3.309999942779541,-8 0,-11.3100004196167 0,-11.3100004196167 C0,-11.3100004196167 -3.309999942779541,-8 -3.309999942779541,-8 C-3.309999942779541,-8 -8,-8 -8,-8 C-8,-8 -8,-3.309999942779541 -8,-3.309999942779541 C-8,-3.309999942779541 -11.3100004196167,0 -11.3100004196167,0 C-11.3100004196167,0 -8,3.309999942779541 -8,3.309999942779541 C-8,3.309999942779541 -8,8 -8,8 C-8,8 -3.309999942779541,8 -3.309999942779541,8 C-3.309999942779541,8 0,11.3100004196167 0,11.3100004196167 C0,11.3100004196167 3.309999942779541,8 3.309999942779541,8 C3.309999942779541,8 8,8 8,8 C8,8 8,3.309999942779541 8,3.309999942779541 C8,3.309999942779541 11.3100004196167,0 11.3100004196167,0 C11.3100004196167,0 8,-3.309999942779541 8,-3.309999942779541z"></path></g></g></g>`
+              
+                for (let i = 0; i < alliframes.length; i++) {
+                  const element = alliframes[i];
+                  element.contentDocument.documentElement.childNodes[1].style.color = "white";
+                  element.contentDocument.documentElement.firstChild.appendChild(fileref);
+                }
+
               } 
               else {
                 document.documentElement.style.setProperty('--background-primary', "#ffffff");
@@ -1841,6 +1855,11 @@ function AddBetterSEQTAElements(toggle) {
                 document.documentElement.style.setProperty('--text-primary', "black");
                 LightDarkModeElement.firstChild.innerHTML = `<defs><clipPath id="__lottie_element_263"><rect width="24" height="24" x="0" y="0"></rect></clipPath></defs><g clip-path="url(#__lottie_element_263)"><g style="display: block;" transform="matrix(1.5,0,0,1.5,7,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,-4 C-2.2100000381469727,-4 -1.2920000553131104,-2.2100000381469727 -1.2920000553131104,0 C-1.2920000553131104,2.2100000381469727 -2.2100000381469727,4 0,4 C2.2100000381469727,4 4,2.2100000381469727 4,0 C4,-2.2100000381469727 2.2100000381469727,-4 0,-4z"></path></g></g><g style="display: block;" transform="matrix(-1,0,0,-1,12,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,6 C-3.309999942779541,6 -6,3.309999942779541 -6,0 C-6,-3.309999942779541 -3.309999942779541,-6 0,-6 C3.309999942779541,-6 6,-3.309999942779541 6,0 C6,3.309999942779541 3.309999942779541,6 0,6z M8,-3.309999942779541 C8,-3.309999942779541 8,-8 8,-8 C8,-8 3.309999942779541,-8 3.309999942779541,-8 C3.309999942779541,-8 0,-11.3100004196167 0,-11.3100004196167 C0,-11.3100004196167 -3.309999942779541,-8 -3.309999942779541,-8 C-3.309999942779541,-8 -8,-8 -8,-8 C-8,-8 -8,-3.309999942779541 -8,-3.309999942779541 C-8,-3.309999942779541 -11.3100004196167,0 -11.3100004196167,0 C-11.3100004196167,0 -8,3.309999942779541 -8,3.309999942779541 C-8,3.309999942779541 -8,8 -8,8 C-8,8 -3.309999942779541,8 -3.309999942779541,8 C-3.309999942779541,8 0,11.3100004196167 0,11.3100004196167 C0,11.3100004196167 3.309999942779541,8 3.309999942779541,8 C3.309999942779541,8 8,8 8,8 C8,8 8,3.309999942779541 8,3.309999942779541 C8,3.309999942779541 11.3100004196167,0 11.3100004196167,0 C11.3100004196167,0 8,-3.309999942779541 8,-3.309999942779541z"></path></g></g></g>`
 
+                for (let i = 0; i < alliframes.length; i++) {
+                  const element = alliframes[i];
+                  element.contentDocument.documentElement.childNodes[1].style.color = "black";
+                  element.contentDocument.documentElement.firstChild.lastChild.remove();
+                }
               }
               tooltipstring = GetLightDarkModeString(!result.DarkMode);
               darklightText.innerText = tooltipstring;
@@ -2016,23 +2035,23 @@ function CheckCurrentLessonAll(lessons) {
 
 function MakeLessonDiv(lesson, num) {
   assessmentstring = ""
+  var lessonstring = `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson?.description ?? "Unknown"}</h2><h3>${lesson?.staff ?? "Unknown"}</h3><h3>${lesson?.room ?? "Unknown"}</h3><h4>${lesson?.from ?? "Unknown"} - ${lesson?.until ?? "Unknown"}</h4><h5>${lesson?.attendanceTitle ?? "Unknown"}</h5>`
+  
+  if (lesson.programmeID != 0) {
+    lessonstring += `<div class="day-button clickable" style="right: 5px;" onclick="location.href='../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}'">${assessmentsicon}</div><div class="day-button clickable" style="right: 35px;" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'">${coursesicon}</div>`
+  }
+
   if (lesson.assessments.length > 0){
     for (let i = 0; i < lesson.assessments.length; i++) {
       const element = lesson.assessments[i]
       assessmentstring += `<p onclick="location.href = '../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}&item=${element.id}';">${element.title}</p>`
     }
-    var lessondiv = stringToHTML(
-      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson?.description ?? "Unknown"}</h2><h3>${lesson?.staff ?? "Unknown"}</h3><h3>${lesson?.room ?? "Unknown"}</h3><h4>${lesson?.from ?? "Unknown"} - ${lesson?.until ?? "Unknown"}</h4><h5>${lesson?.attendanceTitle ?? "Unknown"}</h5><div class="tooltip assessmenttooltip"><svg style="width:28px;height:28px" viewBox="0 0 24 24">
-      <path d="M6 20H13V22H6C4.89 22 4 21.11 4 20V4C4 2.9 4.89 2 6 2H18C19.11 2 20 2.9 20 4V12.54L18.5 11.72L18 12V4H13V12L10.5 9.75L8 12V4H6V20M24 17L18.5 14L13 17L18.5 20L24 17M15 19.09V21.09L18.5 23L22 21.09V19.09L18.5 21L15 19.09Z"></path>
-    </svg><div class="tooltiptext">${assessmentstring}</div></div></div>`
-    );
-
-
-  } else {
-    var lessondiv = stringToHTML(
-      `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson?.description ?? "Unknown"}</h2><h3>${lesson?.staff ?? "Unknown"}</h3><h3>${lesson?.room ?? "Unknown"}</h3><h4>${lesson?.from ?? "Unknown"} - ${lesson?.until ?? "Unknown"}</h4><h5>${lesson?.attendanceTitle ?? "Unknown"}</h5></div>`
-    );
-  }
+    lessonstring += `<div class="tooltip assessmenttooltip"><svg style="width:28px;height:28px;border-radius:0;" viewBox="0 0 24 24">
+    <path fill="#ed3939" d="M16 2H4C2.9 2 2 2.9 2 4V20C2 21.11 2.9 22 4 22H16C17.11 22 18 21.11 18 20V4C18 2.9 17.11 2 16 2M16 20H4V4H6V12L8.5 9.75L11 12V4H16V20M20 15H22V17H20V15M22 7V13H20V7H22Z" />
+    </svg><div class="tooltiptext">${assessmentstring}</div></div>`
+  } 
+  lessonstring += '</div>';
+  var lessondiv = stringToHTML(lessonstring);
   return lessondiv;
 }
 
@@ -2250,9 +2269,10 @@ function createAssessmentDateDiv(date, value, datecase = undefined) {
     titlediv = document.createElement('div');
     titlediv.classList.add('upcoming-subject-title');
 
-    title = document.createElement('h5');
-    title.innerText = element.subject;
-    titlediv.append(title);
+    titlesvg = stringToHTML(`<svg viewBox="0 0 24 24" style="width:35px;height:35px;fill:white;">
+    <path d="M6 20H13V22H6C4.89 22 4 21.11 4 20V4C4 2.9 4.89 2 6 2H18C19.11 2 20 2.9 20 4V12.54L18.5 11.72L18 12V4H13V12L10.5 9.75L8 12V4H6V20M24 17L18.5 14L13 17L18.5 20L24 17M15 19.09V21.09L18.5 23L22 21.09V19.09L18.5 21L15 19.09Z"></path>
+    </svg>`).firstChild
+    titlediv.append(titlesvg);
 
     detailsdiv = document.createElement('div');
     detailsdiv.classList.add('upcoming-details');
@@ -2281,9 +2301,13 @@ function createAssessmentDateDiv(date, value, datecase = undefined) {
         if (response.payload.length > 0) {
           const assessment = document.querySelector(`#assessment${element.id}`);
 
-          ticksvg = stringToHTML(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--item-colour)" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>`).firstChild
-          ticksvg.classList.add('upcoming-tick')
-          assessment.append(ticksvg);
+          // ticksvg = stringToHTML(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--item-colour)" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>`).firstChild
+          // ticksvg.classList.add('upcoming-tick');
+          // assessment.append(ticksvg);
+          submittedtext = document.createElement('div')
+          submittedtext.classList.add('upcoming-submittedtext');
+          submittedtext.innerText = "Submitted";
+          assessment.append(submittedtext);
 
 
         }
@@ -2733,9 +2757,8 @@ function SendHomePage() {
     timetablearrowforward.addEventListener('click', function () { changeTimetable(1) })
 
 
-
-    assessmentsicon = `<svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M16.029,11.207a.748.748,0,0,0,.705.5h0a.75.75,0,0,0,.75-.75V3.234a.413.413,0,0,0-.413-.414H4.574a.413.413,0,0,0-.413.414V18.06a.413.413,0,0,0,.413.413h6.859a.75.75,0,0,0,0-1.5H9.473V14.65h2.846a.977.977,0,0,0,.975-.975V11.207ZM5.661,10.082V7.765H8.348v2.317Zm2.687,1.125v2.318H5.661V11.207ZM9.473,7.765h2.7v2.317h-2.7Zm0-1.125V4.32h2.7V6.64Zm3.821,1.125h2.69v2.317h-2.69Zm2.69-1.125h-2.69V4.32h2.69ZM8.348,4.32V6.64H5.661V4.32Zm0,12.653H5.661V14.65H8.348Zm3.821-3.448h-2.7V11.207h2.7Z"></path><path d="M21.951,14.038a.657.657,0,0,0-.906.2l-5.033,7.93a.656.656,0,0,0,1.108.7l5.033-7.93A.657.657,0,0,0,21.951,14.038Z"></path><path d="M11.433,19.609H3.141a.148.148,0,0,1-.149-.149V1.848a.149.149,0,0,1,.149-.15H18.46a.15.15,0,0,1,.15.15v9.113a.75.75,0,0,0,.75.75h0a.75.75,0,0,0,.75-.75V1.848A1.65,1.65,0,0,0,18.46.2H3.141a1.649,1.649,0,0,0-1.649,1.65V19.46a1.649,1.649,0,0,0,1.649,1.649h8.292a.75.75,0,0,0,0-1.5Z"></path><path d="M16.7,18.341a1.928,1.928,0,0,0,0-3.777,2,2,0,0,0-.389-.039,1.928,1.928,0,0,0-1.927,1.928A1.93,1.93,0,0,0,16.7,18.341ZM15.8,16.8a.6.6,0,0,1-.092-.219.636.636,0,0,1-.013-.124.628.628,0,0,1,.013-.124.613.613,0,0,1,.6-.491.628.628,0,0,1,.124.012.615.615,0,0,1,0,1.205.561.561,0,0,1-.124.013A.615.615,0,0,1,15.8,16.8Z"></path><path d="M23.591,20a1.94,1.94,0,0,0-.358-.646A1.918,1.918,0,0,0,22,18.686c-.024,0-.047-.012-.072-.014-.057,0-.113-.007-.169-.007h0a1.924,1.924,0,0,0-.476,3.789,1.987,1.987,0,0,0,.311.059c.057,0,.113.007.169.007a1.977,1.977,0,0,0,.363-.034,1.934,1.934,0,0,0,1.171-.729,1.875,1.875,0,0,0,.187-.3A1.939,1.939,0,0,0,23.591,20Zm-1.832,1.21a.507.507,0,0,1-.055,0h0a.545.545,0,0,1-.136-.029.509.509,0,0,1-.054-.022.571.571,0,0,1-.061-.029c-.019-.011-.038-.024-.056-.037a.375.375,0,0,1-.036-.027.6.6,0,0,1-.134-.159c-.007-.012-.013-.026-.02-.04a.6.6,0,0,1-.028-.063c-.007-.02-.012-.042-.018-.064s-.009-.037-.012-.057a.631.631,0,0,1-.005-.139.617.617,0,0,1,.286-.467.609.609,0,0,1,.325-.095h0a.471.471,0,0,1,.053,0,.6.6,0,0,1,.294.108.612.612,0,0,1,.266.557.62.62,0,0,1-.5.551A.557.557,0,0,1,21.759,21.208Z"></path></g></g></svg>`;
-    coursesicon = `<svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: currentcolor;"><g><path d="M23.51,21.431l-.7-.7-2.121,2.121.7.7a1.5,1.5,0,1,0,2.121-2.121Z"></path><path d="M18.062,15.983l-.433-.433-.446-.446-2.238-.53a.414.414,0,0,0-.414.413l.531,2.239.446.446.432.432,3.687,3.687,2.121-2.122Z"></path><path d="M15.111,19.849l-2.4.423V19.125l.778-.138a.75.75,0,0,0-.261-1.477l-.517.091V4.794l6.57-1.159a.563.563,0,0,1,.078-.007.158.158,0,0,1,.078.014.214.214,0,0,1,.021.112V6.087h0v9a.438.438,0,0,0,.127.308l.63.63a.434.434,0,0,0,.743-.282V5.822l.257-.046.73-.128a.46.46,0,0,1,.079-.008.156.156,0,0,1,.08.015.208.208,0,0,1,.022.114V16.586a2.022,2.022,0,0,1-.11.644.726.726,0,0,0,.159.751l.051.051a.722.722,0,0,0,1.19-.257,3.545,3.545,0,0,0,.21-1.189V5.769a1.566,1.566,0,0,0-1.6-1.629,2.005,2.005,0,0,0-.34.03l-.726.128V3.743a1.562,1.562,0,0,0-1.6-1.626,1.994,1.994,0,0,0-.339.03L11.964,3.392,4.9,2.147a1.994,1.994,0,0,0-.339-.03,1.546,1.546,0,0,0-1.48.979,1.764,1.764,0,0,0-.122.658V4.3L2.237,4.17a2.005,2.005,0,0,0-.34-.03A1.566,1.566,0,0,0,.3,5.769V16.586a4.088,4.088,0,0,0,3.284,3.863l8,1.411a.836.836,0,0,0,.14.012,1.082,1.082,0,0,0,.241-.03,1.066,1.066,0,0,0,.24.03.836.836,0,0,0,.14-.012l3.028-.534a.75.75,0,1,0-.261-1.477ZM4.463,3.743a.294.294,0,0,1,.009-.079l.009-.022a.148.148,0,0,1,.077-.014.577.577,0,0,1,.079.007L11.213,4.8V17.6l-6.05-1.066a.926.926,0,0,1-.7-.8ZM1.8,16.586V5.769a.208.208,0,0,1,.022-.114A.156.156,0,0,1,1.9,5.64a.46.46,0,0,1,.079.008l.723.127.264.047V15.73A2.416,2.416,0,0,0,4.9,18.012l6.31,1.112v1.148l-7.374-1.3A2.605,2.605,0,0,1,1.8,16.586Z"></path></g></g></svg>`;
+    assessmentsicon = `<svg style="width:24px;height:24px;border-radius:0;" viewBox="0 0 24 24"><path fill="currentColor" d="M6 20H13V22H6C4.89 22 4 21.11 4 20V4C4 2.9 4.89 2 6 2H18C19.11 2 20 2.9 20 4V12.54L18.5 11.72L18 12V4H13V12L10.5 9.75L8 12V4H6V20M24 17L18.5 14L13 17L18.5 20L24 17M15 19.09V21.09L18.5 23L22 21.09V19.09L18.5 21L15 19.09Z"></path></svg>`
+    coursesicon = `<svg style="width:24px;height:24px;border-radius:0;" viewBox="0 0 24 24"><path fill="currentColor" d="M19 1L14 6V17L19 12.5V1M21 5V18.5C19.9 18.15 18.7 18 17.5 18C15.8 18 13.35 18.65 12 19.5V6C10.55 4.9 8.45 4.5 6.5 4.5C4.55 4.5 2.45 4.9 1 6V20.65C1 20.9 1.25 21.15 1.5 21.15C1.6 21.15 1.65 21.1 1.75 21.1C3.1 20.45 5.05 20 6.5 20C8.45 20 10.55 20.4 12 21.5C13.35 20.65 15.8 20 17.5 20C19.15 20 20.85 20.3 22.25 21.05C22.35 21.1 22.4 21.1 22.5 21.1C22.75 21.1 23 20.85 23 20.6V6C22.4 5.55 21.75 5.25 21 5M10 18.41C8.75 18.09 7.5 18 6.5 18C5.44 18 4.18 18.19 3 18.5V7.13C3.91 6.73 5.14 6.5 6.5 6.5C7.86 6.5 9.09 6.73 10 7.13V18.41Z"></path></svg>`
 
     function createNewShortcut(link, icon, viewBox, title) {
       // Creates the stucture and element information for each seperate shortcut

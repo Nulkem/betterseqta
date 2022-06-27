@@ -25,7 +25,7 @@ html {
 }
 
 #container {
-  transition: 1s;
+  transition: 200ms;
 }
 * {
   font-family: Rubik !important;
@@ -94,13 +94,15 @@ ul.magicDelete > li.deleting {
   background: var(--better-main) !important;
   color: var(--text-color) !important;
 }
-
+.tooltip {
+  z-index: 5 !important;
+}
 #menu li, #menu section {
   margin: 3px 20px;
   border-bottom: none;
   box-shadow: none;
   border-radius: 12px;
-  padding: 8px;
+  padding: 12px;
   color: var(--text-color);
   display: flex;
   white-space: nowrap;
@@ -154,7 +156,7 @@ ul.magicDelete > li.deleting {
 }
 
 #userActions {
-  display: none;
+  opacity: 0;
 }
 
 html {
@@ -174,7 +176,7 @@ html {
 #content {
   transition: 0.4s;
   left: 270px;
-  background: var(--background-secondary);
+  background: unset;
 }
 @media (max-width: 900px) {
   #menuToggle {
@@ -224,13 +226,24 @@ html {
 }
 .composer > .Body__body___3pGxr > .Container__container___33GlY > .Document__document___1KJCG > .Canvas__canvas___OBdCZ {
   background-color: unset !important;
+  background-image: unset !important;
+  background: var(--background-secondary) !important;
   color: white !important;
 }
-
+#main>.notices>.notice>.label, #main>.notices>.notice>.staff, #main>.notices>.notice>h2 {
+  color: var(--text-primary);
+  color: var(--colour);
+}
+#main>.course>.content>.homework>.content, #main>.course>.content>.resources>.content {
+  color: var(--text-primary);
+  opacity: 0.8;
+}
 #main > .notices > .notice > .contents {
   background: var(--background-primary);
 }
-
+#main>.notices>.notice {
+  --colour: unset;
+}
 #title {
   background: var(--background-primary);
   height: 80px;
@@ -243,7 +256,7 @@ html {
   background-image: linear-gradient(
     -60deg,
     var(--better-main) 50%,
-    var(--better-sub) 50%
+    var(--background-secondary) 50%
   );
   bottom: 0;
   left: -50%;
@@ -369,7 +382,7 @@ html {
 
 .notice {
   position: relative;
-  width: 100%;
+  width: 95%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -654,7 +667,7 @@ html {
 }
 .notifications__items___2hCdv {
   border-bottom: unset;
-  height: 600px;
+  height: 540px;
   display: flex;
   flex-direction: column;
 }
@@ -920,7 +933,6 @@ body {
 }
 #main > .notices > .notice {
   color: var(--text-primary);
-  color: var(--colour);
 }
 .shortcuticondiv {
   height: 39px;
@@ -1113,7 +1125,7 @@ background-color: currentColor !important;
   height: 100%;
   background: black;
   position: absolute;
-  z-index: 10;
+  z-index: 19;
   opacity: 0.4;
 }
 
@@ -1194,7 +1206,7 @@ background-color: currentColor !important;
   height: 25px;
   width: 25px;
   position: absolute;
-  bottom: 6px;
+  bottom: 20px;
 }
 
 #userActions>.details>.code {
@@ -1248,6 +1260,13 @@ background-color: currentColor !important;
   background: none !important;
   border: 1px solid white;
 }
+.upcoming-submittedtext {
+  align-self: center;
+  padding: 8px 25px;
+  background: var(--item-colour);
+  color: white;
+  border-radius: 30px;
+}
 .upcoming-container {
   width: 94%;
   margin: 50px auto;
@@ -1274,16 +1293,15 @@ background-color: currentColor !important;
 }
 .upcoming-subject-title {
   color: var(--text-primary);
-  width: 25%;
+  width: 15%;
   font-size: 20px;
   text-align: center;
   padding: 5px;
-  border-bottom: 20px solid var(--item-colour);
-  border-right: 2px solid var(--item-colour);
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 5px;
+  border-radius: 5px 0px 0px 5px;
+  background: var(--item-colour);
 }
 .upcoming-assessment-title {
   color: var(--text-primary);
@@ -1516,7 +1534,11 @@ padding: 4px;
   font-size: 20px !important;
   font-weight: 500;
   min-height: 46px;
-  height: 36%;
+  height: 33%;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .day h3 {
   padding: 0px 5px;
@@ -1529,7 +1551,7 @@ padding: 4px;
 
 .day h4 {
   position: absolute;
-  bottom: 35px;
+  bottom: 45px;
   margin: 0;
   padding: 2px;
   padding-left: 8px;
@@ -1594,21 +1616,6 @@ padding: 4px;
   font-weight: 400;
 }
 
-.upcoming-subject-title {
-  color: var(--text-primary);
-  transition: 200ms;
-  width: 25%;
-  font-size: 20px;
-  text-align: center;
-  padding: 5px;
-  border-bottom: 20px solid var(--item-colour);
-  border-right: 2px solid var(--item-colour);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-}
-
 .upcoming-assessment-title {
   color: var(--text-primary);
   transition: 200ms;
@@ -1617,7 +1624,7 @@ padding: 4px;
 }
 
 .upcoming-assessment {
-  border: 2px solid var(--item-colour);
+  border: 3px solid var(--item-colour);
   margin: 5px 50px;
   height: 6em;
   padding: 0px;
@@ -1682,10 +1689,6 @@ padding: 4px;
 .upcoming-blank p {
   padding: 0;
   margin: 0;
-}
-
-.upcoming-tick {
-  align-self: center;
 }
 
 .upcoming-title {
@@ -1880,8 +1883,8 @@ padding: 4px;
   transform: scale(0);
   transition: transform 0.2s;
   transform-origin: top;
-  background-color: black;
-  color: #fff;
+  background-color: var(--background-primary);
+  color: var(--text-primary);
   text-align: center;
   border-radius: 6px;
   padding: 2px;
@@ -1905,9 +1908,15 @@ padding: 4px;
 
 .tooltiptext p:hover {
   cursor: pointer;
-  text-decoration: underline;
+  background: rgba(0, 0, 0, 0.3) !important;
+  transition: 200ms;
 }
-
+.tooltiptext p {
+  border-radius: 8px !important;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin: 2px;
+}
 .tooltip:hover .tooltiptext {
   transform: scale(1);
   transform-origin: top;
@@ -1918,7 +1927,7 @@ padding: 4px;
 }
 .assessmenttooltip {
   bottom: 0px;
-  left: 0px;
+  left: 5px;
 }
 
 .DarkLightButton {
