@@ -229,7 +229,7 @@ function OpenWhatsNewPopup(){
 
   var header = stringToHTML(`<div class="whatsnewHeader">
   <h1>What's New</h1>
-  <p>BetterSEQTA V2.0</p>
+  <p>BetterSEQTA V2.0.1</p>
   </div>`).firstChild;
 
   imagecont = document.createElement('div');
