@@ -298,12 +298,8 @@ function OpenWhatsNewPopup(){
   })
   var closeelement = document.getElementById('whatsnewclosebutton');
   closeelement.addEventListener('click', function(e){
-    // DeleteWhatsNew();
-    // WhatsNewOpen = false;
-    console.log(document.cookie);
-    document.cookie = document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
-    console.log(document.cookie);
-    // location.reload();
+    DeleteWhatsNew();
+    WhatsNewOpen = false;
   })
 }
 
