@@ -248,10 +248,10 @@ function OpenWhatsNewPopup(){
   text = stringToHTML(
   `
   <div class="whatsnewTextContainer">
-  <h1>Sleek new layout</h1><li>Updated with a new font and presentation, BetterSEQTA has never looked better.</li>
+  <h1>Sleek New Layout</h1><li>Updated with a new font and presentation, BetterSEQTA has never looked better.</li>
   <h1>New Updated Sidebar</h1><li>Condensed appearance with new updated icons.</li>
   <h1>Independent Light Mode and Dark Mode</h1><li>Dark mode and Light mode are now available to pick alongside your chosen Theme Colour. Your Theme Colour will now become an accent colour for the page.
-  Light/Dark mode can be toggled with the new button, found in the top-right of menubar.
+  Light/Dark mode can be toggled with the new button, found in the top-right of the menu bar.
   </li>
   <img style="width:150px;margin-bottom:5px" src="${chrome.runtime.getURL('inject/preview/lightdarkmode.png')}">
   <h1>Create Custom Shortcuts</h1><li>Found in the BetterSEQTA Settings menu, custom shortcuts can now be created with a name and URL of your choice.</li>
