@@ -2093,7 +2093,7 @@ function callHomeTimetable(date, change) {
             return a.from.localeCompare(b.from);
           });
           // If items in the response, set each corresponding value into divs
-          lessonArray = lessonArray.splice(1)
+          // lessonArray = lessonArray.splice(1)
           GetLessonColours().then((colours) => {
             subjects = colours;
             for (let i = 0; i < lessonArray.length; i++) {
