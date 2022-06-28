@@ -102,8 +102,18 @@
   </div>
 
   <div class="menu-page hiddenmenu" id="shortcutpage">
-    <div class="selector-container" style="margin-bottom: 0;">
-      <div class="menu-item-selection">
+    <div class="selector-container" style="margin-bottom: 0; max-height: 17em; overflow-y:hidden;">
+      <div>
+        <div class="custom-shortcuts-button custom-shortcuts-buttons">Create Custom Shortcut</div>
+        <div class="custom-shortcuts-container">
+          <label for="shortcutname" class="custom-shortcuts-label">Shortcut Name:</label>
+          <input type="text" id="shortcutname" name="shortcutname" class="custom-shortcuts-field" placeholder="e.g. Google" maxlength="20">
+          <label for="shortcuturl" class="custom-shortcuts-label">URL:</label>
+          <input type="text" id="shortcuturl" name="shortcuturl" class="custom-shortcuts-field" placeholder="e.g. https://www.google.com">
+          <div class="custom-shortcuts-submit custom-shortcuts-buttons">Create</div>
+        </div>
+      </div>
+      <div class="menu-item-selection menushortcut">
         <div class="item-container menushortcuts">
           <div class="text-container">
             <h1 class="addonitem">YouTube</h1>
@@ -221,7 +231,6 @@
           </div>
         </div>
 
-
         <div class="item-container">
           <div class="text-container">
             <h1 class="addonitem">Lesson Alerts</h1>
@@ -284,7 +293,8 @@
     <div></div>
 
     <div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177); display: flex;">
-      <p style="margin: 0; margin-right: 5px; color: white;">Created by Nulkem </p> v1.76
+      <p style="margin: 0; margin-right: 5px; color: white;">Created by Nulkem </p>
+      <p style="margin: 0; margin-right: 5px;" id="version"></p>
     </div><img src="/popup/github.svg" alt="" id="github">
   </div>
   <script src="info.js"></script>

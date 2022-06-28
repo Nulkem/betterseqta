@@ -1,7 +1,8 @@
 function ReloadSEQTAPages() {
   chrome.tabs.query({}, function (tabs) {
     for (let tab of tabs) {
-      if (tab.url.includes("https://learn") && tab.url.includes(".edu.au/")) {
+      // Account for other possible subdomains
+      if ((tab.url.includes("https://learn") || tab.url.includes("https://student")) && tab.url.includes(".edu.au/")) {
         if (tab.title.includes("SEQTA Learn")) {
           chrome.tabs.reload(tab.id);
         }
@@ -29,35 +30,34 @@ var NewsJSON = {};
 
 
 chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if (request.type === "sendNews"){
+  function (request, sender, sendResponse) {
+    if (request.type === "sendNews") {
 
-        // Gets the current date
-        const date = new Date();
-        // Formats the current date used send a request for timetable and notices later
-        var TodayFormatted =
+      // Gets the current date
+      const date = new Date();
+      // Formats the current date used send a request for timetable and notices later
+      var TodayFormatted =
         date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 
-        var from = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() - 1);
-        console.log(TodayFormatted)
-        console.log(from)
+      var from = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate() - 1);
+      console.log(TodayFormatted)
+      console.log(from)
 
       // var url = `https://newsapi.org/v2/everything?sources=abc-news&from=${TodayFormatted}&sortBy=popularity&apiKey=17c0da766ba347c89d094449504e3080`;
       var url = `https://newsapi.org/v2/everything?domains=abc.net.au&from=${from}&apiKey=17c0da766ba347c89d094449504e3080`
-      var req = new Request(url);
 
-      function GetNews(){
+      function GetNews() {
         fetch(url)
-        .then((result) => result.json())
-        .then((response) => {
-          if (response.code == 'rateLimited'){
-            url += '%00';
-            GetNews();
-          }
-          else {
-            sendResponse({news: response})
-          }
-        })
+          .then((result) => result.json())
+          .then((response) => {
+            if (response.code == 'rateLimited') {
+              url += '%00';
+              GetNews();
+            }
+            else {
+              sendResponse({ news: response })
+            }
+          })
       }
 
       GetNews();
@@ -79,6 +79,7 @@ const DefaultValues = {
   menuorder: [],
   subjectfilters: {},
   selectedColor: '#1a1a1a',
+  DarkMode: true,
   shortcuts: [
     {
       name: "YouTube",
@@ -124,7 +125,8 @@ const DefaultValues = {
       name: "Netflix",
       enabled: false
     }
-  ]
+  ],
+  customshortcuts: []
 }
 
 function SetStorageValue(object) {
@@ -163,13 +165,19 @@ function UpdateCurrentValues(details) {
         }
       }
     }
-
     CheckInnerElement(DefaultValues);
+    
+    if (items["customshortcuts"]){
+      NewValue["customshortcuts"] = items["customshortcuts"];
+    }
 
     SetStorageValue(NewValue);
   })
 }
 
-chrome.runtime.onInstalled.addListener(UpdateCurrentValues)
+chrome.runtime.onInstalled.addListener(function (){
+  UpdateCurrentValues();
+  chrome.storage.local.set({justupdated: true});
+})
 
 
