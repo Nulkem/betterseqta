@@ -12,6 +12,7 @@
 
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>. */
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,600');
 
 :root {
   background-color: var(--better-main) !important;
@@ -33,6 +34,7 @@ html {
 }
 #title {
   color: var(--text-primary);
+  font-weight: 500 !important;
 }
 .connectedNotificationsWrapper > div > button > svg > g {
   fill: var(--background-primary) !important;
@@ -156,7 +158,7 @@ ul.magicDelete > li.deleting {
 }
 
 #userActions {
-  opacity: 0;
+  display: none;
 }
 
 html {
@@ -449,6 +451,18 @@ html {
   color: var(--text-primary);
   display: flex;
   border-radius: 5px;
+  position: relative;
+}
+.customshortcut::after {
+  content: 'User Created Shortcut';
+  position: absolute;
+  top: -4px;
+  right: -15px;
+  font-size: 8px;
+  padding: 2px 5px;
+  background: var(--better-alert-highlight);
+  border-radius: 8px;
+  color: white;
 }
 .shortcut:hover {
   background: var(--background-secondary);
@@ -458,6 +472,7 @@ html {
   font-size: 20px;
   width: 150px;
   word-wrap: break-word;
+  line-height: 20px;
 }
 .colourbar {
   width: 100%;
@@ -647,17 +662,6 @@ html {
   color: var(--text-primary);
   top: 80px;
   right: 10px;
-}
-.userInfosvgdiv::before {
-  top: 28.5px;
-  height: 40px;
-  width: 40px;
-  content: "";
-  background: var(--background-primary);
-  position: absolute;
-  right: 15px;
-  border-radius: 50%;
-  z-index: 2;
 }
 #menu li.active {
   background: #ffffff !important;
@@ -1144,14 +1148,21 @@ background-color: currentColor !important;
 .editmenuoption-container {
   width: 100%;
   height: 42px;
-  position: absolute;
   background: var(--background-primary);
   bottom: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
+.logout {
+  background: none !important;
+  padding: 5px 10px;
+}
+#logouttooltip {
+  width: 50px !important;
+  margin-left: -28px !important;
+  top: 105% !important;
+}
 .svg {
   transform-origin: center;
   position: absolute;
@@ -1471,7 +1482,7 @@ padding: 4px;
 }
 
 .Input__Input___3RSTI {
-  width: 70%;
+  width: 100%;
 }
 
 .messages-filterbutton {
@@ -1479,7 +1490,7 @@ padding: 4px;
   width: 25%;
   background: var(--better-main);
   border-radius: 5px;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   color: var(--text-color);
@@ -1532,7 +1543,7 @@ padding: 4px;
   padding: 8px;
   padding-top: 14px;
   font-size: 20px !important;
-  font-weight: 500;
+  font-weight: 400;
   min-height: 46px;
   height: 33%;
   overflow: hidden;
@@ -1641,7 +1652,7 @@ padding: 4px;
 
 .upcoming-date-title h5 {
   margin: 0;
-
+  font-weight: 500;
 }
 
 .upcoming-date-title {
@@ -1803,7 +1814,7 @@ padding: 4px;
   justify-content: space-between;
   z-index: 10;
   position: absolute;
-  right: 175px;
+  right: 250px;
 }
 
 .pagename {
@@ -1845,9 +1856,18 @@ padding: 4px;
   width: 50px;
   height: 50px;
   color: var(--better-main);
-  margin: 10px;
-  position: relative;
   z-index: 3;
+  position: absolute;
+}
+.userInfosvgdiv {
+  width: 50px !important;
+  height: 50px !important;
+  color: var(--better-main);
+  margin: 10px;
+  z-index: 3;
+  position: absolute !important;
+  right: -70px !important;
+  top: 14px !important;
 }
 
 .userInfosvg::after {
@@ -1862,7 +1882,8 @@ padding: 4px;
   font-size: 15px;
   margin: 0 8px !important;
   border-radius: 5px;
-  color: black;
+  color: var(--text-primary);
+  background: var(--background-secondary);
   outline: solid 1px black;
 }
 .tooltip svg {
@@ -1941,4 +1962,155 @@ padding: 4px;
   top: 115% !important;
   background: var(--text-primary) !important;
   color: var(--background-primary) !important;
+}
+.whatsnewContainer {
+  position: absolute;
+  width: 38em;
+  height: 95%;
+  max-height: 60em;
+  background: var(--better-main);
+  z-index: 50;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%) scale(0.8);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  animation: zoomin 0.5s;
+  animation-fill-mode: forwards;
+  transform-origin: center center;
+
+}
+
+@keyframes zoomin {
+  75% {
+    transform: translate(-50%,-50%) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%,-50%) scale(1);
+  }
+}
+@keyframes zoomout {
+  0% {
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(0.8);
+  }
+}
+.whatsnewHeader {
+  margin: 20px;
+  width: 100%;
+  height: 3em;
+  display: flex;
+  flex-direction: column;
+}
+.whatsnewHeader h1 {
+  font-size: 2em;
+}
+.whatsnewHeader p {
+  font-size: 1em;
+  color: #c9c9c9;
+}
+.whatsnewBackground {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 49;
+  opacity: 0;
+  animation: fadein 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadein {
+  100% {
+      opacity: 1; 
+  }
+}
+@keyframes fadeout {
+  0% {
+      opacity: 1; 
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.whatsnewImgContainer {
+  width: 96%;
+  display: flex;
+  padding: 2em 0;
+  margin: 0 auto;
+  background: #141414;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.whatsnewImg {
+  margin: 0 auto;
+  width: 30%;
+}
+.whatsnewTextContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 5px auto;
+}
+.whatsnewTextContainer li {
+  margin-bottom: 10px;
+  list-style-type: disc;
+  list-style-position: inside;
+  text-indent: -1em;
+  padding-left: 1em;
+}
+.whatsnewTextHeader {
+  font-size: 1.4em !important;
+  color: #4dd868;
+  font-weight: 600;
+  width: fit-content;
+  position: relative;
+}
+.whatsnewTextHeader::after {
+  content: '';
+  width: 160%;
+  height: 2px;
+  background: #4dd868;
+  margin-left: 10px;
+  position: absolute;
+  top: 50%;
+}
+.whatsnewFooter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3em;
+  border-radius: 0 0px 20px 20px;
+  background: #0e0e0e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.whatsnewFooter div {
+  margin: 0 15px;
+  display:flex;
+  align-items:center;
+}
+#whatsnewclosebutton {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2em;
+  padding: 5px;
+  cursor: pointer;
+}
+.whatsnewfadeout {
+  animation: fadeout 0.5s;
+}
+.whatsnewzoomout {
+  animation: zoomout 0.6s;
 }

@@ -18,6 +18,7 @@ var SettingsClicked = false
 var MenuOptionsOpen = false;
 var UserInitalCode = '';
 var currentSelectedDate = new Date();
+var WhatsNewOpen = false;
 
 var stringToHTML = function (str) {
   var parser = new DOMParser();
@@ -218,11 +219,118 @@ function ApplyCSSToHiddenMenuItems() {
   });
 }
 
+function OpenWhatsNewPopup(){
+  const background = document.createElement('div');
+  background.id = "whatsnewbk";
+  background.classList.add('whatsnewBackground');
+
+  const container = document.createElement('div');
+  container.classList.add('whatsnewContainer');
+
+  var header = stringToHTML(`<div class="whatsnewHeader">
+  <h1>What's New</h1>
+  <p>BetterSEQTA V2.0</p>
+  </div>`).firstChild;
+
+  imagecont = document.createElement('div');
+  imagecont.classList.add('whatsnewImgContainer');
+  var image = document.createElement('img');
+  image.src = chrome.runtime.getURL('icons/betterseqta-dark-icon.png');
+  image.classList.add('whatsnewImg')
+  imagecont.append(image);
+
+  textcontainer = document.createElement('div');
+  textcontainer.classList.add('whatsnewTextContainer');
+
+  textheader = stringToHTML('<h1 class="whatsnewTextHeader">DESIGN OVERHAUL</h1>').firstChild;
+  textcontainer.append(textheader);
+
+  text = stringToHTML(
+  `
+  <div class="whatsnewTextContainer">
+  <h1>Sleek new layout</h1><li>Updated with a new font and presentation, BetterSEQTA has never looked better.</li>
+  <h1>New Updated Sidebar</h1><li>Condensed appearance with new updated icons.</li>
+  <h1>Independent Light Mode and Dark Mode</h1><li>Dark mode and Light mode are now available to pick alongside your chosen Theme Colour. Your Theme Colour will now become an accent colour for the page.
+  Light/Dark mode can be toggled with the new button, found in the top-right of menubar.
+  </li>
+  <img style="width:150px;margin-bottom:5px" src="${chrome.runtime.getURL('inject/preview/lightdarkmode.png')}">
+  <h1>Create Custom Shortcuts</h1><li>Found in the BetterSEQTA Settings menu, custom shortcuts can now be created with a name and URL of your choice.</li>
+  <img style="width:150px;" src="${chrome.runtime.getURL('inject/preview/customshortcut.png')}">
+  </div>
+  `
+  ).firstChild;
+
+  footer = stringToHTML(`
+  <div class="whatsnewFooter">
+  <div>
+  Report bugs and feedback: 
+  <a href="https://github.com/Nulkem/betterseqta" target="_blank" style="background: none !important; margin: 0 5px; padding:0;"><img style="filter: invert(99%) sepia(0%) saturate(627%) hue-rotate(255deg) brightness(122%) contrast(100%);" height="23" src="${chrome.runtime.getURL('/popup/github.svg')}" alt=""></a>
+  <a href="https://chrome.google.com/webstore/detail/betterseqta/boikofabjaholheekefimfojfncpjfib" target="_blank" style="background: none !important; margin: 0 5px; padding:0;">
+  <svg style="width:25px;height:25px" viewBox="0 0 24 24">
+    <path fill="white" d="M12,20L15.46,14H15.45C15.79,13.4 16,12.73 16,12C16,10.8 15.46,9.73 14.62,9H19.41C19.79,9.93 20,10.94 20,12A8,8 0 0,1 12,20M4,12C4,10.54 4.39,9.18 5.07,8L8.54,14H8.55C9.24,15.19 10.5,16 12,16C12.45,16 12.88,15.91 13.29,15.77L10.89,19.91C7,19.37 4,16.04 4,12M15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9A3,3 0 0,1 15,12M12,4C14.96,4 17.54,5.61 18.92,8H12C10.06,8 8.45,9.38 8.08,11.21L5.7,7.08C7.16,5.21 9.44,4 12,4M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+  </svg>
+  </a>
+  </div>
+  <div>Support me: <a href="https://ko-fi.com/O4O5AOFX9" target="_blank" style="background: none !important; margin:0;margin-left:6px; padding:0;"><img height="25" style="border:0px;height:25px;" src="${chrome.runtime.getURL('/popup/kofi3.png')}" border="0" alt="Buy Me a Coffee at ko-fi.com"></a></div>
+  </div>
+  `).firstChild
+
+  exitbutton = document.createElement('div')
+  exitbutton.innerText = 'x';
+  exitbutton.id = 'whatsnewclosebutton';
+
+  container.append(header);
+  container.append(imagecont);
+  container.append(textcontainer);
+  container.append(text);
+  container.append(footer);
+  container.append(exitbutton);
+
+  document.getElementById('container').append(background);
+  document.getElementById('container').append(container);
+
+  chrome.storage.local.remove(["justupdated"]);
+
+  var bkelement = document.getElementById('whatsnewbk');
+  bkelement.addEventListener('click', function(){
+    DeleteWhatsNew();
+    WhatsNewOpen = false;
+  })
+  var closeelement = document.getElementById('whatsnewclosebutton');
+  closeelement.addEventListener('click', function(e){
+    // DeleteWhatsNew();
+    // WhatsNewOpen = false;
+    console.log(document.cookie);
+    document.cookie = document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    console.log(document.cookie);
+    // location.reload();
+  })
+}
+
 async function finishLoad() {
   var loadingbk = document.getElementById("loading");
   loadingbk.style.opacity = "0";
   await delay(501);
   loadingbk.remove();
+
+  chrome.storage.local.get(["justupdated"], function(result){
+    if (result.justupdated) {
+      WhatsNewOpen = true;
+      OpenWhatsNewPopup();
+    }
+  })
+
+
+}
+
+async function DeleteWhatsNew(){
+  var bkelement = document.getElementById('whatsnewbk');
+  var popup = document.getElementsByClassName("whatsnewContainer")[0];
+  bkelement.classList.add('whatsnewfadeout');
+  popup.classList.add('whatsnewzoomout');
+  await delay(500);
+  bkelement.remove();
+  popup.remove();
 }
 
 function CreateBackground() {
@@ -804,6 +912,14 @@ document.addEventListener(
 );
 
 function RunExtensionSettingsJS() {
+  const whatsnewsettings = document.getElementById('whatsnewsettings');
+  whatsnewsettings.addEventListener('click', function(){
+    if (!WhatsNewOpen){
+      WhatsNewOpen = true;
+      OpenWhatsNewPopup();
+    }
+  });
+
   const onoffselection = document.querySelector("#onoff");
   const notificationcollector = document.querySelector("#notification");
   const lessonalert = document.querySelector("#lessonalert");
@@ -1364,8 +1480,10 @@ function CallExtensionSettings() {
 
     <div></div>
 
-    <div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177); display: flex;"><p style="margin: 0; margin-right: 5px; color: white;">Created by Nulkem </p> v${chrome.runtime.getManifest().version}</div><img
-    src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github">
+    <div style="position: absolute; bottom: 15px; right: 50px; color: rgb(177, 177, 177); display: flex; align-items:center;">
+    <p style="margin: 0; margin-right: 5px; color: white;">Created by Nulkem </p>
+    <p style="margin: 0; cursor:pointer; padding: 4px 5px; background: #ff5f5f; color:#1a1a1a;font-weight: 500; border-radius: 10px;" id="whatsnewsettings">What's new in v${chrome.runtime.getManifest().version}</p></div>
+    <img src=${chrome.runtime.getURL('/popup/github.svg')} alt="" id="github">
   </div></div>`)
   document.body.append(Settings.firstChild)
 
@@ -1727,12 +1845,17 @@ function AddBetterSEQTAElements(toggle) {
           .then((response) => {
             info = response.payload;
 
-            var titlebar = document.getElementsByClassName('titlebar')[0]
-            var userinfostr = `<div class="userInfo"><div class="userInfoText"><div style="display: flex; align-items: center;"><p class="userInfohouse userInfoCode"></p><p class="userInfoName">${info.userDesc}</p></div><p class="userInfoCode">${info.userCode} // ${info.meta.governmentID}</p></div><div class="userInfosvgdiv"><svg class="userInfosvg" viewBox="0 0 24 24"><path fill="var(--text-primary)" d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"></path></svg></div></div>`
+            var titlebar = document.getElementsByClassName('titlebar')[0];
+            titlebar.append(stringToHTML(`<div class="userInfosvgdiv tooltip"><svg class="userInfosvg" viewBox="0 0 24 24"><path fill="var(--text-primary)" d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"></path></svg><div class="tooltiptext topmenutooltip" id="logouttooltip"></div></div>`).firstChild)
+            var userinfostr = `<div class="userInfo"><div class="userInfoText"><div style="display: flex; align-items: center;"><p class="userInfohouse userInfoCode"></p><p class="userInfoName">${info.userDesc}</p></div><p class="userInfoCode">${UserInitalCode}</p></div></div>`
             var userinfo = stringToHTML(userinfostr).firstChild
 
+            
             titlebar.append(userinfo)
-
+            
+            var logoutbutton = document.getElementsByClassName('logout')[0];
+            var userInfosvgdiv = document.getElementById('logouttooltip');
+            userInfosvgdiv.appendChild(logoutbutton);
 
             fetch(`${location.origin}/seqta/student/load/message/people`, {
               method: "POST",
@@ -1749,8 +1872,22 @@ function AddBetterSEQTAElements(toggle) {
                 });
 
                 houseelement = document.getElementsByClassName("userInfohouse")[0];
-                houseelement.style.background = students[index].house_colour;
-                houseelement.innerText = students[index].year + students[index].house;
+                if (students[index].house){
+                  houseelement.style.background = students[index].house_colour;
+                  colorresult = ColorLuminance(students[index].house_colour);
+                  if (colorresult > 300){
+                    houseelement.style.color = "black";
+                  }
+                  else {
+                    houseelement.style.color = "white";
+                  }
+                  houseelement.innerText = students[index].year + students[index].house;
+                }
+                else {
+                  houseelement.innerText = students[index].year;
+                }
+
+
               })
 
           })
@@ -1898,20 +2035,6 @@ function GetLightDarkModeString(darkmodetoggle){
     tooltipstring = "Switch to dark theme";
   }
   return tooltipstring;
-}
-
-function GetTimeString() {
-  // Gets the current time and creates a string for the home page
-  const current = new Date();
-  let hour = current.getHours();
-  if (hour >= 12 && hour < 16) {
-    var TimeText = "Good Afternoon, ";
-  } else if (hour >= 16 && hour <= 23) {
-    var TimeText = "Good Evening, ";
-  } else if (hour >= 0 && hour <= 11) {
-    var TimeText = "Good Morning, ";
-  }
-  return TimeText;
 }
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -2626,6 +2749,7 @@ function CreateCustomShortcutDiv(element){
     shortcut.setAttribute("target", "_blank");
     var shortcutdiv = document.createElement("div");
     shortcutdiv.classList.add("shortcut");
+    shortcutdiv.classList.add("customshortcut");
 
     image = stringToHTML(`<svg viewBox="0 0 40 40" style="width:39px;height:39px"><text font-size="32" font-weight="bold" fill="var(--text-primary)" x="50%" y="50%" text-anchor="middle" dominant-baseline="central">${element.icon}</text></svg>`).firstChild
     image.classList.add("shortcuticondiv");
@@ -2663,14 +2787,6 @@ function SendHomePage() {
     // Remove all current elements in the main div to add new elements
     var main = document.getElementById("main");
     main.innerHTML = "";
-
-    // Gets the current time string e.g. (Good Morning)
-    var timeString = GetTimeString();
-
-    // Gets the student name from pre-existing element on page
-    var UsersName = document.getElementsByClassName("name")[0];
-    // Gets the students first name
-    var FirstName = UsersName.innerHTML.replace(/ .*/, "");
 
     const titlediv = document.getElementById('title').firstChild;
     titlediv.innerText = "Home";

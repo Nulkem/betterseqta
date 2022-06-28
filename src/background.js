@@ -175,6 +175,9 @@ function UpdateCurrentValues(details) {
   })
 }
 
-chrome.runtime.onInstalled.addListener(UpdateCurrentValues)
+chrome.runtime.onInstalled.addListener(function (){
+  UpdateCurrentValues();
+  chrome.storage.local.set({justupdated: true});
+})
 
 
