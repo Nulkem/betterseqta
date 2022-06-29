@@ -19,6 +19,7 @@ var MenuOptionsOpen = false;
 var UserInitalCode = '';
 var currentSelectedDate = new Date();
 var WhatsNewOpen = false;
+var LessonInterval;
 
 var stringToHTML = function (str) {
   var parser = new DOMParser();
@@ -229,7 +230,7 @@ function OpenWhatsNewPopup(){
 
   var header = stringToHTML(`<div class="whatsnewHeader">
   <h1>What's New</h1>
-  <p>BetterSEQTA V2.0</p>
+  <p>BetterSEQTA V${chrome.runtime.getManifest().version}</p>
   </div>`).firstChild;
 
   imagecont = document.createElement('div');
@@ -298,12 +299,8 @@ function OpenWhatsNewPopup(){
   })
   var closeelement = document.getElementById('whatsnewclosebutton');
   closeelement.addEventListener('click', function(e){
-    // DeleteWhatsNew();
-    // WhatsNewOpen = false;
-    console.log(document.cookie);
-    document.cookie = document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
-    console.log(document.cookie);
-    // location.reload();
+    DeleteWhatsNew();
+    WhatsNewOpen = false;
   })
 }
 
@@ -1874,7 +1871,7 @@ function AddBetterSEQTAElements(toggle) {
                 houseelement = document.getElementsByClassName("userInfohouse")[0];
                 if (students[index].house){
                   houseelement.style.background = students[index].house_colour;
-                  colorresult = ColorLuminance(students[index].house_colour);
+                  colorresult = GetThresholdofHex(students[index].house_colour);
                   if (colorresult > 300){
                     houseelement.style.color = "black";
                   }
@@ -2073,17 +2070,20 @@ function CheckCurrentLesson(lesson, num) {
   id = lesson.code + num
   const date = new Date()
 
-  if (currentSelectedDate.toLocaleDateString('en-au') == date.toLocaleDateString('en-au')) {
-    if (valid) {
-      // Apply the activelesson class to increase the box-shadow of current lesson
-
-      var elementA = document.getElementById(id);
-      elementA.classList.add("activelesson");
-    } else {
-      // Removes the activelesson class to ensure only the active lesson have the class
-      var elementA = document.getElementById(id);
-      if (elementA != null) {
-        elementA.classList.remove("activelesson");
+  var elementA = document.getElementById(id);
+  if (!elementA){
+    clearInterval(LessonInterval);
+  }
+  else {
+    if (currentSelectedDate.toLocaleDateString('en-au') == date.toLocaleDateString('en-au')) {
+      if (valid) {
+        // Apply the activelesson class to increase the box-shadow of current lesson
+        elementA.classList.add("activelesson");
+      } else {
+        // Removes the activelesson class to ensure only the active lesson have the class
+        if (elementA != null) {
+          elementA.classList.remove("activelesson");
+        }
       }
     }
   }
@@ -2146,9 +2146,9 @@ function GetThresholdofHex(hex) {
 
 function CheckCurrentLessonAll(lessons) {
   // Checks each lesson and sets an interval to run every 60 seconds to continue updating
-  setInterval(
+  LessonInterval = setInterval(
     function () {
-      for (i = 0; i < 5; i++) {
+      for (i = 0; i < lessons.length; i++) {
         CheckCurrentLesson(lessons[i], i + 1);
       }
     }.bind(lessons),
