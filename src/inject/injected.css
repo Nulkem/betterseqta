@@ -877,7 +877,7 @@ iframe.userHTML {
   background-color: var(--better-main);
 }
 .activelesson {
-  background: rgba(0, 0, 0, 0.15) !important;
+  box-shadow: inset 0px 10px 0 var(--item-colour, transparent) !important;
 }
 .formattedText > .wrapper > .cke > .cke_inner > .cke_contents {
   background: var(--background-primary);
@@ -908,7 +908,8 @@ iframe.userHTML {
 }
 
 .legacy-root input.singleSelect:focus {
-  background-color: var(--background-primary);
+  background: var(--background-secondary);
+  color: var(--text-primary) !important;
 }
 
 ul.singleSelect,
