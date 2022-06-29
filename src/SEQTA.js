@@ -248,7 +248,8 @@ function OpenWhatsNewPopup(){
 
   text = stringToHTML(
   `
-  <div class="whatsnewTextContainer">
+  <div class="whatsnewTextContainer" style="height: 50%;overflow-y: scroll;">
+  <h1>2.0.2 - Minor bug fixes</h1><li>Fixed indicator for current lesson</li><li>Fixed text colour for DM messages list in Light mode</li><li>Fixed user info text colour</li>
   <h1>Sleek New Layout</h1><li>Updated with a new font and presentation, BetterSEQTA has never looked better.</li>
   <h1>New Updated Sidebar</h1><li>Condensed appearance with new updated icons.</li>
   <h1>Independent Light Mode and Dark Mode</h1><li>Dark mode and Light mode are now available to pick alongside your chosen Theme Colour. Your Theme Colour will now become an accent colour for the page.
