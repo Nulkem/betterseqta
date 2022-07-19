@@ -885,7 +885,7 @@ document.addEventListener(
   function () {
     CheckForMenuList();
     var weblink = window.location.origin
-    if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && !IsSEQTAPage && (weblink.includes('learn.') || weblink.includes('student.') || weblink.includes('coneqt'))) {
+    if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && !IsSEQTAPage && (weblink.includes('learn.') || weblink.includes('student.')  || weblink.includes('students.') || weblink.includes('coneqt'))) {
       IsSEQTAPage = true;
       console.log("[BetterSEQTA] Verified SEQTA Page");
 
@@ -2256,11 +2256,14 @@ function callHomeTimetable(date, change) {
               DayContainer.append(div.firstChild);
             }
 
-            for (i = 0; i < lessonArray.length; i++) {
-              CheckCurrentLesson(lessonArray[i], i + 1);
+            const today = new Date();
+            if (currentSelectedDate.getDate() == today.getDate()){
+              for (i = 0; i < lessonArray.length; i++) {
+                CheckCurrentLesson(lessonArray[i], i + 1);
+              }
+              // For each lesson, check the start and end times
+              CheckCurrentLessonAll(lessonArray);
             }
-            // For each lesson, check the start and end times
-            CheckCurrentLessonAll(lessonArray);
           })
 
 
@@ -2793,6 +2796,8 @@ function SendHomePage() {
     titlediv.innerText = "Home";
     document.querySelector('link[rel*="icon"]').href = chrome.extension.getURL("icons/icon-48.png");
 
+    currentSelectedDate = new Date();
+
     // Creates the root of the home page added to the main div
     var htmlStr =
       `<div class="home-root"><div class="home-container" id="home-container"></div></div>`;
@@ -2856,17 +2861,9 @@ function SendHomePage() {
     }
 
     function changeTimetable(value) {
-
-      if (value == -1) {
-        currentSelectedDate.setDate(currentSelectedDate.getDate() - 1)
+        currentSelectedDate.setDate(currentSelectedDate.getDate() + value);
         FormattedDate = currentSelectedDate.getFullYear() + "-" + (currentSelectedDate.getMonth() + 1) + "-" + currentSelectedDate.getDate();
         callHomeTimetable(FormattedDate, true);
-      }
-      if (value == 1) {
-        currentSelectedDate.setDate(currentSelectedDate.getDate() + 1)
-        FormattedDate = currentSelectedDate.getFullYear() + "-" + (currentSelectedDate.getMonth() + 1) + "-" + currentSelectedDate.getDate();
-        callHomeTimetable(FormattedDate, true);
-      }
       SetTimetableSubtitle();
     }
 

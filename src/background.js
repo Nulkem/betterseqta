@@ -175,10 +175,12 @@ function UpdateCurrentValues(details) {
   })
 }
 
-chrome.runtime.onInstalled.addListener(function (){
+chrome.runtime.onInstalled.addListener(function (event){
   chrome.storage.local.remove(["justupdated"]);
   UpdateCurrentValues();
-  chrome.storage.local.set({justupdated: true});
-})
+  if (/*chrome.runtime.getManifest().version > event.previousVersion || */ event.reason == 'install'){
+    chrome.storage.local.set({justupdated: true});
+  }
+});
 
 
