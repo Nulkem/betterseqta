@@ -579,6 +579,9 @@ function LoadPageElements() {
     mutations_list.forEach(function (mutation) {
       mutation.addedNodes.forEach(function (added_node) {
         if (added_node.classList.contains('messages')){
+          element = document.getElementById('title').firstChild;
+          element.innerText = "Direct Messages";
+          document.title = "Direct Messages ― SEQTA Learn";
           SortMessagePageItems(added_node);
         }
       });
@@ -885,10 +888,10 @@ document.addEventListener(
   function () {
     CheckForMenuList();
     var weblink = window.location.origin
-    if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && !IsSEQTAPage && (weblink.includes('learn.') || weblink.includes('student.')  || weblink.includes('students.') || weblink.includes('coneqt'))) {
+    if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && !IsSEQTAPage && ((weblink.includes('learn.') || weblink.includes('student.')  || weblink.includes('students.') || weblink.includes('coneqt')) || weblink.includes('site.seqta.com.au'))) {
       IsSEQTAPage = true;
       console.log("[BetterSEQTA] Verified SEQTA Page");
-
+    
       var link = document.createElement("link");
       link.href = chrome.extension.getURL("inject/documentload.css");
       link.type = "text/css";
@@ -1786,6 +1789,10 @@ function OpenMenuOptions() {
 function ReplaceMenuSVG(element, svg) {
   item = element.firstChild;
   item.firstChild.remove();
+
+  if (element.dataset.key == "messages"){
+    element.firstChild.innerText = "Direct Messages";
+  }
 
   newsvg = stringToHTML(svg).firstChild;
   item.insertBefore(newsvg, item.firstChild);

@@ -48,6 +48,7 @@ var shortcutbuttons = document.getElementsByClassName("shortcutitem");
 const github = document.getElementById("github");
 
 const version = document.getElementById('version');
+const domainbutton = document.getElementById('domain-button');
 
 var validURL = false;
 var validName = false;
@@ -252,6 +253,10 @@ On blur, save the currently selected settings.
 document.addEventListener("DOMContentLoaded", function () {
   version.innerHTML = `v${chrome.runtime.getManifest().version}`;
   github.addEventListener("click", openGithub);
+
+  domainbutton.addEventListener('click', function(event){
+    chrome.runtime.sendMessage({ type: "addPermissions" });
+  })
 
   aboutsection.addEventListener("click", () => { resetActive(); aboutsection.classList.add('activenav'); menupage.classList.remove('hiddenmenu') });
 

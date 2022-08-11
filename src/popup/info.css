@@ -465,3 +465,29 @@ p {
     outline: 1px solid rgb(60, 60, 60);
     transition: 100ms;
 }
+.domain-container {
+  font-size: 9px;
+  margin-top: 2px;
+  color: white;
+  margin-left: 10px;
+  text-align: initial;
+}
+.domain-container-button {
+  margin-top: 2px;
+  font-size: 11px;
+  padding: 5px 2px;
+  width: 70%;
+  border-radius: 10px;
+  background: #1cc956;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 0;
+}
+.domain-container-button:hover {
+  background: #1ed25a;
+}
+.domain-container-button:active {
+  background: #19b34d;
+}

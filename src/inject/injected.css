@@ -252,6 +252,7 @@ html {
   box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
   min-height: 48px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1;
 }
 .bg {
   animation: slide 3s ease-in-out infinite alternate;
@@ -1000,6 +1001,7 @@ body {
   right: 47px;
   top: 28px;
   width: 42px;
+  z-index: 2;
 }
 
 #userActions > .details > .name::before {
@@ -1254,6 +1256,7 @@ background-color: currentColor !important;
 #menuToggle {
   color: var(--text-primary);
   top: 23px !important;
+  z-index: 2;
 }
 .day-empty {
   font-size: 30px;

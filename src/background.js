@@ -2,7 +2,7 @@ function ReloadSEQTAPages() {
   chrome.tabs.query({}, function (tabs) {
     for (let tab of tabs) {
       // Account for other possible subdomains
-      if ((tab.url.includes("https://learn") || tab.url.includes("https://student")) && tab.url.includes(".edu.au/")) {
+      if (((tab.url.includes("https://learn") || tab.url.includes("https://student")) && tab.url.includes(".edu.au/")) || tab.url.includes("site.seqta.com.au")) {
         if (tab.title.includes("SEQTA Learn")) {
           chrome.tabs.reload(tab.id);
         }
@@ -22,6 +22,24 @@ chrome.runtime.onMessage.addListener(function (request, sender) {
     console.log('setting default values')
     SetStorageValue(DefaultValues);
   }
+  else if (request.type == "addPermissions"){
+    console.log('permissions')
+    chrome.permissions.request({permissions:["declarativeContent"], origins: ["*://*/*"]}, function (granted)
+    {
+      if (granted){
+        let rule1 = {
+          conditions: [
+            new chrome.declarativeContent.PageStateMatcher({
+              pageUrl: { urlContains: 'site.seqta.com.au', schemes: ['https'] },
+            })
+          ],
+          actions: [ new chrome.declarativeContent.RequestContentScript({js: ["SEQTA.js"]}) ]
+        };
+        chrome.declarativeContent.onPageChanged.addRules([rule1]);
+      }
+    });
+  }
+
 
 });
 
