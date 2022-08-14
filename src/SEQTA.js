@@ -220,7 +220,7 @@ function ApplyCSSToHiddenMenuItems() {
   });
 }
 
-function OpenWhatsNewPopup(){
+function OpenWhatsNewPopup() {
   const background = document.createElement('div');
   background.id = "whatsnewbk";
   background.classList.add('whatsnewBackground');
@@ -247,7 +247,7 @@ function OpenWhatsNewPopup(){
   textcontainer.append(textheader);
 
   text = stringToHTML(
-  `
+    `
   <div class="whatsnewTextContainer" style="height: 50%;overflow-y: scroll;">
   <h1>2.0.2 - Minor bug fixes</h1><li>Fixed indicator for current lesson</li><li>Fixed text colour for DM messages list in Light mode</li><li>Fixed user info text colour</li>
   <h1>Sleek New Layout</h1><li>Updated with a new font and presentation, BetterSEQTA has never looked better.</li>
@@ -294,12 +294,12 @@ function OpenWhatsNewPopup(){
   chrome.storage.local.remove(["justupdated"]);
 
   var bkelement = document.getElementById('whatsnewbk');
-  bkelement.addEventListener('click', function(){
+  bkelement.addEventListener('click', function () {
     DeleteWhatsNew();
     WhatsNewOpen = false;
   })
   var closeelement = document.getElementById('whatsnewclosebutton');
-  closeelement.addEventListener('click', function(e){
+  closeelement.addEventListener('click', function (e) {
     DeleteWhatsNew();
     WhatsNewOpen = false;
   })
@@ -311,7 +311,7 @@ async function finishLoad() {
   await delay(501);
   loadingbk.remove();
 
-  chrome.storage.local.get(["justupdated"], function(result){
+  chrome.storage.local.get(["justupdated"], function (result) {
     if (result.justupdated) {
       WhatsNewOpen = true;
       OpenWhatsNewPopup();
@@ -321,7 +321,7 @@ async function finishLoad() {
 
 }
 
-async function DeleteWhatsNew(){
+async function DeleteWhatsNew() {
   var bkelement = document.getElementById('whatsnewbk');
   var popup = document.getElementsByClassName("whatsnewContainer")[0];
   bkelement.classList.add('whatsnewfadeout');
@@ -382,7 +382,7 @@ async function RunColourCheck(element) {
   }
 }
 
-function GetiFrameCSSElement(){
+function GetiFrameCSSElement() {
   var cssFile = chrome.runtime.getURL("inject/iframe.css");
   var fileref = document.createElement("link");
   fileref.setAttribute("rel", "stylesheet");
@@ -404,7 +404,7 @@ function CheckiFrameItems() {
 
           chrome.storage.local.get(["DarkMode"], function (result) {
             DarkModeResult = result.DarkMode
-            if (DarkModeResult){
+            if (DarkModeResult) {
               RunColourCheck(added_node);
               if (added_node.contentDocument.documentElement.childNodes[1].style.color != "white") {
                 added_node.contentDocument.documentElement.childNodes[1].style.color = "white";
@@ -447,7 +447,7 @@ function CheckiFrameItems() {
   });
 }
 
-function SortMessagePageItems(messagesParentElement){
+function SortMessagePageItems(messagesParentElement) {
   filterbutton = document.createElement('div');
   filterbutton.classList.add("messages-filterbutton");
   filterbutton.innerText = "Filter";
@@ -458,7 +458,7 @@ function SortMessagePageItems(messagesParentElement){
   const observer = new MutationObserver(function (mutations_list) {
     mutations_list.forEach(function (mutation) {
       mutation.addedNodes.forEach(function (added_node) {
-        if (added_node.dataset.message){
+        if (added_node.dataset.message) {
           // Check if added_node.firstChild.title is in block list
         }
       });
@@ -578,7 +578,7 @@ function LoadPageElements() {
   const observer = new MutationObserver(function (mutations_list) {
     mutations_list.forEach(function (mutation) {
       mutation.addedNodes.forEach(function (added_node) {
-        if (added_node.classList.contains('messages')){
+        if (added_node.classList.contains('messages')) {
           element = document.getElementById('title').firstChild;
           element.innerText = "Direct Messages";
           document.title = "Direct Messages ― SEQTA Learn";
@@ -758,8 +758,8 @@ chrome.storage.onChanged.addListener(function (changes) {
     }
   }
 
-  if (changes.customshortcuts.newValue){
-    if (changes.customshortcuts.oldValue.length > 0){
+  if (changes.customshortcuts.newValue) {
+    if (changes.customshortcuts.oldValue.length > 0) {
       CreateCustomShortcutDiv(changes.customshortcuts.newValue[(changes.customshortcuts.oldValue.length)]);
     } else {
       CreateCustomShortcutDiv(changes.customshortcuts.newValue[0]);
@@ -804,7 +804,7 @@ function RunFunctionOnTrue(storedSetting) {
     document.documentElement.style.setProperty('--better-alert-highlight', "#c61851");
 
 
-    if (storedSetting.DarkMode){
+    if (storedSetting.DarkMode) {
       document.documentElement.style.setProperty('--background-primary', "#232323");
       document.documentElement.style.setProperty('--background-secondary', "#1a1a1a");
       document.documentElement.style.setProperty('--text-primary', "white");
@@ -888,10 +888,10 @@ document.addEventListener(
   function () {
     CheckForMenuList();
     var weblink = window.location.origin
-    if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && !IsSEQTAPage && ((weblink.includes('learn.') || weblink.includes('student.')  || weblink.includes('students.') || weblink.includes('coneqt')) || weblink.includes('site.seqta.com.au'))) {
+    if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && document.title.includes("SEQTA Learn") && !IsSEQTAPage && ((weblink.includes('learn.') || weblink.includes('student.') || weblink.includes('students.') || weblink.includes('coneqt')) || weblink.includes('site.seqta.com.au'))) {
       IsSEQTAPage = true;
       console.log("[BetterSEQTA] Verified SEQTA Page");
-    
+
       var link = document.createElement("link");
       link.href = chrome.extension.getURL("inject/documentload.css");
       link.type = "text/css";
@@ -914,8 +914,8 @@ document.addEventListener(
 
 function RunExtensionSettingsJS() {
   const whatsnewsettings = document.getElementById('whatsnewsettings');
-  whatsnewsettings.addEventListener('click', function(){
-    if (!WhatsNewOpen){
+  whatsnewsettings.addEventListener('click', function () {
+    if (!WhatsNewOpen) {
       WhatsNewOpen = true;
       OpenWhatsNewPopup();
     }
@@ -1035,9 +1035,9 @@ function RunExtensionSettingsJS() {
     var doc = parser.parseFromString(str, "text/html");
     return doc.body;
   };
-  
+
   function CreateShortcutDiv(name) {
-    
+
     div = stringtoHTML(`
     <div class="item-container menushortcuts" data-customshortcut="${name}">
       <div class="text-container">
@@ -1047,17 +1047,17 @@ function RunExtensionSettingsJS() {
       <svg id="delete-${name}" style="width:24px;height:24px;margin: 9px;cursor:pointer;" viewBox="0 0 24 24">
       <path fill="#ffffff" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2C6.47,2 2,6.47 2,12C2,17.53 6.47,22 12,22C17.53,22 22,17.53 22,12C22,6.47 17.53,2 12,2M14.59,8L12,10.59L9.41,8L8,9.41L10.59,12L8,14.59L9.41,16L12,13.41L14.59,16L16,14.59L13.41,12L16,9.41L14.59,8Z"></path></svg>
     </div>`).firstChild;
-  
+
     shortcutmenuitemselection.append(div);
-  
+
     const deletebutton = document.getElementById(`delete-${name}`);
-    deletebutton.addEventListener('click', function(){
+    deletebutton.addEventListener('click', function () {
       DeleteCustomShortcut(name);
       applybutton.style.left = "4px";
     });
   }
-  
-  function AddCustomShortcuts(){
+
+  function AddCustomShortcuts() {
     chrome.storage.local.get(["customshortcuts"], function (result) {
       var customshortcuts = Object.values(result)[0];
       for (let i = 0; i < customshortcuts.length; i++) {
@@ -1068,55 +1068,55 @@ function RunExtensionSettingsJS() {
       }
     });
   }
-  
-  function DeleteCustomShortcut(name){
+
+  function DeleteCustomShortcut(name) {
     item = document.querySelector(`[data-customshortcut="${name}"]`);
     item.remove();
     chrome.storage.local.get(["customshortcuts"], function (result) {
       var customshortcuts = Object.values(result)[0];
       for (let i = 0; i < customshortcuts.length; i++) {
-        if (customshortcuts[i].name == name){
+        if (customshortcuts[i].name == name) {
           customshortcuts.splice(i, 1);
         }
       }
       chrome.storage.local.set({ customshortcuts: customshortcuts });
     });
-  
+
   }
-  
-  function CustomShortcutMenu(){
+
+  function CustomShortcutMenu() {
     customshortcutinputname.value = '';
     customshortcutinputurl.value = '';
     validURL = false;
     validName = false;
     customshortcutsubmit.classList.remove("customshortcut-submit-valid");
-    if (customshortcutdiv.classList.contains('custom-shortcuts-container-shown')){
+    if (customshortcutdiv.classList.contains('custom-shortcuts-container-shown')) {
       customshortcutdiv.classList.remove('custom-shortcuts-container-shown')
     } else {
       customshortcutdiv.classList.add('custom-shortcuts-container-shown')
     };
   }
-  
-  function CreateCustomShortcut(){
+
+  function CreateCustomShortcut() {
     const shortcutname = customshortcutinputname.value;
     var shortcuturl = customshortcutinputurl.value;
-  
-    if (!(shortcuturl.includes('http'))){
+
+    if (!(shortcuturl.includes('http'))) {
       shortcuturl = "https://" + shortcuturl;
     }
 
     chrome.storage.local.get(["customshortcuts"], function (result) {
       var customshortcuts = Object.values(result)[0];
-      customshortcuts.push({name: shortcutname, url: shortcuturl, icon: (shortcutname[0]).toUpperCase()});
+      customshortcuts.push({ name: shortcutname, url: shortcuturl, icon: (shortcutname[0]).toUpperCase() });
       chrome.storage.local.set({ customshortcuts: customshortcuts });
     });
-  
+
     CreateShortcutDiv(
       shortcutname
     );
-  
+
   }
-  
+
 
   function onError(e) {
     console.error(e);
@@ -1134,27 +1134,27 @@ function RunExtensionSettingsJS() {
 
   miscsection.addEventListener("click", () => { resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu') });
 
-  customshortcutbutton.addEventListener("click", () => { CustomShortcutMenu();})
-  customshortcutsubmit.addEventListener("click", () => { if (validName && validURL){ CreateCustomShortcut(); CustomShortcutMenu()}});
+  customshortcutbutton.addEventListener("click", () => { CustomShortcutMenu(); })
+  customshortcutsubmit.addEventListener("click", () => { if (validName && validURL) { CreateCustomShortcut(); CustomShortcutMenu() } });
 
   var sameName = false;
-  customshortcutinputname.addEventListener("input", function(){
+  customshortcutinputname.addEventListener("input", function () {
     sameName = false;
     chrome.storage.local.get(["customshortcuts"], function (result) {
       var customshortcuts = Object.values(result)[0];
       for (let i = 0; i < customshortcuts.length; i++) {
-        if (customshortcuts[i].name == customshortcutinputname.value ){
+        if (customshortcuts[i].name == customshortcutinputname.value) {
           sameName = true;
         }
       }
 
-      if (customshortcutinputname.value.length > 0 && customshortcutinputname.value.length < 22 && !sameName){
+      if (customshortcutinputname.value.length > 0 && customshortcutinputname.value.length < 22 && !sameName) {
         validName = true;
       } else {
         validName = false;
       }
-  
-      if (validName && validURL){
+
+      if (validName && validURL) {
         customshortcutsubmit.classList.add("customshortcut-submit-valid");
       }
       else {
@@ -1163,14 +1163,14 @@ function RunExtensionSettingsJS() {
     });
   });
 
-  customshortcutinputurl.addEventListener("input", function(){
-    if (customshortcutinputurl.value.length > 0 && customshortcutinputurl.value.includes('.')){
+  customshortcutinputurl.addEventListener("input", function () {
+    if (customshortcutinputurl.value.length > 0 && customshortcutinputurl.value.includes('.')) {
       validURL = true;
     } else {
       validURL = false;
     }
 
-    if (validName && validURL){
+    if (validName && validURL) {
       customshortcutsubmit.classList.add("customshortcut-submit-valid");
     }
     else {
@@ -1790,7 +1790,7 @@ function ReplaceMenuSVG(element, svg) {
   item = element.firstChild;
   item.firstChild.remove();
 
-  if (element.dataset.key == "messages"){
+  if (element.dataset.key == "messages") {
     element.firstChild.innerText = "Direct Messages";
   }
 
@@ -1855,9 +1855,9 @@ function AddBetterSEQTAElements(toggle) {
             var userinfostr = `<div class="userInfo"><div class="userInfoText"><div style="display: flex; align-items: center;"><p class="userInfohouse userInfoCode"></p><p class="userInfoName">${info.userDesc}</p></div><p class="userInfoCode">${UserInitalCode}</p></div></div>`
             var userinfo = stringToHTML(userinfostr).firstChild
 
-            
+
             titlebar.append(userinfo)
-            
+
             var logoutbutton = document.getElementsByClassName('logout')[0];
             var userInfosvgdiv = document.getElementById('logouttooltip');
             userInfosvgdiv.appendChild(logoutbutton);
@@ -1877,10 +1877,10 @@ function AddBetterSEQTAElements(toggle) {
                 });
 
                 houseelement = document.getElementsByClassName("userInfohouse")[0];
-                if (students[index].house){
+                if (students[index].house) {
                   houseelement.style.background = students[index].house_colour;
                   colorresult = GetThresholdofHex(students[index].house_colour);
-                  if (colorresult > 300){
+                  if (colorresult > 300) {
                     houseelement.style.color = "black";
                   }
                   else {
@@ -1951,46 +1951,46 @@ function AddBetterSEQTAElements(toggle) {
       CallExtensionSettings();
       RunExtensionSettingsJS();
 
-      if (toggle){
+      if (toggle) {
         // Creates settings and dashboard buttons next to alerts
         var SettingsButton = stringToHTML(
           `<button class="addedButton tooltip" id="AddedSettings""><svg width="24" height="24" viewBox="0 0 24 24"><g><g><path d="M23.182,6.923c-.29,0-3.662,2.122-4.142,2.4l-2.8-1.555V4.511l4.257-2.456a.518.518,0,0,0,.233-.408.479.479,0,0,0-.233-.407,6.511,6.511,0,1,0-3.327,12.107,6.582,6.582,0,0,0,6.148-4.374,5.228,5.228,0,0,0,.333-1.542A.461.461,0,0,0,23.182,6.923Z"></path><path d="M9.73,10.418,7.376,12.883c-.01.01-.021.016-.03.025L1.158,19.1a2.682,2.682,0,1,0,3.793,3.793l4.583-4.582,0,0,4.1-4.005-.037-.037A9.094,9.094,0,0,1,9.73,10.418ZM3.053,21.888A.894.894,0,1,1,3.946,21,.893.893,0,0,1,3.053,21.888Z"></path></g></g></svg><div class="tooltiptext topmenutooltip">BetterSEQTA Settings</div></button>`
         );
         var ContentDiv = document.getElementById("content");
         ContentDiv.append(SettingsButton.firstChild);
-        
+
         chrome.storage.local.get(['DarkMode'], function (result) {
           Darkmode = result.DarkMode;
           tooltipstring = GetLightDarkModeString(Darkmode);
           var LightDarkModeButton = stringToHTML(`<button class="addedButton DarkLightButton tooltip" id="LightDarkModeButton"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="width: 100%; height: 100%; transform: translate3d(0px, 0px, 0px);" preserveAspectRatio="xMidYMid meet"></svg><div class="tooltiptext topmenutooltip" id="darklighttooliptext">${tooltipstring}</div></button>`);
           ContentDiv.append(LightDarkModeButton.firstChild);
-          
+
           LightDarkModeElement = document.getElementById('LightDarkModeButton');
-          
-          if (Darkmode){
+
+          if (Darkmode) {
             LightDarkModeElement.firstChild.innerHTML = `<defs><clipPath id="__lottie_element_80"><rect width="24" height="24" x="0" y="0"></rect></clipPath></defs><g clip-path="url(#__lottie_element_80)"><g style="display: block;" transform="matrix(1,0,0,1,12,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,-4 C-2.2100000381469727,-4 -4,-2.2100000381469727 -4,0 C-4,2.2100000381469727 -2.2100000381469727,4 0,4 C2.2100000381469727,4 4,2.2100000381469727 4,0 C4,-2.2100000381469727 2.2100000381469727,-4 0,-4z"></path></g></g><g style="display: block;" transform="matrix(1,0,0,1,12,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,6 C-3.309999942779541,6 -6,3.309999942779541 -6,0 C-6,-3.309999942779541 -3.309999942779541,-6 0,-6 C3.309999942779541,-6 6,-3.309999942779541 6,0 C6,3.309999942779541 3.309999942779541,6 0,6z M8,-3.309999942779541 C8,-3.309999942779541 8,-8 8,-8 C8,-8 3.309999942779541,-8 3.309999942779541,-8 C3.309999942779541,-8 0,-11.3100004196167 0,-11.3100004196167 C0,-11.3100004196167 -3.309999942779541,-8 -3.309999942779541,-8 C-3.309999942779541,-8 -8,-8 -8,-8 C-8,-8 -8,-3.309999942779541 -8,-3.309999942779541 C-8,-3.309999942779541 -11.3100004196167,0 -11.3100004196167,0 C-11.3100004196167,0 -8,3.309999942779541 -8,3.309999942779541 C-8,3.309999942779541 -8,8 -8,8 C-8,8 -3.309999942779541,8 -3.309999942779541,8 C-3.309999942779541,8 0,11.3100004196167 0,11.3100004196167 C0,11.3100004196167 3.309999942779541,8 3.309999942779541,8 C3.309999942779541,8 8,8 8,8 C8,8 8,3.309999942779541 8,3.309999942779541 C8,3.309999942779541 11.3100004196167,0 11.3100004196167,0 C11.3100004196167,0 8,-3.309999942779541 8,-3.309999942779541z"></path></g></g></g>`
           } else {
             LightDarkModeElement.firstChild.innerHTML = `<defs><clipPath id="__lottie_element_263"><rect width="24" height="24" x="0" y="0"></rect></clipPath></defs><g clip-path="url(#__lottie_element_263)"><g style="display: block;" transform="matrix(1.5,0,0,1.5,7,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,-4 C-2.2100000381469727,-4 -1.2920000553131104,-2.2100000381469727 -1.2920000553131104,0 C-1.2920000553131104,2.2100000381469727 -2.2100000381469727,4 0,4 C2.2100000381469727,4 4,2.2100000381469727 4,0 C4,-2.2100000381469727 2.2100000381469727,-4 0,-4z"></path></g></g><g style="display: block;" transform="matrix(-1,0,0,-1,12,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,6 C-3.309999942779541,6 -6,3.309999942779541 -6,0 C-6,-3.309999942779541 -3.309999942779541,-6 0,-6 C3.309999942779541,-6 6,-3.309999942779541 6,0 C6,3.309999942779541 3.309999942779541,6 0,6z M8,-3.309999942779541 C8,-3.309999942779541 8,-8 8,-8 C8,-8 3.309999942779541,-8 3.309999942779541,-8 C3.309999942779541,-8 0,-11.3100004196167 0,-11.3100004196167 C0,-11.3100004196167 -3.309999942779541,-8 -3.309999942779541,-8 C-3.309999942779541,-8 -8,-8 -8,-8 C-8,-8 -8,-3.309999942779541 -8,-3.309999942779541 C-8,-3.309999942779541 -11.3100004196167,0 -11.3100004196167,0 C-11.3100004196167,0 -8,3.309999942779541 -8,3.309999942779541 C-8,3.309999942779541 -8,8 -8,8 C-8,8 -3.309999942779541,8 -3.309999942779541,8 C-3.309999942779541,8 0,11.3100004196167 0,11.3100004196167 C0,11.3100004196167 3.309999942779541,8 3.309999942779541,8 C3.309999942779541,8 8,8 8,8 C8,8 8,3.309999942779541 8,3.309999942779541 C8,3.309999942779541 11.3100004196167,0 11.3100004196167,0 C11.3100004196167,0 8,-3.309999942779541 8,-3.309999942779541z"></path></g></g></g>`
           }
           darklightText = document.getElementById('darklighttooliptext');
-          LightDarkModeElement.addEventListener('click', function(){
+          LightDarkModeElement.addEventListener('click', function () {
             chrome.storage.local.get(['DarkMode'], function (result) {
               alliframes = document.getElementsByTagName('iframe');
               fileref = GetiFrameCSSElement();
 
-              if (!result.DarkMode){
+              if (!result.DarkMode) {
                 document.documentElement.style.setProperty('--background-primary', "#232323");
                 document.documentElement.style.setProperty('--background-secondary', "#1a1a1a");
                 document.documentElement.style.setProperty('--text-primary', "white");
                 LightDarkModeElement.firstChild.innerHTML = `<defs><clipPath id="__lottie_element_80"><rect width="24" height="24" x="0" y="0"></rect></clipPath></defs><g clip-path="url(#__lottie_element_80)"><g style="display: block;" transform="matrix(1,0,0,1,12,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,-4 C-2.2100000381469727,-4 -4,-2.2100000381469727 -4,0 C-4,2.2100000381469727 -2.2100000381469727,4 0,4 C2.2100000381469727,4 4,2.2100000381469727 4,0 C4,-2.2100000381469727 2.2100000381469727,-4 0,-4z"></path></g></g><g style="display: block;" transform="matrix(1,0,0,1,12,12)" opacity="1"><g opacity="1" transform="matrix(1,0,0,1,0,0)"><path fill-opacity="1" d=" M0,6 C-3.309999942779541,6 -6,3.309999942779541 -6,0 C-6,-3.309999942779541 -3.309999942779541,-6 0,-6 C3.309999942779541,-6 6,-3.309999942779541 6,0 C6,3.309999942779541 3.309999942779541,6 0,6z M8,-3.309999942779541 C8,-3.309999942779541 8,-8 8,-8 C8,-8 3.309999942779541,-8 3.309999942779541,-8 C3.309999942779541,-8 0,-11.3100004196167 0,-11.3100004196167 C0,-11.3100004196167 -3.309999942779541,-8 -3.309999942779541,-8 C-3.309999942779541,-8 -8,-8 -8,-8 C-8,-8 -8,-3.309999942779541 -8,-3.309999942779541 C-8,-3.309999942779541 -11.3100004196167,0 -11.3100004196167,0 C-11.3100004196167,0 -8,3.309999942779541 -8,3.309999942779541 C-8,3.309999942779541 -8,8 -8,8 C-8,8 -3.309999942779541,8 -3.309999942779541,8 C-3.309999942779541,8 0,11.3100004196167 0,11.3100004196167 C0,11.3100004196167 3.309999942779541,8 3.309999942779541,8 C3.309999942779541,8 8,8 8,8 C8,8 8,3.309999942779541 8,3.309999942779541 C8,3.309999942779541 11.3100004196167,0 11.3100004196167,0 C11.3100004196167,0 8,-3.309999942779541 8,-3.309999942779541z"></path></g></g></g>`
-              
+
                 for (let i = 0; i < alliframes.length; i++) {
                   const element = alliframes[i];
                   element.contentDocument.documentElement.childNodes[1].style.color = "white";
                   element.contentDocument.documentElement.firstChild.appendChild(fileref);
                 }
 
-              } 
+              }
               else {
                 document.documentElement.style.setProperty('--background-primary', "#ffffff");
                 document.documentElement.style.setProperty('--background-secondary', "#e5e7eb");
@@ -2005,14 +2005,14 @@ function AddBetterSEQTAElements(toggle) {
               }
               tooltipstring = GetLightDarkModeString(!result.DarkMode);
               darklightText.innerText = tooltipstring;
-              chrome.storage.local.set({DarkMode: !result.DarkMode});
+              chrome.storage.local.set({ DarkMode: !result.DarkMode });
 
             });
 
           });
         });
       } else {
-      // Creates settings and dashboard buttons next to alerts
+        // Creates settings and dashboard buttons next to alerts
         var SettingsButton = stringToHTML(
           `<button class="addedButton" id="AddedSettings""><svg width="24" height="24" viewBox="0 0 24 24"><g style="fill: var(--text-color);"><g><path d="M23.182,6.923c-.29,0-3.662,2.122-4.142,2.4l-2.8-1.555V4.511l4.257-2.456a.518.518,0,0,0,.233-.408.479.479,0,0,0-.233-.407,6.511,6.511,0,1,0-3.327,12.107,6.582,6.582,0,0,0,6.148-4.374,5.228,5.228,0,0,0,.333-1.542A.461.461,0,0,0,23.182,6.923Z"></path><path d="M9.73,10.418,7.376,12.883c-.01.01-.021.016-.03.025L1.158,19.1a2.682,2.682,0,1,0,3.793,3.793l4.583-4.582,0,0,4.1-4.005-.037-.037A9.094,9.094,0,0,1,9.73,10.418ZM3.053,21.888A.894.894,0,1,1,3.946,21,.893.893,0,0,1,3.053,21.888Z"></path></g></g></svg></button>`
         );
@@ -2033,8 +2033,8 @@ function AddBetterSEQTAElements(toggle) {
   }
 }
 
-function GetLightDarkModeString(darkmodetoggle){
-  if (darkmodetoggle){
+function GetLightDarkModeString(darkmodetoggle) {
+  if (darkmodetoggle) {
     tooltipstring = "Switch to light theme";
   } else {
     tooltipstring = "Switch to dark theme";
@@ -2079,7 +2079,7 @@ function CheckCurrentLesson(lesson, num) {
   const date = new Date()
 
   var elementA = document.getElementById(id);
-  if (!elementA){
+  if (!elementA) {
     clearInterval(LessonInterval);
   }
   else {
@@ -2167,12 +2167,12 @@ function CheckCurrentLessonAll(lessons) {
 function MakeLessonDiv(lesson, num) {
   assessmentstring = ""
   var lessonstring = `<div class="day" id=${lesson.code + num} style="${lesson.colour}"><h2>${lesson?.description ?? "Unknown"}</h2><h3>${lesson?.staff ?? "Unknown"}</h3><h3>${lesson?.room ?? "Unknown"}</h3><h4>${lesson?.from ?? "Unknown"} - ${lesson?.until ?? "Unknown"}</h4><h5>${lesson?.attendanceTitle ?? "Unknown"}</h5>`
-  
+
   if (lesson.programmeID != 0) {
     lessonstring += `<div class="day-button clickable" style="right: 5px;" onclick="location.href='../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}'">${assessmentsicon}</div><div class="day-button clickable" style="right: 35px;" onclick="location.href='../#?page=/courses/${lesson.programmeID}:${lesson.metaID}'">${coursesicon}</div>`
   }
 
-  if (lesson.assessments.length > 0){
+  if (lesson.assessments.length > 0) {
     for (let i = 0; i < lesson.assessments.length; i++) {
       const element = lesson.assessments[i]
       assessmentstring += `<p onclick="location.href = '../#?page=/assessments/${lesson.programmeID}:${lesson.metaID}&item=${element.id}';">${element.title}</p>`
@@ -2180,7 +2180,7 @@ function MakeLessonDiv(lesson, num) {
     lessonstring += `<div class="tooltip assessmenttooltip"><svg style="width:28px;height:28px;border-radius:0;" viewBox="0 0 24 24">
     <path fill="#ed3939" d="M16 2H4C2.9 2 2 2.9 2 4V20C2 21.11 2.9 22 4 22H16C17.11 22 18 21.11 18 20V4C18 2.9 17.11 2 16 2M16 20H4V4H6V12L8.5 9.75L11 12V4H16V20M20 15H22V17H20V15M22 7V13H20V7H22Z" />
     </svg><div class="tooltiptext">${assessmentstring}</div></div>`
-  } 
+  }
   lessonstring += '</div>';
   var lessondiv = stringToHTML(lessonstring);
   return lessondiv;
@@ -2264,7 +2264,7 @@ function callHomeTimetable(date, change) {
             }
 
             const today = new Date();
-            if (currentSelectedDate.getDate() == today.getDate()){
+            if (currentSelectedDate.getDate() == today.getDate()) {
               for (i = 0; i < lessonArray.length; i++) {
                 CheckCurrentLesson(lessonArray[i], i + 1);
               }
@@ -2753,30 +2753,30 @@ function GetLessonColours() {
     .then(response => (response.payload))
 }
 
-function CreateCustomShortcutDiv(element){
-    // Creates the stucture and element information for each seperate shortcut
-    var shortcut = document.createElement("a");
-    shortcut.setAttribute("href", element.url);
-    shortcut.setAttribute("target", "_blank");
-    var shortcutdiv = document.createElement("div");
-    shortcutdiv.classList.add("shortcut");
-    shortcutdiv.classList.add("customshortcut");
+function CreateCustomShortcutDiv(element) {
+  // Creates the stucture and element information for each seperate shortcut
+  var shortcut = document.createElement("a");
+  shortcut.setAttribute("href", element.url);
+  shortcut.setAttribute("target", "_blank");
+  var shortcutdiv = document.createElement("div");
+  shortcutdiv.classList.add("shortcut");
+  shortcutdiv.classList.add("customshortcut");
 
-    image = stringToHTML(`<svg viewBox="0 0 40 40" style="width:39px;height:39px"><text font-size="32" font-weight="bold" fill="var(--text-primary)" x="50%" y="50%" text-anchor="middle" dominant-baseline="central">${element.icon}</text></svg>`).firstChild
-    image.classList.add("shortcuticondiv");
-    var text = document.createElement("p");
-    text.textContent = element.name;
-    shortcutdiv.append(image);
-    shortcutdiv.append(text);
-    shortcut.append(shortcutdiv);
+  image = stringToHTML(`<svg viewBox="0 0 40 40" style="width:39px;height:39px"><text font-size="32" font-weight="bold" fill="var(--text-primary)" x="50%" y="50%" text-anchor="middle" dominant-baseline="central">${element.icon}</text></svg>`).firstChild
+  image.classList.add("shortcuticondiv");
+  var text = document.createElement("p");
+  text.textContent = element.name;
+  shortcutdiv.append(image);
+  shortcutdiv.append(text);
+  shortcut.append(shortcutdiv);
 
-    document.getElementById("shortcuts").append(shortcut);
+  document.getElementById("shortcuts").append(shortcut);
 }
 
-function AddCustomShortcutsToPage(){
+function AddCustomShortcutsToPage() {
   chrome.storage.local.get(["customshortcuts"], function (result) {
     var customshortcuts = Object.values(result)[0];
-    if (customshortcuts.length > 0){
+    if (customshortcuts.length > 0) {
       for (let i = 0; i < customshortcuts.length; i++) {
         const element = customshortcuts[i];
         CreateCustomShortcutDiv(element);
@@ -2868,9 +2868,9 @@ function SendHomePage() {
     }
 
     function changeTimetable(value) {
-        currentSelectedDate.setDate(currentSelectedDate.getDate() + value);
-        FormattedDate = currentSelectedDate.getFullYear() + "-" + (currentSelectedDate.getMonth() + 1) + "-" + currentSelectedDate.getDate();
-        callHomeTimetable(FormattedDate, true);
+      currentSelectedDate.setDate(currentSelectedDate.getDate() + value);
+      FormattedDate = currentSelectedDate.getFullYear() + "-" + (currentSelectedDate.getMonth() + 1) + "-" + currentSelectedDate.getDate();
+      callHomeTimetable(FormattedDate, true);
       SetTimetableSubtitle();
     }
 
