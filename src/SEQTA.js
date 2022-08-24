@@ -525,8 +525,9 @@ function LoadPageElements() {
       });
       break;
 
-      // Duplicated case => Combined into a single case
-    case "home" || undefined:
+    // Duplicated case => Combined into a single case
+    case "home":
+    case undefined:
       window.location.replace(`${location.origin}/#?page=/home`);
       LoadInit();
       break;
