@@ -31,6 +31,8 @@ html {
 * {
   font-family: Rubik, sans-serif !important;
   --theme-fg-parts: white;
+  /* Contrast fix for certain buttons */
+  --theme-sel-bg-parts: 100,100,100 !important;
 }
 #title {
   color: var(--text-primary);

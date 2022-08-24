@@ -317,8 +317,6 @@ async function finishLoad() {
       OpenWhatsNewPopup();
     }
   })
-
-
 }
 
 async function DeleteWhatsNew() {
@@ -458,8 +456,10 @@ function SortMessagePageItems(messagesParentElement) {
   const observer = new MutationObserver(function (mutations_list) {
     mutations_list.forEach(function (mutation) {
       mutation.addedNodes.forEach(function (added_node) {
-        if (added_node.dataset.message) {
+        // Using optional chaining here to stop the cause of a random error
+        if (added_node?.dataset?.message) {
           // Check if added_node.firstChild.title is in block list
+          console.log(added_node)
         }
       });
     });
@@ -525,11 +525,8 @@ function LoadPageElements() {
       });
       break;
 
-    case "home":
-      window.location.replace(`${location.origin}/#?page=/home`);
-      LoadInit();
-      break;
-    case undefined:
+      // Duplicated case => Combined into a single case
+    case "home" || undefined:
       window.location.replace(`${location.origin}/#?page=/home`);
       LoadInit();
       break;
@@ -666,8 +663,8 @@ async function ObserveMenuItemPosition() {
       const observer = new MutationObserver(function (mutations_list) {
         mutations_list.forEach(function (mutation) {
           mutation.addedNodes.forEach(function (added_node) {
-
-            if (!added_node.dataset.checked && !MenuOptionsOpen) {
+            // Using optional chaining here to stop the cause of a random error
+            if (!added_node?.dataset?.checked && !MenuOptionsOpen) {
               if (MenuitemSVGKey[added_node.dataset.key]) {
                 ReplaceMenuSVG(added_node, MenuitemSVGKey[added_node.dataset.key])
               }
@@ -2728,10 +2725,7 @@ function FilterUpcomingAssessments(subjectoptions) {
         element.parentNode.parentNode.classList.remove('hidden');
       }
     }
-
-
   }
-
 }
 
 chrome.storage.onChanged.addListener(function (changes) {
@@ -3088,20 +3082,13 @@ function SendHomePage() {
             }
           }
 
-
-
           CurrentAssessments.sort(comparedate);
-
 
           CreateUpcomingSection(CurrentAssessments, activeSubjects);
 
-
           // Run function to check if gap between assessments > 7 days?
-
         })
-
       });
-
   }, 8);
 }
 
@@ -3131,7 +3118,6 @@ function SendNewsPage() {
     const titlediv = document.getElementById('title').firstChild;
     titlediv.innerText = "News";
     AppendLoadingSymbol("newsloading", "#news-container");
-
 
     chrome.runtime.sendMessage({ type: "sendNews" }, function (response) {
       newsarticles = response.news.articles;
@@ -3172,23 +3158,14 @@ function SendNewsPage() {
         newsarticle.append(articleimage);
         newsarticle.append(articletext);
         newscontainer.append(newsarticle);
-
-
       }
-
     });
-
-
   }, 8);
 }
 
+// Unused function, but kept/minified for possible future use
 function EnabledDisabledToBool(input) {
-  if (input == "enabled") {
-    return true;
-  }
-  if (input == "disabled") {
-    return false;
-  }
+  return input == "enabled" ? true : false;
 }
 
 function LoadInit() {
@@ -3197,6 +3174,5 @@ function LoadInit() {
     if (result.onoff) {
       SendHomePage();
     }
-
   });
 }
