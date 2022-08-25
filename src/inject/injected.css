@@ -435,6 +435,8 @@ html {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  /* Center shortcuts */
+  justify-content: center;
 }
 .shortcuts a {
   text-decoration: none !important;
@@ -1888,7 +1890,8 @@ padding: 4px;
   font-size: 15px;
   margin: 0 8px !important;
   border-radius: 5px;
-  color: var(--text-primary);
+  /* Wasn't updating when using light mode, added an override tag */
+  color: var(--text-primary) !important;
   background: var(--background-secondary);
   outline: solid 1px black;
 }
