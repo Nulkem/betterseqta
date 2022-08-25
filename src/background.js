@@ -2,7 +2,7 @@ function ReloadSEQTAPages() {
   chrome.tabs.query({}, function (tabs) {
     for (let tab of tabs) {
       // Account for other possible subdomains
-      if (((tab.url.includes("https://learn") || tab.url.includes("https://student")) && tab.url.includes(".edu.au/")) || tab.url.includes("site.seqta.com.au")) {
+      if (((tab.url.includes("https://learn") || tab.url.includes("https://student")) && (tab.url.includes(".edu.au/") || tab.url.includes(".com"))) || tab.url.includes("site.seqta.com.au")) {
         if (tab.title.includes("SEQTA Learn")) {
           chrome.tabs.reload(tab.id);
         }
@@ -22,20 +22,37 @@ chrome.runtime.onMessage.addListener(function (request, sender) {
     console.log('setting default values')
     SetStorageValue(DefaultValues);
   }
-  else if (request.type == "addPermissions"){
-    console.log('permissions')
-    chrome.permissions.request({permissions:["declarativeContent"], origins: ["*://*/*"]}, function (granted)
-    {
-      if (granted){
-        let rule1 = {
-          conditions: [
-            new chrome.declarativeContent.PageStateMatcher({
-              pageUrl: { urlContains: 'site.seqta.com.au', schemes: ['https'] },
-            })
-          ],
-          actions: [ new chrome.declarativeContent.RequestContentScript({js: ["SEQTA.js"]}) ]
-        };
-        chrome.declarativeContent.onPageChanged.addRules([rule1]);
+  else if (request.type == "addPermissions") {
+    if (typeof (chrome.declarativeContent) != 'undefined') {
+      chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
+      });
+    }
+    chrome.permissions.request({ permissions: ["declarativeContent"], origins: ["*://*/*"] }, function (granted) {
+      if (granted) {
+        rules = [
+          {
+            conditions: [
+              new chrome.declarativeContent.PageStateMatcher({
+                pageUrl: { urlContains: 'site.seqta.com.au', schemes: ['https'] },
+              })
+            ],
+            actions: [new chrome.declarativeContent.RequestContentScript({ js: ["SEQTA.js"] })]
+          },
+          {
+            conditions: [
+              new chrome.declarativeContent.PageStateMatcher({
+                pageUrl: { urlContains: 'learn.', schemes: ['https'] },
+              })
+            ],
+            actions: [new chrome.declarativeContent.RequestContentScript({ js: ["SEQTA.js"] })]
+          },
+
+        ]
+        for (let i = 0; i < rules.length; i++) {
+          chrome.declarativeContent.onPageChanged.addRules([rules[i]]);
+        }
+        alert("Permissions granted. Reload SEQTA pages to see changes. If this workaround doesn't work, please contact the developer.");
+
       }
     });
   }
@@ -184,8 +201,8 @@ function UpdateCurrentValues(details) {
       }
     }
     CheckInnerElement(DefaultValues);
-    
-    if (items["customshortcuts"]){
+
+    if (items["customshortcuts"]) {
       NewValue["customshortcuts"] = items["customshortcuts"];
     }
 
@@ -193,11 +210,11 @@ function UpdateCurrentValues(details) {
   })
 }
 
-chrome.runtime.onInstalled.addListener(function (event){
+chrome.runtime.onInstalled.addListener(function (event) {
   chrome.storage.local.remove(["justupdated"]);
   UpdateCurrentValues();
-  if (/*chrome.runtime.getManifest().version > event.previousVersion || */ event.reason == 'install'){
-    chrome.storage.local.set({justupdated: true});
+  if (/*chrome.runtime.getManifest().version > event.previousVersion || */ event.reason == 'install') {
+    chrome.storage.local.set({ justupdated: true });
   }
 });
 

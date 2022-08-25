@@ -584,6 +584,9 @@ function LoadPageElements() {
           document.title = "Direct Messages ― SEQTA Learn";
           SortMessagePageItems(added_node);
         }
+        else if (added_node.classList.contains('notices')) {
+          CheckNoticeTextColour(added_node);
+        }
       });
     });
   });
@@ -593,6 +596,31 @@ function LoadPageElements() {
     childList: true,
   });
 
+
+}
+
+function CheckNoticeTextColour(notice) {
+  const observer = new MutationObserver(function (mutations_list) {
+    mutations_list.forEach(function (mutation) {
+      mutation.addedNodes.forEach(function (added_node) {
+        chrome.storage.local.get(['DarkMode'], function (result) {
+          Darkmode = result.DarkMode;
+          if (added_node.classList.contains('notice')) {
+            var hex = added_node.style.cssText.split(' ')[1];
+            var threshold = GetThresholdofHex(hex);
+            if (Darkmode && threshold < 100) {
+              added_node.style.cssText = "--color: undefined;";
+            }
+          }
+        })
+      });
+    });
+  });
+
+  observer.observe(notice, {
+    subtree: true,
+    childList: true,
+  });
 
 }
 
@@ -2979,42 +3007,55 @@ function SendHomePage() {
         } else {
           if (!NoticeContainer.innerText) {
             // For each element in the response json:
-            for (let i = 0; i < NoticesPayload.payload.length; i++) {
-              // Create a div, and place information from json response
-              var NewNotice = document.createElement("div");
-              NewNotice.classList.add("notice");
-              var title = stringToHTML(
-                `<h3 style="color:var(--colour)">` + NoticesPayload.payload[i].title + `</h3>`
-              );
-              NewNotice.append(title.firstChild);
-
-              if (NoticesPayload.payload[i].label_title != undefined) {
-                var label = stringToHTML(
-                  `<h5 style="color:var(--colour)">` + NoticesPayload.payload[i].label_title + `</h5>`
+            chrome.storage.local.get(["DarkMode"], function (result) {
+              for (let i = 0; i < NoticesPayload.payload.length; i++) {
+                // Create a div, and place information from json response
+                var NewNotice = document.createElement("div");
+                NewNotice.classList.add("notice");
+                var title = stringToHTML(
+                  `<h3 style="color:var(--colour)">` + NoticesPayload.payload[i].title + `</h3>`
                 );
-                NewNotice.append(label.firstChild);
-              }
+                NewNotice.append(title.firstChild);
 
-              var staff = stringToHTML(
-                `<h6 style="color:var(--colour)">` + NoticesPayload.payload[i].staff + `</h6>`
-              );
-              NewNotice.append(staff.firstChild);
-              // Converts the string into HTML
-              var content = stringToHTML(NoticesPayload.payload[i].contents);
-              for (let i = 0; i < content.childNodes.length; i++) {
-                NewNotice.append(content.childNodes[i]);
+                if (NoticesPayload.payload[i].label_title != undefined) {
+                  var label = stringToHTML(
+                    `<h5 style="color:var(--colour)">` + NoticesPayload.payload[i].label_title + `</h5>`
+                  );
+                  NewNotice.append(label.firstChild);
+                }
+
+                var staff = stringToHTML(
+                  `<h6 style="color:var(--colour)">` + NoticesPayload.payload[i].staff + `</h6>`
+                );
+                NewNotice.append(staff.firstChild);
+                // Converts the string into HTML
+                var content = stringToHTML(NoticesPayload.payload[i].contents);
+                for (let i = 0; i < content.childNodes.length; i++) {
+                  NewNotice.append(content.childNodes[i]);
+                }
+                // Gets the colour for the top section of each notice
+
+
+                var colour = NoticesPayload.payload[i].colour;
+                if (typeof (colour) == "string") {
+                  rgb = GetThresholdofHex(colour);
+                  DarkModeResult = result.DarkMode
+                  if (rgb < 100 && DarkModeResult) {
+                    colour = undefined;
+                  }
+                }
+
+                var colourbar = document.createElement("div");
+                colourbar.classList.add("colourbar");
+                colourbar.style.background = "var(--colour)";
+                NewNotice.style = `--colour: ${colour}`;
+                // Appends the colour bar to the new notice
+                NewNotice.append(colourbar);
+                // Appends the new notice into the notice container
+                NoticeContainer.append(NewNotice);
+
               }
-              // Gets the colour for the top section of each notice
-              var colour = NoticesPayload.payload[i].colour;
-              var colourbar = document.createElement("div");
-              colourbar.classList.add("colourbar");
-              colourbar.style.background = "var(--colour)";
-              NewNotice.style = `--colour: ${colour}`;
-              // Appends the colour bar to the new notice
-              NewNotice.append(colourbar);
-              // Appends the new notice into the notice container
-              NoticeContainer.append(NewNotice);
-            }
+            });
           }
         }
       }
