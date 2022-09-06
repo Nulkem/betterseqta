@@ -916,7 +916,7 @@ document.addEventListener(
   function () {
     CheckForMenuList();
     var weblink = window.location.origin
-    if (document.childNodes[1].textContent.includes("Copyright (c) SEQTA Software") && document.title.includes("SEQTA Learn") && !IsSEQTAPage && ((weblink.includes('learn.') || weblink.includes('student.') || weblink.includes('students.') || weblink.includes('coneqt')) || weblink.includes('site.seqta.com.au'))) {
+    if (document.childNodes[1].textContent?.includes("Copyright (c) SEQTA Software") && document.title.includes("SEQTA Learn") && !IsSEQTAPage) {
       IsSEQTAPage = true;
       console.log("[BetterSEQTA] Verified SEQTA Page");
 
@@ -931,7 +931,7 @@ document.addEventListener(
       });
     }
     if (
-      !document.childNodes[1].textContent.includes("SEQTA") &&
+      !document.childNodes[1].textContent?.includes("SEQTA") &&
       !NonSEQTAPage
     ) {
       NonSEQTAPage = true;
