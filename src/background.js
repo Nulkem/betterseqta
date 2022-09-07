@@ -19,42 +19,6 @@ chrome.runtime.onMessage.addListener(function (request, sender) {
     console.log('setting default values')
     SetStorageValue(DefaultValues);
   }
-  else if (request.type == "addPermissions") {
-    if (typeof (chrome.declarativeContent) != 'undefined') {
-      chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-      });
-    }
-    chrome.permissions.request({ permissions: ["declarativeContent"], origins: ["*://*/*"] }, function (granted) {
-      if (granted) {
-        rules = [
-          {
-            conditions: [
-              new chrome.declarativeContent.PageStateMatcher({
-                pageUrl: { urlContains: 'site.seqta.com.au', schemes: ['https'] },
-              })
-            ],
-            actions: [new chrome.declarativeContent.RequestContentScript({ js: ["SEQTA.js"] })]
-          },
-          {
-            conditions: [
-              new chrome.declarativeContent.PageStateMatcher({
-                pageUrl: { urlContains: 'learn.', schemes: ['https'] },
-              })
-            ],
-            actions: [new chrome.declarativeContent.RequestContentScript({ js: ["SEQTA.js"] })]
-          },
-
-        ]
-        for (let i = 0; i < rules.length; i++) {
-          chrome.declarativeContent.onPageChanged.addRules([rules[i]]);
-        }
-        alert("Permissions granted. Reload SEQTA pages to see changes. If this workaround doesn't work, please contact the developer.");
-
-      }
-    });
-  }
-
-
 });
 
 var NewsJSON = {};

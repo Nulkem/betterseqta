@@ -295,8 +295,10 @@ function OpenWhatsNewPopup() {
   chrome.storage.local.remove(["justupdated"]);
 
   var bkelement = document.getElementById('whatsnewbk');
+  console.log(bkelement);
   bkelement.addEventListener('click', function () {
     DeleteWhatsNew();
+    console.log('bkelement clicked');
     WhatsNewOpen = false;
   })
   var closeelement = document.getElementById('whatsnewclosebutton');
