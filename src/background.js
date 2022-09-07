@@ -1,11 +1,8 @@
 function ReloadSEQTAPages() {
   chrome.tabs.query({}, function (tabs) {
     for (let tab of tabs) {
-      // Account for other possible subdomains
-      if (((tab.url.includes("https://learn") || tab.url.includes("https://student")) && (tab.url.includes(".edu.au/") || tab.url.includes(".com"))) || tab.url.includes("site.seqta.com.au")) {
-        if (tab.title.includes("SEQTA Learn")) {
-          chrome.tabs.reload(tab.id);
-        }
+      if (tab.title.includes("SEQTA Learn")) {
+        chrome.tabs.reload(tab.id);
       }
     }
   });

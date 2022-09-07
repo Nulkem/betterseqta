@@ -249,6 +249,7 @@ function OpenWhatsNewPopup() {
   text = stringToHTML(
     `
   <div class="whatsnewTextContainer" style="height: 50%;overflow-y: scroll;">
+  <h1>2.0.7 - Added support to other domains + Minor bug fixes</h1><li>Fixed BetterSEQTA not loading on some pages</li><li>Fixed text colour of notices being unreadable</li><li>Fixed pages not reloading when saving changes</li>
   <h1>2.0.2 - Minor bug fixes</h1><li>Fixed indicator for current lesson</li><li>Fixed text colour for DM messages list in Light mode</li><li>Fixed user info text colour</li>
   <h1>Sleek New Layout</h1><li>Updated with a new font and presentation, BetterSEQTA has never looked better.</li>
   <h1>New Updated Sidebar</h1><li>Condensed appearance with new updated icons.</li>

@@ -84,11 +84,8 @@ function resetActive() {
 function FindSEQTATab() {
   chrome.tabs.query({}, function (tabs) {
     for (let tab of tabs) {
-      // Account for other possible subdomains
-      if ((tab.url.includes("https://learn") || tab.url.includes("https://student")) && tab.url.includes(".edu.au/")) {
-        if (tab.title.includes("SEQTA Learn")) {
-          chrome.tabs.reload(tab.id);
-        }
+      if (tab.title.includes("SEQTA Learn")) {
+        chrome.tabs.reload(tab.id);
       }
     }
   });
@@ -154,7 +151,7 @@ var stringtoHTML = function (str) {
 };
 
 function CreateShortcutDiv(name) {
-  
+
   div = stringtoHTML(`
   <div class="item-container menushortcuts" data-customshortcut="${name}">
     <div class="text-container">
@@ -168,13 +165,13 @@ function CreateShortcutDiv(name) {
   shortcutmenuitemselection.append(div);
 
   const deletebutton = document.getElementById(`delete-${name}`);
-  deletebutton.addEventListener('click', function(){
+  deletebutton.addEventListener('click', function () {
     DeleteCustomShortcut(name);
     applybutton.style.left = "4px";
   });
 }
 
-function AddCustomShortcuts(){
+function AddCustomShortcuts() {
   chrome.storage.local.get(["customshortcuts"], function (result) {
     var customshortcuts = Object.values(result)[0];
     for (let i = 0; i < customshortcuts.length; i++) {
@@ -186,13 +183,13 @@ function AddCustomShortcuts(){
   });
 }
 
-function DeleteCustomShortcut(name){
+function DeleteCustomShortcut(name) {
   item = document.querySelector(`[data-customshortcut="${name}"]`);
   item.remove();
   chrome.storage.local.get(["customshortcuts"], function (result) {
     var customshortcuts = Object.values(result)[0];
     for (let i = 0; i < customshortcuts.length; i++) {
-      if (customshortcuts[i].name == name){
+      if (customshortcuts[i].name == name) {
         customshortcuts.splice(i, 1);
       }
     }
@@ -201,30 +198,30 @@ function DeleteCustomShortcut(name){
 
 }
 
-function CustomShortcutMenu(){
+function CustomShortcutMenu() {
   customshortcutinputname.value = '';
   customshortcutinputurl.value = '';
   validURL = false;
   validName = false;
   customshortcutsubmit.classList.remove("customshortcut-submit-valid");
-  if (customshortcutdiv.classList.contains('custom-shortcuts-container-shown')){
+  if (customshortcutdiv.classList.contains('custom-shortcuts-container-shown')) {
     customshortcutdiv.classList.remove('custom-shortcuts-container-shown')
   } else {
     customshortcutdiv.classList.add('custom-shortcuts-container-shown')
   };
 }
 
-function CreateCustomShortcut(){
+function CreateCustomShortcut() {
   const shortcutname = customshortcutinputname.value;
   var shortcuturl = customshortcutinputurl.value;
 
-  if (!(shortcuturl.includes('http'))){
+  if (!(shortcuturl.includes('http'))) {
     shortcuturl = "https://" + shortcuturl;
   }
 
   chrome.storage.local.get(["customshortcuts"], function (result) {
     var customshortcuts = Object.values(result)[0];
-    customshortcuts.push({name: shortcutname, url: shortcuturl, icon: (shortcutname[0]).toUpperCase()});
+    customshortcuts.push({ name: shortcutname, url: shortcuturl, icon: (shortcutname[0]).toUpperCase() });
     chrome.storage.local.set({ customshortcuts: customshortcuts });
   });
 
@@ -254,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
   version.innerHTML = `v${chrome.runtime.getManifest().version}`;
   github.addEventListener("click", openGithub);
 
-  domainbutton.addEventListener('click', function(event){
+  domainbutton.addEventListener('click', function (event) {
     chrome.runtime.sendMessage({ type: "addPermissions" });
   })
 
@@ -264,27 +261,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   miscsection.addEventListener("click", () => { resetActive(); miscsection.classList.add('activenav'); miscpage.classList.remove('hiddenmenu') });
 
-  customshortcutbutton.addEventListener("click", () => { CustomShortcutMenu();})
-  customshortcutsubmit.addEventListener("click", () => { if (validName && validURL){ CreateCustomShortcut(); CustomShortcutMenu()}});
+  customshortcutbutton.addEventListener("click", () => { CustomShortcutMenu(); })
+  customshortcutsubmit.addEventListener("click", () => { if (validName && validURL) { CreateCustomShortcut(); CustomShortcutMenu() } });
 
   var sameName = false;
-  customshortcutinputname.addEventListener("input", function(){
+  customshortcutinputname.addEventListener("input", function () {
     sameName = false;
     chrome.storage.local.get(["customshortcuts"], function (result) {
       var customshortcuts = Object.values(result)[0];
       for (let i = 0; i < customshortcuts.length; i++) {
-        if (customshortcuts[i].name == customshortcutinputname.value ){
+        if (customshortcuts[i].name == customshortcutinputname.value) {
           sameName = true;
         }
       }
 
-      if (customshortcutinputname.value.length > 0 && customshortcutinputname.value.length < 22 && !sameName){
+      if (customshortcutinputname.value.length > 0 && customshortcutinputname.value.length < 22 && !sameName) {
         validName = true;
       } else {
         validName = false;
       }
-  
-      if (validName && validURL){
+
+      if (validName && validURL) {
         customshortcutsubmit.classList.add("customshortcut-submit-valid");
       }
       else {
@@ -293,14 +290,14 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  customshortcutinputurl.addEventListener("input", function(){
-    if (customshortcutinputurl.value.length > 0 && customshortcutinputurl.value.includes('.')){
+  customshortcutinputurl.addEventListener("input", function () {
+    if (customshortcutinputurl.value.length > 0 && customshortcutinputurl.value.includes('.')) {
       validURL = true;
     } else {
       validURL = false;
     }
 
-    if (validName && validURL){
+    if (validName && validURL) {
       customshortcutsubmit.classList.add("customshortcut-submit-valid");
     }
     else {
