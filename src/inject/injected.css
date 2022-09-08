@@ -32,6 +32,8 @@ html {
 * {
   font-family: Rubik, sans-serif !important;
   --theme-fg-parts: white;
+  /* Contrast fix for certain buttons */
+  --theme-sel-bg-parts: 100,100,100 !important;
 }
 
 #title {
@@ -491,6 +493,8 @@ html {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  /* Center shortcuts */
+  justify-content: center;
 }
 
 .shortcuts a {
@@ -2094,7 +2098,8 @@ body {
   font-size: 15px;
   margin: 0 8px !important;
   border-radius: 5px;
-  color: var(--text-primary);
+  /* Wasn't updating when using light mode, added an override tag */
+  color: var(--text-primary) !important;
   background: var(--background-secondary);
   outline: solid 1px black;
 }

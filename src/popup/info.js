@@ -22,6 +22,7 @@ const miscsection = document.querySelector('#miscsection');
 const mainpage = document.querySelector("#mainpage");
 const colorpicker = document.querySelector("#colorpicker");
 const animatedbk = document.querySelector('#animatedbk');
+
 const customshortcutbutton = document.getElementsByClassName('custom-shortcuts-button')[0];
 const customshortcutdiv = document.getElementsByClassName('custom-shortcuts-container')[0];
 const customshortcutsubmit = document.getElementsByClassName('custom-shortcuts-submit')[0];
@@ -29,24 +30,15 @@ const customshortcutinputname = document.querySelector('#shortcutname');
 const customshortcutinputurl = document.querySelector('#shortcuturl');
 
 const shortcutmenuitemselection = document.getElementsByClassName('menushortcut')[0];
-
 const applybutton = document.querySelector('#applychanges')
-
 const navbuttons = document.getElementsByClassName("navitem");
 const menupages = document.getElementsByClassName("menu-page")
-
 const allinputs = document.getElementsByTagName('input');
-
 const menupage = document.querySelector("#menupage");
-
 const shortcutpage = document.querySelector("#shortcutpage");
-
 const miscpage = document.querySelector('#miscpage');
-
-var shortcutbuttons = document.getElementsByClassName("shortcutitem");
-
+const shortcutbuttons = document.getElementsByClassName("shortcutitem");
 const github = document.getElementById("github");
-
 const version = document.getElementById('version');
 const domainbutton = document.getElementById('domain-button');
 
@@ -57,7 +49,6 @@ function openGithub() {
   chrome.tabs.create({ url: "https://github.com/Nulkem/better-seqta" });
 }
 
-
 function openPage(page) {
   mainpage.style.left = "-350px";
   page.style.right = '0px';
@@ -65,7 +56,6 @@ function openPage(page) {
 
 function backToMainMenu() {
   mainpage.style.left = "0px";
-
   menupage.style.right = "-350px";
   shortcutpage.style.right = "-350px";
   miscpage.style.right = "-350px";
@@ -78,7 +68,6 @@ function resetActive() {
   for (let i = 0; i < menupages.length; i++) {
     menupages[i].classList.add('hiddenmenu');
   }
-
 }
 
 function FindSEQTATab() {
