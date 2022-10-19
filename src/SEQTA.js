@@ -1143,7 +1143,7 @@ function RunExtensionSettingsJS() {
     CreateShortcutDiv(
       shortcutname
     );
-
+    document.getElementsByClassName("shortcut-container")[0].style.display = "block";
   }
 
 
@@ -2806,6 +2806,7 @@ function AddCustomShortcutsToPage() {
   chrome.storage.local.get(["customshortcuts"], function (result) {
     var customshortcuts = Object.values(result)[0];
     if (customshortcuts.length > 0) {
+      document.getElementsByClassName("shortcut-container")[0].style.display = "block";
       for (let i = 0; i < customshortcuts.length; i++) {
         const element = customshortcuts[i];
         CreateCustomShortcutDiv(element);
@@ -2942,9 +2943,15 @@ function SendHomePage() {
           );
         }
       }
+      AddCustomShortcutsToPage();
+
+      // Checks if shortcut container is empty
+      if (document.getElementById("shortcuts").childElementCount == 0) {
+        // If there are no shortcuts, hide the container
+        document.getElementsByClassName("shortcut-container")[0].style.display = "none";
+      }
     });
 
-    AddCustomShortcutsToPage();
 
     // Creates the upcoming container and appends to the home container
     var upcomingcontainer = document.createElement('div');
